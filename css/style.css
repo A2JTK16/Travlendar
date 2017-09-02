@@ -1,0 +1,53 @@
+.induk{
+	width: 500px;
+	height: auto;
+	padding: 10px;
+	margin: 10px auto;
+	background: #ff9900;
+	overflow: hidden;
+	border-radius: 0.3em;
+}
+
+h2{
+	padding: 7px;
+	margin: 7px;
+	font: 16px Arial;
+	font-weight: bold;
+	color: #ddd;
+	text-align: center;
+	background: #333;
+	border-radius: 0.3em;
+}
+
+.kotak{
+	float: left;
+	padding: 12px;
+	margin: 12px;
+	width: 470px;
+	border: none;
+	border-radius: 0.3em;
+}
+
+.submit{
+	float: left;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 0.3em;
+	background: blue;
+	border: none;
+	font: 18px Arial;
+    font-weight: bold;
+    color: #fafafa;
+}
+
+.daf{
+	float: left;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 0.3em;
+	background: yellow;
+	border: none;
+	font: 18px Arial;
+    font-weight: bold;
+    color: #333;
+}
