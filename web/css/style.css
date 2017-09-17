@@ -1,0 +1,191 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 11, 2017, 11:02:36 AM
+    Author     : Diana
+*/
+
+body{
+	background: #eee;
+}
+
+.wadah{
+	padding: 5px;
+	margin: 5px auto;
+	width: 1080px;
+	height: auto;
+        overflow: hidden;
+	background: #fff;
+}
+
+.kalimat{
+    padding-top: 15%;
+}
+
+h2{
+	padding: 12px;
+	margin: 12px;
+	font: 50px sans;
+	color: #454545;
+	text-align: center;
+}
+
+.header{
+	width: auto;
+	height: auto;
+        overflow: hidden;
+	background: #f4f4f4;
+}
+
+.content{
+	padding: 10px;
+	margin: 10px;
+	height: auto;
+	overflow: hidden;
+	border: 1px solid #eee;
+	background: none;
+}
+
+
+.login{
+	padding: 6px;
+	margin: 6px;
+	width: auto;
+	overflow: hidden;
+	background:none;
+}
+
+.b{
+	width: 280px;
+	padding: 7px;
+	margin: 7px;
+	font: 16px Arial;
+	color: #454545;
+        border: none;
+	box-shadow: 0 2px 2px #eee;
+}
+
+.desk{
+    float: left;
+    padding: 7px;
+    margin: 7px;
+    overflow: hidden;
+    background: none;
+}
+
+p{
+    padding: 6px;
+    margin: 6px;
+    font: 15px Arial;
+    color: #454545;
+    text-align:justify;
+    line-height: 2em; 
+}
+
+.button{
+        float: right;
+	padding: 7px;
+        padding-right: 10px;
+        width: 90px;
+	margin: 7px;
+	font: 15px Arial;
+	color: #fafafa;
+	text-align: center;
+	background:cornflowerblue;
+	border: none;
+        border-radius: 0.3em;
+}
+
+.SignOrLog{
+    float: right;
+    padding: 3px;
+    padding-right: 40px;
+    margin: 3px;
+    width: auto;
+    height: auto;
+    border: none;
+    overflow: hidden;
+    box-shadow: 0 2px 2px #eee;
+}
+
+.sign{
+    float: left;
+    padding: 7px;
+    margin: 7px;
+    width: 90px;
+    font: 15px Arial;
+    font-weight: bold;
+    text-align: center;
+    color: #fafafa;
+    border: none;
+    background:dodgerblue;
+    border-radius: 0.3em;
+}
+
+text{
+    padding:7px;
+    margin: 7px;
+    float: left;
+    font: 15px Arial;
+    font-weight: bold;
+    color: #454545;
+}
+
+.log{
+    float: left;
+    padding: 7px;
+    margin: 7px;
+    width: 80px;
+    font: 15px Arial;
+    font-weight: bold;
+    text-align: center;
+    color: #fafafa;
+    border: none;
+    background:dodgerblue;
+    border-radius: 0.3em;
+}
+
+.kotak-login{
+	float: left;
+	padding: 2px;
+	margin: 2px;
+	width: 335px;
+	height: auto;
+	background: #fafafa;
+        overflow: hidden;
+	border: none;
+        box-shadow: 0 2px 2px #454545;
+        border-radius: 0.3em;
+}
+
+.kotak{
+	float: left;
+	padding: 2px;
+	margin: 2px;
+	width: 335px;
+	height: auto;
+        overflow: hidden;
+	background: none;
+	border: none;
+}
+
+.footer{
+        padding: 10px;
+        margin: 10px;
+	width: auto;
+	height: 50px;
+	background: #f4f4f4;
+}
+
+.cpyright{
+    width: auto;
+    padding: 7px;
+    margin: 7px auto;
+    font: 16px Arial;
+    text-align: center;
+    font-weight: bold;
+    color: #454545;
+}
