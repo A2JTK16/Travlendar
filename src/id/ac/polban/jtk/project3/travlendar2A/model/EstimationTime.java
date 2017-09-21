@@ -18,7 +18,7 @@ import java.text.DecimalFormat;
 public class EstimationTime {
     private double distance;
     private double speed;
-    private double eta;
+    private double eta; //estimation time arrival
    
     /**
      * @return the distance
@@ -50,16 +50,16 @@ public class EstimationTime {
     }
     
     public double countEstimationTime(double speed, double distance){
-        this.speed = speed * 1000 / 3600;
-        this.distance = distance * 1000;
-        eta = distance/speed;
+        this.speed = speed * 1000 / 3600; //konversi dari km/jam ke m/s
+        this.distance = distance * 1000; //konversi dari km ke m
+        eta = distance/speed; //estimation time diisi nilai hasil bagi jarak/kecepatan
         return eta;
     }
     
     public void printDistance(){
         int inteta = (int) eta; //casting double to int
-        eta = eta % 1 * 10 * 6;
-        System.out.print(inteta/1+" hours");
+        eta = eta % 1 * 10 * 6; //menghitung hasil mod untuk dijadikan menit
+        System.out.print(inteta/1+" hours"); //membagi var eta yang telah dikonversi ke int dan akan dijadikan jam
         System.out.printf(" %.0f",eta);
         System.out.print(" minutes");
     }

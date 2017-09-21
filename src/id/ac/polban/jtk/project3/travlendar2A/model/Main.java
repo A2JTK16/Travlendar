@@ -45,9 +45,8 @@ public class Main {
         password = n.nextLine();
         objMain.traveller = new Traveller(fullname, username, email, password);
         //  do {
-            
             switch(option){
-                   
+   
                 case 1 : //memasukkan event dan segala atributnya
                     
                     
