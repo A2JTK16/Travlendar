@@ -1,5 +1,8 @@
 package id.ac.polban.jtk.project3.travlendar2A.model;
 
+import id.ac.polban.jtk.project3.travlendar2A.model.TransportationMode.Transport;
+import java.text.DecimalFormat;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -8,62 +11,68 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
  */
 
 
-import id.ac.polban.jtk.project3.travlendar2A.model.TransportationMode;
-import id.ac.polban.jtk.project3.travlendar2A.model.TransportationMode.Transport;
-import java.util.Date;
-
-
 /**
  *
  * @author Reza Dwi Kurniawan
  */
 public class EstimationTime {
-    private int distance;
-    private int speed;
+    private double distance;
+    private double speed;
+    private double eta;
    
     /**
      * @return the distance
      */
-    public int getDistance() {
+    public double getDistance() {
         return distance;
     }
 
     /**
      * @param distance the distance to set
      */
-    public void setDistance(int distance) {
+    public void setDistance(int distance)    {
         this.distance = distance;
     }
-
+ 
+    
     /**
      * @return the speed
      */
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
     /**
      * @param speed the speed to set
      */
-    public void setSpeed(int speed) {
+    public void setSpeed(double speed) {
         this.speed = speed;
-    }
- 
-    public int countEstimationTime(int speed, int distance){
-        this.speed = speed;
-        this.distance = distance;        
-        return distance/speed;
     }
     
- /*   public static void main(String[] args) {
+    public double countEstimationTime(double speed, double distance){
+        this.speed = speed * 1000 / 3600;
+        this.distance = distance * 1000;
+        eta = distance/speed;
+        return eta;
+    }
+    
+    public void printDistance(){
+        int inteta = (int) eta;
+        eta = eta % 1 * 10 * 6;
+        System.out.print(inteta/1+" hours");
+        System.out.printf(" %.0f",eta);
+        System.out.print(" minutes");
+    }
+    
+    public static void main(String[] args) {
         Transport tp = null;
-        int speed, jarak;
+        double speed, jarak, eta;
         TransportationMode tm = new TransportationMode();
         EstimationTime et = new EstimationTime();
-        et.setDistance(100);
+        et.setDistance(120);
         jarak = et.getDistance();
         speed = tm.vehicleSpeed(tp.Mobil);
-        System.out.println(et.countEstimationTime(speed,jarak)+" hours");
+        eta = et.countEstimationTime(speed,jarak);
+        et.printDistance();
     }
-*/
 }
