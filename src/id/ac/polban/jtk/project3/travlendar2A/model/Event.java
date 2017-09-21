@@ -21,8 +21,8 @@ public class Event {
     private String nama_event;
     private Date arrivaltime;
     private Date departuretime;
-    private final SimpleDateFormat datetimeFormatter;
-    private final SimpleDateFormat dateFormat;
+    private SimpleDateFormat datetimeFormatter;
+    private SimpleDateFormat dateFormat;
     private SimpleDateFormat timeFormat;
     
     public Event(){
@@ -49,17 +49,22 @@ public class Event {
      * @throws java.text.ParseException
      */
     public void setArrivaltime(String arrivaltimeStr) throws ParseException {
-        this.arrivaltime = this.datetimeFormatter.parse("arrivaltimeStr");
+        this.arrivaltime = this.datetimeFormatter.parse(arrivaltimeStr);
     }
 
     /**
      * @param departuretime the departuretime to set
      * @throws java.text.ParseException
      */
-    public void setDeparturetime(Date departuretime) throws ParseException {
-        this.departuretime = this.datetimeFormatter.parse("departuretime");
+    public void setDeparturetime(String departuretimenn) throws ParseException {
+        this.departuretime = this.datetimeFormatter.parse(departuretimenn);
     }
     
+    /**
+     *
+     * @param arrivalTimeStr
+     * @return
+     */
     public boolean isDate(String arrivalTimeStr)
     {
         try{
@@ -68,17 +73,24 @@ public class Event {
         }
         catch(ParseException e)
         {
+             System.out.println("Tanggal Tidak Valid !");
             return false;
         }
     }
     
-    public boolean isTime(String time)
+    /**
+     *
+     * @param timeStr
+     * @return
+     */
+    public boolean isTime(String timeStr)
     {
         try{
-            this.timeFormat.parse(time);
+            this.timeFormat.parse(timeStr);
             return true;
         }
         catch(ParseException d){
+             System.out.println("Waktu Tidak Valid !");
             return false;
         }
     }

@@ -5,6 +5,7 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.model;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
@@ -19,14 +20,15 @@ public class Main {
     private DistanceMatrix distance;
     private EstimationTime esTime;
     private TransportationMode transport;
-    private Event event;
+//    private Event event;
     private Traveller traveller;
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         Main objMain = new Main();
-        int option = 0;
+        Event event = new Event();
+        int option = 1;
         int id = 0;
-        String fullname, username, email, password;
+        String fullname, username, email, password, eventName, tanggalStr, waktuStr;
         Scanner n = new Scanner(System.in);
         
         ArrayList<Event> eventList = new ArrayList();
@@ -49,9 +51,25 @@ public class Main {
             switch(option){
                    
                 case 1 : //memasukkan event dan segala atributnya
+                    System.out.println("Nama Event : ");
+                    eventName = n.nextLine();
                     
                     
+                    System.out.println("Masukkan Tanggal Berangkat : (dd-mm-yyyy)");
+                    tanggalStr = n.next();
+                
                     
+                    System.out.println("Masukkan Waktu Berangkat : (hh.mm.ss");
+                    waktuStr = n.next();
+                  
+                    event.setArrivaltime(tanggalStr + "." + waktuStr);
+                    System.out.println("Masukkan Tanggal Tiba : (dd-mm-yyyy)");
+                    tanggalStr = n.next();
+                    
+                    System.out.println("Masukkan Waktu Tiba : (hh.mm.ss");
+                    waktuStr = n.next();
+                   
+                    event.setArrivaltime(tanggalStr + "." + waktuStr);
                     /*System.out.println("Masukkan Lokasi : ");
                     for
                     String l = n.nextLine();
@@ -60,6 +78,18 @@ public class Main {
                     System.out.println("1. Mobil \n2. Motor \n3. Pesawat \n4. Kereta \n5. Bus\n");
                     System.out.println("Pilih Moda Transportasi : ");
                     String t = n.nextLine();
+                    
+                    
+                    //E.addEvent(en, at, dt);
+                    //eventList.add(e)
+                    
+                    
+                    //E.addEvent(en, at, dt);
+                    //eventList.add(e)
+                    
+                    
+                    //E.addEvent(en, at, dt);
+                    //eventList.add(e)
                     
                     
                     //E.addEvent(en, at, dt);
