@@ -43,7 +43,7 @@ public class Location {
     public void setNama_lokasi(String nama_lokasi) {
         this.nama_lokasi = nama_lokasi;
     }
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         Location lok_1 = new Location();
         lok_1.setKode_lokasi(10001);
         lok_1.setNama_lokasi("Rumah");
@@ -90,4 +90,5 @@ public class Location {
         System.out.print(lok_8.getNama_lokasi() + " -> ");
         System.out.print(lok_9.getNama_lokasi());
     }
+*/
 }
