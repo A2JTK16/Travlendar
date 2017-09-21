@@ -57,7 +57,7 @@ public class EstimationTime {
     }
     
     public void printDistance(){
-        int inteta = (int) eta;
+        int inteta = (int) eta; //casting double to int
         eta = eta % 1 * 10 * 6;
         System.out.print(inteta/1+" hours");
         System.out.printf(" %.0f",eta);
