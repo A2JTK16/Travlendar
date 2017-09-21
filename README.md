@@ -1,3 +1,6 @@
 # Travlendar Web FrontEnd A2 
 
-Aplikasi web ini dibuat menggunakan NetBeans IDE 8.2 
+## Deskripsi
+Ini adalah aplikasi website berbasis java menggunakan Netbeans 8.2
+
+## Front End Team
