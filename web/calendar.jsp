@@ -1,11 +1,8 @@
 <%-- 
     Document   : index
     Created on : Sep 15, 2017, 5:01:23 PM
-<<<<<<< HEAD
-    Author     : Lenovo
-=======
     Author     : diana
->>>>>>> newfeature
+
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,11 +10,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<<<<<<< HEAD
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-=======
+
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style-calendar.css">
->>>>>>> newfeature
+
         <title>JSP Page</title>
     </head>
     <body>
