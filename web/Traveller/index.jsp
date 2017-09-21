@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/styletraveller.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/responsive.css">
         <title>JSP Page</title>
     </head>
     <body>
@@ -116,8 +117,7 @@
 							      <input type="text" placeholder="Username ..."/>
 							      <input type="text" placeholder="Email ..."/>
 							      <input type="text" placeholder="Password ..."/>
-							      <button> Save </button>
-							      <p class="message">Not registered? <a href="#">Create an account</a></p>
+							      <button> Save </button>							     
 							    </form>
 							  </div>
 							
@@ -152,70 +152,76 @@
 						</thead>
 						<tbody>
 						<tr>
-							<td>001</td>
+							<td>01</td>
 							<td>Faiz Abdusallam</td>
 							<td>Faiz</td>
 							<td>faiz@polban.ac.id</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
-							<td>002</td>
+							<td>02</td>
 							<td>Said Al Fakhri</td>
 							<td>Said</td>
 							<td>Said@polban.ac.id</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
-							<td>003</td>
+							<td>03</td>
 							<td>Dede Diana</td>
 							<td>Diana</td>
 							<td>diana@polban.ac.id</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
-							<td>004</td>
+							<td>04</td>
 							<td>Alfin Jastinera</td>
 							<td>Alfin</td>
 							<td>alfin@polban.ac.id</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
 						
 						
 						<tr>
-							<td>001</td>
-							<td>Faiz Abdusallam</td>
-							<td>Faiz</td>
-							<td>faiz@polban.ac.id</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
+							<td>05</td>
+							<td>Agit Prasetya</td>
+							<td>Agit</td>
+							<td>agit@polban.ac.id</td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
-							<td>002</td>
-							<td>Said Al Fakhri</td>
-							<td>Said</td>
-							<td>Said@polban.ac.id</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
+							<td>06</td>
+							<td>Maulana Ibrahim</td>
+							<td>Maul</td>
+							<td>maul@polban.ac.id</td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
-							<td>003</td>
-							<td>Dede Diana</td>
-							<td>Diana</td>
-							<td>diana@polban.ac.id</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
+							<td>07</td>
+							<td>Mufid Jamaluddin</td>
+							<td>Mufid</td>
+							<td>mufid@polban.ac.id</td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
-							<td>004</td>
-							<td>Alfin Jastinera</td>
-							<td>Alfin</td>
-							<td>alfin@polban.ac.id</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
+							<td>08</td>
+							<td>Putri Dian</td>
+							<td>Dian</td>
+							<td>putridian@polban.ac.id</td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
 						
+                                                <script>
+						function myFunction() {
+							alert("Delete Sucsess");
+						}
+						</script>
+									
 						
 						</tbody>
 					</table>

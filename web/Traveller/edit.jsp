@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
-    Created on : Sep 21, 2017, 1:52:12 PM
-    Author     : Alpin J
+    Created on : Sep 21, 2017, 12:03:59 PM
+    Author     : Lenovo
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,7 +15,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-       <div class="jarak-atas">
+        <div class="jarak-atas">
 
 </div> <!--jarak-atas-->
 
@@ -92,96 +92,29 @@
 		</div> <!--/ .header -->
 
 		<div class="middle">
-				<div class="judul-manage"> MANAGE LOCATION </div>
-				<button id="myBtn"> + Add New Location </button>
-				<!-- The Modal -->
-				<div id="myModal" class="modal">
-
-				  <!-- Modal content -->
-				  <div class="modal-content">
-				    	
-							  <div class="form">
-							  	<div class="modal-header">
-							      <span class="close">&times;</span>
-							      <h5>Add New Location</h5>
-							    </div>
-							    <form class="register-form" action="utama.html" method="POST">
-							      <input type="text" placeholder="name"/>
-							      <input type="password" placeholder="password"/>
-							      <input type="text" placeholder="email address"/>
-							      <button>create</button>
-							      <p class="message">Already registered? <a href="#">Sign In</a></p>
-							    </form>
-							    <form class="login-form">
-							      <input type="text" placeholder="Name of Location ..."/>
-							      <input type="text" placeholder="Address ..."/>
-							      <button> Save </button>
-                                                              <%--<p class="message">Not registered? <a href="#">Create an account</a></p>--%>
-							    </form>
-							  </div>
-							
-				  </div> <!--modal content-->
-
-				</div>
+				<div class="judul-manage"> MANAGE TRAVELLER </div>
+		</div>
 
 		</div> <!--middle-->
 		
 		<div class="middle">
 		
 			<div class="kotak-traveller">
-				<h4> List Of Location </h4>
-				<div class="kotak-search">
-					<div class="icon-search">
-						<img src="${pageContext.request.contextPath}/Assets2/icon/search.png">
-					</div> <!--icon-search-->
-					<input class="search "type="text" placeholder="Search Traveller ... "/>
-				</div> <!--kotak-search-->
+				<h4> Edit Data Traveller </h4>	
 			</div> <!--kotak-traveller-->
 	
 			<div class="kotak-traveller">
-					<table>
-						<thead>
-						<tr>
-							<th>ID</th>
-							<th>Location</th>
-							<th>Detail</th>
-							<th>Action</th>
-						</tr>
-						</thead>
-						<tbody>
-						<tr>
-							<td>001</td>
-							<td>Home</td>
-							<td>Jl. Terusan Gegerkalong Hilir No.15</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
-						</tr>
-                                                
-                                                <tr>
-							<td>002</td>
-							<td>Polban</td>
-							<td>Jl. Kampus Polban</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
-						</tr>
-                                                
-                                                <tr>
-							<td>003</td>
-							<td>Nobu Ramen & Sushi</td>
-							<td>Jl. Gegerkalong Hilir No.1</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
-						</tr>
-						
-                                                <tr>
-							<td>004</td>
-							<td>Terminal Leuwipanjang</td>
-							<td>Situsaeur, Bojongloa Kidul</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
-						</tr>
-						
-						
-						</tbody>
-					</table>
-			</div> <!--kotak-traveller-->
-			
+				<div class="text-edit"> Edit Fullname </div>
+					<input class="edtp" type="text" placeholder="">
+				<div class="text-edit"> Edit Username </div>
+					<input class="edtp" type="text" placeholder="">
+				<div class="text-edit"> Edit Email </div>
+					<input class="edtp" type="text" placeholder="">
+				<div class="text-edit"> Edit Password </div>
+					<input class="edtp" type="password" placeholder="">
+					<br/>
+				<a href="index.jsp"><button class="update-traveller"> Update </button></a>
+			</div> <!--kotak-traveller-->			
 			
 		</div> <!--/ .middle -->
 
