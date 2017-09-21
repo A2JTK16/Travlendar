@@ -24,21 +24,6 @@ public class Traveller {
         
     }
     
-    Traveller(String fullname) {
-        this.fullname = fullname;
-    }
-    
-    Traveller(String fullname, String username) {
-        this.fullname = fullname;
-        this.username = username;
-    }
-    
-    Traveller(String fullname, String username, String email) {
-        this.fullname = fullname;
-        this.username = username;
-        this.email = email;
-    }
-    
     Traveller(String fullname, String username, String email, String password) {
         this.fullname = fullname;
         this.username = username;
@@ -121,7 +106,7 @@ public class Traveller {
         this.fullname = fullname;
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Traveller data = new Traveller("maryammm", "maryam@gmail.com", "Siti Maryam", "maryam123");
         data.setId_traveller(421998);
         System.out.println("Id Traveller : " + data.getId_traveller());
@@ -129,5 +114,5 @@ public class Traveller {
         System.out.println("Full Name    : " + data.getFullname());
         System.out.println("Email        : " + data.getEmail());
         System.out.println("Password     : " + data.getPassword());
-    }
+    }*/
 }
