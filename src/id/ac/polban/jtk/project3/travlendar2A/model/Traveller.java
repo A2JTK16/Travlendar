@@ -95,7 +95,7 @@ public class Traveller {
         this.fullname = fullname;
     }
 
-    public static void main(String[] args) {
+  /*  public static void main(String[] args) {
         Traveller data = new Traveller ();
         data.setId_traveller(421998);
         data.setUsername("maryammm");
@@ -108,4 +108,5 @@ public class Traveller {
         System.out.println("Email        : " + data.getEmail());
         System.out.println("Password     : " + data.getPassword());
     }
+*/
 }
