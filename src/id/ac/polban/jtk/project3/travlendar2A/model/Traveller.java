@@ -9,7 +9,7 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
 
 /**
  *
- * @author ASUS
+ * @author Auliya
  */
 
 public class Traveller {
@@ -19,6 +19,32 @@ public class Traveller {
     private String email;
     private String password;
     private String fullname;
+    
+    Traveller() {
+        
+    }
+    
+    Traveller(String fullname) {
+        this.fullname = fullname;
+    }
+    
+    Traveller(String fullname, String username) {
+        this.fullname = fullname;
+        this.username = username;
+    }
+    
+    Traveller(String fullname, String username, String email) {
+        this.fullname = fullname;
+        this.username = username;
+        this.email = email;
+    }
+    
+    Traveller(String fullname, String username, String email, String password) {
+        this.fullname = fullname;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
     /**
      * @return the id_traveller
@@ -96,12 +122,12 @@ public class Traveller {
     }
 
     public static void main(String[] args) {
-        Traveller data = new Traveller ();
+        Traveller data = new Traveller("maryammm", "maryam@gmail.com", "Siti Maryam", "maryam123");
         data.setId_traveller(421998);
-        data.setUsername("maryammm");
-        data.setEmail("maryam@gmail.com");
-        data.setFullname("Siti Maryam");
-        data.setPassword("maryam123");
+//        data.setUsername("maryammm");
+//        data.setEmail("maryam@gmail.com");
+//        data.setFullname("Siti Maryam");
+//        data.setPassword("maryam123");
         System.out.println("Id Traveller : " + data.getId_traveller());
         System.out.println("Username     : " + data.getUsername());
         System.out.println("Full Name    : " + data.getFullname());
