@@ -1,3 +1,3 @@
-# travlendar
+# Travlendar Web FrontEnd A2 
 
-Aplikasi Buat Proyek 3
+Aplikasi web ini dibuat menggunakan NetBeans IDE 8.2 
