@@ -5,133 +5,82 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.util.Calendar;
-import java.util.Scanner;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.regex.Pattern;
+
 
 /**
  *
  * @author AGS
  */
 public class Event {
-    
-    
-    private String nama_event;
-    private Calendar arrivaltime;
-    private Calendar departuretime;
-    
-    
-    //penamaan event saya ganti menjadi addEvent supaya tidak jadi kontrakstor
-    //addEvent berfungsi untuk memasukkan data yg telah diinput di main ke dalam object Event
-    public void addEvent(String nama_event, Calendar arrivaltime, Calendar departuretime){
-        
-        this.setNama_event(nama_event);
-        this.setArrivaltime(arrivaltime);
-        this.setDeparturetime(departuretime);
-        
-    }
 
-    /**
-     * @return the nama_event
-     */
-    public String getNama_event() {
-        return nama_event;
+    private String nama_event;
+    private Date arrivaltime;
+    private Date departuretime;
+    private final SimpleDateFormat datetimeFormatter;
+    private final SimpleDateFormat dateFormat;
+    private SimpleDateFormat timeFormat;
+    
+    public Event(){
+        this.datetimeFormatter = new SimpleDateFormat("dd-MM-yyyy.HH.mm.ss");
+        this.dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        this.timeFormat = new SimpleDateFormat("HH.mm.ss");
+        this.arrivaltime = null;
+        this.departuretime = null;
+    }
+   
+    public void getEvent() {
+        System.out.println("Nama Event : " + this.nama_event + "\nWaktu Tiba : " + this.arrivaltime + "\nWaktu Berangkat : " + this.departuretime + "\n") ;
     }
 
     /**
      * @param nama_event the nama_event to set
      */
     public void setNama_event(String nama_event) {
-        this.nama_event = nama_event;
+         this.setNama_event(nama_event);
     }
 
     /**
-     * @return the arrivaltime
+     * @param arrivaltimeStr
+     * @throws java.text.ParseException
      */
-    public Calendar getArrivaltime() {
-        return arrivaltime;
-    }
-
-    /**
-     * @param arrivaltime the arrivaltime to set
-     */
-    public void setArrivaltime(Calendar arrivaltime) {
-        this.arrivaltime = arrivaltime;
-    }
-
-    /**
-     * @return the departuretime
-     */
-    public Calendar getDeparturetime() {
-        return departuretime;
+    public void setArrivaltime(String arrivaltimeStr) throws ParseException {
+        this.arrivaltime = this.datetimeFormatter.parse("arrivaltimeStr");
     }
 
     /**
      * @param departuretime the departuretime to set
+     * @throws java.text.ParseException
      */
-    public void setDeparturetime(Calendar departuretime) {
-        this.departuretime = departuretime;
+    public void setDeparturetime(Date departuretime) throws ParseException {
+        this.departuretime = this.datetimeFormatter.parse("departuretime");
     }
     
-    public Calendar inputArrivalTime() {
-        Scanner scan = new Scanner(System.in);
-        Calendar at = Calendar.getInstance();
-        System.out.print("Tahun event dimulai : ");
-        int yearStart = Integer.parseInt(scan.nextLine());
-        System.out.print("Bulan event dimulai : ");
-        int monthStart = Integer.parseInt(scan.nextLine());
-        monthStart = monthStart - 1;
-        System.out.print("Tanggal event dimulai : ");
-        int dayStart = Integer.parseInt(scan.nextLine());
-        System.out.print("Jam Tiba : ");
-        int hourStart = Integer.parseInt(scan.nextLine());
-        System.out.print("Menit Tiba : ");
-        int minuteStart = Integer.parseInt(scan.nextLine());
-        int secondStart = 0;
-        at.set(yearStart, monthStart, dayStart, hourStart, minuteStart, secondStart);
-        return at;
-    }
-    
-    public Calendar inputDepartureTime() {
-        Scanner scan = new Scanner(System.in);
-        Calendar dt = Calendar.getInstance();
-        System.out.print("Tahun event dimulai : ");
-        int yearStart = Integer.parseInt(scan.nextLine());
-        System.out.print("Bulan event dimulai : ");
-        int monthStart = Integer.parseInt(scan.nextLine());
-        monthStart = monthStart - 1;
-        System.out.print("Tanggal event dimulai : ");
-        int dayStart = Integer.parseInt(scan.nextLine());
-        System.out.print("Jam Berangkat : ");
-        int hourStart = Integer.parseInt(scan.nextLine());
-        System.out.print("Menit Berangkat : ");
-        int minuteStart = Integer.parseInt(scan.nextLine());
-        int secondStart = 0;
-        dt.set(yearStart, monthStart, dayStart, hourStart, minuteStart, secondStart);
-        return dt;
-    }
-    
-    public String getEvent() {
-        return "Nama Event : " + getNama_event() + "\nJam Tiba : " + getArrivaltime().getTime() + "\nJam Berangkat : " + getDeparturetime().getTime() + "\n";
-    }
-    //Method supaya programbisa di running
- /*   public static void main(String[] args)
+    public boolean isDate(String arrivalTimeStr)
     {
-       Event E = new Event();
-       
-       Calendar dt = E.inputDepartureTime();
-       Calendar at = E.inputArrivalTime();
-       Scanner n = new Scanner(System.in);
-       System.out.println("Nama Event : ");
-       String en = n.nextLine();
-       
-       E.addEvent(en, at, dt);
-       System.out.println(E.getEvent()); //untuk menampilkan event yg telah diinput
-       
-       //Method input
-       //E.addEvent(1234,"apajare",123,123,123,"apane");
-       //Method print ke layar
-       //System.out.println("Event : " + E.id_event);
-    }   
-*/
+        try{
+            this.dateFormat.parse(arrivalTimeStr);
+            return true;
+        }
+        catch(ParseException e)
+        {
+            return false;
+        }
+    }
+    
+    public boolean isTime(String time)
+    {
+        try{
+            this.timeFormat.parse(time);
+            return true;
+        }
+        catch(ParseException d){
+            return false;
+        }
+    }
     
 }

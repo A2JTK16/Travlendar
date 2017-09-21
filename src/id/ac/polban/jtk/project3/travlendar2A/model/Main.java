@@ -20,28 +20,46 @@ public class Main {
     private EstimationTime esTime;
     private TransportationMode transport;
     private Event event;
-   
+    private Traveller traveller;
     public static void main(String[] args) {
         Main objMain = new Main();
         int option = 0;
- 
+        int id = 0;
+        String fullname, username, email, password;
+        Scanner n = new Scanner(System.in);
         
         ArrayList<Event> eventList = new ArrayList();
-      //  do {
+        System.out.println("Masukkan ID anda : ");
+        id = Integer.parseInt(n.nextLine());
+        objMain.traveller.setId_traveller(id);
+        
+        System.out.println("Masukkan Nama Lengkap Anda : ");
+        fullname = n.nextLine();
+        
+        System.out.println("Masukkan Username Anda : ");
+        username = n.nextLine();
+        
+        System.out.println("Masukkan email Anda : ");
+        email = n.nextLine();
+        
+        System.out.println("Masukkan password Anda : ");
+        password = n.nextLine();
+        //  do {
+            
             switch(option){
+                   
                 case 1 : //memasukkan event dan segala atributnya
-                    Calendar dt = objMain.event.inputDepartureTime();
-                    Calendar at = objMain.event.inputArrivalTime();
-                    Scanner n = new Scanner(System.in);
-                    System.out.println("Nama Event : ");
-                    String en = n.nextLine();
+                    event.
                     
                     
-                    System.out.println("Masukkan Lokasi : ");
+                    /*System.out.println("Masukkan Lokasi : ");
+                    for
                     String l = n.nextLine();
-                    objMain.locationEvent.setNama_lokasi(l);
+                    objMain.locationEvent.setNama_lokasi(l);*/
                     
-                    
+                    System.out.println("1. Mobil \n2. Motor \n3. Pesawat \n4. Kereta \n5. Bus\n");
+                    System.out.println("Pilih Moda Transportasi : ");
+                    String t = n.nextLine();
                     
                     
                     //E.addEvent(en, at, dt);
