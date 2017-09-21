@@ -14,7 +14,7 @@ import id.ac.polban.jtk.project3.travlendar2A.model.TransportationMode.Transport
 public class EstimationTime {
     private double distance;
     private double speed;
-    private double eta; //estimation time arrival
+    private double eta; //eta merupakan singkatan dari estimation time arrival
    
     /**
      * @return the distance
@@ -55,9 +55,14 @@ public class EstimationTime {
     public void printDistance(){
         int inteta = (int) eta; //casting double to int
         eta = eta % 1 * 10 * 6; //menghitung hasil mod untuk dijadikan menit
-        System.out.print(inteta/1+" hours"); //membagi var eta yang telah dikonversi ke int dan akan dijadikan jam
-        System.out.printf(" %.0f",eta);
-        System.out.print(" minutes");
+        if ((inteta/1)<1){
+            System.out.printf("%.0f",eta);
+            System.out.print(" minutes");
+        } else {
+            System.out.print(inteta/1+" hours"); //membagi var eta yang telah dikonversi ke int dan akan dijadikan jam
+            System.out.printf(" %.0f",eta);
+            System.out.print(" minutes");
+        }
     }
     
     public static void main(String[] args) {
@@ -65,7 +70,7 @@ public class EstimationTime {
         TransportationMode tm = new TransportationMode();
         EstimationTime et = new EstimationTime();
         et.setDistance(120);
-        eta = et.countEstimationTime(tm.getSpeedKendaraan(Transport.MOBIL),et.getDistance());
+        eta = et.countEstimationTime(tm.getSpeedKendaraan(Transport.PESAWAT),et.getDistance());
         et.printDistance();
     }
 }
