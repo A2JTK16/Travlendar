@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
-    Created on : Sep 21, 2017, 12:03:59 PM
-    Author     : Lenovo
+    Created on : Sep 21, 2017, 1:52:12 PM
+    Author     : Alpin J
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,7 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="jarak-atas">
+       <div class="jarak-atas">
 
 </div> <!--jarak-atas-->
 
@@ -55,7 +55,7 @@
 				<div class="icon-setting">
 					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">
 				</div> <!--icon-setting-->
-                                <h2> <a href="../Location/index.jsp">Location </a></h2>
+                                <h2>Location</h2>
 			</div>
 			
 			<div class="menu-manage">
@@ -91,8 +91,8 @@
 		</div> <!--/ .header -->
 
 		<div class="middle">
-				<div class="judul-manage"> MANAGE TRAVELLER </div>
-				<button id="myBtn"> + Add New Traveller </button>
+				<div class="judul-manage"> MANAGE LOCATION </div>
+				<button id="myBtn"> + Add New Location </button>
 				<!-- The Modal -->
 				<div id="myModal" class="modal">
 
