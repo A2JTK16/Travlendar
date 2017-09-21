@@ -55,7 +55,7 @@ public class EstimationTime {
         return distance/speed;
     }
     
-    public static void main(String[] args) {
+ /*   public static void main(String[] args) {
         Transport tp = null;
         int speed, jarak;
         TransportationMode tm = new TransportationMode();
@@ -65,4 +65,5 @@ public class EstimationTime {
         speed = tm.vehicleSpeed(tp.Mobil);
         System.out.println(et.countEstimationTime(speed,jarak)+" hours");
     }
+*/
 }
