@@ -36,18 +36,18 @@ public class TransportationMode {
         int speed = 0;
         switch(vhc){
             case Mobil :
-                speed = 50;
+                speed = 50; //set speed untuk mobil
                 break;
             case Motor :
-                speed = 60;
+                speed = 60; //set speed untuk motor
                 break;
             case Pesawat :
-                speed = 900;
+                speed = 900; //set speed untuk pesawat
                 break;
             case Kereta :
-                speed = 150;
+                speed = 150; //set speed untuk kereta
                 break;
-            case Bus :
+            case Bus : //set speed untuk bus
                 speed = 40;
                 break;
         }
