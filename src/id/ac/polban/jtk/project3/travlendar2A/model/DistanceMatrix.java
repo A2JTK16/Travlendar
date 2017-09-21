@@ -7,7 +7,7 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
 
 /**
  *
- * @author ASUS
+ * @author maulana
  */
 public class DistanceMatrix {
     //atribute
