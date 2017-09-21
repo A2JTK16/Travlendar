@@ -1,15 +1,10 @@
 package id.ac.polban.jtk.project3.travlendar2A.model;
 
-import id.ac.polban.jtk.project3.travlendar2A.model.TransportationMode.Transport;
-import java.text.DecimalFormat;
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 
 /**
  *
@@ -65,13 +60,13 @@ public class EstimationTime {
     }
     
     public static void main(String[] args) {
-        Transport tp = null;
         double speed, jarak, eta;
+        String kendaraan = "Mobil";
         TransportationMode tm = new TransportationMode();
         EstimationTime et = new EstimationTime();
         et.setDistance(120);
         jarak = et.getDistance();
-        speed = tm.vehicleSpeed(tp.Mobil);
+        speed = tm.getSpeedKendaraan(kendaraan);
         eta = et.countEstimationTime(speed,jarak);
         et.printDistance();
     }
