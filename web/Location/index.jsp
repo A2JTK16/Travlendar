@@ -47,7 +47,7 @@
 				<div class="icon-setting">
 					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">
 				</div> <!--icon-setting-->
-				<h2>Traveller</h2>
+                                <h2><a href="../Traveller/index.jsp">Traveller</a></h2>
 	
 			</div> <!--menu-manage-->
 			
@@ -55,7 +55,7 @@
 				<div class="icon-setting">
 					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">
 				</div> <!--icon-setting-->
-                                <h2>Location</h2>
+                                <h2><a href="../Location/index.jsp">Location</a></h2>
 			</div>
 			
 			<div class="menu-manage">
@@ -102,7 +102,7 @@
 							  <div class="form">
 							  	<div class="modal-header">
 							      <span class="close">&times;</span>
-							      <h5>Add New Travlendar</h5>
+							      <h5>Add New Location</h5>
 							    </div>
 							    <form class="register-form" action="utama.html" method="POST">
 							      <input type="text" placeholder="name"/>
@@ -112,12 +112,10 @@
 							      <p class="message">Already registered? <a href="#">Sign In</a></p>
 							    </form>
 							    <form class="login-form">
-							      <input type="text" placeholder="Fullname ..."/>
-							      <input type="text" placeholder="Username ..."/>
-							      <input type="text" placeholder="Email ..."/>
-							      <input type="text" placeholder="Password ..."/>
+							      <input type="text" placeholder="Name of Location ..."/>
+							      <input type="text" placeholder="Address ..."/>
 							      <button> Save </button>
-							      <p class="message">Not registered? <a href="#">Create an account</a></p>
+                                                              <%--<p class="message">Not registered? <a href="#">Create an account</a></p>--%>
 							    </form>
 							  </div>
 							
@@ -130,7 +128,7 @@
 		<div class="middle">
 		
 			<div class="kotak-traveller">
-				<h4> List Of Traveller </h4>
+				<h4> List Of Location </h4>
 				<div class="kotak-search">
 					<div class="icon-search">
 						<img src="${pageContext.request.contextPath}/Assets2/icon/search.png">
@@ -144,75 +142,37 @@
 						<thead>
 						<tr>
 							<th>ID</th>
-							<th>Fullname</th>
-							<th>Username</th>
-							<th>Email</th>
+							<th>Location</th>
+							<th>Detail</th>
 							<th>Action</th>
 						</tr>
 						</thead>
 						<tbody>
 						<tr>
 							<td>001</td>
-							<td>Faiz Abdusallam</td>
-							<td>Faiz</td>
-							<td>faiz@polban.ac.id</td>
+							<td>Home</td>
+							<td>Jl. Terusan Gegerkalong Hilir No.15</td>
 							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
 						</tr>
-						
-						<tr>
+                                                
+                                                <tr>
 							<td>002</td>
-							<td>Said Al Fakhri</td>
-							<td>Said</td>
-							<td>Said@polban.ac.id</td>
+							<td>Polban</td>
+							<td>Jl. Kampus Polban</td>
 							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
 						</tr>
-						
-						<tr>
+                                                
+                                                <tr>
 							<td>003</td>
-							<td>Dede Diana</td>
-							<td>Diana</td>
-							<td>diana@polban.ac.id</td>
+							<td>Nobu Ramen & Sushi</td>
+							<td>Jl. Gegerkalong Hilir No.1</td>
 							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
 						</tr>
 						
-						<tr>
+                                                <tr>
 							<td>004</td>
-							<td>Alfin Jastinera</td>
-							<td>Alfin</td>
-							<td>alfin@polban.ac.id</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
-						</tr>
-						
-						
-						<tr>
-							<td>001</td>
-							<td>Faiz Abdusallam</td>
-							<td>Faiz</td>
-							<td>faiz@polban.ac.id</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
-						</tr>
-						
-						<tr>
-							<td>002</td>
-							<td>Said Al Fakhri</td>
-							<td>Said</td>
-							<td>Said@polban.ac.id</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
-						</tr>
-						
-						<tr>
-							<td>003</td>
-							<td>Dede Diana</td>
-							<td>Diana</td>
-							<td>diana@polban.ac.id</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
-						</tr>
-						
-						<tr>
-							<td>004</td>
-							<td>Alfin Jastinera</td>
-							<td>Alfin</td>
-							<td>alfin@polban.ac.id</td>
+							<td>Terminal Leuwipanjang</td>
+							<td>Situsaeur, Bojongloa Kidul</td>
 							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
 						</tr>
 						
