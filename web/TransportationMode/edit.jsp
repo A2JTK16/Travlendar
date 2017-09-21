@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Sep 21, 2017, 12:03:59 PM
+    Document   : edit
+    Created on : Sep 21, 2017, 5:23:40 PM
     Author     : Diana
 --%>
 
@@ -93,140 +93,22 @@
 
 		<div class="middle">
 				<div class="judul-manage"> MANAGE TRAVELLER </div>
-				<button id="myBtn"> + Add New Traveller </button>
-				<!-- The Modal -->
-				<div id="myModal" class="modal">
-
-				  <!-- Modal content -->
-				  <div class="modal-content">
-				    	
-							  <div class="form">
-							  	<div class="modal-header">
-							      <span class="close">&times;</span>
-							      <h5>Add New Travlendar</h5>
-							    </div>
-							    <form class="register-form" action="utama.html" method="POST">
-							      <input type="text" placeholder="name"/>
-							      <input type="password" placeholder="password"/>
-							      <input type="text" placeholder="email address"/>
-							      <button>create</button>
-							      <p class="message">Already registered? <a href="#">Sign In</a></p>
-							    </form>
-							    <form class="login-form">
-							      <input type="text" placeholder="Fullname ..."/>
-							      <input type="text" placeholder="Username ..."/>
-							      <input type="text" placeholder="Email ..."/>
-							      <input type="text" placeholder="Password ..."/>
-							      <button> Save </button>							     
-							    </form>
-							  </div>
-							
-				  </div> <!--modal content-->
-
-				</div>
+		</div>
 
 		</div> <!--middle-->
 		
 		<div class="middle">
 		
 			<div class="kotak-traveller">
-				<h4> List Of Traveller </h4>
-				<div class="kotak-search">
-					<div class="icon-search">
-						<img src="${pageContext.request.contextPath}/Assets2/icon/search.png">
-					</div> <!--icon-search-->
-					<input class="search "type="text" placeholder="Search Traveller ... "/>
-				</div> <!--kotak-search-->
+				<h4> Edit Data Transportation Mode </h4>	
 			</div> <!--kotak-traveller-->
 	
 			<div class="kotak-traveller">
-					<table>
-						<thead>
-						<tr>
-							<th>ID</th>
-							<th>Fullname</th>
-							<th>Username</th>
-							<th>Email</th>
-							<th>Action</th>
-						</tr>
-						</thead>
-						<tbody>
-						<tr>
-							<td>01</td>
-							<td>Faiz Abdusallam</td>
-							<td>Faiz</td>
-							<td>faiz@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
-						</tr>
-						
-						<tr>
-							<td>02</td>
-							<td>Said Al Fakhri</td>
-							<td>Said</td>
-							<td>Said@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
-						</tr>
-						
-						<tr>
-							<td>03</td>
-							<td>Dede Diana</td>
-							<td>Diana</td>
-							<td>diana@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
-						</tr>
-						
-						<tr>
-							<td>04</td>
-							<td>Alfin Jastinera</td>
-							<td>Alfin</td>
-							<td>alfin@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
-						</tr>
-						
-						
-						<tr>
-							<td>05</td>
-							<td>Agit Prasetya</td>
-							<td>Agit</td>
-							<td>agit@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
-						</tr>
-						
-						<tr>
-							<td>06</td>
-							<td>Maulana Ibrahim</td>
-							<td>Maul</td>
-							<td>maul@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
-						</tr>
-						
-						<tr>
-							<td>07</td>
-							<td>Mufid Jamaluddin</td>
-							<td>Mufid</td>
-							<td>mufid@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
-						</tr>
-						
-						<tr>
-							<td>08</td>
-							<td>Putri Dian</td>
-							<td>Dian</td>
-							<td>putridian@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
-						</tr>
-						
-                                                <script>
-						function myFunction() {
-							alert("Delete Sucsess");
-						}
-						</script>
-									
-						
-						</tbody>
-					</table>
-			</div> <!--kotak-traveller-->
-			
+				<div class="text-edit"> Edit Transportation Name </div>
+					<input class="edtp" type="text" placeholder="">
+					<br/>
+				<a href="index.jsp"><button class="update-traveller"> Update </button></a>
+			</div> <!--kotak-traveller-->			
 			
 		</div> <!--/ .middle -->
 

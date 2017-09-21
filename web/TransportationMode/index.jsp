@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : Sep 21, 2017, 12:03:59 PM
+    Created on : Sep 21, 2017, 4:59:43 PM
     Author     : Diana
 --%>
 
@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/styletraveller.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/styledistance.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/responsive.css">
         <title>JSP Page</title>
     </head>
@@ -92,8 +92,8 @@
 		</div> <!--/ .header -->
 
 		<div class="middle">
-				<div class="judul-manage"> MANAGE TRAVELLER </div>
-				<button id="myBtn"> + Add New Traveller </button>
+				<div class="judul-manage">MANAGE TRANSPORTATION MODE</div>
+				<button id="myBtn"> + Add New TransportationMode </button>
 				<!-- The Modal -->
 				<div id="myModal" class="modal">
 
@@ -103,21 +103,19 @@
 							  <div class="form">
 							  	<div class="modal-header">
 							      <span class="close">&times;</span>
-							      <h5>Add New Travlendar</h5>
+							      <h5>List Of Transportation Mode</h5>
 							    </div>
-							    <form class="register-form" action="utama.html" method="POST">
-							      <input type="text" placeholder="name"/>
-							      <input type="password" placeholder="password"/>
-							      <input type="text" placeholder="email address"/>
-							      <button>create</button>
-							      <p class="message">Already registered? <a href="#">Sign In</a></p>
-							    </form>
-							    <form class="login-form">
-							      <input type="text" placeholder="Fullname ..."/>
-							      <input type="text" placeholder="Username ..."/>
-							      <input type="text" placeholder="Email ..."/>
-							      <input type="text" placeholder="Password ..."/>
-							      <button> Save </button>							     
+
+							    <form class="distance-form">
+                                                                <select class="dropdown-location">
+                                                                     <option value="StartingLocation">Add Transportation Name ...</option>
+                                                                     <option value="SLocation1">Car</option>
+                                                                     <option value="SLocation2">Motorcycle</option>
+                                                                     <option value="SLocation3">Bus</option>
+                                                                     <option value="SLocation4">Wagon</option>
+                                                                </select>
+							       <input type="text" placeholder="Add Description ..."/>
+							      <button> Save </button>
 							    </form>
 							  </div>
 							
@@ -129,103 +127,68 @@
 		
 		<div class="middle">
 		
-			<div class="kotak-traveller">
-				<h4> List Of Traveller </h4>
-				<div class="kotak-search">
-					<div class="icon-search">
-						<img src="${pageContext.request.contextPath}/Assets2/icon/search.png">
-					</div> <!--icon-search-->
-					<input class="search "type="text" placeholder="Search Traveller ... "/>
-				</div> <!--kotak-search-->
-			</div> <!--kotak-traveller-->
+			<div class="kotak-distance">
+				<h4> Distance Matrix </h4>
+                                
+			</div> <!--kotak-distance-->
 	
-			<div class="kotak-traveller">
+			<div class="kotak-distance">
 					<table>
 						<thead>
 						<tr>
-							<th>ID</th>
-							<th>Fullname</th>
-							<th>Username</th>
-							<th>Email</th>
+							<th>ID Tranportation</th>
+							<th>Transportation Name</th>
+                                                        <th>Speed</th>
 							<th>Action</th>
 						</tr>
 						</thead>
 						<tbody>
 						<tr>
-							<td>01</td>
-							<td>Faiz Abdusallam</td>
-							<td>Faiz</td>
-							<td>faiz@polban.ac.id</td>
+							<td>001</td>
+							<td>Car</td>
+                                                        <td>50 km/jam</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
+							
 						</tr>
 						
 						<tr>
-							<td>02</td>
-							<td>Said Al Fakhri</td>
-							<td>Said</td>
-							<td>Said@polban.ac.id</td>
+							<td>002</td>
+							<td>Motorcycle</td>
+                                                        <td>60 km/jam</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
-						
-						<tr>
-							<td>03</td>
-							<td>Dede Diana</td>
-							<td>Diana</td>
-							<td>diana@polban.ac.id</td>
+                                                
+                                                <tr>
+							<td>003</td>
+							<td>Bus</td>
+                                                        <td>40 km/jam</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
-						
-						<tr>
-							<td>04</td>
-							<td>Alfin Jastinera</td>
-							<td>Alfin</td>
-							<td>alfin@polban.ac.id</td>
+                                                
+                                                <tr>
+							<td>004</td>
+							<td>Wagon</td>
+                                                        <td>150 km/jam</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
-						
-						
-						<tr>
-							<td>05</td>
-							<td>Agit Prasetya</td>
-							<td>Agit</td>
-							<td>agit@polban.ac.id</td>
+                                                
+                                                <tr>
+							<td>004</td>
+							<td>Working</td>
+                                                        <td>40 km/jam</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
-						
-						<tr>
-							<td>06</td>
-							<td>Maulana Ibrahim</td>
-							<td>Maul</td>
-							<td>maul@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
-						</tr>
-						
-						<tr>
-							<td>07</td>
-							<td>Mufid Jamaluddin</td>
-							<td>Mufid</td>
-							<td>mufid@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
-						</tr>
-						
-						<tr>
-							<td>08</td>
-							<td>Putri Dian</td>
-							<td>Dian</td>
-							<td>putridian@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
-						</tr>
-						
+                                                
                                                 <script>
-						function myFunction() {
+                                                function myFunction() {
 							alert("Delete Sucsess");
 						}
 						</script>
-									
+								
 						
 						</tbody>
 					</table>
-			</div> <!--kotak-traveller-->
+			</div> <!--kotak-distance-->
 			
 			
 		</div> <!--/ .middle -->
