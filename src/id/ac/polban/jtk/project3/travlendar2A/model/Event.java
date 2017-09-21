@@ -114,7 +114,7 @@ public class Event {
         return "Nama Event : " + getNama_event() + "\nJam Tiba : " + getArrivaltime().getTime() + "\nJam Berangkat : " + getDeparturetime().getTime() + "\n";
     }
     //Method supaya programbisa di running
-    public static void main(String[] args)
+ /*   public static void main(String[] args)
     {
        Event E = new Event();
        
@@ -132,6 +132,6 @@ public class Event {
        //Method print ke layar
        //System.out.println("Event : " + E.id_event);
     }   
-
+*/
     
 }
