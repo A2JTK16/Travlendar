@@ -54,26 +54,10 @@ public class Traveller {
     }
 
     /**
-     * @param username the username to set
-     */
-	//mengubah value username
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    /**
      * @return the email
      */
     public String getEmail() { //mengambil value email
         return email;
-    }
-
-    /**
-     * @param email the email to set
-     */
-	//mengubah value email
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     /**
@@ -84,26 +68,10 @@ public class Traveller {
     }
 
     /**
-     * @param password the password to set
-     */
-	//mengubah value password
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
      * @return the fullname
      */
     public String getFullname() {//mengambil value fullname
         return fullname;
-    }
-
-    /**
-     * @param fullname the fullname to set
-     */
-	//mengubah value fullname
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
     }
 
     /*public static void main(String[] args) {
