@@ -13,27 +13,25 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
 public class TransportationMode {
     private int speedKendaraan;
 
-    /*
     public enum Transport{
-        Mobil, Motor, Pesawat, Kereta, Bus;
+        MOBIL, MOTOR, PESAWAT, KERETA, BUS;
     }
-    */
     
-    public int getSpeedKendaraan (String vhc){
+    public int getSpeedKendaraan (Transport vhc){
         switch(vhc){
-            case "Mobil" :
+            case MOBIL :
                 speedKendaraan = 50; //set speed untuk mobil
                 break;
-            case "Motor" :
+            case MOTOR :
                 speedKendaraan = 60; //set speed untuk motor
                 break;
-            case "Pesawat" :
+            case PESAWAT :
                 speedKendaraan = 900; //set speed untuk pesawat
                 break;
-            case "Kereta" :
+            case KERETA :
                 speedKendaraan = 150; //set speed untuk kereta
                 break;
-            case "Bus" : //set speed untuk bus
+            case BUS : //set speed untuk bus
                 speedKendaraan = 40;
                 break;
         }

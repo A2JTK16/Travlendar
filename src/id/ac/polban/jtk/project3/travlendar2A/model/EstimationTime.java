@@ -1,4 +1,5 @@
 package id.ac.polban.jtk.project3.travlendar2A.model;
+import id.ac.polban.jtk.project3.travlendar2A.model.TransportationMode.Transport;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -60,14 +61,11 @@ public class EstimationTime {
     }
     
     public static void main(String[] args) {
-        double speed, jarak, eta;
-        String kendaraan = "Mobil";
+        double eta;
         TransportationMode tm = new TransportationMode();
         EstimationTime et = new EstimationTime();
         et.setDistance(120);
-        jarak = et.getDistance();
-        speed = tm.getSpeedKendaraan(kendaraan);
-        eta = et.countEstimationTime(speed,jarak);
+        eta = et.countEstimationTime(tm.getSpeedKendaraan(Transport.MOBIL),et.getDistance());
         et.printDistance();
     }
 }
