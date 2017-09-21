@@ -21,6 +21,7 @@ public class Main {
     private TransportationMode transport;
     private Event event;
     private Traveller traveller;
+    
     public static void main(String[] args) {
         Main objMain = new Main();
         int option = 0;
@@ -29,9 +30,7 @@ public class Main {
         Scanner n = new Scanner(System.in);
         
         ArrayList<Event> eventList = new ArrayList();
-        System.out.println("Masukkan ID anda : ");
-        id = Integer.parseInt(n.nextLine());
-        objMain.traveller.setId_traveller(id);
+        
         
         System.out.println("Masukkan Nama Lengkap Anda : ");
         fullname = n.nextLine();
@@ -44,12 +43,13 @@ public class Main {
         
         System.out.println("Masukkan password Anda : ");
         password = n.nextLine();
+        objMain.traveller = new Traveller(fullname, username, email, password);
         //  do {
             
             switch(option){
                    
                 case 1 : //memasukkan event dan segala atributnya
-                    event.
+                    
                     
                     
                     /*System.out.println("Masukkan Lokasi : ");
