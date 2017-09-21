@@ -1,0 +1,593 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 21, 2017, 12:35:26 PM
+    Author     : Diana
+*/
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+
+body{
+	background: #dedede;
+	font-family: 'Helvetica', arial, sans-serif;
+
+	font-size: 15px;
+}
+
+p{
+	margin-bottom: 20px;
+	line-height: 1.5em;
+}
+
+
+h1{
+	padding: 7px;
+	margin: 7px;
+	font: 20px Arial;
+	font-weight: bold;
+	color: #fafafa;
+	background: none;
+}
+
+h3{
+	margin-bottom: 20px;
+	border-bottom: 1px solid #aaa;
+}
+
+h4{
+	float: left;
+	padding: 6px;
+	margin: 6px;
+	font: 18px Arial;
+	color: #454545;
+	font-weight: bold;
+	background: none;
+	border: none;
+	border-radius: 0.2em;
+}
+
+.kotak-search{
+	float: right;
+	background: none;
+	overflow: hidden;
+	border: 1px solid #eee;
+	border-radius: 100px;
+}
+
+.icon-search{
+	padding: 1px;
+	margin: 1px;
+	float: left;
+	overflow: hidden;
+}
+
+.icon-search img{
+	width: 45px;
+	height: 30px;
+}
+
+.search{
+	float: left;
+	padding: 7px;
+	margin: 7px;
+	font: 16px Arial;
+	font-weight: bold;
+	color: #454545;
+	background: none;
+	border: none;
+	border-radius: 50px;
+}
+
+.icon-setting{
+	float: left;
+	padding: 4px;
+	margin: 4px;
+	float: left;
+	overflow: hidden;
+	border: none;
+	border-radius: 100px;
+}
+
+.icon-setting img{
+	width: 30px;
+	height: 30px;
+}
+
+.action, .action2{
+	padding: 4px;
+	margin: 4px;
+	border: none;
+	border-radius: 0.2em;
+	background: #ff9900;
+}
+
+.action2{
+	background: #EF5350;
+}
+
+h5{
+	padding: 7px;
+	margin: 7px;
+	font: 16px Arial;
+	color: #fafafa;
+	font-weight: bold;
+}
+
+
+.judul-manage{
+	float: left;
+	padding: 7px;
+	margin: 7px;
+	font: 20px Arial;
+	font-weight: bold;
+	color: #454545;
+}
+
+a{
+	text-decoration: none;
+	color: #fafafa;
+}
+a:hover{
+	color: #666;
+}
+
+
+.jarak-atas{
+	max-width: 100%;
+	height: 60px;
+	background: none;
+	overflow: hidden;
+}
+
+.menu-atas{
+  float: left;
+  width: 100%;
+  height: auto;
+  background: #1565C0;
+  position: fixed;
+  overflow: hidden;
+  border-top: 3px solid #1976D2;
+  box-shadow: 0 2px 2px #727272;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+
+.wadah{
+	max-width: 100%;
+	margin: auto;
+	background: #fff;
+	overflow: hidden;
+	padding: 10px;
+}
+
+
+.header{
+	border: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+/* Main */
+	.left{
+		width: 300px;
+		border: 1px solid #dedede;
+		background: #e5e5e5;
+		padding: 10px;
+		margin: 10px;
+		float: left;
+	}
+	
+	.menu-manage{
+		background: #f4f4f4;
+		overflow: hidden;
+		border: 1px solid #ddd;
+	}
+	
+	.menu-manage:hover{
+		background: #42A5F5;
+		transition: 0.3s;
+	}
+	
+	h2{
+		float: left;
+		padding: 7px;
+		margin: 7px;
+		font: 18px Arial;
+		color: #454545;
+	}
+	
+	h2:hover{
+		color: #fafafa;
+	}
+	
+	
+	#myBtn{
+		
+		float: right;
+		padding: 7px;
+		margin: 7px;
+		font: 16px Arial;
+		font-weight: bold;
+		color: #fafafa;
+		background: #4CAF50;
+		border: none;
+		border-radius: 0.2em;
+	}
+
+	.middle{
+		width: 73%;
+		border: 1px solid #dedede;
+		background: #e5e5e5;
+		overflow: hidden;
+		padding: 10px;
+		margin: 10px;
+		float: left;
+	}
+	
+	
+#SignUp{
+	background: #448AFF;
+}
+
+/* =============================================================================== */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+	padding: 10px;
+	padding-top: 80px;
+   	margin: 10px auto;
+    bottom: 0;
+    background-color: transparent;
+    width: auto;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background: linear-gradient(135deg,#043a61,#0471b1 26%,#0985bb 51%,#16a2b1 76%,#22bc9d);
+    color: white;
+}
+
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}
+
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+.form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.form .register-form {
+  display: none;
+}
+	
+	
+	
+	.kotak-traveller{
+		padding: 3px;
+		margin: 3px;
+		background: #fafafa;
+		overflow: hidden;
+		border: 1px solid #454545;
+	}
+	
+	#page-wrap {
+		margin: 50px;
+	}
+	/*p {
+		margin: 20px 0; 
+	} */
+
+		/* 
+		Generic Styling, for Desktops/Laptops 
+		*/
+		table { 
+			width: 100%; 
+			border-collapse: collapse; 
+		}
+		/* Zebra striping */
+		tr:nth-of-type(odd) { 
+			background: #eee; 
+		}
+		th { 
+			background: #9E9E9E; 
+			color: white; 
+			font-weight: bold; 
+		}
+		td, th { 
+			padding: 6px; 
+			border: 1px solid #ccc; 
+			text-align: left; 
+		}
+		
+			.middle img{
+				max-width: 100%;
+				height: auto;
+			}
+
+			.middle a{
+				font-weight: bold;
+			}
+
+
+	.footer{
+		clear: both;
+		border: none;
+		padding: 10px;
+		margin: 10px;
+		background: #454545;
+		border-radius: 0.3em;
+	}
+
+
+/************************************************************************************
+MEDIA QUERIES
+*************************************************************************************/
+/* untuk ukuran 1080px kebawah */
+@media screen and (max-width: 1080px) {
+	
+	.wadah {
+		width: 100%;
+	}
+	.left {
+		width: 25%;
+		/*background: #fff000;*/
+	}
+	.middle {
+		width: 68%;
+		float: right;
+	}
+
+}
+
+
+@media screen and (min-width: 780px)
+{
+	.hides
+	{
+		display: none;
+		max-height: 0;
+		overflow: hidden;
+	}
+}
+	
+
+	
+
+
+
+/* untuk ukuran layar 700px kebawah */
+@media screen and (max-width: 780px) {
+	
+	.header, 
+	.footer{
+		text-align: center;
+	}
+	
+	.left {
+		width: auto;
+		float: none;
+	}
+	
+	.middle {
+		width: auto;
+		float: none;
+	}
+	
+	.icon-search img{
+	width: 27px;
+	height: 27px;
+	}
+
+	.search{
+		float: left;
+		padding: 4px;
+		margin: 4px;
+		font: 12px Arial;
+		font-weight: bold;
+	}
+	
+	h2{
+		font: 14px Arial;
+	}
+	
+	.icon-setting{
+	float: left;
+	padding: 4px;
+	margin: 4px;
+	}
+
+	.icon-setting img{
+		width: 25px;
+		height: 25px;
+	}
+	
+	#hidden-mobile
+	{
+		display:none;
+	}
+        
+        
+        .action, .action2{
+                padding: 2px;
+                margin: 2px;
+                font: 12px;
+        }
+
+	
+}
+	
+
+@media only screen and (max-width: 760px),
+	(min-device-width: 768px) and (max-device-width: 1024px)  {
+	
+		/* Force table to not be like tables anymore */
+		table, thead, tbody, th, td, tr { 
+			display: block; 
+		}
+		
+		/* Hide table headers (but not display: none;, for accessibility) */
+		thead tr { 
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+		
+		tr { border: 1px solid #ccc; }
+		
+		td { 
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid #eee; 
+			position: relative;
+			padding-left: 50%; 
+		}
+		
+		td:before { 
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			top: 6px;
+			left: 6px;
+			width: 45%; 
+			padding-right: 10px; 
+			white-space: nowrap;
+		}
+		
+		/*
+		Label the data
+		*/
+		td:nth-of-type(1):before { content: "ID"; }
+		td:nth-of-type(2):before { content: "Fullname"; }
+		td:nth-of-type(3):before { content: "Username"; }
+		td:nth-of-type(4):before { content: "Email"; }
+		td:nth-of-type(5):before { content: "Action"; }
+	}
+	
+	/* Smartphones (portrait and landscape) ----------- */
+	@media only screen
+	and (min-device-width : 320px)
+	and (max-device-width : 480px) {
+		body { 
+			padding: 0; 
+			margin: 0; 
+			width: auto; }
+		}
+	
+	/* iPads (portrait and landscape) ----------- */
+	@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+		body { 
+			max-width: auto; 
+		}
+	}

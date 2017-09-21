@@ -8,7 +8,7 @@
 <html>
 	<head>
 		<title> Travelander A2 </title>
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/style.css">
 	</head>
 	
 	<body>

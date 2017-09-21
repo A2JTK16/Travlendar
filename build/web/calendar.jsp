@@ -10,28 +10,27 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style-calendar.css">
-
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets1/css/stylecalendar.css">      
         <title>JSP Page</title>
     </head>
     <body>
         <div class="wadah">
 	<div class="header">
              <div class="logo">
-                <img src="logo/logo.png">
+                <img src="Assets1/logo/logo.png">
              </div> <!-logo-->
              
              <div class="find">
-                 <img src="icon/acount.png">
+                 <img src="Assets1/icon/acount.png">
              </div>
              
              <div class="find">
-                 <img src="icon/notif.png">
+                 <img src="Assets1/icon/notif.png">
              </div>
              
              <div class="find">
-                <img src="icon/search.png">
+                <img src="Assets1/icon/search.png">
                 <text> Find Event </text>
              </div>
           
