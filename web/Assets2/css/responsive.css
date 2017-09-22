@@ -95,9 +95,9 @@ MEDIA QUERIES
         
         
         .action, .action2{
-                padding: 2px;
-                margin: 2px;
-                font: 12px;
+                padding: 1px;
+                margin: 1px;
+                font: 9px;
         }
         
         .edtp{
@@ -112,7 +112,8 @@ MEDIA QUERIES
 	
 		/* Force table to not be like tables anymore */
 		table, thead, tbody, th, td, tr { 
-			display: block; 
+			display: block;
+                        width: auto;
 		}
 		
 		/* Hide table headers (but not display: none;, for accessibility) */

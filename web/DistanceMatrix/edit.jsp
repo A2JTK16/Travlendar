@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/styledistance.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/styletraveller.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/responsive.css">
         <title>JSP Page</title>
     </head>
@@ -30,7 +31,7 @@
 	<div class="main">
 		
 		<div class="left">
-			<h3>Sidebar KIRI</h3>
+			<h3>Administrator</h3>
 			
 			<div class="hides">
 			
@@ -133,10 +134,6 @@
 		
 	</div> <!--/ .main -->
 
-	<div class="footer">
-		<h1>Footer</h1>
-		<p>Copyright &copy; 2017 TravlendarA2.com</p>
-	</div> <!--/ .footer -->
  
  			<script>
 			
@@ -176,5 +173,22 @@
 			</script>
  
 </div> <!--wadah-->
+
+<div class="footer-atas">
+	
+	</div> <!--footer-atas-->
+
+	<div class="footer-bawah">
+    <div class="footer">
+        <div class="copyright">
+        travelendar.com
+        </div> <!--copyright-->
+
+        <div class="copyright2">
+        Copyright &copy; 2017 travlendar.com | Designed by A2 JTK Polban
+        </div>
+    </div>
+    </div> <!--footer-bawah-->
+    
     </body>
 </html>

@@ -96,13 +96,6 @@
 </script>
 <style>
 
-	body {
-		margin: 40px 10px;
-		padding: 0;
-		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		font-size: 14px;
-	}
-
 	#calendar {
 		max-width: 900px;
 		margin: 0 auto;
@@ -128,7 +121,7 @@
 	<div class="main">
 		
 		<div class="left">
-			<h3>Sidebar KIRI</h3>
+			<h3>Administrator</h3>
 			
 			<div class="hides">
 			
@@ -190,10 +183,11 @@
 		</div> <!--/ .header -->
 
 		<div class="middle">
-				<div class="judul-manage"> MANAGE CALENDAR </div>
+               
+				<div class="judul-manage"> MANAGE CALENDAR EVENT </div>
 				<!-- The Modal -->
 				<div id="myModal" class="modal">
-
+                             
 				  <!-- Modal content -->
 				  <div class="modal-content">
 				    	
@@ -225,19 +219,19 @@
 		</div> <!--middle-->
 		
 		<div class="middle">
+                    <div class="kotak-traveller">
+                        <h4> Calendar Event </h4>
+                    </div>
+                    
+                    <div class="kotak-traveller">
 			<div id='calendar'></div>
 			
 			
-			
+                    </div>
 		</div> <!--/ .middle -->
 
 		
 	</div> <!--/ .main -->
-
-	<div class="footer">
-		<h1>Footer</h1>
-		<p>Copyright &copy; 2017 TravlendarA2.com</p>
-	</div> <!--/ .footer -->
  
  			<script>
 			
@@ -277,5 +271,23 @@
 			</script>
  
 </div> <!--wadah-->
+
+
+	<div class="footer-atas">
+	
+	</div> <!--footer-atas-->
+
+	<div class="footer-bawah">
+    <div class="footer">
+        <div class="copyright">
+        travelendar.com
+        </div> <!--copyright-->
+
+        <div class="copyright2">
+        Copyright &copy; 2017 travlendar.com | Designed by A2 JTK Polban
+        </div>
+    </div>
+    </div> <!--footer-bawah-->
+    
 </body>
 </html>

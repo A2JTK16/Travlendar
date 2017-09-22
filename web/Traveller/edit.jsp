@@ -30,7 +30,7 @@
 	<div class="main">
 		
 		<div class="left">
-			<h3>Sidebar KIRI</h3>
+			<h3>Administrator</h3>
 			
 			<div class="hides">
 			
@@ -120,11 +120,6 @@
 
 		
 	</div> <!--/ .main -->
-
-	<div class="footer">
-		<h1>Footer</h1>
-		<p>Copyright &copy; 2017 TravlendarA2.com</p>
-	</div> <!--/ .footer -->
  
  			<script>
 			
@@ -164,5 +159,21 @@
 			</script>
  
 </div> <!--wadah-->
+
+<div class="footer-atas">
+	
+	</div> <!--footer-atas-->
+
+	<div class="footer-bawah">
+    <div class="footer">
+        <div class="copyright">
+        travelendar.com
+        </div> <!--copyright-->
+
+        <div class="copyright2">
+        Copyright &copy; 2017 travlendar.com | Designed by A2 JTK Polban
+        </div>
+    </div>
+</div> <!--footer-bawah-->
     </body>
 </html>
