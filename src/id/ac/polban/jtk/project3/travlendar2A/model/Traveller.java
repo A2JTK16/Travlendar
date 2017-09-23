@@ -6,6 +6,13 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
  * and open the template in the editor.
  */
 
+/**
+ * REVIEW
+ * 1.   id_traveller Dapat Memakai Object Counter,
+ *      Kedepannya Saat Integrasi dengan Database, id_traveller Tidak Perlu
+ *      di-Set Karena Dapat Memiliki Sifat auto_increment
+ * 2.   Mohon Alasan Inisiasi Parameter di Konstruktor dengan Referensi
+ */
 
 /**
  *
@@ -19,7 +26,14 @@ public class Traveller {
     private String email;
     private String password;
     private String fullname;
-   
+    
+    /**
+     * 
+     * @param fullname
+     * @param username
+     * @param email
+     * @param password 
+     */
     public Traveller(String fullname, String username, String email, String password) {
         this.fullname = fullname;
         this.username = username;

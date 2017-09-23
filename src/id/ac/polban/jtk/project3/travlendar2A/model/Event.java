@@ -17,7 +17,17 @@ import java.util.regex.Pattern;
  * @author AGS
  */
 public class Event {
-
+    /**
+     * REVIEW
+     * 1.   Bisa Ditambahkan kode_lokasi dan id_traveller,
+     *      Supaya Dapat Memiliki Relasi dengan Lokasi dan Traveller.
+     *      kode_event Dapat Menjadi Object Counter atau
+     *      Tidak Perlu di Set Karena Nantinya di Database Dapat
+     *      Otomatis Auto_increment
+     * 2.   Saran Saya untuk Date Parser dibuat Class Khusus
+     * 3.   Perbaiki Lagi Getter dan Setter nya
+     */
+    
     private String nama_event;
     private Date arrivaltime;
     private Date departuretime;
@@ -42,6 +52,7 @@ public class Event {
      */
     public void setNama_event(String nama_event) {
          this.setNama_event(nama_event);
+         // Rev : Ini infinite, perlu diperbaiki
     }
 
     /**

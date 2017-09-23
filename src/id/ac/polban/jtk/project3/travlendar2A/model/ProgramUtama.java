@@ -23,11 +23,12 @@ public class ProgramUtama {
 //    private Event event;
     protected Traveller traveller;
     
-    public static void main(String[] args){
+    public static void main(String[] args) throws ParseException{
         ProgramUtama objMain = new ProgramUtama();
         Event event = new Event();
         int option = 1;
         int id = 0;
+        // kodelokasi untuk apa ya?
         int kodelokasi = 0;
         String fullname, username, email, password, eventName, tanggalStr, waktuStr, transportasi, lokasi;
         Scanner n = new Scanner(System.in);

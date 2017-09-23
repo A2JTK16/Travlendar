@@ -12,8 +12,24 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
 public class DistanceMatrix {
     //deklarasi atribut
     private String [] kota = {"Bandung", "Bekasi", "Bogor",	"Ciamis", "Cianjur","Cirebon","Garut","Indramayu","Karawang","Kuningan","Majalengka", "Pangandaran","Purwakarta","Subang","Sukabumi","Sumedang","Tasikmalaya"};
+    
+    /**
+     * REVIEW 
+     * 
+     * 1.   Kota_awal dan kota_tujuan Bentuk Integer Saja, Tidak Memerlukan String.
+     *      Selanjutnya, Kode Kota Tersebut Diubah Menjadi Alamat Indeks Array,
+     *      Lalu Kembalikan Isi Array Tersebut.
+     * 2.   Kota Bisa Pakai 'enum' untuk Memudahkan
+     * 3.   Diperlukan Method untuk Mengembalikan Nilai Jarak
+     * 4.   Lebih Baik Teknik Mendapatkan Jarak Pakai Indeks Array Saja Langsung,
+     *      Tidak Memerlukan Nested Loop Karena Kode Kota Tidak Berubah dan
+     *      Memiliki Keterkaitan dengan Indeks Array 
+     *      Contoh : Array jarak[1][2] Berisi Jarak Bandung - Bekasi
+     */
+    
     private String kota_awal; //deklarasi variabel kota_awal yang bertipe String
     private String kota_tujuan; //deklarasi variabel kota_tujuan yang bertipe String
+    
     private int [] kode_kota = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17}; //deklarasi variabel kode_kota yang bertipe integer
     final double [][] jarak = {{0,	134,	177,	135,	160,	209,	149,	201,	89.4,	244,	192,	202,	53.3,	118,	90.1,	71.1,	126},
                                {132,	0,	62.2,	248,	208,	200,	199,	192,	54.2,	236,	183,	316,	78.4,	110,	173,	184,	240},
