@@ -45,6 +45,11 @@ MEDIA QUERIES
 /* untuk ukuran layar 700px kebawah */
 @media screen and (max-width: 780px) {
 	
+        .wadah {
+		padding: 0px;
+                margin: 0px;
+	}
+    
 	.header, 
 	.footer{
 		text-align: center;
@@ -55,6 +60,23 @@ MEDIA QUERIES
 		float: none;
 	}
 	
+        .turun{
+            float: left;
+            padding: 1px;
+            margin: 1px;
+            overflow: hidden;
+            border: none;
+            border-radisu: 0.2em;
+        }
+        
+        
+        .turun img{
+            width: 20px;
+            height: 20px;
+        }
+        
+        
+        
 	.middle {
 		width: auto;
 		float: none;

@@ -15,27 +15,23 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="jarak-atas">
-
-</div> <!--jarak-atas-->
-
-<div class="menu-atas">
-	<div class="header">
-		<h1> LOGO </h1>
-	</div> <!--header-->
-</div> <!--menu-atas-->
+        
+        <%@include file="../Header/header.jsp" %>
 
 <div class="wadah">
 	
 	<div class="main">
 		
+            <div class="induk-left">
 		<div class="left">
 			<h3>Administrator</h3>
 			
 			<div class="hides">
 			
 				<button onclick="javascript:show()">
-				|||
+                                    <div class="turun">
+                                        <img src="${pageContext.request.contextPath}/Assets2/icon/responsive.png">
+                                    </div>
 				</button>
 			
 			</div>
@@ -89,7 +85,8 @@
 			
 			</div>
 			
-		</div> <!--/ .header -->
+		</div> <!--/ .left -->
+            </div> <!--induk-left-->
 
 		<div class="middle">
 				<div class="judul-manage"> MANAGE TRAVELLER </div>
@@ -298,20 +295,7 @@
  
 </div> <!--wadah-->
 
-<div class="footer-atas">
-	
-	</div> <!--footer-atas-->
+<%@include file="../Footer/footer.jsp" %>
 
-	<div class="footer-bawah">
-    <div class="footer">
-        <div class="copyright">
-        travelendar.com
-        </div> <!--copyright-->
-
-        <div class="copyright2">
-        Copyright &copy; 2017 travlendar.com | Designed by A2 JTK Polban
-        </div>
-    </div>
-</div> <!--footer-bawah-->
     </body>
 </html>

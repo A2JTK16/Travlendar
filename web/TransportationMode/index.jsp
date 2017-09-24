@@ -11,21 +11,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/styletraveller.css">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/styledistance.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/responsive.css">
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="jarak-atas">
-
-</div> <!--jarak-atas-->
-
-<div class="menu-atas">
-	<div class="header">
-		<h1> LOGO </h1>
-	</div> <!--header-->
-</div> <!--menu-atas-->
-
+        <%@include file="../Header/header.jsp" %>
 <div class="wadah">
 	
 	<div class="main">
@@ -36,7 +26,9 @@
 			<div class="hides">
 			
 				<button onclick="javascript:show()">
-				|||
+				<div class="turun">
+                                        <img src="${pageContext.request.contextPath}/Assets2/icon/responsive.png">
+                                </div>
 				</button>
 			
 			</div>
@@ -251,19 +243,6 @@
  
 </div> <!--wadah-->
 
-<div class="footer-atas">
-	
-	</div> <!--footer-atas-->
-<div class="footer-bawah">
-    <div class="footer">
-        <div class="copyright">
-        travelendar.com
-        </div> <!--copyright-->
-
-        <div class="copyright2">
-        Copyright &copy; 2017 travlendar.com | Designed by A2 JTK Polban
-        </div>
-    </div>
-</div> <!--footer-bawah-->
+<%@include file="../Footer/footer.jsp" %>
     </body>
 </html>

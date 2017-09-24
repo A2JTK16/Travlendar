@@ -15,15 +15,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-       <div class="jarak-atas">
-
-</div> <!--jarak-atas-->
-
-<div class="menu-atas">
-	<div class="header">
-		<h1> LOGO </h1>
-	</div> <!--header-->
-</div> <!--menu-atas-->
+      <%@include file="../Header/header.jsp" %>
 
 <div class="wadah">
 	
@@ -35,7 +27,9 @@
 			<div class="hides">
 			
 				<button onclick="javascript:show()">
-				|||
+				<div class="turun">
+                                        <img src="${pageContext.request.contextPath}/Assets2/icon/responsive.png">
+                                </div>
 				</button>
 			
 			</div>
@@ -238,20 +232,6 @@
  
 </div> <!--wadah-->
 
-<div class="footer-atas">
-	
-	</div> <!--footer-atas-->
-
-	<div class="footer-bawah">
-    <div class="footer">
-        <div class="copyright">
-        travelendar.com
-        </div> <!--copyright-->
-
-        <div class="copyright2">
-        Copyright &copy; 2017 travlendar.com | Designed by A2 JTK Polban
-        </div>
-    </div>
-</div> <!--footer-bawah-->
+<%@include file="../Footer/footer.jsp" %>
     </body>
 </html>
