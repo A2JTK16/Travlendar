@@ -9,7 +9,6 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.regex.Pattern;
 
 
 /**
@@ -31,9 +30,9 @@ public class Event {
     private String nama_event;
     private Date arrivaltime;
     private Date departuretime;
-    private SimpleDateFormat datetimeFormatter;
-    private SimpleDateFormat dateFormat;
-    private SimpleDateFormat timeFormat;
+    private final SimpleDateFormat datetimeFormatter;
+    private final SimpleDateFormat dateFormat;
+    private final SimpleDateFormat timeFormat;
     
     public Event(){
         this.datetimeFormatter = new SimpleDateFormat("dd-MM-yyyy.HH.mm.ss");
@@ -64,7 +63,7 @@ public class Event {
     }
 
     /**
-     * @param departuretime the departuretime to set
+     * @param departuretimenn
      * @throws java.text.ParseException
      */
     public void setDeparturetime(String departuretimenn) throws ParseException {

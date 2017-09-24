@@ -15,8 +15,20 @@ import java.util.Scanner;
  * @author AGS
  */
 
-public class ProgramUtama {
-//<<<<<<< HEAD
+public class ProgramUtama{
+    
+    /**
+     * REVIEW
+     * 1.   Great. 
+     * 2.   Untuk Event, dapat ditambahkan array list karena satu traveller memiliki banyak event
+     * 3.   Dapat ditampilkan rekomendasi kendaraan dari jarak kedua acara.
+     *      Jika selisih waktu berangkat dari Event pertama dengan waktu tiba di Event kedua
+     *      lebih besar daripada waktu yang harus ditempuh oleh semua moda transportasi,
+     *      maka tampilkan saran kendaraan tersebut.
+     *      Note : hal ini dapat dibuat class baru
+     * 
+     */
+    
     protected Location locationEvent;
     protected DistanceMatrix distance;
     protected EstimationTime esTime;
@@ -90,7 +102,7 @@ public class ProgramUtama {
                     speed = objMain.transport.getSpeedKendaraan(TransportationMode.Transport.transportasi);*/
                     
                     //------------Input Data Lokasi(Kode lokasi, nama lokasi(Bandara Husen, Rumah Anu,...)------------------//
-                    System.out.println("Masukkan Kode Lokasi Event : ");
+                    System.out.println("Masukkanmm Kode Lokasi Event : ");
                     kodelokasi = n.nextInt(); n.nextLine();
                     objMain.locationEvent.setKode_lokasi(kodelokasi);
                     
