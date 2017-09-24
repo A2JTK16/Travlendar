@@ -155,7 +155,7 @@
 							<td>Politeknik Negeri Bandung</td>
 							<td>2.6</td>
                                                         <td>3.9 m</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
@@ -163,7 +163,7 @@
 							<td>Bosscha Observatory</td>
 							<td>11.4</td>
                                                         <td>17.1 m</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
@@ -171,7 +171,7 @@
 							<td>Maribaya Waterfall</td>
 							<td>9.1</td>
                                                         <td>13.65 m</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
@@ -179,7 +179,7 @@
 							<td>Saung Angklung Udjo</td>
 							<td>16.1</td>
                                                         <td>24.15 m</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
 						
 						
@@ -188,9 +188,14 @@
 							<td>Paris Van Java</td>
 							<td>8.1</td>
                                                         <td>12.15 m</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
 	
+                                                <script>
+						function myFunction() {
+							alert("Delete Sucsess");
+						}
+						</script>
 						
 						</tbody>
 					</table>

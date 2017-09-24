@@ -147,31 +147,36 @@
 							<td>001</td>
 							<td>Home</td>
 							<td>Jl. Terusan Gegerkalong Hilir No.15</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
                                                 
                                                 <tr>
 							<td>002</td>
 							<td>Polban</td>
 							<td>Jl. Kampus Polban</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
                                                 
                                                 <tr>
 							<td>003</td>
 							<td>Nobu Ramen & Sushi</td>
 							<td>Jl. Gegerkalong Hilir No.1</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
 						
                                                 <tr>
 							<td>004</td>
 							<td>Terminal Leuwipanjang</td>
 							<td>Situsaeur, Bojongloa Kidul</td>
-							<td> <a class="action" href="edit.html">Edit </a> <a class="action2" href="delete.html"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
 						</tr>
 						
-						
+						<script>
+						function myFunction() {
+							alert("Delete Sucsess");
+						}
+						</script>
+                                                
 						</tbody>
 					</table>
 			</div> <!--kotak-traveller-->
