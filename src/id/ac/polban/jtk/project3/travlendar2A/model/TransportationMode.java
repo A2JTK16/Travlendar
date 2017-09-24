@@ -24,6 +24,7 @@ public class TransportationMode {
     
     public int getSpeedKendaraan (Transport vhc){
         switch(vhc){
+            //satuan kecepatan adalah km/jam
             case MOBIL :
                 speedKendaraan = 50; //set speed untuk mobil
                 break;

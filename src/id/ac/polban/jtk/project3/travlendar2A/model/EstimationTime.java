@@ -37,7 +37,7 @@ public class EstimationTime {
     /**
      * @param distance the distance to set
      */
-    public void setDistance(int distance)    {
+    public void setDistance(double distance)    {
         this.distance = distance;
     }
  
@@ -57,15 +57,15 @@ public class EstimationTime {
     }
     
     public double countEstimationTime(double speed, double distance){
-        this.speed = speed * 1000 / 3600; //konversi dari km/jam ke m/s
-        this.distance = distance * 1000; //konversi dari km ke m
+        this.speed = speed; 
+        this.distance = distance; 
         eta = distance/speed; //estimation time diisi nilai hasil bagi jarak/kecepatan
         return eta;
     }
     
     public void printDistance(){
         int inteta = (int) eta; //casting double to int
-        eta = eta % 1 * 10 * 6; //menghitung hasil mod untuk dijadikan menit
+        eta = eta % 1 * 60; //menghitung hasil mod untuk dijadikan menit
         if ((inteta/1)<1){
             System.out.printf("%.0f",eta);
             System.out.print(" minutes");
@@ -78,10 +78,11 @@ public class EstimationTime {
     
     public static void main(String[] args) {
         double eta;
+        DistanceMatrix dm = new DistanceMatrix();
         TransportationMode tm = new TransportationMode();
         EstimationTime et = new EstimationTime();
-        et.setDistance(240);
-        eta = et.countEstimationTime(tm.getSpeedKendaraan(Transport.PESAWAT),et.getDistance());
+        et.setDistance(106.20);
+        eta = et.countEstimationTime(tm.getSpeedKendaraan(Transport.MOBIL),et.getDistance());
         et.printDistance();
     }
 }
