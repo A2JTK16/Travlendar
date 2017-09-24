@@ -11,7 +11,7 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
  */
 public class DistanceMatrix {
     //deklarasi atribut
-    //private String [] kota = {"Bandung", "Bekasi", "Bogor",	"Ciamis", "Cianjur","Cirebon","Garut","Indramayu","Karawang","Kuningan","Majalengka", "Pangandaran","Purwakarta","Subang","Sukabumi","Sumedang","Tasikmalaya"};
+    private String [] kota = {"Bandung", "Bekasi", "Bogor",	"Ciamis", "Cianjur","Cirebon","Garut","Indramayu","Karawang","Kuningan","Majalengka", "Pangandaran","Purwakarta","Subang","Sukabumi","Sumedang","Tasikmalaya"};
     
     /**
      * REVIEW 
@@ -51,9 +51,9 @@ public class DistanceMatrix {
                                {119,	231,	299,	19.6,	218,	119,	140,	151,	207,	88.8,	92.4,	84.7,	171,	183,	208,	96.8,	0},
                              };
     
-   /* public String[] getKota() {
+    public String[] getKota() {
         return kota;
-    }*/
+    }
 
     //method ini belum diimplementasikan pada program
     /*public void setKota(String[] kota) { 
@@ -77,7 +77,7 @@ public class DistanceMatrix {
     }*/
    
     //method untuk mengecek kota
-   /*public void cek_kota (String kota_awal, String kota_tujuan)
+   public void cek_kota (String kota_awal, String kota_tujuan)
     {
         for (int n=0; n<17; n++) //perulangan untuk kota awal
         {
@@ -89,7 +89,7 @@ public class DistanceMatrix {
                 } 
             }
         }
-    }*/ 
+    }
 
     /**
      * @return the jarak
