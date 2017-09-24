@@ -51,7 +51,7 @@ public class Event {
      * @param nama_event the nama_event to set
      */
     public void setNama_event(String nama_event) {
-         this.setNama_event(nama_event);
+         this.nama_event = nama_event;
          // Rev : Ini infinite, perlu diperbaiki
     }
 
