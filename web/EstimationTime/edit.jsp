@@ -1,6 +1,6 @@
 <%-- 
     Document   : edit
-    Created on : Sep 21, 2017, 4:58:15 PM
+    Created on : Sep 24, 2017, 2:00:20 PM
     Author     : Agit
 --%>
 
@@ -10,14 +10,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/styledistance.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/styletraveller.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/responsive.css">
         <title>JSP Page</title>
     </head>
     <body>
-
-<%@include file="../Header/header.jsp" %>
+        
+        <%@include file="../Header/header.jsp" %>
 
 <div class="wadah">
 	
@@ -29,7 +28,9 @@
 			<div class="hides">
 			
 				<button onclick="javascript:show()">
-				|||
+				<div class="turun">
+                                        <img src="${pageContext.request.contextPath}/Assets2/icon/responsive.png">
+                                </div>
 				</button>
 			
 			</div>
@@ -86,47 +87,42 @@
 		</div> <!--/ .header -->
 
 		<div class="middle">
-				<div class="judul-manage"> MANAGE DISTANCE MATRIX </div>
-		
+				<div class="judul-manage"> MANAGE ESTIMATION TIME </div>
+		</div>
 
 		</div> <!--middle-->
 		
 		<div class="middle">
 		
 			<div class="kotak-traveller">
-				<h4> Edit Distance Matrix </h4>	
+				<h4> Edit Estimation Time </h4>	
 			</div> <!--kotak-traveller-->
 	
-			<div class="kotak-distance">
-				 <select class="edit-dl">
+			<div class="kotak-traveller">
+                                 <select class="edit-dl">
                                     <option value="StartingLocation">Location A ...</option>
-                                    <option value="SLocation1">Universitas Kristen Maranatha</option>
-                                    <option value="SLocation2">Politeknik Negeri Bandung</option>
-                                    <option value="SLocation3">Bosscha Observatory</option>
-                                    <option value="SLocation4">Maribaya Waterfall</option>
-                                    <option value="SLocation5">Saung Angklung Udjo</option>
-                                    <option value="SLocation6">Paris Van Java</option>
+                                    <option value="SLocation1">Home</option>
+                                    <option value="SLocation2">Polban</option>
+                                    <option value="SLocation3">Nobu Ramen & Sushi</option>
+                                    <option value="SLocation4">Terminal Leuwipanjang</option>
                                  </select>
                                  <select class="edit-dl">
                                     <option value="Destination">Location B ...</option>
-                                    <option value="DLocation1">Universitas Kristen Maranatha</option>
-                                    <option value="DLocation2">Politeknik Negeri Bandung</option>
-                                    <option value="DLocation3">Bosscha Observatory</option>
-                                    <option value="DLocation4">Maribaya Waterfall</option>
-                                    <option value="DLocation5">Saung Angklung Udjo</option>
-                                    <option value="DLocation6">Paris Van Java</option>
+                                    <option value="SLocation1">Home</option>
+                                    <option value="SLocation2">Polban</option>
+                                    <option value="SLocation3">Nobu Ramen & Sushi</option>
+                                    <option value="SLocation4">Terminal Leuwipanjang</option>
                                  </select>
-				<div class="text-edit"> Edit Distance </div>
-					<input class="edtp" type="text" placeholder="(in kilometer)">
+				<div class="text-edit"> Edit Estimation Time </div>
+					<input class="edtp" type="text" placeholder="(in minute)">
 					<br/>
-				<a href="index.jsp"><button class="update-distance"> Update </button></a>
+				<a href="index.jsp"><button class="update-traveller"> Update </button></a>
 			</div> <!--kotak-traveller-->			
 			
 		</div> <!--/ .middle -->
 
 		
 	</div> <!--/ .main -->
-
  
  			<script>
 			
@@ -166,8 +162,6 @@
 			</script>
  
 </div> <!--wadah-->
-	
-	<%@include file="../Footer/footer.jsp" %>
-    
+<%@include file="../Footer/footer.jsp" %>
     </body>
 </html>
