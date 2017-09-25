@@ -59,7 +59,8 @@ public class ProgramUtama{
         Date departureTime = null; 
         int transportation;
         int option = 1;
-        int id, kodelokasi, speed=0, kodekotaawal, kodekotatujuan;
+        int id, kodelokasi, kodekotaawal, kodekotatujuan;
+        double speed=0;
         String fullname, username, email, password, eventName, tanggalStr, waktuStr, lokasi, kotaawal = null, kotatujuan = null;
         Scanner n = new Scanner(System.in);
         long diff = 0, diffSeconds = 0, diffMinutes = 0, diffHours = 0;
@@ -124,10 +125,9 @@ public class ProgramUtama{
                     //-------------------------------------------------------------------------------------------------------------//
                     
                     System.out.println("1. MOBIL \n2. MOTOR \n3. PESAWAT \n4. KERETA \n5. BUS\n");
-                    System.out.println("Masukkan Kode Moda Transportasi : ");
-                    transportation = n.nextInt();
+                    //System.out.println("Masukkan Kode Moda Transportasi : ");
+                   // transportation = n.nextInt();
       
-                    speed = transport.getSpeedKendaraan(TransportationMode.Transport.values()[transportation-1]); //untuk input enum transport
                     
                     //------------Input Data Lokasi(Kode lokasi, nama lokasi(Bandara Husen, Rumah Anu,...)------------------//
                     /*System.out.println("Masukkanmm Kode Lokasi Event : ");
@@ -138,7 +138,7 @@ public class ProgramUtama{
                     lokasi = n.nextLine();
                     locationEvent.setNama_lokasi(lokasi);*/
                     //-------------------------------------------------------------------------------------------------------//
-                    
+                  
                     System.out.println("1. Bandung \n2. Bekasi\n3. Bogor \n4. Ciamis\n5. Cianjur\n6. Cirebon\n7. Garut\n8. Indramayu\n9. Karawang\n10. Kuningan\n11. Majalengka\n12. Pangandaran\n13. Purwakarta\n14. Subang\n15. Sukabumi\n16. Sumedang\n17. Tasikmalaya\n");
                     System.out.println("Masukkan Kode Kota Awal Anda (1-17) : ");
                     kodekotaawal = n.nextInt();
@@ -288,6 +288,9 @@ public class ProgramUtama{
                     }
 
                     double jarak = distance.getdistance();
+                    transport.getSpeedKendaraan(TransportationMode.Transport.MOBIL); //untuk input enum transport
+                    speed = transport.gettimemobil();
+                      System.out.println(speed);
                     //double[][] jarak = objMain.distance.jarak;
                     ProgramUtama objMain = new ProgramUtama(event, transport, locationEvent, distance, esTime);
                     eventList.add(objMain);
