@@ -22,69 +22,7 @@
 	
 	<div class="main">
 		
-		<div class="left">
-			<h3>Administrator</h3>
-			
-			<div class="hides">
-			
-				<button onclick="javascript:show()">
-				<div class="turun">
-                                        <img src="${pageContext.request.contextPath}/Assets2/icon/responsive.png">
-                                </div>
-				</button>
-			
-			</div>
-
-			
-			<div id="hidden-mobile">
-			
-			
-			<div class="menu-manage">
-				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">
-				</div> <!--icon-setting-->
-				<h2><a href="../Traveller/index.jsp">Traveller</a></h2>
-	
-			</div> <!--menu-manage-->
-			
-			<div class="menu-manage">
-				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">
-				</div> <!--icon-setting-->
-                                <h2><a href="../Location/index.jsp">Location </a></h2>
-			</div>
-			
-			<div class="menu-manage">
-				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">
-				</div> <!--icon-setting-->
-                                <h2><a href="../TransportationMode/index.jsp">Transportation Mode </a></h2>
-			</div> <!--menu-manage-->
-			
-			<div class="menu-manage">
-				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">
-				</div> <!--icon-setting-->
-				<h2> <a href="../DistanceMatrix/index.jsp">Distance Matrix </a></h2>
-			</div>
-			
-			<div class="menu-manage">
-				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">
-				</div> <!--icon-setting-->
-                                <h2><a href="../EstimationTime/index.jsp">Estimation Time</a></h2>
-			</div> <!--menu-manage-->
-			
-			<div class="menu-manage">
-				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">
-				</div> <!--icon-setting-->
-                                <h2><a href="../CalendarEvent/index.jsp">Calendar Event</a></h2>
-			</div>
-			
-			</div>
-			
-		</div> <!--/ .header -->
+		<%@include file="../Sidebar/sidebar.jsp" %>
 
 		<div class="middle">
 				<div class="judul-manage"> MANAGE ESTIMATION TIME </div>
