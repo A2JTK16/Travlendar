@@ -2,7 +2,7 @@
  * Kelas ParseDate Dibuat untuk Objek yang Bertujuan 
  * Mendapatkan Tanggal yang Telah Diparsing 
  * Sesuai Format yang Telah Ditentukan
- * 
+ * Author : Mufid Jamaluddin
  */
 package id.ac.polban.jtk.project3.travlendar2A.model;
 

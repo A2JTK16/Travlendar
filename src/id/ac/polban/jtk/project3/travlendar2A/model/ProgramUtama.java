@@ -118,7 +118,7 @@ public class ProgramUtama{
                     arrivalTime = event.getArrivaltime();
                     departureTime = event.getDeparturetime();
                     
-                    diff = arrivalTime.getTime() - departureTime.getTime(); //untuk menghitung selisih jam
+                    diff = departureTime.getTime() - arrivalTime.getTime(); //untuk menghitung selisih jam
                     diffSeconds = diff / 1000 % 60; //selisih jam 
                     diffMinutes = diff / (60 * 1000) % 60; //selisih menit
                     diffHours = diff / (60 * 60 * 1000); //selisih detik
@@ -286,11 +286,10 @@ public class ProgramUtama{
                     }
 
                     double jarak = distance.getdistance();
-                    EstimationTime et = new EstimationTime();
-                    et.transportRecomendation(jarak,diffHours );
-                    //double[][] jarak = objMain.distance.jarak;
-                    ProgramUtama objMain = new ProgramUtama(event, transport, locationEvent, distance, esTime);
-                    eventList.add(objMain);
+                    
+                    esTime.transportRecomendation(jarak,diffHours);
+                    //ProgramUtama objMain = new ProgramUtama(event, transport, locationEvent, distance, esTime);
+                    eventList.add(new ProgramUtama(event, transport, locationEvent, distance, esTime));
                     break;
                 case 2 :
                     for(ProgramUtama main:eventList){
