@@ -124,9 +124,7 @@ public class ProgramUtama{
                     diffHours = diff / (60 * 60 * 1000); //selisih detik
                     //-------------------------------------------------------------------------------------------------------------//
                     
-                    System.out.println("1. MOBIL \n2. MOTOR \n3. PESAWAT \n4. KERETA \n5. BUS\n");
-                    //System.out.println("Masukkan Kode Moda Transportasi : ");
-                   // transportation = n.nextInt();
+                    
       
                     
                     //------------Input Data Lokasi(Kode lokasi, nama lokasi(Bandara Husen, Rumah Anu,...)------------------//
@@ -288,9 +286,8 @@ public class ProgramUtama{
                     }
 
                     double jarak = distance.getdistance();
-                    transport.getSpeedKendaraan(TransportationMode.Transport.MOBIL); //untuk input enum transport
-                    speed = transport.gettimemobil();
-                      System.out.println(speed);
+                    EstimationTime et = new EstimationTime();
+                    et.transportRecomendation(jarak,diffHours );
                     //double[][] jarak = objMain.distance.jarak;
                     ProgramUtama objMain = new ProgramUtama(event, transport, locationEvent, distance, esTime);
                     eventList.add(objMain);

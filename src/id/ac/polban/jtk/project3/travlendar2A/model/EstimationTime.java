@@ -53,7 +53,7 @@ public class EstimationTime {
         return eta;
     }
     
-    public void printDistance(double eta){
+    public void printEstimationTime(double eta){
         this.eta = eta;
         int inteta = (int) eta; //casting double to int
         eta = eta % 1 * 60; //menghitung hasil mod untuk dijadikan menit
@@ -67,14 +67,51 @@ public class EstimationTime {
         }
     }
     
-    public static void main(String[] args) {
-        double eta, eta1;
-        DistanceMatrix dm = new DistanceMatrix();
+    public void transportRecomendation(double distance, long waktuKosong){
+        double eta, eta1, eta2, eta3, eta4;
         TransportationMode tm = new TransportationMode();
         EstimationTime et = new EstimationTime();
-        et.setDistance(106.20);
-        eta = et.countEstimationTime(tm.getSpeedKendaraan(Transport.MOBIL),et.getDistance());
-        eta1 = et.countEstimationTime(tm.getSpeedKendaraan(Transport.MOTOR),et.getDistance());
-        et.printDistance(eta);
-    }
+        et.setDistance(distance);
+        eta = et.countEstimationTime(tm.getSpeedKendaraan(Transport.PESAWAT),et.getDistance()); //var penampung estimation jika menggunakan pesawat
+        eta1 = et.countEstimationTime(tm.getSpeedKendaraan(Transport.KERETA),et.getDistance()); //var penampung estimation jika menggunakan kereta
+        eta2 = et.countEstimationTime(tm.getSpeedKendaraan(Transport.MOTOR),et.getDistance());  //var penampung estimation jika menggunakan motor
+        eta3 = et.countEstimationTime(tm.getSpeedKendaraan(Transport.MOBIL),et.getDistance());  //var penampung estimation jika menggunakan mobil
+        eta4 = et.countEstimationTime(tm.getSpeedKendaraan(Transport.BUS),et.getDistance());    //var penampung estimation jika menggunakan bus
+        double arrayOfEta [] = {eta,eta1,eta2,eta3,eta4}; //array penampung variabel estimasi waktu utk semua kendaraan
+        for (int i=0; i<5; i++){
+            if (arrayOfEta[i]<=waktuKosong){    //pengecekan jika waktu yg diperlukan ketika menaiki kendaraan lebih kecil dari waktu kosong yang dimiliki
+                switch(i){
+                    case 0:
+                        System.out.println("Pesawat, waktu tempuh ");
+                        et.printEstimationTime(arrayOfEta[i]);
+                        System.out.println("\n");
+                        break;
+                    case 1:
+                        System.out.println("Kereta, waktu tempuh ");
+                        et.printEstimationTime(arrayOfEta[i]);    
+                        System.out.println("\n");
+                        break;
+                    case 2:
+                        System.out.println("Motor, waktu tempuh ");
+                        et.printEstimationTime(arrayOfEta[i]);
+                        System.out.println("\n");
+                        break;
+                    case 3:
+                        System.out.println("Mobil, waktu tempuh ");
+                        et.printEstimationTime(arrayOfEta[i]);
+                        System.out.println("\n");
+                        break;
+                    case 4:
+                        System.out.println("Bus, waktu tempuh ");
+                        et.printEstimationTime(arrayOfEta[i]);
+                        System.out.println("\n");
+                        break;
+                }
+            } else {
+                    System.out.println("");
+                    break;
+                }
+            }
+        }
+    
 }
