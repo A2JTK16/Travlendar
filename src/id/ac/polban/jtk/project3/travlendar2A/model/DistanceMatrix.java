@@ -11,6 +11,7 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
  */
 public class DistanceMatrix {
     //deklarasi atribut
+    double distance;
     private String [] kota = {"Bandung", "Bekasi", "Bogor",	"Ciamis", "Cianjur","Cirebon","Garut","Indramayu","Karawang","Kuningan","Majalengka", "Pangandaran","Purwakarta","Subang","Sukabumi","Sumedang","Tasikmalaya"};
     
     /**
@@ -85,7 +86,7 @@ public class DistanceMatrix {
             {
                 if (kota_awal.equals(getKota()[n]) && kota_tujuan.equals(getKota()[m]) ) //pengecekan kota untuk mendapatkan kode kota agar bisa mengetahui jarak
                 {
-                     System.out.println(kota_awal + " - " + kota_tujuan + " = " + getJarak()[n][m]); //menampilkan jarak antara kota awal dan kota tujuan
+                     this.distance= (getJarak()[n][m]); //menampilkan jarak antara kota awal dan kota tujuan
                 } 
             }
         }
@@ -97,7 +98,9 @@ public class DistanceMatrix {
     public double[][] getJarak() {
         return jarak;
     }
-
+    public double getdistance(){
+        return distance;
+    }
     /**
      * @param jarak the jarak to set
      */

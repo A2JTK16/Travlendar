@@ -12,16 +12,18 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
  */
 public class TransportationMode {
     private int speedKendaraan;
-
+    private double time_mobil;
+    private DistanceMatrix Distance;
     public enum Transport{
         MOBIL, MOTOR, PESAWAT, KERETA, BUS;
     }
     
-    public int getSpeedKendaraan (Transport vhc){
+    public double getSpeedKendaraan (Transport vhc){
         switch(vhc){
             //satuan kecepatan adalah km/jam
             case MOBIL :
                 speedKendaraan = 50; //set speed untuk mobil
+                this.time_mobil = (Distance.getdistance())/speedKendaraan;
                 break;
             case MOTOR :
                 speedKendaraan = 60; //set speed untuk motor
@@ -38,4 +40,9 @@ public class TransportationMode {
         }
         return speedKendaraan;
     }
+    
+    public double gettimemobil(){
+return time_mobil;
 }
+}
+

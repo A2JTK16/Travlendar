@@ -10,7 +10,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 //import java.util.Calendar;
 import java.util.Scanner;
-
+import java.util.Date;
 /**
  *
  * @author AGS
@@ -55,13 +55,14 @@ public class ProgramUtama{
         EstimationTime esTime = new EstimationTime();
         TransportationMode transport = new TransportationMode();
         ParseDate parsedt = new ParseDate();
-        
+        Date arrivalTime = null;
+        Date departureTime = null; 
         int transportation;
         int option = 1;
         int id, kodelokasi, speed=0, kodekotaawal, kodekotatujuan;
         String fullname, username, email, password, eventName, tanggalStr, waktuStr, lokasi, kotaawal = null, kotatujuan = null;
         Scanner n = new Scanner(System.in);
-        
+        long diff = 0, diffSeconds = 0, diffMinutes = 0, diffHours = 0;
         ArrayList<ProgramUtama> eventList = new ArrayList();
         
         //--------------------Input Data Traveller (Name, username, pass,....)--------------------------------------//
@@ -76,7 +77,7 @@ public class ProgramUtama{
         
         System.out.println("Masukkan password Anda : ");
         password = n.nextLine();
-        Traveller traveller = new Traveller(fullname, username, email, password);
+        Traveller traveller = new Traveller(fullname, username, email, password); 
         //-------------------------------------------------------------------------------------------------------------//
         
         do{
@@ -112,21 +113,30 @@ public class ProgramUtama{
                     } 
                     while(!parsedt.setTimeValStr(n.next()));
                     event.setDepatureTime(parsedt.getDateValue());
+                    
+                    arrivalTime = event.getArrivaltime();
+                    departureTime = event.getDeparturetime();
+                    
+                    diff = arrivalTime.getTime() - departureTime.getTime(); //untuk menghitung selisih jam
+                    diffSeconds = diff / 1000 % 60; //selisih jam 
+                    diffMinutes = diff / (60 * 1000) % 60; //selisih menit
+                    diffHours = diff / (60 * 60 * 1000); //selisih detik
                     //-------------------------------------------------------------------------------------------------------------//
                     
                     System.out.println("1. MOBIL \n2. MOTOR \n3. PESAWAT \n4. KERETA \n5. BUS\n");
                     System.out.println("Masukkan Kode Moda Transportasi : ");
                     transportation = n.nextInt();
-                    speed = transport.getSpeedKendaraan(TransportationMode.Transport.values()[transportation-1]);
+      
+                    speed = transport.getSpeedKendaraan(TransportationMode.Transport.values()[transportation-1]); //untuk input enum transport
                     
                     //------------Input Data Lokasi(Kode lokasi, nama lokasi(Bandara Husen, Rumah Anu,...)------------------//
-                    System.out.println("Masukkanmm Kode Lokasi Event : ");
+                    /*System.out.println("Masukkanmm Kode Lokasi Event : ");
                     kodelokasi = n.nextInt(); n.nextLine();
                     locationEvent.setKode_lokasi(kodelokasi);
                     
                     System.out.println("Masukkan Nama Lokasi Anda (Rumah, Bandara,...) : ");
                     lokasi = n.nextLine();
-                    locationEvent.setNama_lokasi(lokasi);
+                    locationEvent.setNama_lokasi(lokasi);*/
                     //-------------------------------------------------------------------------------------------------------//
                     
                     System.out.println("1. Bandung \n2. Bekasi\n3. Bogor \n4. Ciamis\n5. Cianjur\n6. Cirebon\n7. Garut\n8. Indramayu\n9. Karawang\n10. Kuningan\n11. Majalengka\n12. Pangandaran\n13. Purwakarta\n14. Subang\n15. Sukabumi\n16. Sumedang\n17. Tasikmalaya\n");
@@ -277,7 +287,7 @@ public class ProgramUtama{
                             break;                                
                     }
 
-                    
+                    double jarak = distance.getdistance();
                     //double[][] jarak = objMain.distance.jarak;
                     ProgramUtama objMain = new ProgramUtama(event, transport, locationEvent, distance, esTime);
                     eventList.add(objMain);
@@ -294,6 +304,9 @@ public class ProgramUtama{
                             System.out.println("Speed : " + speed);
                             System.out.println("\n");
                         }*/
+                        System.out.println("Time in seconds: " + diffSeconds + " seconds.");         
+                        System.out.println("Time in minutes: " + diffMinutes + " minutes.");         
+                        System.out.println("Time in hours: " + diffHours + " hours.");
                     }
                     break;           
             }
