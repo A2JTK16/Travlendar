@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : Sep 21, 2017, 4:59:43 PM
-    Author     : Diana
+    Author     : Nia
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -48,7 +48,7 @@
 							       <input type="text" placeholder="Add Description ..."/>
 							      <button> Save </button>
 							    </form>
-							  </div>
+							  </div> <!--jenis transportasion-->
 							
 				  </div> <!--modal content-->
 

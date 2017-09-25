@@ -54,7 +54,43 @@ MEDIA QUERIES
 	.footer{
 		text-align: center;
 	}
+        
+        h1{
+            font: 12px;
+            padding: 2px;
+            margin: 2px;
+        }
 	
+        .kotak-acount{
+            float: right;
+            padding: 1px;
+            margin: 1px;
+            overflow: hidden;
+        }
+
+        .acount-nama{
+            float:left;
+            padding:3px;
+            margin:3px;
+            font: 12px Arial;
+            color:#fafafa;
+        }
+
+        .icon-account{
+            float:left;
+            padding: 2px;
+            margin: 2px;
+            overflow: hidden;
+            border-radius:100px;
+        }
+        .icon-account img{
+            float: left;
+            width: 20px;
+            height: 20px;
+
+        }
+        
+        
 	.left {
 		width: auto;
 		float: none;

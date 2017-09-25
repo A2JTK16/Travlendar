@@ -22,9 +22,24 @@
 
 <div class="menu-atas">
 	<div class="header">
-		<h1> LOGO </h1>
+            <div class="logo">
+                <h1> LOGO </h1>
+            </div> <!--logo-->
+                
+                <div class="kotak-acount">
+                <div  class="acount-nama">
+                        Username Acount    
+                  </div> 
+                <div class="icon-account">
+                <img src="${pageContext.request.contextPath}/Assets2/icon/Account.png">
+                </div>
+                </div> <!--kotak-acount-->
 	</div> <!--header-->
+        
+     
 </div> <!--menu-atas-->
+
+
 
     </body>
 </html>
