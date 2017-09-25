@@ -12,11 +12,6 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
  */
 public class TransportationMode {
     private int speedKendaraan;
-    
-    /**
-     * REVIEW
-     * --- Good Job! ---
-     */
 
     public enum Transport{
         MOBIL, MOTOR, PESAWAT, KERETA, BUS;

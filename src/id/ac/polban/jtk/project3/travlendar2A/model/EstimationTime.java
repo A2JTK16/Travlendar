@@ -22,16 +22,6 @@ public class EstimationTime {
     public double getDistance() {
         return distance;
         
-        /**
-         * REVIEW
-         * 1.   Bagus! Program Nya Sudah Bisa Memberikan Hasil Sesuai yang Diharapkan
-         * 2.   Perlu Dicoba Dengan Memakai Objek dari DistanceMatrix,
-         *      Sehingga Tinggal Masukkan Kedua Kode Kota dan Dapatkan Jarak
-         * 3.   Jika Dibutuhkan Kecepatan dalam Format m/s, Mohon Class 
-         *      TransportationMode dalam Format m/s, atau Perhitungan Dalam km/jam
-         *      Sehingga Tidak Perlu Dilakukan Konversi km/jam jadi m/s
-         *    
-         */
     }
 
     /**
@@ -76,7 +66,7 @@ public class EstimationTime {
         }
     }
     
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         double eta;
         DistanceMatrix dm = new DistanceMatrix();
         TransportationMode tm = new TransportationMode();
@@ -84,5 +74,5 @@ public class EstimationTime {
         et.setDistance(106.20);
         eta = et.countEstimationTime(tm.getSpeedKendaraan(Transport.MOBIL),et.getDistance());
         et.printDistance();
-    }
+    }*/
 }
