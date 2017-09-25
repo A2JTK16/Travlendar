@@ -6,8 +6,7 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
  * and open the template in the editor.
  */
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.Date;
 
 
@@ -30,20 +29,16 @@ public class Event {
     private String nama_event;
     private Date arrivaltime;
     private Date departuretime;
-    private final SimpleDateFormat datetimeFormatter;
-    private final SimpleDateFormat dateFormat;
-    private final SimpleDateFormat timeFormat;
+    
     
     public Event(){
-        this.datetimeFormatter = new SimpleDateFormat("dd-MM-yyyy.HH.mm.ss");
-        this.dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        this.timeFormat = new SimpleDateFormat("HH.mm.ss");
+        this.nama_event = null;
         this.arrivaltime = null;
         this.departuretime = null;
     }
    
     public void getEvent() {
-        System.out.println("Nama Event : " + this.nama_event + "\nWaktu Tiba : " + this.arrivaltime + "\nWaktu Berangkat : " + this.departuretime + "\n") ;
+        System.out.println("Nama Event : " + this.nama_event + "\nWaktu Tiba : " + this.getArrivaltime() + "\nWaktu Berangkat : " + this.getDeparturetime() + "\n") ;
     }
 
     /**
@@ -54,28 +49,39 @@ public class Event {
          // Rev : Ini infinite, perlu diperbaiki
     }
 
-    /**
-     * @param arrivaltimeStr
-     * @throws java.text.ParseException
-     */
-    public void setArrivaltime(String arrivaltimeStr) throws ParseException {
-        this.arrivaltime = this.datetimeFormatter.parse(arrivaltimeStr);
+    
+    public void setArrivalTime(Date arrivaltime) {
+        this.arrivaltime = arrivaltime;
+    }
+
+    
+    public void setDepatureTime(Date departuretimeEv) {
+        if(!departuretimeEv.before(this.arrivaltime)) {
+            this.departuretime = departuretimeEv;
+        } else {
+            System.out.println("Arrival time and departure time that you enter interchangeable, we will exchange it");
+            this.departuretime = this.getArrivaltime();
+            this.arrivaltime = departuretimeEv;
+        }
     }
 
     /**
-     * @param departuretimenn
-     * @throws java.text.ParseException
+     * @return the arrivaltime
      */
-    public void setDeparturetime(String departuretimenn) throws ParseException {
-        this.departuretime = this.datetimeFormatter.parse(departuretimenn);
+    public Date getArrivaltime() {
+        return arrivaltime;
     }
-    
+
     /**
-     *
-     * @param arrivalTimeStr
-     * @return
+     * @return the departuretime
      */
-    public boolean isDate(String arrivalTimeStr)
+    public Date getDeparturetime() {
+        return departuretime;
+    }
+}
+    
+   
+/*    public boolean isDate(String arrivalTimeStr)
     {
         try{
             this.dateFormat.parse(arrivalTimeStr);
@@ -93,7 +99,7 @@ public class Event {
      * @param timeStr
      * @return
      */
-    public boolean isTime(String timeStr)
+/*    public boolean isTime(String timeStr)
     {
         try{
             this.timeFormat.parse(timeStr);
@@ -105,4 +111,4 @@ public class Event {
         }
     }
     
-}
+}*/
