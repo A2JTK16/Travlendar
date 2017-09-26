@@ -38,7 +38,7 @@ public class Event {
     }
    
     public String getEvent() {
-        return ("Nama Event : " + this.nama_event + "\nWaktu Berangkat : " + this.getArrivaltime() + "\nWaktu Tiba : " + this.getDeparturetime() + "\n") ;
+        return ("Nama Event : " + this.nama_event + "\nWaktu Berangkat : " + this.getDeparturetime() + "\nWaktu Tiba : " + this.getArrivaltime() + "\n") ;
     }
 
     /**
@@ -50,11 +50,18 @@ public class Event {
 
     
     public void setArrivalTime(Date arrivaltime) {
-        this.arrivaltime = arrivaltime;
+        if(this.departuretime.before(arrivaltime)) {
+            this.arrivaltime = arrivaltime;
+        } else {
+            System.out.println("Arrival time and departure time that you enter interchangeable, we will exchange it");
+            this.arrivaltime = this.getDeparturetime();
+            this.departuretime = arrivaltime;
+        }
+        
     }
 
     
-    public void setDepatureTime(Date departuretimeEv) {
+    public void setDepartureTime(Date departuretime) {
         /**
          * Rev Mufid
          * Pengecekan : jika Depature Time terjadi setelah Arrivaltime
@@ -62,13 +69,7 @@ public class Event {
          * 
          * Method ini akan error jika arrivalTime nya masih null.
          */
-        if(!departuretimeEv.before(this.arrivaltime)) {
-            this.departuretime = departuretimeEv;
-        } else {
-            System.out.println("Arrival time and departure time that you enter interchangeable, we will exchange it");
-            this.departuretime = this.getArrivaltime();
-            this.arrivaltime = departuretimeEv;
-        }
+        this.departuretime = departuretime;
     }
 
     /**

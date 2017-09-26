@@ -116,7 +116,7 @@ public class ProgramUtama{
                         System.out.println("Time (Format hh.mm.ss)");
                     } 
                     while(!parsedt.setTimeValStr(n.next()));
-                    event.setArrivalTime(parsedt.getDateValue());
+                    event.setDepartureTime(parsedt.getDateValue());
                     //-------------------------------------------------------------------------------------------//
                     
                     do{
@@ -128,7 +128,7 @@ public class ProgramUtama{
                         System.out.println("Time (Format hh.mm.ss)");
                     } 
                     while(!parsedt.setTimeValStr(n.next()));
-                    event.setDepatureTime(parsedt.getDateValue());
+                    event.setArrivalTime(parsedt.getDateValue());
                     //--------------------------------------------------------------------------------------------//
                     /**
                      * REVIEW : DAPAT DIBUAT CLASS BARU
@@ -140,7 +140,7 @@ public class ProgramUtama{
                     arrivalTime = event.getArrivaltime();
                     departureTime = event.getDeparturetime();
                     
-                    diff = departureTime.getTime() - arrivalTime.getTime(); //untuk menghitung selisih jam
+                    diff = arrivalTime.getTime() - departureTime.getTime(); //untuk menghitung selisih jam
                     diffSeconds = diff / 1000 % 60; //selisih jam 
                     diffMinutes = diff / (60 * 1000) % 60; //selisih menit
                     diffHours = (diff / (60 * 60 * 1000)); //selisih detik
@@ -149,12 +149,14 @@ public class ProgramUtama{
                     /**
                      * REVIEW : DAPAT DIBUAT METHOD BARU
                      */
+                    System.out.println("1. Bandung \n2. Bekasi\n3. Bogor \n4. Ciamis\n5. Cianjur\n6. Cirebon\n7. Garut\n8. Indramayu\n9. Karawang\n10. Kuningan\n11. Majalengka\n12. Pangandaran\n13. Purwakarta\n14. Subang\n15. Sukabumi\n16. Sumedang\n17. Tasikmalaya\n");
                     
                     System.out.println("Masukkan lokasi awal : ");
                     kotaawal = n.next();
                     locationEvent.setNama_Lokasi(kotaawal);
                     distance.setKode_kota1(locationEvent.getKode_Lokasi());
                     System.out.println("kode kotaawal : " + locationEvent.getKode_Lokasi());
+                    
                     System.out.println("Masukkan lokasi tujuan : ");
                     kotatujuan = n.next();
                     locationEvent.setNama_Lokasi(kotatujuan);
