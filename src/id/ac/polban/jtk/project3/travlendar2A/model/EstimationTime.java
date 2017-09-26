@@ -1,6 +1,7 @@
 package id.ac.polban.jtk.project3.travlendar2A.model;
 import id.ac.polban.jtk.project3.travlendar2A.model.TransportationMode.Transport;
 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,11 +16,6 @@ public class EstimationTime {
     private double distance;
     private double speed;
     private double eta; //eta merupakan singkatan dari estimation time arrival
-    private double estimasi_pesawat;
-    private double estimasi_kereta;
-    private double estimasi_motor;
-    private double estimasi_mobil;
-    private double estimasi_bus;
    
     /**
      * @return the distance
@@ -73,46 +69,41 @@ public class EstimationTime {
     }
     
     public void transportRecomendation(double distance, long waktuKosong){
-        double eta, eta1, eta2, eta3, eta4;
+        double[] arrayOfEta = new double [5];
         TransportationMode tm = new TransportationMode();
         EstimationTime et = new EstimationTime();
         et.setDistance(distance);
-        eta = et.countEstimationTime(tm.getSpeedKendaraan(Transport.PESAWAT),et.getDistance()); //var penampung estimation jika menggunakan pesawat
-        eta1 = et.countEstimationTime(tm.getSpeedKendaraan(Transport.KERETA),et.getDistance()); //var penampung estimation jika menggunakan kereta
-        eta2 = et.countEstimationTime(tm.getSpeedKendaraan(Transport.MOTOR),et.getDistance());  //var penampung estimation jika menggunakan motor
-        eta3 = et.countEstimationTime(tm.getSpeedKendaraan(Transport.MOBIL),et.getDistance());  //var penampung estimation jika menggunakan mobil
-        eta4 = et.countEstimationTime(tm.getSpeedKendaraan(Transport.BUS),et.getDistance());    //var penampung estimation jika menggunakan bus
-        double arrayOfEta [] = {eta,eta1,eta2,eta3,eta4}; //array penampung variabel estimasi waktu utk semua kendaraan
+        arrayOfEta[0] = et.countEstimationTime(tm.getSpeedKendaraan(Transport.PESAWAT),et.getDistance()); //var penampung estimation jika menggunakan pesawat
+        arrayOfEta[1] = et.countEstimationTime(tm.getSpeedKendaraan(Transport.KERETA),et.getDistance()); //var penampung estimation jika menggunakan kereta
+        arrayOfEta[2] = et.countEstimationTime(tm.getSpeedKendaraan(Transport.MOTOR),et.getDistance());  //var penampung estimation jika menggunakan motor
+        arrayOfEta[3] = et.countEstimationTime(tm.getSpeedKendaraan(Transport.MOBIL),et.getDistance());  //var penampung estimation jika menggunakan mobil
+        arrayOfEta[4] = et.countEstimationTime(tm.getSpeedKendaraan(Transport.BUS),et.getDistance());    //var penampung estimation jika menggunakan bus
+        System.out.println("\nRekomendasi kendaraan yang dapat digunakan: \n");
         for (int i=0; i<5; i++){
             if (arrayOfEta[i]<=waktuKosong){    //pengecekan jika waktu yg diperlukan ketika menaiki kendaraan lebih kecil dari waktu kosong yang dimiliki
-                switch(i){
-                    case 0:
-                        System.out.println("Pesawat, waktu tempuh ");
-                        this.estimasi_pesawat = arrayOfEta[i];
+               switch(i){
+                    case 0: 
+                        System.out.print("- Pesawat, waktu tempuh ");
                         et.printEstimationTime(arrayOfEta[i]);
                         System.out.println("\n");
                         break;
                     case 1:
-                        System.out.println("Kereta, waktu tempuh ");
-                        this.estimasi_kereta = arrayOfEta[i];    
-                        et.printEstimationTime(arrayOfEta[i]);
+                        System.out.print("- Kereta, waktu tempuh ");
+                        et.printEstimationTime(arrayOfEta[i]);    
                         System.out.println("\n");
                         break;
                     case 2:
-                        System.out.println("Motor, waktu tempuh ");
-                        this.estimasi_motor = arrayOfEta[i];
-                         et.printEstimationTime(arrayOfEta[i]);
+                        System.out.print("- Motor, waktu tempuh ");
+                        et.printEstimationTime(arrayOfEta[i]);
                         System.out.println("\n");
                         break;
                     case 3:
-                        System.out.println("Mobil, waktu tempuh ");
-                        this.estimasi_mobil = arrayOfEta[i];
-                         et.printEstimationTime(arrayOfEta[i]);
+                        System.out.print("- Mobil, waktu tempuh ");
+                        et.printEstimationTime(arrayOfEta[i]);
                         System.out.println("\n");
                         break;
                     case 4:
-                        System.out.println("Bus, waktu tempuh ");
-                        this.estimasi_bus = arrayOfEta[i];
+                        System.out.print("- Bus, waktu tempuh ");
                         et.printEstimationTime(arrayOfEta[i]);
                         System.out.println("\n");
                         break;
@@ -124,5 +115,8 @@ public class EstimationTime {
             }
         }
     
-  
+    /*public static void main(String[] args){
+        EstimationTime et = new EstimationTime();
+        et.transportRecomendation(200, 3);
+    }*/
 }
