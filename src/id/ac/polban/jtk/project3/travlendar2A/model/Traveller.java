@@ -116,15 +116,5 @@ public class Traveller {
     public void setFullname(String fullname) {
         this.fullname = fullname;
     }
-
-    /* public static void main(String[] args) {
-        Traveller data = new Traveller("maryammm", "maryam@gmail.com", "Siti Maryam", "maryam123");
-        data.setId_traveller(421998);
-        System.out.println("Id Traveller : " + data.getId_traveller());
-        System.out.println("Username     : " + data.getUsername());
-        System.out.println("Full Name    : " + data.getFullname());
-        System.out.println("Email        : " + data.getEmail());
-        System.out.println("Password     : " + data.getPassword());
-    } */
     
 }
