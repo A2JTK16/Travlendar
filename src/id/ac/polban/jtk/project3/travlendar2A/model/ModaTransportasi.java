@@ -1,6 +1,4 @@
 package id.ac.polban.jtk.project3.travlendar2A.model;
-import id.ac.polban.jtk.project3.travlendar2A.model.TransportationMode.Transport;
-
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,66 +10,48 @@ import id.ac.polban.jtk.project3.travlendar2A.model.TransportationMode.Transport
  *
  * @author Reza Dwi Kurniawan
  */
-public class EstimationTime {
-    private double distance;
-    private double speed;
-    private double eta; //eta merupakan singkatan dari estimation time arrival
-   
-    /**
-     * @return the distance
-     */
-    public double getDistance() {
-        return distance;
-        
-    }
-
-    /**
-     * @param distance the distance to set
-     */
-    public void setDistance(double distance)    {
-        this.distance = distance;
-    }
- 
-    
-    /**
-     * @return the speed
-     */
-    public double getSpeed() {
-        return speed;
-    }
-
-    /**
-     * @param speed the speed to set
-     */
-    public void setSpeed(double speed) {
-        this.speed = speed;
+public class ModaTransportasi {
+    private int speedKendaraan;
+    private boolean availableTransportation;
+    public enum Transport{
+        MOBIL, MOTOR, PESAWAT, KERETA, BUS;
     }
     
-    public double countEstimationTime(double speed, double distance){
-        this.speed = speed; 
-        this.distance = distance; 
-        eta = distance/speed; //estimation time diisi nilai hasil bagi jarak/kecepatan
-        return eta;
+    public void setIsTransportAvailable(boolean availableTransportation){
+        this.availableTransportation = availableTransportation;
     }
     
-    public void printEstimationTime(double eta){
-        this.eta = eta;
-        int inteta = (int) eta; //casting double to int
-        eta = eta % 1 * 60; //menghitung hasil mod untuk dijadikan menit
-        if ((inteta/1)<1){
-            System.out.printf("%.0f",eta);
-            System.out.print(" minutes");
-        } else {
-            System.out.print(inteta/1+" hours"); //membagi var eta yang telah dikonversi ke int dan akan dijadikan jam
-            System.out.printf(" %.0f",eta);
-            System.out.print(" minutes");
+    public boolean getIsTransportAvailable(){
+        return availableTransportation;
+    }
+    
+    public double getSpeedKendaraan (Transport vhc){
+        switch(vhc){
+            //satuan kecepatan adalah km/jam
+            case MOBIL :
+                speedKendaraan = 50; //set speed untuk mobil
+                break;
+            case MOTOR :
+                speedKendaraan = 60; //set speed untuk motor
+                break;
+            case PESAWAT :
+                speedKendaraan = 900; //set speed untuk pesawat
+                break;
+            case KERETA :
+                speedKendaraan = 150; //set speed untuk kereta
+                break;
+            case BUS : //set speed untuk bus
+                speedKendaraan = 40;
+                break;
         }
+        return speedKendaraan;
     }
     
-    public void transportRecomendation(double distance, long waktuKosong){
-        double[] arrayOfEta = new double [5];
-        TransportationMode tm = new TransportationMode();
-        EstimationTime et = new EstimationTime();
+    public void transportRecomendation(double distance, double waktuKosong){
+        double[] arrayOfEta = new double [5]; //array untuk menampung variabel estimation time arrival (eta)
+        ModaTransportasi tm = new ModaTransportasi();
+        EstimasiWaktu et = new EstimasiWaktu();
+        boolean noTransport = true;
         et.setDistance(distance);
         arrayOfEta[0] = et.countEstimationTime(tm.getSpeedKendaraan(Transport.PESAWAT),et.getDistance()); //var penampung estimation jika menggunakan pesawat
         arrayOfEta[1] = et.countEstimationTime(tm.getSpeedKendaraan(Transport.KERETA),et.getDistance()); //var penampung estimation jika menggunakan kereta
@@ -81,42 +61,43 @@ public class EstimationTime {
         System.out.println("\nRekomendasi kendaraan yang dapat digunakan: \n");
         for (int i=0; i<5; i++){
             if (arrayOfEta[i]<=waktuKosong){    //pengecekan jika waktu yg diperlukan ketika menaiki kendaraan lebih kecil dari waktu kosong yang dimiliki
-               switch(i){
+                noTransport=false;
+                switch(i){
                     case 0: 
-                        System.out.print("- Pesawat, waktu tempuh ");
+                        System.out.print("-> Pesawat, waktu tempuh ");
                         et.printEstimationTime(arrayOfEta[i]);
                         System.out.println("\n");
                         break;
                     case 1:
-                        System.out.print("- Kereta, waktu tempuh ");
+                        System.out.print("-> Kereta, waktu tempuh ");
                         et.printEstimationTime(arrayOfEta[i]);    
                         System.out.println("\n");
                         break;
                     case 2:
-                        System.out.print("- Motor, waktu tempuh ");
+                        System.out.print("-> Motor, waktu tempuh ");
                         et.printEstimationTime(arrayOfEta[i]);
                         System.out.println("\n");
                         break;
                     case 3:
-                        System.out.print("- Mobil, waktu tempuh ");
+                        System.out.print("-> Mobil, waktu tempuh ");
                         et.printEstimationTime(arrayOfEta[i]);
                         System.out.println("\n");
                         break;
                     case 4:
-                        System.out.print("- Bus, waktu tempuh ");
+                        System.out.print("-> Bus, waktu tempuh ");
                         et.printEstimationTime(arrayOfEta[i]);
                         System.out.println("\n");
                         break;
                 }
             } else {
-                    System.out.println("");
-                    break;
+                    if(noTransport){
+                        System.out.println("Interval waktu keberangkatan dengan waktu tiba "
+                                + "terlalu sedikit, silahkan ubah waktu keberangkatan "
+                                + "menjadi lebih cepat untuk mendapat rekomendasi kendaraan yang cocok\n");
+                        this.setIsTransportAvailable(true);
+                        break;
+                    } 
                 }
             }
         }
-    
-    /*public static void main(String[] args){
-        EstimationTime et = new EstimationTime();
-        et.transportRecomendation(200, 3);
-    }*/
-}
+    }

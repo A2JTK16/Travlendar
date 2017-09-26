@@ -33,13 +33,13 @@ public class ProgramUtama{
     
     protected Location locationEvent;
     protected DistanceMatrix distance;
-    protected EstimationTime esTime;
-    protected TransportationMode transport;
+    protected EstimasiWaktu esTime;
+    protected ModaTransportasi transport;
     protected Event event;
     protected ParseDate parsedt;
     protected Traveller traveller;
     
-    public ProgramUtama(Event event, TransportationMode transport, Location locationEvent, DistanceMatrix distance, EstimationTime esTime){
+    public ProgramUtama(Event event, ModaTransportasi transport, Location locationEvent, DistanceMatrix distance, EstimasiWaktu esTime){
         this.event = event;
         this.transport = transport;
         this.locationEvent = locationEvent;
@@ -53,8 +53,8 @@ public class ProgramUtama{
         Event event = new Event();
         Location locationEvent = new Location();
         DistanceMatrix distance = new DistanceMatrix();
-        EstimationTime esTime = new EstimationTime();
-        TransportationMode transport = new TransportationMode();
+        EstimasiWaktu esTime = new EstimasiWaktu();
+        ModaTransportasi transport = new ModaTransportasi();
         ParseDate parsedt = new ParseDate();
         Date arrivalTime = null;
         Date departureTime = null; 
@@ -166,14 +166,18 @@ public class ProgramUtama{
                     
                     distance.getJarak_lokasi();
                     double jarak = distance.getJarak_lokasi();
-                    esTime.transportRecomendation(jarak, (long) diffHours);
-                    System.out.println("masukan transportasi yang akan dipilih");
-                    String transportasi = n.next();
-                   // ProgramUtama objMain = new ProgramUtama(event.getEvent(), transport, locationEvent, distance, esTime);
-                    //eventList.add(objMain);
-                    list.add(traveller.getFullname());
-                    list.add(event.getEvent());
-                    list.add(transportasi);
+                    transport.transportRecomendation(jarak, (double) diffHours);
+                    if (!transport.getIsTransportAvailable()){
+                        System.out.println("masukan transportasi yang akan dipilih");
+                        String transportasi = n.next();
+                       // ProgramUtama objMain = new ProgramUtama(event.getEvent(), transport, locationEvent, distance, esTime);
+                        //eventList.add(objMain);
+                        list.add(traveller.getFullname());
+                        list.add(event.getEvent());
+                        list.add(transportasi);
+                    } else {
+                        break;
+                    }
                     break;
                 case 2 :
                     // DAPAT DIBUAT METHOD BARU //
