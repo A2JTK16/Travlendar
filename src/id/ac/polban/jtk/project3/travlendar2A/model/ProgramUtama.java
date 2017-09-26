@@ -139,7 +139,19 @@ public class ProgramUtama{
                     locationEvent.setNama_lokasi(lokasi);*/
                     //-------------------------------------------------------------------------------------------------------//
                   
-                    System.out.println("1. Bandung \n2. Bekasi\n3. Bogor \n4. Ciamis\n5. Cianjur\n6. Cirebon\n7. Garut\n8. Indramayu\n9. Karawang\n10. Kuningan\n11. Majalengka\n12. Pangandaran\n13. Purwakarta\n14. Subang\n15. Sukabumi\n16. Sumedang\n17. Tasikmalaya\n");
+                    System.out.println("Masukkan lokasi awal : ");
+                    kotaawal = n.next();
+                    locationEvent.setNama_Lokasi(kotaawal);
+                    distance.setKode_kota1(locationEvent.getKode_Lokasi());
+                    System.out.println("kode kotaawal : " + locationEvent.getKode_Lokasi());
+                    System.out.println("Masukkan lokasi tujuan : ");
+                    kotatujuan = n.next();
+                    locationEvent.setNama_Lokasi(kotatujuan);
+                    distance.setKode_kota2(locationEvent.getKode_Lokasi());
+                    System.out.println("kode kotatujuan : " + locationEvent.getKode_Lokasi());
+                    System.out.println(kotaawal + " - " + kotatujuan + " = " + distance.getJarak_lokasi());
+                    
+                  /*  System.out.println("1. Bandung \n2. Bekasi\n3. Bogor \n4. Ciamis\n5. Cianjur\n6. Cirebon\n7. Garut\n8. Indramayu\n9. Karawang\n10. Kuningan\n11. Majalengka\n12. Pangandaran\n13. Purwakarta\n14. Subang\n15. Sukabumi\n16. Sumedang\n17. Tasikmalaya\n");
                     System.out.println("Masukkan Kode Kota Awal Anda (1-17) : ");
                     kodekotaawal = n.nextInt();
                     switch(kodekotaawal) {
@@ -285,9 +297,11 @@ public class ProgramUtama{
                             kotatujuan = "Tasikmalaya";
                             
                             break;                                
-                    }
-                    distance.cek_kota(kotaawal, kotatujuan);
-                    double jarak = distance.getdistance();
+                    }*/
+                   // distance.cek_kota(kotaawal, kotatujuan);
+                    distance.getJarak_lokasi();
+                   // double jarak = distance.getdistance();
+                    double jarak = distance.getJarak_lokasi();
                     esTime.transportRecomendation(jarak, (long) diffHours);
                     System.out.println("masukan transportasi yang akan dipilih");
                     String transportasi = n.next();

@@ -10,10 +10,6 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
  * @author Auliya Aqma Dinillah
  */
 public class DistanceMatrix {
-    //deklarasi atribut
-    double distance;
-    private String [] kota = {"Bandung", "Bekasi", "Bogor",	"Ciamis", "Cianjur","Cirebon","Garut","Indramayu","Karawang","Kuningan","Majalengka", "Pangandaran","Purwakarta","Subang","Sukabumi","Sumedang","Tasikmalaya"};
-    
     /**
      * REVIEW 
      * 
@@ -28,11 +24,11 @@ public class DistanceMatrix {
      *      Contoh : Array jarak[1][2] Berisi Jarak Bandung - Bekasi
      */
     
-    //private String kota_awal; //deklarasi variabel kota_awal yang bertipe String
-    //private String kota_tujuan; //deklarasi variabel kota_tujuan yang bertipe String
-    
-    private int [] kode_kota1 = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17}; //deklarasi variabel kode_kota1 yang bertipe integer
-    private int [] kode_kota2 = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17}; //deklarasi variabel kode_kota2 yang bertipe integer
+    //deklarasi atribut
+    double distance;
+    private double jarak_lokasi;
+    private int  kode_kota1;
+    private int kode_kota2;
     private double [][] jarak = {{0,	134,	177,	135,	160,	209,	149,	201,	89.4,	244,	192,	202,	53.3,	118,	90.1,	71.1,	126},
                                {132,	0,	62.2,	248,	208,	200,	199,	192,	54.2,	236,	183,	316,	78.4,	110,	173,	184,	240},
                                {212,    81.8,   0,      305,	175,    247,    319,	249,	110,	292,	239,	372,	135,	166,	140,	241,	296},
@@ -51,51 +47,11 @@ public class DistanceMatrix {
                                {71.4,	172,	239,	104,	162,	92.1,	133,	92.6,	147,	128,	53.2,	171,	108,	112,	241,	0,	95.2},
                                {119,	231,	299,	19.6,	218,	119,	140,	151,	207,	88.8,	92.4,	84.7,	171,	183,	208,	96.8,	0},
                              };
-    
-    public String[] getKota() {
-        return kota;
-    }
-
-    //method ini belum diimplementasikan pada program
-    /*public void setKota(String[] kota) { 
-        this.kota = kota;
-    }
-
-    public int[] getKode_kota() { //
-        return kode_kota;
-    }
-    
-    public void setKode_kota(int[] kode_kota) {
-        this.kode_kota = kode_kota;
-    }
-
-    
-
-    public void setKota_awal(String kota_awal) {
-        this.kota_awal = kota_awal;
-    }*/
    
-    //method untuk mengecek kota
-   public void cek_kota (String kota_awal, String kota_tujuan)
-    {
-        for (int n=0; n<17; n++) //perulangan untuk kota awal
-        {
-            for (int m=0;m<17;m++) //perulangan untuk kota tujuan
-            {
-                if (kota_awal.equals(getKota()[n]) && kota_tujuan.equals(getKota()[m]) ) //pengecekan kota untuk mendapatkan kode kota agar bisa mengetahui jarak
-                {
-                     this.distance= (getJarak()[n][m]); //menampilkan jarak antara kota awal dan kota tujuan
-                } 
-            }
-        }
-    }
-
-    /**
+ /*
      * @return the jarak
      */
- 
-   
-   public double[][] getJarak() {
+    public double[][] getJarak() {
         return jarak;
     }
     public double getdistance(){
@@ -106,5 +62,42 @@ public class DistanceMatrix {
      */
     public void setJarak(double[][] jarak) {
         this.jarak = jarak;
+    }
+
+    /**
+     * @param kode_kota1 the kode_kota1 to set
+     */
+    public void setKode_kota1(int kode_kota1) {
+        this.kode_kota1 = kode_kota1;
+    }
+
+    /**
+     * @return the kode_kota2
+     */
+    public int getKode_kota2() {
+        return kode_kota2;
+    }
+
+    /**
+     * @param kode_kota2 the kode_kota2 to set
+     */
+    public void setKode_kota2(int kode_kota2) {
+        this.kode_kota2 = kode_kota2;
+    }
+
+    /**
+     * @return the jarak_lokasi
+     */
+    //method return jarak_lokasi
+    public double getJarak_lokasi() {
+        this.jarak_lokasi = getJarak()[kode_kota1][kode_kota2];
+        return jarak_lokasi;
+    }
+
+    /**
+     * @param jarak_lokasi the jarak_lokasi to set
+     */
+    public void setJarak_lokasi(int jarak_lokasi) {
+        this.jarak_lokasi = jarak_lokasi;
     }
 }

@@ -39,6 +39,7 @@ public class Event {
    
     public String getEvent() {
         return ("Nama Event : " + this.nama_event + "\nWaktu Tiba : " + this.getArrivaltime() + "\nWaktu Berangkat : " + this.getDeparturetime() + "\n") ;
+        //getArrivaltime sama getDeparturetime nya kebalik
     }
 
     /**
