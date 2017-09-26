@@ -31,7 +31,14 @@
 			
 			<div id="hidden-mobile">
 			
-			
+			<div class="menu-manage">
+				<div class="icon-setting">
+					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">
+				</div> <!--icon-setting-->
+				<h2><a href="../Schedule/index.jsp">Data Schedule</a></h2>
+	
+                        </div> <!--menu-manage--> 
+                            
 			<div class="menu-manage">
 				<div class="icon-setting">
 					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">

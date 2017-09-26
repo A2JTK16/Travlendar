@@ -49,7 +49,7 @@
 							      <input type="text" placeholder="Fullname ..."/>
 							      <input type="text" placeholder="Username ..."/>
 							      <input type="text" placeholder="Email ..."/>
-							      <input type="text" placeholder="Password ..."/>
+							      <input type="password" placeholder="Password ..."/>
 							      <button> Save </button>							     
 							    </form>
 							  </div>
@@ -89,7 +89,7 @@
 							<td>Faiz Abdusallam</td>
 							<td>Faiz</td>
 							<td>faiz@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
 						
 						<tr>
@@ -97,7 +97,7 @@
 							<td>Said Al Fakhri</td>
 							<td>Said</td>
 							<td>Said@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
 						
 						<tr>
@@ -105,7 +105,7 @@
 							<td>Dede Diana</td>
 							<td>Diana</td>
 							<td>diana@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
 						
 						<tr>
@@ -113,7 +113,7 @@
 							<td>Alfin Jastinera</td>
 							<td>Alfin</td>
 							<td>alfin@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
 						
 						
@@ -122,7 +122,7 @@
 							<td>Agit Prasetya</td>
 							<td>Agit</td>
 							<td>agit@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
 						
 						<tr>
@@ -130,7 +130,7 @@
 							<td>Maulana Ibrahim</td>
 							<td>Maul</td>
 							<td>maul@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
 						
 						<tr>
@@ -138,7 +138,7 @@
 							<td>Mufid Jamaluddin</td>
 							<td>Mufid</td>
 							<td>mufid@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
 						
 						<tr>
@@ -146,7 +146,7 @@
 							<td>Putri Dian</td>
 							<td>Dian</td>
 							<td>putridian@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
                                                 
                                                 <tr>
@@ -154,22 +154,24 @@
 							<td>Reza Dwi Kurniawan</td>
 							<td>Reza</td>
 							<td>reza@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
                                                 
                                                 <tr>
 							<td>10</td>
-							<td>Putri Dian</td>
-							<td>Dian</td>
-							<td>putridian@polban.ac.id</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
+							<td>Nurindah Yuniarti</td>
+							<td>Nurindah</td>
+							<td>nurindah@polban.ac.id</td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
 						
-                                                <script>
-						function myFunction() {
-							alert("Delete Sucsess");
-						}
-						</script>
+                                                 <script type="text/javascript" language="JavaScript">
+                                                function konfirmasi()
+                                                {
+                                                tanya = confirm("Anda Yakin Akan Menghapus Data ?");
+                                                if (tanya == true) return true;
+                                                else return false;
+                                                }</script>
 									
 						
 						</tbody>

@@ -23,7 +23,7 @@
 <div class="menu-atas">
 	<div class="header">
             <div class="logo">
-                <h1> LOGO </h1>
+                <h1> Travelendar </h1>
             </div> <!--logo-->
                 
                 <div class="kotak-acount">
