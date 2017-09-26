@@ -38,8 +38,7 @@ public class Event {
     }
    
     public String getEvent() {
-        return ("Nama Event : " + this.nama_event + "\nWaktu Tiba : " + this.getArrivaltime() + "\nWaktu Berangkat : " + this.getDeparturetime() + "\n") ;
-        //getArrivaltime sama getDeparturetime nya kebalik
+        return ("Nama Event : " + this.nama_event + "\nWaktu Berangkat : " + this.getArrivaltime() + "\nWaktu Tiba : " + this.getDeparturetime() + "\n") ;
     }
 
     /**
@@ -47,7 +46,6 @@ public class Event {
      */
     public void setNama_event(String nama_event) {
          this.nama_event = nama_event;
-         // Rev : Ini infinite, perlu diperbaiki
     }
 
     
@@ -57,6 +55,13 @@ public class Event {
 
     
     public void setDepatureTime(Date departuretimeEv) {
+        /**
+         * Rev Mufid
+         * Pengecekan : jika Depature Time terjadi setelah Arrivaltime
+         * Maka akan otomatis ditukar.
+         * 
+         * Method ini akan error jika arrivalTime nya masih null.
+         */
         if(!departuretimeEv.before(this.arrivaltime)) {
             this.departuretime = departuretimeEv;
         } else {

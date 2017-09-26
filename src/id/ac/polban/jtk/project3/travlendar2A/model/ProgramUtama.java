@@ -69,6 +69,7 @@ public class ProgramUtama{
         List<String> list = new ArrayList<String>();
         
         //--------------------Input Data Traveller (Name, username, pass,....)--------------------------------------//
+        //--------------------- DAPAT DIBUAT METHOD BARU ----------------------------------------------------------//
         System.out.println("Masukkan Nama Lengkap Anda : ");
         fullname = n.nextLine();
         
@@ -89,11 +90,34 @@ public class ProgramUtama{
             option = n.nextInt(); n.nextLine();
             switch(option){
    
-                case 1 : //memasukkan event dan segala atributnya
+                case 1 : 
+                  /**
+                   * REVIEW : Dapat dibuat CLASS BARU
+                   * misalnya Class Input Event
+                   * Isinya input Event, ArrivalTime, DepatureTime, dsb
+                   */  
+                  
                     //------------Input Data Event(Nama event, waktu berangkat, waktu tiba)-----------------------------------//
+                    
                     System.out.println("Nama Event : ");
                     eventName = n.nextLine();
                     event.setNama_event(eventName);
+                        
+                    /**
+                     * REVIEW : UNTUK SET ARRIVALTIME DAN DEPATURE TIME DAAPAT DBUAT METHOD BARU
+                     */
+                    //--------------------------------------------------------------------------------------------//
+                    do{
+                        System.out.println("Masukkan Tanggal Berangkat\nDate (Format dd-mm-yyyy) : ");
+                    } 
+                    while(!parsedt.setDateValue(n.next())); 
+            
+                    do{
+                        System.out.println("Time (Format hh.mm.ss)");
+                    } 
+                    while(!parsedt.setTimeValStr(n.next()));
+                    event.setArrivalTime(parsedt.getDateValue());
+                    //-------------------------------------------------------------------------------------------//
                     
                     do{
                         System.out.println("Masukkan Tanggal Tiba\nDate (Format dd-mm-yyyy) : ");
@@ -104,28 +128,28 @@ public class ProgramUtama{
                         System.out.println("Time (Format hh.mm.ss)");
                     } 
                     while(!parsedt.setTimeValStr(n.next()));
-                    event.setArrivalTime(parsedt.getDateValue());
-                    
-                    do{
-                        System.out.println("Masukkan Tanggal Berangkat\nDate (Format dd-mm-yyyy) : ");
-                    } 
-                    while(!parsedt.setDateValue(n.next())); 
-            
-                    do{
-                        System.out.println("Time (Format hh.mm.ss)");
-                    } 
-                    while(!parsedt.setTimeValStr(n.next()));
                     event.setDepatureTime(parsedt.getDateValue());
+                    //--------------------------------------------------------------------------------------------//
+                    /**
+                     * REVIEW : DAPAT DIBUAT CLASS BARU
+                     * CLASS PREDIKSI ATAU APA
+                     * 
+                     */
+                    
                     
                     arrivalTime = event.getArrivaltime();
                     departureTime = event.getDeparturetime();
                     
-                    diff = arrivalTime.getTime() - departureTime.getTime(); //untuk menghitung selisih jam
+                    diff = departureTime.getTime() - arrivalTime.getTime(); //untuk menghitung selisih jam
                     diffSeconds = diff / 1000 % 60; //selisih jam 
                     diffMinutes = diff / (60 * 1000) % 60; //selisih menit
-                    diffHours = -1*(diff / (60 * 60 * 1000)); //selisih detik
-                    //------------------------------------m-------------------------------------------------------------------------//
-                
+                    diffHours = (diff / (60 * 60 * 1000)); //selisih detik
+                    //---------------------------------------------------------------------------------------------//
+                    
+                    /**
+                     * REVIEW : DAPAT DIBUAT METHOD BARU
+                     */
+                    
                     System.out.println("Masukkan lokasi awal : ");
                     kotaawal = n.next();
                     locationEvent.setNama_Lokasi(kotaawal);
@@ -150,6 +174,7 @@ public class ProgramUtama{
                     list.add(transportasi);
                     break;
                 case 2 :
+                    // DAPAT DIBUAT METHOD BARU //
                    for (String s : list) {
                         System.out.println(s);
                         }
