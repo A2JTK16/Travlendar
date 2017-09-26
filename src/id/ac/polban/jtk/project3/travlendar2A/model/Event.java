@@ -37,8 +37,8 @@ public class Event {
         this.departuretime = null;
     }
    
-    public void getEvent() {
-        System.out.println("Nama Event : " + this.nama_event + "\nWaktu Tiba : " + this.getArrivaltime() + "\nWaktu Berangkat : " + this.getDeparturetime() + "\n") ;
+    public String getEvent() {
+        return ("Nama Event : " + this.nama_event + "\nWaktu Tiba : " + this.getArrivaltime() + "\nWaktu Berangkat : " + this.getDeparturetime() + "\n") ;
     }
 
     /**

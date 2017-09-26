@@ -11,6 +11,7 @@ import java.util.ArrayList;
 //import java.util.Calendar;
 import java.util.Scanner;
 import java.util.Date;
+import java.util.List;
 /**
  *
  * @author AGS
@@ -63,8 +64,9 @@ public class ProgramUtama{
         double speed=0;
         String fullname, username, email, password, eventName, tanggalStr, waktuStr, lokasi, kotaawal = null, kotatujuan = null;
         Scanner n = new Scanner(System.in);
-        long diff = 0, diffSeconds = 0, diffMinutes = 0, diffHours = 0;
-        ArrayList<ProgramUtama> eventList = new ArrayList();
+        double diff = 0, diffSeconds = 0, diffMinutes = 0, diffHours = 0;
+       // ArrayList<ProgramUtama> eventList = new ArrayList();
+        List<String> list = new ArrayList<String>();
         
         //--------------------Input Data Traveller (Name, username, pass,....)--------------------------------------//
         System.out.println("Masukkan Nama Lengkap Anda : ");
@@ -94,23 +96,23 @@ public class ProgramUtama{
                     event.setNama_event(eventName);
                     
                     do{
-                        System.out.println("Masukkan Tanggal Tiba\nDate (Format dd-MM-yyyy) : ");
+                        System.out.println("Masukkan Tanggal Tiba\nDate (Format dd-mm-yyyy) : ");
                     } 
                     while(!parsedt.setDateValue(n.next())); 
             
                     do{
-                        System.out.println("Time (Format HH.mm.ss)");
+                        System.out.println("Time (Format hh.mm.ss)");
                     } 
                     while(!parsedt.setTimeValStr(n.next()));
                     event.setArrivalTime(parsedt.getDateValue());
                     
                     do{
-                        System.out.println("Masukkan Tanggal Berangkat\nDate (Format dd-MM-yyyy) : ");
+                        System.out.println("Masukkan Tanggal Berangkat\nDate (Format dd-mm-yyyy) : ");
                     } 
                     while(!parsedt.setDateValue(n.next())); 
             
                     do{
-                        System.out.println("Time (Format HH.mm.ss)");
+                        System.out.println("Time (Format hh.mm.ss)");
                     } 
                     while(!parsedt.setTimeValStr(n.next()));
                     event.setDepatureTime(parsedt.getDateValue());
@@ -118,11 +120,11 @@ public class ProgramUtama{
                     arrivalTime = event.getArrivaltime();
                     departureTime = event.getDeparturetime();
                     
-                    diff = departureTime.getTime() - arrivalTime.getTime(); //untuk menghitung selisih jam
+                    diff = arrivalTime.getTime() - departureTime.getTime(); //untuk menghitung selisih jam
                     diffSeconds = diff / 1000 % 60; //selisih jam 
                     diffMinutes = diff / (60 * 1000) % 60; //selisih menit
-                    diffHours = diff / (60 * 60 * 1000); //selisih detik
-                    //-------------------------------------------------------------------------------------------------------------//
+                    diffHours = -1*(diff / (60 * 60 * 1000)); //selisih detik
+                    //------------------------------------m-------------------------------------------------------------------------//
                     
                     
       
@@ -284,29 +286,21 @@ public class ProgramUtama{
                             
                             break;                                
                     }
-
+                    distance.cek_kota(kotaawal, kotatujuan);
                     double jarak = distance.getdistance();
-                    
-                    esTime.transportRecomendation(jarak,diffHours);
-                    //ProgramUtama objMain = new ProgramUtama(event, transport, locationEvent, distance, esTime);
-                    eventList.add(new ProgramUtama(event, transport, locationEvent, distance, esTime));
+                    esTime.transportRecomendation(jarak, (long) diffHours);
+                    System.out.println("masukan transportasi yang akan dipilih");
+                    String transportasi = n.next();
+                   // ProgramUtama objMain = new ProgramUtama(event.getEvent(), transport, locationEvent, distance, esTime);
+                    //eventList.add(objMain);
+                    list.add(traveller.getFullname());
+                    list.add(event.getEvent());
+                    list.add(transportasi);
                     break;
                 case 2 :
-                    for(ProgramUtama main:eventList){
-                        System.out.println("Nama Traveller : " + traveller.getFullname());
-                        System.out.println("Username Traveller : " + traveller.getUsername());
-                    
-                        event.getEvent();
-                        /*System.out.println("Lokasi : " + locationEvent.getNama_lokasi());
-                        if(kotaawal!=null){
-                            distance.cek_kota(kotaawal, kotatujuan);
-                            System.out.println("Speed : " + speed);
-                            System.out.println("\n");
-                        }*/
-                        System.out.println("Time in seconds: " + diffSeconds + " seconds.");         
-                        System.out.println("Time in minutes: " + diffMinutes + " minutes.");         
-                        System.out.println("Time in hours: " + diffHours + " hours.");
-                    }
+                   for (String s : list) {
+                        System.out.println(s);
+                        }
                     break;           
             }
         }while(option != 3);
