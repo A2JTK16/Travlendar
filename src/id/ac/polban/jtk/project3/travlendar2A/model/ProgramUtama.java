@@ -149,7 +149,7 @@ public class ProgramUtama{
                     /**
                      * REVIEW : DAPAT DIBUAT METHOD BARU
                      */
-                    System.out.println("1. Bandung \n2. Bekasi\n3. Bogor \n4. Ciamis\n5. Cianjur\n6. Cirebon\n7. Garut\n8. Indramayu\n9. Karawang\n10. Kuningan\n11. Majalengka\n12. Pangandaran\n13. Purwakarta\n14. Subang\n15. Sukabumi\n16. Sumedang\n17. Tasikmalaya\n");
+                   /* System.out.println("1. Bandung \n2. Bekasi\n3. Bogor \n4. Ciamis\n5. Cianjur\n6. Cirebon\n7. Garut\n8. Indramayu\n9. Karawang\n10. Kuningan\n11. Majalengka\n12. Pangandaran\n13. Purwakarta\n14. Subang\n15. Sukabumi\n16. Sumedang\n17. Tasikmalaya\n");
                     
                     System.out.println("Masukkan lokasi awal : ");
                     kotaawal = n.next();
@@ -162,7 +162,30 @@ public class ProgramUtama{
                     locationEvent.setNama_Lokasi(kotatujuan);
                     distance.setKode_kota2(locationEvent.getKode_Lokasi());
                     System.out.println("kode kotatujuan : " + locationEvent.getKode_Lokasi());
-                    System.out.println("jarak " + kotaawal + " - " + kotatujuan + " = " + distance.getJarak_lokasi());
+                    System.out.println("jarak " + kotaawal + " - " + kotatujuan + " = " + distance.getJarak_lokasi());*/
+                    int kodeLokasiAwal;
+        int kodeLokasiTujuan;
+         for(int i=0;i<6;i++)
+        {
+            System.out.println(locationEvent.getKode_lokasi()[i] + ". " + locationEvent.getNama_lokasi()[i]);
+        }
+        
+         System.out.print("Masukkan kode lokasi awal : ");
+         kodeLokasiAwal= n.nextInt();
+         locationEvent.setNama_Lokasi(locationEvent.getNama_lokasi()[kodeLokasiAwal]);
+         distance.setKode_kota1(kodeLokasiAwal);
+         System.out.println(locationEvent.getNama_lokasi()[kodeLokasiAwal-1]);
+         
+         for(int i=0;i<6;i++)
+        {
+            System.out.println(locationEvent.getKode_lokasi()[i] + ". " + locationEvent.getNama_lokasi()[i]);
+        }
+         
+         System.out.print("Masukkan kode lokasi tujuan : ");
+         kodeLokasiTujuan = n.nextInt();
+         locationEvent.setNama_Lokasi(locationEvent.getNama_lokasi()[kodeLokasiTujuan]);
+         distance.setKode_kota2(kodeLokasiTujuan);
+         System.out.println(locationEvent.getNama_lokasi()[kodeLokasiTujuan-1]);
                     
                     distance.getJarak_lokasi();
                     double jarak = distance.getJarak_lokasi();
