@@ -49,7 +49,7 @@
 			
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/location.png">
+					<img src="${pageContext.request.contextPath}/Assets2/icon/lokasi.png">
 				</div> <!--icon-setting-->
                                 <h2><a href="../Location/index.jsp">Location </a></h2>
 			</div>
