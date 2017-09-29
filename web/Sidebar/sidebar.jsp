@@ -33,7 +33,7 @@
 			
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">
+					<img src="${pageContext.request.contextPath}/Assets2/icon/jadwal.png">
 				</div> <!--icon-setting-->
 				<h2><a href="../Schedule/index.jsp">Data Schedule</a></h2>
 	
@@ -41,7 +41,7 @@
                             
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">
+					<img src="${pageContext.request.contextPath}/Assets2/icon/traveller.png">
 				</div> <!--icon-setting-->
 				<h2><a href="../Traveller/index.jsp">Traveller</a></h2>
 	
@@ -49,35 +49,35 @@
 			
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">
+					<img src="${pageContext.request.contextPath}/Assets2/icon/location.png">
 				</div> <!--icon-setting-->
                                 <h2><a href="../Location/index.jsp">Location </a></h2>
 			</div>
 			
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">
+					<img src="${pageContext.request.contextPath}/Assets2/icon/car.png">
 				</div> <!--icon-setting-->
                                 <h2><a href="../TransportationMode/index.jsp">Transportation Mode </a></h2>
 			</div> <!--menu-manage-->
 			
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">
+					<img src="${pageContext.request.contextPath}/Assets2/icon/jarak.png">
 				</div> <!--icon-setting-->
-				<h2> <a href="../DistanceMatrix/index.jsp">Distance Matrix </a></h2>
+				<h2> <a href="../DistanceMatrix/index.jsp">Distance</a></h2>
 			</div>
 			
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">
+					<img src="${pageContext.request.contextPath}/Assets2/icon/time.png">
 				</div> <!--icon-setting-->
                                 <h2><a href="../EstimationTime/index.jsp">Estimation Time</a></h2>
 			</div> <!--menu-manage-->
 			
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/setting.png">
+					<img src="${pageContext.request.contextPath}/Assets2/icon/kalender.png">
 				</div> <!--icon-setting-->
                                 <h2><a href="../CalendarEvent/index.jsp">Calendar Event</a></h2>
 			</div>
