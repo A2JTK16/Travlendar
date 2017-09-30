@@ -71,7 +71,7 @@
 		
 		<div class="middle">
 		
-			<div class="kotak-distance">
+			<div class="kotak-traveller">
 				<h4> Distance Matrix </h4>
                                 <div class="kotak-search">
 					<div class="icon-search">
@@ -79,9 +79,9 @@
 					</div> <!--icon-search-->
 					<input class="search "type="text" placeholder="Search Here ... "/>
 				</div> <!--kotak-search-->
-			</div> <!--kotak-distance-->
+			</div> <!--kotak-traveller-->
 	
-			<div class="kotak-distance">
+			<div class="kotak-traveller">
 					<table>
 						<thead>
 						<tr>

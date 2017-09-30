@@ -26,13 +26,51 @@
                 <h1> Travelendar </h1>
             </div> <!--logo-->
                 
+          
                 <div class="kotak-acount">
-                <div  class="acount-nama">
-                        Username Acount    
-                  </div> 
-                <div class="icon-account">
-                <img src="${pageContext.request.contextPath}/Assets2/icon/Account.png">
-                </div>
+                   <div  class="acount-nama">
+                        Admin Acount    
+                   </div>  
+                    
+                   <div class="dropdown">
+                       <button onclick="myFunction()" class="dropbtn">
+                           
+                           <div class="icon-account">
+                            <img src="${pageContext.request.contextPath}/Assets2/icon/Account.png">
+                           </div>
+                           
+                       </button>
+                      <div id="myDropdown" class="dropdown-content">
+                        <a href="#home">Home</a>
+                        <a href="#about">Profile</a>
+                        <a href="#contact">Logout</a>
+                      </div>
+                    </div>
+                </div> <!--kotak-acount-->
+
+                    <script>
+                    /* When the user clicks on the button, 
+                    toggle between hiding and showing the dropdown content */
+                    function myFunction() {
+                        document.getElementById("myDropdown").classList.toggle("show");
+                    }
+
+                    // Close the dropdown if the user clicks outside of it
+                    window.onclick = function(event) {
+                      if (!event.target.matches('.dropbtn')) {
+
+                        var dropdowns = document.getElementsByClassName("dropdown-content");
+                        var i;
+                        for (i = 0; i < dropdowns.length; i++) {
+                          var openDropdown = dropdowns[i];
+                          if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                          }
+                        }
+                      }
+                    }
+                    </script>                    
+              <!-->  </div>
                 </div> <!--kotak-acount-->
 	</div> <!--header-->
         

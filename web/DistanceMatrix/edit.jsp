@@ -10,7 +10,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/styledistance.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/styletraveller.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/responsive.css">
         <title>JSP Page</title>
@@ -59,7 +58,7 @@
 				<div class="text-edit"> Edit Distance </div>
 					<input class="edtp" type="text" placeholder="(in kilometer)">
 					<br/>
-				<a href="index.jsp"><button class="update-distance"> Update </button></a>
+				<a href="index.jsp"><button class="update-traveller"> Update </button></a>
 			</div> <!--kotak-traveller-->			
 			
 		</div> <!--/ .middle -->

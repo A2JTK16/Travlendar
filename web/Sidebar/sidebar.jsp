@@ -16,72 +16,93 @@
     </head>
     <body>
 		<div class="left">
-			<h3>Administrator</h3>
-			
-			<div class="hides">
-			
+		
+                        <div class="menu-admin"> 
+				<div class="icon-setting">
+                                    <img src="${pageContext.request.contextPath}/Assets2/icon/welcome.png">
+				</div> <!--icon-setting-->
+                            
+				<h2 class="text-admin">Administrator</h2>
+                            
+                        </div> <!--menu-admin-->
+                        
+                        
+			<div class="hides">			
 				<button onclick="javascript:show()">
                                     <div class="turun">
                                         <img src="${pageContext.request.contextPath}/Assets2/icon/responsive.png">
                                     </div>
 				</button>
-			
 			</div>
 
 			
 			<div id="hidden-mobile">
 			
+                        <a href="../Schedule/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
 					<img src="${pageContext.request.contextPath}/Assets2/icon/jadwal.png">
 				</div> <!--icon-setting-->
-				<h2><a href="../Schedule/index.jsp">Data Schedule</a></h2>
-	
-                        </div> <!--menu-manage--> 
+				<h2>Data Schedule</h2>
                             
+                        </div> <!--menu-manage-->
+                        </a>
+                        
+                        <a href="../Traveller/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
 					<img src="${pageContext.request.contextPath}/Assets2/icon/traveller.png">
 				</div> <!--icon-setting-->
-				<h2><a href="../Traveller/index.jsp">Traveller</a></h2>
+				<h2>Traveller</h2>
 	
 			</div> <!--menu-manage-->
-			
+                        </a>
+                        
+                        <a href="../Location/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
 					<img src="${pageContext.request.contextPath}/Assets2/icon/lokasi.png">
 				</div> <!--icon-setting-->
-                                <h2><a href="../Location/index.jsp">Location </a></h2>
+                                <h2>Location</h2>
 			</div>
+                        </a>
 			
+                        <a href="../TransportationMode/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
 					<img src="${pageContext.request.contextPath}/Assets2/icon/car.png">
 				</div> <!--icon-setting-->
-                                <h2><a href="../TransportationMode/index.jsp">Transportation Mode </a></h2>
+                                <h2>Transportation Mode</h2>
 			</div> <!--menu-manage-->
+                        </a>
 			
+                        <a href="../DistanceMatrix/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
 					<img src="${pageContext.request.contextPath}/Assets2/icon/jarak.png">
 				</div> <!--icon-setting-->
-				<h2> <a href="../DistanceMatrix/index.jsp">Distance</a></h2>
+				<h2>Distance</h2>
 			</div>
+                        </a>
 			
+                        <a href="../EstimationTime/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
 					<img src="${pageContext.request.contextPath}/Assets2/icon/time.png">
 				</div> <!--icon-setting-->
-                                <h2><a href="../EstimationTime/index.jsp">Estimation Time</a></h2>
+                                <h2>Estimation Time</h2>
 			</div> <!--menu-manage-->
-			
+                        </a>
+                        
+                        <a href="../CalendarEvent/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
 					<img src="${pageContext.request.contextPath}/Assets2/icon/kalender.png">
 				</div> <!--icon-setting-->
-                                <h2><a href="../CalendarEvent/index.jsp">Calendar Event</a></h2>
+                                <h2>Calendar Event</h2>
 			</div>
-			
+                        </a>
+                                
 			</div>
 			
 		</div> <!--/ .left -->
