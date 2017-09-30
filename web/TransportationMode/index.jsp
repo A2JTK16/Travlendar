@@ -83,7 +83,7 @@
 							<td>001</td>
 							<td>Car</td>
                                                         <td>50 km/jam</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 							
 						</tr>
 						
@@ -91,35 +91,37 @@
 							<td>002</td>
 							<td>Motorcycle</td>
                                                         <td>60 km/jam</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
                                                 
                                                 <tr>
 							<td>003</td>
 							<td>Bus</td>
                                                         <td>40 km/jam</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
                                                 
                                                 <tr>
 							<td>004</td>
 							<td>Wagon</td>
                                                         <td>150 km/jam</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
                                                 
                                                 <tr>
 							<td>004</td>
 							<td>Working</td>
                                                         <td>40 km/jam</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="myFunction()"> Delete </a> </td>
+							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
                                                 
-                                                <script>
-                                                function myFunction() {
-							alert("Delete Sucsess");
-						}
-						</script>
+                                                <script type="text/javascript" language="JavaScript">
+                                                function konfirmasi()
+                                                {
+                                                tanya = confirm("Anda Yakin Akan Menghapus Data ?");
+                                                if (tanya == true) return true;
+                                                else return false;
+                                                }</script>
 								
 						
 						</tbody>
