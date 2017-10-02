@@ -43,7 +43,7 @@
                       <div id="myDropdown" class="dropdown-content">
                         <a href="#home">Home</a>
                         <a href="#about">Profile</a>
-                        <a href="#contact">Logout</a>
+                        <a href="../index.jsp">Logout</a>
                       </div>
                     </div>
                 </div> <!--kotak-acount-->
