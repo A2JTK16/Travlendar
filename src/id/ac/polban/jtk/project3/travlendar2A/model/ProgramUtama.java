@@ -19,19 +19,7 @@ import java.util.List;
 
 public class ProgramUtama{
 
-    /**
-     *  REVIEW :
-     *          1.  Efisiensi kodingan (hapus yg ga perlu, pakai method yg efisien)
-     *              Misalnya yg objek Location method getJarak (array jarak) mubazir
-     *              jika dipakai hanya untuk menampilkan salahsatu isi array jarak.
-     * 
-     *              Lebih baik getJarak sekali lalu tampilkan isi array daripada 
-     *              getJarak()[arr][arr] dalam loop
-     * 
-     *          2.  List Event simpan di Objek Traveller
-     * 
-     *          3.  kode lokasi dan Waktu (Date Time) disimpan ke Objek Event
-     */
+    
     
     protected Location locationEvent;
     protected DistanceMatrix distance;
@@ -73,7 +61,7 @@ public class ProgramUtama{
         //--------------------Input Data Traveller (Name, username, pass,....)--------------------------------------//
         //--------------------- DAPAT DIBUAT METHOD BARU ----------------------------------------------------------//
 
-        System.out.println("Masukkan Nama Lengkap Anda : ");
+        /*System.out.println("Masukkan Nama Lengkap Anda : ");
         fullname = n.nextLine();
         
         System.out.println("Masukkan Username Anda : ");
@@ -84,7 +72,8 @@ public class ProgramUtama{
         
         System.out.println("Masukkan password Anda : ");
         password = n.nextLine();
-        Traveller traveller = new Traveller(fullname, username, email, password); 
+        Traveller traveller = new Traveller(fullname, username, email, password); */
+        //Kode di atas belum digunakan karena usernya hanya satu, yaitu Ibu Maryam
         //-------------------------------------------------------------------------------------------------------------//
         
         do{
@@ -171,7 +160,7 @@ public class ProgramUtama{
                         String transportasi = n.next();
                        // ProgramUtama objMain = new ProgramUtama(event.getEvent(), transport, locationEvent, distance, esTime);
                         //eventList.add(objMain);
-                        list.add(traveller.getFullname());
+                        //list.add(traveller.getFullname());
                         list.add(event.getEvent());
                         list.add(transportasi);
                     } else {
