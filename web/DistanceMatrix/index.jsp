@@ -42,37 +42,21 @@
 							    <form class="distance-form">
                                                                 <select class="dropdown-location">
                                                                      <option value="StartingLocation">Starting Location ...</option>
-                                                                     <option value="SLocation1">Bandung</option>
-                                                                     <option value="SLocation2">Bekasi</option>
-                                                                     <option value="SLocation3">Bogor</option>
-                                                                     <option value="SLocation4">Ciamis</option>
-                                                                     <option value="SLocation5">Cirebon</option>
-                                                                     <option value="SLocation6">Indramayu</option>
-                                                                     <option value="SLocation7">Kuningan</option>
-                                                                     <option value="SLocation8">Majalengka</option>
-                                                                     <option value="SLocation9">Pangandaran</option>
-                                                                     <option value="SLocation11">Purwakarta</option>
-                                                                     <option value="SLocation12">Subang</option>
-                                                                     <option value="SLocation13">Sukabumi</option>
-                                                                     <option value="SLocation14">Sumedang</option>
-                                                                     <option value="SLocation15">Tasikmalaya</option>
+                                                                     <option value="SLocation1">Rumah</option>
+                                                                     <option value="SLocation2">Kantor DPRD Bangka Tengah</option>
+                                                                     <option value="SLocation3">Bandara Depati Amir</option>
+                                                                     <option value="SLocation4">Bandara Soekarno Hatta</option>
+                                                                     <option value="SLocation5">Kantor DPRD Jakarta</option>
+                                                                     <option value="SLocation6">Tanggerang</option>
                                                                 </select>
 							        <select class="dropdown-location">
                                                                      <option value="Destination">Destination ...</option>
-                                                                     <option value="DLocation1">Bandung</option>
-                                                                     <option value="DLocation2">Bekasi</option>
-                                                                     <option value="DLocation3">Bogor</option>
-                                                                     <option value="DLocation4">Ciamis</option>
-                                                                     <option value="DLocation5">Cirebon</option>
-                                                                     <option value="DLocation6">Indramayu</option>
-                                                                     <option value="DLocation7">Kuningan</option>
-                                                                     <option value="DLocation8">Majalengka</option>
-                                                                     <option value="DLocation9">Pangandaran</option>
-                                                                     <option value="DLocation11">Purwakarta</option>
-                                                                     <option value="DLocation12">Subang</option>
-                                                                     <option value="DLocation13">Sukabumi</option>
-                                                                     <option value="DLocation14">Sumedang</option>
-                                                                     <option value="DLocation15">Tasikmalaya</option>
+                                                                     <option value="SLocation1">Rumah</option>
+                                                                     <option value="SLocation2">Kantor DPRD Bangka Tengah</option>
+                                                                     <option value="SLocation3">Bandara Depati Amir</option>
+                                                                     <option value="SLocation4">Bandara Soekarno Hatta</option>
+                                                                     <option value="SLocation5">Kantor DPRD Jakarta</option>
+                                                                     <option value="SLocation6">Tanggerang</option>
                                                                 </select>
 							      <input style="margin-top: 5px; color: #535559" type="text" placeholder="Distance (km)    ..."/>
 							      <button> Save </button>
@@ -109,37 +93,37 @@
 						</thead>
 						<tbody>
 						<tr>
-							<td>Bandung</td>
-							<td>Bekasi</td>
+							<td>Rumah</td>
+							<td>Kantor DPRD Bangka Tengah</td>
 							<td>40</td>
                                                 	<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
-							<td>Bandung</td>
-							<td>Bogor</td>
+							<td>Rumah</td>
+							<td>Bandara Depati Amir</td>
 							<td>98</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
-							<td>Bandung</td>
-							<td>Ciamis</td>
+							<td>Rumah</td>
+							<td>Bandara Soekarno Hatta</td>
 							<td>847</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
-							<td>Bandung</td>
-							<td>Pangandaran</td>
+							<td>Rumah</td>
+							<td>Kantor DPRD Jakarta</td>
 							<td>875.3</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>
 						
 						
 						<tr>
-							<td>Bandung</td>
-							<td>Cirebon</td>
+							<td>Rumah</td>
+							<td>Tanggerang</td>
 							<td>904.6</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>

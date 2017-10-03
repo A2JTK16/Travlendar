@@ -37,39 +37,23 @@
 			</div> <!--kotak-traveller-->
 	
 			<div class="kotak-distance">
-				 <select class="edit-dl">
-                                    <option value="StartingLocation">Location A ...</option>
-                                    <option value="SLocation1">Bandung</option>
-                                    <option value="SLocation2">Bekasi</option>
-                                    <option value="SLocation3">Bogor</option>
-                                    <option value="SLocation4">Ciamis</option>
-                                    <option value="SLocation5">Cirebon</option>
-                                    <option value="SLocation6">Indramayu</option>
-                                    <option value="SLocation7">Kuningan</option>
-                                    <option value="SLocation8">Majalengka</option>
-                                    <option value="SLocation9">Pangandaran</option>
-                                    <option value="SLocation11">Purwakarta</option>
-                                    <option value="SLocation12">Subang</option>
-                                    <option value="SLocation13">Sukabumi</option>
-                                    <option value="SLocation14">Sumedang</option>
-                                    <option value="SLocation15">Tasikmalaya</option>
-                                 </select>
-                                 <select class="edit-dl">
-                                 <option value="DLocation1">Bandung</option>
-                                 <option value="DLocation2">Bekasi</option>
-                                 <option value="DLocation3">Bogor</option>
-                                 <option value="DLocation4">Ciamis</option>
-                                 <option value="DLocation5">Cirebon</option>
-                                 <option value="DLocation6">Indramayu</option>
-                                 <option value="DLocation7">Kuningan</option>
-                                 <option value="DLocation8">Majalengka</option>
-                                 <option value="DLocation9">Pangandaran</option>
-                                 <option value="DLocation11">Purwakarta</option>
-                                 <option value="DLocation12">Subang</option>
-                                 <option value="DLocation13">Sukabumi</option>
-                                 <option value="DLocation14">Sumedang</option>
-                                 <option value="DLocation15">Tasikmalaya</option>
-                                 </select>
+                                    <select class="edit-dl">
+                                        <option value="StartingLocation">Location A ...</option>
+                                        <option value="SLocation1">Rumah</option>
+                                        <option value="SLocation2">Kantor DPRD Bangka Tengah</option>
+                                        <option value="SLocation3">Bandara Depati Amir</option>
+                                        <option value="SLocation4">Bandara Soekarno Hatta</option>
+                                        <option value="SLocation5">Kantor DPRD Jakarta</option>
+                                        <option value="SLocation6">Tanggerang</option>
+                                    </select>
+                                    <select class="edit-dl">
+                                        <option value="SLocation1">Rumah</option>
+                                        <option value="SLocation2">Kantor DPRD Bangka Tengah</option>
+                                        <option value="SLocation3">Bandara Depati Amir</option>
+                                        <option value="SLocation4">Bandara Soekarno Hatta</option>
+                                        <option value="SLocation5">Kantor DPRD Jakarta</option>
+                                        <option value="SLocation6">Tanggerang</option>
+                                    </select>
 				<div class="text-edit"> Edit Distance </div>
 					<input class="edtp" type="text" placeholder="(in kilometer)">
 					<br/>
