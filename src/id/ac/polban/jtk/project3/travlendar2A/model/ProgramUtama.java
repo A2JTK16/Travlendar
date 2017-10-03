@@ -153,23 +153,18 @@ public class ProgramUtama{
                     int kodeLokasiTujuan;
                     
                     locationEvent.tampil_Lokasi();
-
                      System.out.print("Masukkan kode lokasi awal : ");
                      kodeLokasiAwal= n.nextInt();
-                     locationEvent.setNama_Lokasi(locationEvent.getNama_lokasi()[kodeLokasiAwal]);
-                     distance.setKode_kota1(kodeLokasiAwal);
-                     System.out.println(locationEvent.getNama_lokasi()[kodeLokasiAwal-1]);
-
+                     System.out.println(locationEvent.getNamaLoc(kodeLokasiAwal));
+                     
                     locationEvent.tampil_Lokasi();
-
                      System.out.print("Masukkan kode lokasi tujuan : ");
                      kodeLokasiTujuan = n.nextInt();
-                     locationEvent.setNama_Lokasi(locationEvent.getNama_lokasi()[kodeLokasiTujuan]);
-                     distance.setKode_kota2(kodeLokasiTujuan);
-                     System.out.println(locationEvent.getNama_lokasi()[kodeLokasiTujuan-1]);
-                    
-                    distance.getJarak_lokasi();
-                    double jarak = distance.getJarak_lokasi();
+                    System.out.println(locationEvent.getNamaLoc(kodeLokasiTujuan));
+                   
+                    distance.getDistance(kodeLokasiAwal, kodeLokasiTujuan);
+                    System.out.println("jarak : " + distance.getDistance(kodeLokasiAwal, kodeLokasiTujuan));
+                    double jarak = distance.getDistance(kodeLokasiAwal, kodeLokasiTujuan);
                     transport.transportRecomendation(jarak, (double) diffHours);
                     if (!transport.getIsTransportAvailable()){
                         System.out.println("masukan transportasi yang akan dipilih");
