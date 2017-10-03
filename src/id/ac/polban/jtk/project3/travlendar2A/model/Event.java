@@ -29,7 +29,8 @@ public class Event {
     private String nama_event;
     private Date arrivaltime;
     private Date departuretime;
-    
+    private int kodeLokasiAwal;
+    private int kodeLokasiTujuan;
     
     public Event(){
         this.nama_event = null;
@@ -38,7 +39,8 @@ public class Event {
     }
    
     public String getEvent() {
-        return ("Nama Event : " + this.nama_event + "\nWaktu Berangkat : " + this.getDeparturetime() + "\nWaktu Tiba : " + this.getArrivaltime() + "\n") ;
+        Location objLoc = new Location();
+        return ("Nama Event : " + this.nama_event + "\nWaktu Berangkat : " + this.getDeparturetime() + "\nWaktu Tiba : " + this.getArrivaltime() + "\nLokasi : " + objLoc.getNamaLoc(this.getKodeLokasiTujuan()) + "\n") ;
     }
 
     /**
@@ -78,6 +80,34 @@ public class Event {
      */
     public Date getDeparturetime() {
         return departuretime;
+    }
+
+    /**
+     * @return the kodeLokasiAwal
+     */
+    public int getKodeLokasiAwal() {
+        return kodeLokasiAwal;
+    }
+
+    /**
+     * @param kodeLokasiAwal the kodeLokasiAwal to set
+     */
+    public void setKodeLokasiAwal(int kodeLokasiAwal) {
+        this.kodeLokasiAwal = kodeLokasiAwal;
+    }
+
+    /**
+     * @return the kodeLokasiTujuan
+     */
+    public int getKodeLokasiTujuan() {
+        return kodeLokasiTujuan;
+    }
+
+    /**
+     * @param kodeLokasiTujuan the kodeLokasiTujuan to set
+     */
+    public void setKodeLokasiTujuan(int kodeLokasiTujuan) {
+        this.kodeLokasiTujuan = kodeLokasiTujuan;
     }
 }
     

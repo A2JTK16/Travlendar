@@ -2,6 +2,7 @@
  * Kelas ParseDate Dibuat untuk Objek yang Bertujuan 
  * Mendapatkan Tanggal yang Telah Diparsing 
  * Sesuai Format yang Telah Ditentukan
+ * 
  * Author : Mufid Jamaluddin
  */
 package id.ac.polban.jtk.project3.travlendar2A.model;
@@ -39,9 +40,9 @@ public class ParseDate {
      */
     public ParseDate()
     {
-       datetimeFormatter = new SimpleDateFormat("dd-MM-yyyy.HH.mm.ss");
+       datetimeFormatter = new SimpleDateFormat("dd-MM-yyyy.HH.mm");
        dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-       timePattern = Pattern.compile("([01]?[0-9]|2[0-3]).[0-5][0-9].[0-5][0-9]"); // Range of Time
+       timePattern = Pattern.compile("([01]?[0-9]|2[0-3]).[0-5][0-9]"); // Range of Time
        dateValStr = null;
        timeValStr = null;
     }

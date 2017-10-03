@@ -116,7 +116,7 @@ public class ProgramUtama{
                     while(!parsedt.setDateValue(n.next())); 
             
                     do{
-                        System.out.println("Time (Format hh.mm.ss)");
+                        System.out.println("Time (Format hh.mm)");
                     } 
                     while(!parsedt.setTimeValStr(n.next()));
                     event.setDepartureTime(parsedt.getDateValue());
@@ -128,7 +128,7 @@ public class ProgramUtama{
                     while(!parsedt.setDateValue(n.next())); 
             
                     do{
-                        System.out.println("Time (Format hh.mm.ss)");
+                        System.out.println("Time (Format hh.mm)");
                     } 
                     while(!parsedt.setTimeValStr(n.next()));
                     event.setArrivalTime(parsedt.getDateValue());
@@ -149,22 +149,22 @@ public class ProgramUtama{
                     diffHours = (diff / (60 * 60 * 1000)); //selisih detik
                     //---------------------------------------------------------------------------------------------//
                     
-                    int kodeLokasiAwal;
-                    int kodeLokasiTujuan;
+                    
                     
                     locationEvent.tampil_Lokasi();
                      System.out.print("Masukkan kode lokasi awal : ");
-                     kodeLokasiAwal= n.nextInt();
-                     System.out.println(locationEvent.getNamaLoc(kodeLokasiAwal));
+                     event.setKodeLokasiAwal(n.nextInt() );
+                     System.out.println(locationEvent.getNamaLoc(event.getKodeLokasiAwal()));
                      
                     locationEvent.tampil_Lokasi();
                      System.out.print("Masukkan kode lokasi tujuan : ");
-                     kodeLokasiTujuan = n.nextInt();
-                    System.out.println(locationEvent.getNamaLoc(kodeLokasiTujuan));
+                     event.setKodeLokasiTujuan(n.nextInt() );
+                    System.out.println(locationEvent.getNamaLoc(event.getKodeLokasiAwal() ));
                    
-                    distance.getDistance(kodeLokasiAwal, kodeLokasiTujuan);
-                    System.out.println("jarak : " + distance.getDistance(kodeLokasiAwal, kodeLokasiTujuan));
-                    double jarak = distance.getDistance(kodeLokasiAwal, kodeLokasiTujuan);
+                    distance.getDistance(event.getKodeLokasiAwal(), event.getKodeLokasiTujuan());
+                    double jarak = distance.getDistance(event.getKodeLokasiAwal(), event.getKodeLokasiTujuan());
+                    System.out.println(String.format("jarak : %3.2f", jarak ));
+                    
                     transport.transportRecomendation(jarak, (double) diffHours);
                     if (!transport.getIsTransportAvailable()){
                         System.out.println("masukan transportasi yang akan dipilih");
