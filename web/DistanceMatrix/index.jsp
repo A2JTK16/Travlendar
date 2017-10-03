@@ -42,21 +42,37 @@
 							    <form class="distance-form">
                                                                 <select class="dropdown-location">
                                                                      <option value="StartingLocation">Starting Location ...</option>
-                                                                     <option value="SLocation1">Universitas Kristen Maranatha</option>
-                                                                     <option value="SLocation2">Politeknik Negeri Bandung</option>
-                                                                     <option value="SLocation3">Bosscha Observatory</option>
-                                                                     <option value="SLocation4">Maribaya Waterfall</option>
-                                                                     <option value="SLocation5">Saung Angklung Udjo</option>
-                                                                     <option value="SLocation6">Paris Van Java</option>
+                                                                     <option value="SLocation1">Bandung</option>
+                                                                     <option value="SLocation2">Bekasi</option>
+                                                                     <option value="SLocation3">Bogor</option>
+                                                                     <option value="SLocation4">Ciamis</option>
+                                                                     <option value="SLocation5">Cirebon</option>
+                                                                     <option value="SLocation6">Indramayu</option>
+                                                                     <option value="SLocation7">Kuningan</option>
+                                                                     <option value="SLocation8">Majalengka</option>
+                                                                     <option value="SLocation9">Pangandaran</option>
+                                                                     <option value="SLocation11">Purwakarta</option>
+                                                                     <option value="SLocation12">Subang</option>
+                                                                     <option value="SLocation13">Sukabumi</option>
+                                                                     <option value="SLocation14">Sumedang</option>
+                                                                     <option value="SLocation15">Tasikmalaya</option>
                                                                 </select>
 							        <select class="dropdown-location">
                                                                      <option value="Destination">Destination ...</option>
-                                                                     <option value="DLocation1">Universitas Kristen Maranatha</option>
-                                                                     <option value="DLocation2">Politeknik Negeri Bandung</option>
-                                                                     <option value="DLocation3">Bosscha Observatory</option>
-                                                                     <option value="DLocation4">Maribaya Waterfall</option>
-                                                                     <option value="DLocation5">Saung Angklung Udjo</option>
-                                                                     <option value="DLocation6">Paris Van Java</option>
+                                                                     <option value="DLocation1">Bandung</option>
+                                                                     <option value="DLocation2">Bekasi</option>
+                                                                     <option value="DLocation3">Bogor</option>
+                                                                     <option value="DLocation4">Ciamis</option>
+                                                                     <option value="DLocation5">Cirebon</option>
+                                                                     <option value="DLocation6">Indramayu</option>
+                                                                     <option value="DLocation7">Kuningan</option>
+                                                                     <option value="DLocation8">Majalengka</option>
+                                                                     <option value="DLocation9">Pangandaran</option>
+                                                                     <option value="DLocation11">Purwakarta</option>
+                                                                     <option value="DLocation12">Subang</option>
+                                                                     <option value="DLocation13">Sukabumi</option>
+                                                                     <option value="DLocation14">Sumedang</option>
+                                                                     <option value="DLocation15">Tasikmalaya</option>
                                                                 </select>
 							      <input style="margin-top: 5px; color: #535559" type="text" placeholder="Distance (km)    ..."/>
 							      <button> Save </button>
@@ -93,38 +109,38 @@
 						</thead>
 						<tbody>
 						<tr>
-							<td>Universitas Kristen Maranatha</td>
-							<td>Politeknik Negeri Bandung</td>
-							<td>2.6</td>
+							<td>Bandung</td>
+							<td>Bekasi</td>
+							<td>40</td>
                                                 	<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
-							<td>Politeknik Negeri Bandung</td>
-							<td>Bosscha Observatory</td>
-							<td>11.4</td>
+							<td>Bandung</td>
+							<td>Bogor</td>
+							<td>98</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
-							<td>Bosscha Observatory</td>
-							<td>Maribaya Waterfall</td>
-							<td>9.1</td>
+							<td>Bandung</td>
+							<td>Ciamis</td>
+							<td>847</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
-							<td>Maribaya Waterfall</td>
-							<td>Saung Angklung Udjo</td>
-							<td>16.1</td>
+							<td>Bandung</td>
+							<td>Pangandaran</td>
+							<td>875.3</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>
 						
 						
 						<tr>
-							<td>Saung Angklung Udjo</td>
-							<td>Paris Van Java</td>
-							<td>8.1</td>
+							<td>Bandung</td>
+							<td>Cirebon</td>
+							<td>904.6</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>
 	
