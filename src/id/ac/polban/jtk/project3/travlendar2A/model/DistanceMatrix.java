@@ -54,54 +54,50 @@ public class DistanceMatrix {
                                 {875.3,	785,	734,	29.,	0,	29.3},
                                 {904.6,	864,6,	806.6,	35.4,	29.3,	0},
                                 };
- /*
-     * @return the jarak
-     */
+   
     public double[][] getJarak() {
         return jarak;
     }
 
-    /**
-     * @param jarak the jarak to set
-     */
     public void setJarak(double[][] jarak) {
         this.jarak = jarak;
     }
 
-    /**
-     * @param kode_kota1 the kode_kota1 to set
-     */
     public void setKode_kota1(int kode_kota1) {
         this.kode_kota1 = kode_kota1;
     }
 
-    /**
-     * @return the kode_kota2
-     */
     public int getKode_kota2() {
         return kode_kota2;
     }
 
-    /**
-     * @param kode_kota2 the kode_kota2 to set
-     */
     public void setKode_kota2(int kode_kota2) {
         this.kode_kota2 = kode_kota2;
     }
 
-    /**
-     * @return the jarak_lokasi
-     */
     //method return jarak_lokasi
     public double getJarak_lokasi() {
         this.jarak_lokasi = getJarak()[kode_kota1][kode_kota2];
         return jarak_lokasi;
     }
 
-    /**
-     * @param jarak_lokasi the jarak_lokasi to set
-     */
     public void setJarak_lokasi(int jarak_lokasi) {
         this.jarak_lokasi = jarak_lokasi;
+    }
+    
+    public double getDistance (int kodeTempatAwal, int kodeTempatAkhir)
+    {
+        return jarak[kodeTempatAwal][kodeTempatAkhir];
+    }
+    
+    public boolean bisaDilaluiPesawat(int kodeTempatAwal, int kodeTempatAkhir)
+    {
+        Location objLoc = new Location ();
+        if(objLoc.getTipe_Lokasi(kodeTempatAwal) == objLoc.getTipe_Lokasi(kodeTempatAkhir))
+        {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

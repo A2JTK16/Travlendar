@@ -66,5 +66,11 @@ public class Location {
     public String getNamaLoc (int kodeTempat) {
         return nama_lokasi[kodeTempat-1];
     }
+    
+    private int [] tipe_Lokasi = {0,0,1,1,0,0};
+    public int getTipe_Lokasi (int KodeLoc)
+    {
+        return tipe_Lokasi[KodeLoc];
+    }
 }
 
