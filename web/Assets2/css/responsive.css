@@ -163,6 +163,14 @@ MEDIA QUERIES
         .edtp{
 	   width: 90%;
 	}
+        
+        .dropdown-location{
+        width: 200px;
+        }
+        
+        .dropdown-time{
+        width: 85px;
+        }
 	
 }
 	

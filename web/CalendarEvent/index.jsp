@@ -117,15 +117,18 @@
                
 				<div class="judul-manage"> MANAGE CALENDAR EVENT </div>
 				<!-- The Modal -->
+				<button id="myBtn"> + Add New Event </button>
+				<!-- The Modal -->
 				<div id="myModal" class="modal">
-                             
+
 				  <!-- Modal content -->
 				  <div class="modal-content">
 				    	
+                                      
 							  <div class="form">
 							  	<div class="modal-header">
 							      <span class="close">&times;</span>
-							      <h5>Add New Travlendar</h5>
+							      <h5>Add New Evnet</h5>
 							    </div>
 							    <form class="register-form" action="utama.html" method="POST">
 							      <input type="text" placeholder="name"/>
@@ -135,10 +138,51 @@
 							      <p class="message">Already registered? <a href="#">Sign In</a></p>
 							    </form>
 							    <form class="login-form">
-							      <input type="text" placeholder="Fullname ..."/>
-							      <input type="text" placeholder="Username ..."/>
-							      <input type="text" placeholder="Email ..."/>
-							      <input type="text" placeholder="Password ..."/>
+							      <input type="text" placeholder="Event Name  ..."/>
+                                                              <select class="dropdown-location">
+                                                                     <option value="StartingLocation">Starting Location ...</option>
+                                                                     <option value="SLocation1">Bandung</option>
+                                                                     <option value="SLocation2">Bekasi</option>
+                                                                     <option value="SLocation3">Bogor</option>
+                                                                     <option value="SLocation4">Ciamis</option>
+                                                                     <option value="SLocation5">Cirebon</option>
+                                                                     <option value="SLocation6">Indramayu</option>
+                                                                     <option value="SLocation6">Kuningan</option>
+                                                                     <option value="SLocation6">Kuningan</option>
+                                                                     <option value="SLocation6">Majalengka</option>
+                                                                     <option value="SLocation6">Pangandaran</option>
+                                                                     <option value="SLocation6">Purwakarta</option>
+                                                                     <option value="SLocation6">Subang</option>
+                                                                     <option value="SLocation6">Sukabumi</option>
+                                                                     <option value="SLocation6">Sumedang</option>
+                                                                     <option value="SLocation6">Tasikmalaya</option>
+                                                                </select>
+							        <select class="dropdown-location">
+                                                                     <option value="SLocation1">Bandung</option>
+                                                                     <option value="SLocation2">Bekasi</option>
+                                                                     <option value="SLocation3">Bogor</option>
+                                                                     <option value="SLocation4">Ciamis</option>
+                                                                     <option value="SLocation5">Cirebon</option>
+                                                                     <option value="SLocation6">Indramayu</option>
+                                                                     <option value="SLocation6">Kuningan</option>
+                                                                     <option value="SLocation6">Kuningan</option>
+                                                                     <option value="SLocation6">Majalengka</option>
+                                                                     <option value="SLocation6">Pangandaran</option>
+                                                                     <option value="SLocation6">Purwakarta</option>
+                                                                     <option value="SLocation6">Subang</option>
+                                                                     <option value="SLocation6">Sukabumi</option>
+                                                                     <option value="SLocation6">Sumedang</option>
+                                                                     <option value="SLocation6">Tasikmalaya</option>
+                                                                </select>
+							      <input type="text" placeholder="Started Time..."/>
+							      <input type="text" placeholder="Ended Time..."/>
+                                                              <select class="dropdown-location">
+                                                                     <option value="StartingLocation">Add Transportation Name ...</option>
+                                                                     <option value="SLocation1">Car</option>
+                                                                     <option value="SLocation2">Motorcycle</option>
+                                                                     <option value="SLocation3">Bus</option>
+                                                                     <option value="SLocation4">Wagon</option>
+                                                                </select>
 							      <button> Save </button>							     
 							    </form>
 							  </div>

@@ -276,6 +276,20 @@ a:hover{
     color: #535559;
 }
 
+.dropdown-time{
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    width: 100px;
+    height: 50px;
+    background: #f4f4f4;
+    border: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    color: #535559;
+}
+
 .edit-dl{
     margin-top: 5px;
     margin-bottom: 20px;

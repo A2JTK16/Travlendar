@@ -86,9 +86,9 @@
 						<tbody>
 						<tr>
 							<td>01</td>
-							<td>Faiz Abdusallam</td>
-							<td>Faiz</td>
-							<td>faiz@polban.ac.id</td>
+							<td>Maryam Mursalah</td>
+							<td>Maryam</td>
+							<td>maryam@gmail.com</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
 						

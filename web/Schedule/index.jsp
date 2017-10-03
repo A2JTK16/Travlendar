@@ -47,17 +47,107 @@
 							    </form>
 							    <form class="login-form">
 							      <input type="text" placeholder="Event Name  ..."/>
-                                                              <input type="text" placeholder="Start Location ..."/>
-                                                              <input type="text" placeholder="Destination Location ..."/>
-							      <input type="text" placeholder="Started Time..."/>
-							      <input type="text" placeholder="Ended Time..."/>
                                                               <select class="dropdown-location">
-                                                                     <option value="StartingLocation">Add Transportation Name ...</option>
-                                                                     <option value="SLocation1">Car</option>
-                                                                     <option value="SLocation2">Motorcycle</option>
-                                                                     <option value="SLocation3">Bus</option>
-                                                                     <option value="SLocation4">Wagon</option>
+                                                                     <option value="StartingLocation">Starting Location ...</option>
+                                                                     <option value="SLocation1">Bandung</option>
+                                                                     <option value="SLocation2">Bekasi</option>
+                                                                     <option value="SLocation3">Bogor</option>
+                                                                     <option value="SLocation4">Ciamis</option>
+                                                                     <option value="SLocation5">Cirebon</option>
+                                                                     <option value="SLocation6">Indramayu</option>
+                                                                     <option value="SLocation6">Kuningan</option>
+                                                                     <option value="SLocation6">Kuningan</option>
+                                                                     <option value="SLocation6">Majalengka</option>
+                                                                     <option value="SLocation6">Pangandaran</option>
+                                                                     <option value="SLocation6">Purwakarta</option>
+                                                                     <option value="SLocation6">Subang</option>
+                                                                     <option value="SLocation6">Sukabumi</option>
+                                                                     <option value="SLocation6">Sumedang</option>
+                                                                     <option value="SLocation6">Tasikmalaya</option>
                                                                 </select>
+							        <select class="dropdown-location">
+                                                                     <option value="StartingLocation">Destination Location ...</option>
+                                                                     <option value="SLocation1">Bandung</option>
+                                                                     <option value="SLocation2">Bekasi</option>
+                                                                     <option value="SLocation3">Bogor</option>
+                                                                     <option value="SLocation4">Ciamis</option>
+                                                                     <option value="SLocation5">Cirebon</option>
+                                                                     <option value="SLocation6">Indramayu</option>
+                                                                     <option value="SLocation6">Kuningan</option>
+                                                                     <option value="SLocation6">Kuningan</option>
+                                                                     <option value="SLocation6">Majalengka</option>
+                                                                     <option value="SLocation6">Pangandaran</option>
+                                                                     <option value="SLocation6">Purwakarta</option>
+                                                                     <option value="SLocation6">Subang</option>
+                                                                     <option value="SLocation6">Sukabumi</option>
+                                                                     <option value="SLocation6">Sumedang</option>
+                                                                     <option value="SLocation6">Tasikmalaya</option>
+                                                                </select>
+							      <input type="text" placeholder="Started Time..."/>
+                                                              <select class="dropdown-time">
+                                                                     <option value="StartingLocation">Hours</option>
+                                                                     <option value="SLocation1">01</option>
+                                                                     <option value="SLocation2">02</option>
+                                                                     <option value="SLocation3">03</option>
+                                                                     <option value="SLocation4">04</option>
+                                                                     <option value="SLocation5">05</option>
+                                                                     <option value="SLocation6">06</option>
+                                                                     <option value="SLocation6">07</option>
+                                                                     <option value="SLocation6">08</option>
+                                                                     <option value="SLocation6">09</option>
+                                                                     <option value="SLocation6">10</option>
+                                                                     <option value="SLocation6">11</option>
+                                                                     <option value="SLocation6">12</option>
+                                                              </select>
+                                                              
+                                                              <select class="dropdown-time">
+                                                                     <option value="StartingLocation">Minute</option>
+                                                                     <option value="SLocation1">01</option>
+                                                                     <option value="SLocation2">02</option>
+                                                                     <option value="SLocation3">03</option>
+                                                                     <option value="SLocation4">04</option>
+                                                                     <option value="SLocation5">05</option>
+                                                                     <option value="SLocation6">06</option>
+                                                                     <option value="SLocation6">07</option>
+                                                                     <option value="SLocation6">08</option>
+                                                                     <option value="SLocation6">09</option>
+                                                                     <option value="SLocation6">10</option>
+                                                                     <option value="SLocation6">11</option>
+                                                                     <option value="SLocation6">12</option>
+                                                              </select>
+                                                              
+							      <input type="text" placeholder="Ended Time..."/>
+                                                                     <select class="dropdown-time">
+                                                                     <option value="StartingLocation">Hours</option>
+                                                                     <option value="SLocation1">01</option>
+                                                                     <option value="SLocation2">02</option>
+                                                                     <option value="SLocation3">03</option>
+                                                                     <option value="SLocation4">04</option>
+                                                                     <option value="SLocation5">05</option>
+                                                                     <option value="SLocation6">06</option>
+                                                                     <option value="SLocation6">07</option>
+                                                                     <option value="SLocation6">08</option>
+                                                                     <option value="SLocation6">09</option>
+                                                                     <option value="SLocation6">10</option>
+                                                                     <option value="SLocation6">11</option>
+                                                                     <option value="SLocation6">12</option>
+                                                              </select>
+                                                              
+                                                              <select class="dropdown-time">
+                                                                     <option value="StartingLocation">Minute</option>
+                                                                     <option value="SLocation1">01</option>
+                                                                     <option value="SLocation2">02</option>
+                                                                     <option value="SLocation3">03</option>
+                                                                     <option value="SLocation4">04</option>
+                                                                     <option value="SLocation5">05</option>
+                                                                     <option value="SLocation6">06</option>
+                                                                     <option value="SLocation6">07</option>
+                                                                     <option value="SLocation6">08</option>
+                                                                     <option value="SLocation6">09</option>
+                                                                     <option value="SLocation6">10</option>
+                                                                     <option value="SLocation6">11</option>
+                                                                     <option value="SLocation6">12</option>
+                                                              </select>
 							      <button> Save </button>							     
 							    </form>
 							  </div>
@@ -90,19 +180,17 @@
 							<th>Destination Location</th>
                                                         <th>Started Time</th>
                                                         <th>Ended Time</th>
-                                                        <th>Transportation Mode</th>
 							<th>Action</th>
 						</tr>
 						</thead>
 						<tbody>
 						<tr>
 							<td>01</td>
-                                                        <td>Kuliah</td>
+                                                        <td>Pergi ke Kantor</td>
 							<td>Home</td>
-                                                        <td>Polban</td>
+                                                        <td>Kantor DPRD Jakarta</td>
                                                         <td>05:20</td>
                                                         <td>06:30</td>
-                                                        <td>Motorcycle</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
 						
@@ -114,7 +202,6 @@
                                                         <td>Terminal Leuwipanjang</td>
                                                         <td>07:30</td>
                                                         <td>10:00</td>
-                                                        <td>Car</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
 						
@@ -125,7 +212,6 @@
                                                         <td>UPI</td>
                                                         <td>08:00</td>
                                                         <td>09:30</td>
-                                                        <td>Motorcycle</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
                                                 
@@ -136,7 +222,6 @@
                                                         <td>UI</td>
                                                         <td>05:20</td>
                                                         <td>10:00</td>
-                                                        <td>Motorcycle</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
 						
@@ -148,7 +233,6 @@
                                                         <td>Kantor DPR</td>
                                                         <td>06:20</td>
                                                         <td>09:00</td>
-                                                        <td>Car</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
                                                 
