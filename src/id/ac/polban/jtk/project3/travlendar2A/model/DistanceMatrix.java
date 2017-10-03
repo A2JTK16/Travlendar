@@ -52,15 +52,4 @@ public class DistanceMatrix {
     {
         return jarak[kodeTempatAwal-1][kodeTempatAkhir-1];
     }
-    
-    public boolean bisaDilaluiPesawat(int kodeTempatAwal, int kodeTempatAkhir)
-    {
-        Location objLoc = new Location ();
-        if(objLoc.getTipe_Lokasi(kodeTempatAwal) == objLoc.getTipe_Lokasi(kodeTempatAkhir))
-        {
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

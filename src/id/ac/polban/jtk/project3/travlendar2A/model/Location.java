@@ -54,5 +54,16 @@ public class Location {
     {
         return tipe_Lokasi[KodeLoc];
     }
+    
+    public boolean bisaDilaluiPesawat(int kodeTempatAwal, int kodeTempatAkhir)
+    {
+        Location objLoc = new Location ();
+        if(objLoc.getTipe_Lokasi(kodeTempatAwal) == objLoc.getTipe_Lokasi(kodeTempatAkhir))
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 

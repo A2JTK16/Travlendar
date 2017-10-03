@@ -51,6 +51,8 @@ public class ModaTransportasi {
         double[] arrayOfEta = new double [5]; //array untuk menampung variabel estimation time arrival (eta)
         ModaTransportasi tm = new ModaTransportasi();
         EstimasiWaktu et = new EstimasiWaktu();
+        Location loc = new Location();
+        Event event = new Event();
         boolean noTransport = true;
         et.setDistance(distance);
         arrayOfEta[0] = et.countEstimationTime(tm.getSpeedKendaraan(Transport.PESAWAT),et.getDistance()); //var penampung estimation jika menggunakan pesawat
@@ -64,9 +66,13 @@ public class ModaTransportasi {
                 noTransport=false;
                 switch(i){
                     case 0: 
-                        System.out.print("-> Pesawat, waktu tempuh ");
-                        et.printEstimationTime(arrayOfEta[i]);
-                        System.out.println("\n");
+                        if (!(loc.bisaDilaluiPesawat(event.getKodeLokasiAwal(), event.getKodeLokasiTujuan()))){
+                            System.out.print("-> Pesawat, waktu tempuh ");
+                            et.printEstimationTime(arrayOfEta[i]);
+                            System.out.println("\n");
+                        } else {
+                            //System.out.println("nn");
+                        }
                         break;
                     case 1:
                         System.out.print("-> Kereta, waktu tempuh ");
