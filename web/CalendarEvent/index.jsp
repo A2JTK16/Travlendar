@@ -125,7 +125,7 @@
 				  <div class="modal-content">
 				    	
                                       
-							  <div class="form">
+							  <div class="form" style="z-index: -9999;">
 							  	<div class="modal-header">
 							      <span class="close">&times;</span>
 							      <h5>Add New Evnet</h5>

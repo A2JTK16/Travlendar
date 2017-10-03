@@ -46,7 +46,6 @@
 							      <p class="message">Already registered? <a href="#">Sign In</a></p>
 							    </form>
 							    <form class="login-form">
-							      <input type="text" placeholder="Event Name  ..."/>
                                                               <select class="dropdown-location">
                                                                      <option value="StartingLocation">Starting Location ...</option>
                                                                      <option value="SLocation1">Bandung</option>

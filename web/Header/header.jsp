@@ -22,8 +22,11 @@
 
 <div class="menu-atas">
 	<div class="header">
+            <div class="logonya">
+                <img src="${pageContext.request.contextPath}/Assets2/icon/logo.png">
+            </div>
             <div class="logo">
-                <h1> Travelendar </h1>
+                <h1>Travelendar</h1>
             </div> <!--logo-->
                 
           
