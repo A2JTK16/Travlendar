@@ -10,8 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/styletraveller.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/responsive.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/stylecalnedar.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/responsive-calendar.css">
 <title>JSP Page</title>
 <meta charset='utf-8' />
 <link href='fullcalendar.min.css' rel='stylesheet' />
@@ -105,13 +105,170 @@
 </head>
 <body>
 
-<%@include file="../Header/header.jsp" %>
 
+    
+                
+<div class="jarak-atas">
+
+</div> <!--jarak-atas-->
+
+<div class="menu-atas">
+	<div class="header">
+            <div class="logonya">
+                <img src="${pageContext.request.contextPath}/Assets2/icon/logo.png">
+            </div>
+            <div class="logo">
+                <h1>Travelendar</h1>
+            </div> <!--logo-->
+                
+          
+                <div class="kotak-acount">
+                   <div  class="acount-nama">
+                        Admin Acount    
+                   </div>  
+                    
+                   <div class="dropdown">
+                       <button onclick="myFunction()" class="dropbtn">
+                           
+                           <div class="icon-account">
+                            <img src="${pageContext.request.contextPath}/Assets2/icon/Account.png">
+                           </div>
+                           
+                       </button>
+                      <div id="myDropdown" class="dropdown-content">
+                        <a href="#home">Home</a>
+                        <a href="#about">Profile</a>
+                        <a href="../index.jsp">Logout</a>
+                      </div>
+                    </div>
+                </div> <!--kotak-acount-->
+
+                    <script>
+                    /* When the user clicks on the button, 
+                    toggle between hiding and showing the dropdown content */
+                    function myFunction() {
+                        document.getElementById("myDropdown").classList.toggle("show");
+                    }
+
+                    // Close the dropdown if the user clicks outside of it
+                    window.onclick = function(event) {
+                      if (!event.target.matches('.dropbtn')) {
+
+                        var dropdowns = document.getElementsByClassName("dropdown-content");
+                        var i;
+                        for (i = 0; i < dropdowns.length; i++) {
+                          var openDropdown = dropdowns[i];
+                          if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                          }
+                        }
+                      }
+                    }
+                    </script>                    
+              <!-->  </div>
+                </div> <!--kotak-acount-->
+	</div> <!--header-->
+        
+     
+</div> <!--menu-atas-->    
+    
+    
 <div class="wadah">
 	
 	<div class="main">
 		
-		<%@include file="../Sidebar/sidebar.jsp" %>
+            
+                <div class="left">
+		
+                        <div class="menu-admin"> 
+				<div class="icon-setting">
+                                    <img src="${pageContext.request.contextPath}/Assets2/icon/welcome.png">
+				</div> <!--icon-setting-->
+                            
+				<h2 class="text-admin">Administrator</h2>
+                            
+                        </div> <!--menu-admin-->
+                        
+                        
+			<div class="hides">			
+				<button onclick="javascript:show()">
+                                    <div class="turun">
+                                        <img src="${pageContext.request.contextPath}/Assets2/icon/responsive.png">
+                                    </div>
+				</button>
+			</div>
+
+			
+			<div id="hidden-mobile">
+			
+                        <a href="../Schedule/index.jsp">
+			<div class="menu-manage">
+				<div class="icon-setting">
+					<img src="${pageContext.request.contextPath}/Assets2/icon/jadwal.png">
+				</div> <!--icon-setting-->
+				<h2>Data Schedule</h2>
+                            
+                        </div> <!--menu-manage-->
+                        </a>
+                        
+                        <a href="../Traveller/index.jsp">
+			<div class="menu-manage">
+				<div class="icon-setting">
+					<img src="${pageContext.request.contextPath}/Assets2/icon/traveller.png">
+				</div> <!--icon-setting-->
+				<h2>Traveller</h2>
+	
+			</div> <!--menu-manage-->
+                        </a>
+                        
+                        <a href="../Location/index.jsp">
+			<div class="menu-manage">
+				<div class="icon-setting">
+					<img src="${pageContext.request.contextPath}/Assets2/icon/lokasi.png">
+				</div> <!--icon-setting-->
+                                <h2>Location</h2>
+			</div>
+                        </a>
+			
+                        <a href="../TransportationMode/index.jsp">
+			<div class="menu-manage">
+				<div class="icon-setting">
+					<img src="${pageContext.request.contextPath}/Assets2/icon/car.png">
+				</div> <!--icon-setting-->
+                                <h2>Transportation Mode</h2>
+			</div> <!--menu-manage-->
+                        </a>
+			
+                        <a href="../DistanceMatrix/index.jsp">
+			<div class="menu-manage">
+				<div class="icon-setting">
+					<img src="${pageContext.request.contextPath}/Assets2/icon/jarak.png">
+				</div> <!--icon-setting-->
+				<h2>Distance</h2>
+			</div>
+                        </a>
+			
+                        <a href="../EstimationTime/index.jsp">
+			<div class="menu-manage">
+				<div class="icon-setting">
+					<img src="${pageContext.request.contextPath}/Assets2/icon/time.png">
+				</div> <!--icon-setting-->
+                                <h2>Estimation Time</h2>
+			</div> <!--menu-manage-->
+                        </a>
+                        
+                        <a href="../CalendarEvent/index.jsp">
+			<div class="menu-manage">
+				<div class="icon-setting">
+					<img src="${pageContext.request.contextPath}/Assets2/icon/kalender.png">
+				</div> <!--icon-setting-->
+                                <h2>Calendar Event</h2>
+			</div>
+                        </a>
+                                
+			</div>
+			
+		</div> <!--/ .left -->
 
 		<div class="middle">
                
@@ -125,64 +282,15 @@
 				  <div class="modal-content">
 				    	
                                       
-							  <div class="form" style="z-index: -9999;">
+							  <div class="form">
 							  	<div class="modal-header">
 							      <span class="close">&times;</span>
-							      <h5>Add New Evnet</h5>
+							      <h5>Add New Event</h5>
 							    </div>
-							    <form class="register-form" action="utama.html" method="POST">
-							      <input type="text" placeholder="name"/>
-							      <input type="password" placeholder="password"/>
-							      <input type="text" placeholder="email address"/>
-							      <button>create</button>
-							      <p class="message">Already registered? <a href="#">Sign In</a></p>
-							    </form>
+							 
 							    <form class="login-form">
 							      <input type="text" placeholder="Event Name  ..."/>
-                                                              <select class="dropdown-location">
-                                                                     <option value="StartingLocation">Starting Location ...</option>
-                                                                     <option value="SLocation1">Bandung</option>
-                                                                     <option value="SLocation2">Bekasi</option>
-                                                                     <option value="SLocation3">Bogor</option>
-                                                                     <option value="SLocation4">Ciamis</option>
-                                                                     <option value="SLocation5">Cirebon</option>
-                                                                     <option value="SLocation6">Indramayu</option>
-                                                                     <option value="SLocation6">Kuningan</option>
-                                                                     <option value="SLocation6">Kuningan</option>
-                                                                     <option value="SLocation6">Majalengka</option>
-                                                                     <option value="SLocation6">Pangandaran</option>
-                                                                     <option value="SLocation6">Purwakarta</option>
-                                                                     <option value="SLocation6">Subang</option>
-                                                                     <option value="SLocation6">Sukabumi</option>
-                                                                     <option value="SLocation6">Sumedang</option>
-                                                                     <option value="SLocation6">Tasikmalaya</option>
-                                                                </select>
-							        <select class="dropdown-location">
-                                                                     <option value="SLocation1">Bandung</option>
-                                                                     <option value="SLocation2">Bekasi</option>
-                                                                     <option value="SLocation3">Bogor</option>
-                                                                     <option value="SLocation4">Ciamis</option>
-                                                                     <option value="SLocation5">Cirebon</option>
-                                                                     <option value="SLocation6">Indramayu</option>
-                                                                     <option value="SLocation6">Kuningan</option>
-                                                                     <option value="SLocation6">Kuningan</option>
-                                                                     <option value="SLocation6">Majalengka</option>
-                                                                     <option value="SLocation6">Pangandaran</option>
-                                                                     <option value="SLocation6">Purwakarta</option>
-                                                                     <option value="SLocation6">Subang</option>
-                                                                     <option value="SLocation6">Sukabumi</option>
-                                                                     <option value="SLocation6">Sumedang</option>
-                                                                     <option value="SLocation6">Tasikmalaya</option>
-                                                                </select>
-							      <input type="text" placeholder="Started Time..."/>
-							      <input type="text" placeholder="Ended Time..."/>
-                                                              <select class="dropdown-location">
-                                                                     <option value="StartingLocation">Add Transportation Name ...</option>
-                                                                     <option value="SLocation1">Car</option>
-                                                                     <option value="SLocation2">Motorcycle</option>
-                                                                     <option value="SLocation3">Bus</option>
-                                                                     <option value="SLocation4">Wagon</option>
-                                                                </select>
+                                                              
 							      <button> Save </button>							     
 							    </form>
 							  </div>
@@ -247,8 +355,20 @@
  
 </div> <!--wadah-->
 
+<div class="footer-atas">
+	
+	</div> <!--footer-atas-->
 
-<%@include file="../Footer/footer.jsp" %>
-    
+	<div class="footer-bawah">
+    <div class="footer">
+        <div class="copyright">
+        travelendar.com
+        </div> <!--copyright-->
+
+        <div class="copyright2">
+        Copyright &copy; 2017 travlendar.com | Designed by A2 JTK Polban
+        </div>
+    </div>
+
 </body>
 </html>
