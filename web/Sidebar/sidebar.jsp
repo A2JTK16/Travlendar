@@ -38,15 +38,6 @@
 			
 			<div id="hidden-mobile">
 			
-                        <a href="../Schedule/index.jsp">
-			<div class="menu-manage">
-				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/jadwal.png">
-				</div> <!--icon-setting-->
-				<h2>Data Schedule</h2>
-                            
-                        </div> <!--menu-manage-->
-                        </a>
                         
                         <a href="../Traveller/index.jsp">
 			<div class="menu-manage">
@@ -94,14 +85,7 @@
 			</div> <!--menu-manage-->
                         </a>
                         
-                        <a href="../CalendarEvent/index.jsp">
-			<div class="menu-manage">
-				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/kalender.png">
-				</div> <!--icon-setting-->
-                                <h2>Calendar Event</h2>
-			</div>
-                        </a>
+                        
                                 
 			</div>
 			

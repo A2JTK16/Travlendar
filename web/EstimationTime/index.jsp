@@ -24,68 +24,7 @@
 		
 		<%@include file="../Sidebar/sidebar.jsp" %>
 
-		<div class="middle">
-				<div class="judul-manage"> MANAGE ESTIMATION TIME </div>
-				<button id="myBtn"> + Add New Estimation Time </button>
-				<!-- The Modal -->
-				<div id="myModal" class="modal">
-
-				  <!-- Modal content -->
-				  <div class="modal-content">
-				    	
-							  <div class="form">
-							  	<div class="modal-header">
-							      <span class="close">&times;</span>
-							      <h5>Add New EStimation Time</h5>
-							    </div>
-
-							    <form class="distance-form">
-                                                                <select class="dropdown-location">
-                                                                     <option value="StartingLocation">Starting Location ...</option>
-                                                                     <option value="SLocation1">Bandung</option>
-                                                                     <option value="SLocation2">Bekasi</option>
-                                                                     <option value="SLocation3">Bogor</option>
-                                                                     <option value="SLocation4">Ciamis</option>
-                                                                     <option value="SLocation5">Cirebon</option>
-                                                                     <option value="SLocation6">Indramayu</option>
-                                                                     <option value="SLocation6">Kuningan</option>
-                                                                     <option value="SLocation6">Kuningan</option>
-                                                                     <option value="SLocation6">Majalengka</option>
-                                                                     <option value="SLocation6">Pangandaran</option>
-                                                                     <option value="SLocation6">Purwakarta</option>
-                                                                     <option value="SLocation6">Subang</option>
-                                                                     <option value="SLocation6">Sukabumi</option>
-                                                                     <option value="SLocation6">Sumedang</option>
-                                                                     <option value="SLocation6">Tasikmalaya</option>
-                                                                </select>
-							        <select class="dropdown-location">
-                                                                     <option value="StartingLocation">Destination Location ...</option>
-                                                                     <option value="SLocation1">Bandung</option>
-                                                                     <option value="SLocation2">Bekasi</option>
-                                                                     <option value="SLocation3">Bogor</option>
-                                                                     <option value="SLocation4">Ciamis</option>
-                                                                     <option value="SLocation5">Cirebon</option>
-                                                                     <option value="SLocation6">Indramayu</option>
-                                                                     <option value="SLocation6">Kuningan</option>
-                                                                     <option value="SLocation6">Kuningan</option>
-                                                                     <option value="SLocation6">Majalengka</option>
-                                                                     <option value="SLocation6">Pangandaran</option>
-                                                                     <option value="SLocation6">Purwakarta</option>
-                                                                     <option value="SLocation6">Subang</option>
-                                                                     <option value="SLocation6">Sukabumi</option>
-                                                                     <option value="SLocation6">Sumedang</option>
-                                                                     <option value="SLocation6">Tasikmalaya</option>
-                                                                </select>
-							      <input style="margin-top: 5px; color: #535559" type="text" placeholder="Distance (km)    ..."/>
-							      <button> Save </button>
-							    </form>
-							  </div>
-							
-				  </div> <!--modal content-->
-
-				</div>
-
-		</div> <!--middle-->
+		
 		
 		<div class="middle">
 		

@@ -201,15 +201,7 @@
 			
 			<div id="hidden-mobile">
 			
-                        <a href="../Schedule/index.jsp">
-			<div class="menu-manage">
-				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/jadwal.png">
-				</div> <!--icon-setting-->
-				<h2>Data Schedule</h2>
-                            
-                        </div> <!--menu-manage-->
-                        </a>
+                        
                         
                         <a href="../Traveller/index.jsp">
 			<div class="menu-manage">
@@ -257,14 +249,6 @@
 			</div> <!--menu-manage-->
                         </a>
                         
-                        <a href="../CalendarEvent/index.jsp">
-			<div class="menu-manage">
-				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/kalender.png">
-				</div> <!--icon-setting-->
-                                <h2>Calendar Event</h2>
-			</div>
-                        </a>
                                 
 			</div>
 			
@@ -273,37 +257,133 @@
 		<div class="middle">
                
 				<div class="judul-manage"> MANAGE CALENDAR EVENT </div>
-				<!-- The Modal -->
-				<button id="myBtn"> + Add New Event </button>
-				<!-- The Modal -->
-				<div id="myModal" class="modal">
-
-				  <!-- Modal content -->
-				  <div class="modal-content">
-				    	
-                                      
-							  <div class="form">
-							  	<div class="modal-header">
-							      <span class="close">&times;</span>
-							      <h5>Add New Event</h5>
-							    </div>
-							 
-							    <form class="login-form">
-							      <input type="text" placeholder="Event Name  ..."/>
-                                                              
-							      <button> Save </button>							     
-							    </form>
-							  </div>
-							
-				  </div> <!--modal content-->
-
-				</div>
+				
 
 		</div> <!--middle-->
 		
 		<div class="middle">
                     <div class="kotak-traveller">
-                        <h4> Calendar Event </h4>
+                    
+				    	
+							  	<div class="modal-header">
+							      <h5>Add New Event</h5>
+							    </div>
+							 
+							    <form class="login-form">
+                                                               
+                                                                <select class="dropdown-location" style="border: 1px solid black ; margin: 10px; margin-right: 40px">
+                                                                     <option value="StartingLocation">Starting Location ...</option>
+                                                                     <option value="SLocation1">Bandung</option>
+                                                                     <option value="SLocation2">Bekasi</option>
+                                                                     <option value="SLocation3">Bogor</option>
+                                                                     <option value="SLocation4">Ciamis</option>
+                                                                     <option value="SLocation5">Cirebon</option>
+                                                                     <option value="SLocation6">Indramayu</option>
+                                                                     <option value="SLocation6">Kuningan</option>
+                                                                     <option value="SLocation6">Kuningan</option>
+                                                                     <option value="SLocation6">Majalengka</option>
+                                                                     <option value="SLocation6">Pangandaran</option>
+                                                                     <option value="SLocation6">Purwakarta</option>
+                                                                     <option value="SLocation6">Subang</option>
+                                                                     <option value="SLocation6">Sukabumi</option>
+                                                                     <option value="SLocation6">Sumedang</option>
+                                                                     <option value="SLocation6">Tasikmalaya</option>
+                                                                </select>
+                                                                
+                                                                    <div style="margin: 5px; height: 80px ;width: auto;">
+							      <input style="padding: 5px; margin: 5px;height:50px; width: 300px;" type="text" placeholder="Start Date..."/>
+                                                              <select class="dropdown-time" style="border:1px solid black; margin-right: 10px ;margin-left:5px">
+                                                                     <option value="StartingLocation">Hours</option>
+                                                                     <option value="SLocation1">01</option>
+                                                                     <option value="SLocation2">02</option>
+                                                                     <option value="SLocation3">03</option>
+                                                                     <option value="SLocation4">04</option>
+                                                                     <option value="SLocation5">05</option>
+                                                                     <option value="SLocation6">06</option>
+                                                                     <option value="SLocation6">07</option>
+                                                                     <option value="SLocation6">08</option>
+                                                                     <option value="SLocation6">09</option>
+                                                                     <option value="SLocation6">10</option>
+                                                                     <option value="SLocation6">11</option>
+                                                                     <option value="SLocation6">12</option>
+                                                              </select>
+                                                              
+                                                              <select class="dropdown-time" style="border:1px solid black ">
+                                                                     <option value="StartingLocation">Minute</option>
+                                                                     <option value="SLocation1">01</option>
+                                                                     <option value="SLocation2">02</option>
+                                                                     <option value="SLocation3">03</option>
+                                                                     <option value="SLocation4">04</option>
+                                                                     <option value="SLocation5">05</option>
+                                                                     <option value="SLocation6">06</option>
+                                                                     <option value="SLocation6">07</option>
+                                                                     <option value="SLocation6">08</option>
+                                                                     <option value="SLocation6">09</option>
+                                                                     <option value="SLocation6">10</option>
+                                                                     <option value="SLocation6">11</option>
+                                                                     <option value="SLocation6">12</option>
+                                                              </select>
+                                                                </div>
+                                                              
+                                                                <select class="dropdown-location" style="border: 1px solid black; margin: 10px">
+                                                                     <option value="StartingLocation">Destination Location ...</option>
+                                                                     <option value="SLocation1">Bandung</option>
+                                                                     <option value="SLocation2">Bekasi</option>
+                                                                     <option value="SLocation3">Bogor</option>
+                                                                     <option value="SLocation4">Ciamis</option>
+                                                                     <option value="SLocation5">Cirebon</option>
+                                                                     <option value="SLocation6">Indramayu</option>
+                                                                     <option value="SLocation6">Kuningan</option>
+                                                                     <option value="SLocation6">Kuningan</option>
+                                                                     <option value="SLocation6">Majalengka</option>
+                                                                     <option value="SLocation6">Pangandaran</option>
+                                                                     <option value="SLocation6">Purwakarta</option>
+                                                                     <option value="SLocation6">Subang</option>
+                                                                     <option value="SLocation6">Sukabumi</option>
+                                                                     <option value="SLocation6">Sumedang</option>
+                                                                     <option value="SLocation6">Tasikmalaya</option>
+                                                                </select>
+                                                              
+                                                                
+                                                                <div style="margin: 5px; height: 80px ;width: auto; float: next; position: relative">
+							      <input style="padding: 5px; margin: 5px;height: 50px; width: 300px;" type="text" placeholder="End Date..."/>
+                                                              <select class="dropdown-time" style="border:1px solid black; margin-right: 10px;margin-left:5px ">
+                                                                     <option value="StartingLocation">Hours</option>
+                                                                     <option value="SLocation1">01</option>
+                                                                     <option value="SLocation2">02</option>
+                                                                     <option value="SLocation3">03</option>
+                                                                     <option value="SLocation4">04</option>
+                                                                     <option value="SLocation5">05</option>
+                                                                     <option value="SLocation6">06</option>
+                                                                     <option value="SLocation6">07</option>
+                                                                     <option value="SLocation6">08</option>
+                                                                     <option value="SLocation6">09</option>
+                                                                     <option value="SLocation6">10</option>
+                                                                     <option value="SLocation6">11</option>
+                                                                     <option value="SLocation6">12</option>
+                                                              </select>
+                                                              
+                                                              <select class="dropdown-time" style="border:1px solid black ">
+                                                                     <option value="StartingLocation">Minute</option>
+                                                                     <option value="SLocation1">01</option>
+                                                                     <option value="SLocation2">02</option>
+                                                                     <option value="SLocation3">03</option>
+                                                                     <option value="SLocation4">04</option>
+                                                                     <option value="SLocation5">05</option>
+                                                                     <option value="SLocation6">06</option>
+                                                                     <option value="SLocation6">07</option>
+                                                                     <option value="SLocation6">08</option>
+                                                                     <option value="SLocation6">09</option>
+                                                                     <option value="SLocation6">10</option>
+                                                                     <option value="SLocation6">11</option>
+                                                                     <option value="SLocation6">12</option>
+                                                              </select>
+                                                                </div>
+                                                                <button style="width: 90px; height: 40px"> Save </button>							     
+							    </form>
+							
+							
+				  
                     </div>
                     
                     <div class="kotak-traveller">

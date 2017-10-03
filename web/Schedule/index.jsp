@@ -82,7 +82,7 @@
                                                                      <option value="SLocation6">Sumedang</option>
                                                                      <option value="SLocation6">Tasikmalaya</option>
                                                                 </select>
-							      <input type="text" placeholder="Started Time..."/>
+							      <input type="text" placeholder="Start Date..."/>
                                                               <select class="dropdown-time">
                                                                      <option value="StartingLocation">Hours</option>
                                                                      <option value="SLocation1">01</option>
@@ -115,7 +115,7 @@
                                                                      <option value="SLocation6">12</option>
                                                               </select>
                                                               
-							      <input type="text" placeholder="Ended Time..."/>
+							      <input type="text" placeholder="End Date..."/>
                                                                      <select class="dropdown-time">
                                                                      <option value="StartingLocation">Hours</option>
                                                                      <option value="SLocation1">01</option>

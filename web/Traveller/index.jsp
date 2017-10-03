@@ -81,6 +81,7 @@
 							<th>Username</th>
 							<th>Email</th>
 							<th>Action</th>
+                                                        <th> Calendar </th>
 						</tr>
 						</thead>
 						<tbody>
@@ -90,7 +91,8 @@
 							<td>Maryam</td>
 							<td>maryam@gmail.com</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-						</tr>
+                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+                                                </tr>
 						
 						<tr>
 							<td>02</td>
@@ -98,6 +100,7 @@
 							<td>Said</td>
 							<td>Said@polban.ac.id</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
+                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
 						</tr>
 						
 						<tr>
@@ -106,7 +109,8 @@
 							<td>Diana</td>
 							<td>diana@polban.ac.id</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-						</tr>
+                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+                                                </tr>
 						
 						<tr>
 							<td>04</td>
@@ -114,7 +118,8 @@
 							<td>Alfin</td>
 							<td>alfin@polban.ac.id</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-						</tr>
+                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+                                                </tr>
 						
 						
 						<tr>
@@ -123,7 +128,8 @@
 							<td>Agit</td>
 							<td>agit@polban.ac.id</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-						</tr>
+                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+                                                </tr>
 						
 						<tr>
 							<td>06</td>
@@ -131,7 +137,8 @@
 							<td>Maul</td>
 							<td>maul@polban.ac.id</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-						</tr>
+                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+                                                </tr>
 						
 						<tr>
 							<td>07</td>
@@ -139,7 +146,8 @@
 							<td>Mufid</td>
 							<td>mufid@polban.ac.id</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-						</tr>
+                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+                                                </tr>
 						
 						<tr>
 							<td>08</td>
@@ -147,7 +155,8 @@
 							<td>Dian</td>
 							<td>putridian@polban.ac.id</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-						</tr>
+                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+                                                </tr>
                                                 
                                                 <tr>
 							<td>09</td>
@@ -155,7 +164,8 @@
 							<td>Reza</td>
 							<td>reza@polban.ac.id</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-						</tr>
+                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+                                                </tr>
                                                 
                                                 <tr>
 							<td>10</td>
@@ -163,7 +173,8 @@
 							<td>Nurindah</td>
 							<td>nurindah@polban.ac.id</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-						</tr>
+                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+                                                </tr>
 						
                                                  <script type="text/javascript" language="JavaScript">
                                                 function konfirmasi()
