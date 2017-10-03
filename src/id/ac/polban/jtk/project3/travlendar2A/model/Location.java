@@ -16,8 +16,15 @@ public class Location {
     //private int [] kode_lokasi = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
     private String [] nama_lokasi = {"Rumah", "Kantor DPRD Bangka Tengah", "Bandara Depati Amir", "Bandara Soekarno Hatta", "Kantor DPRD Jakarta", "Tanggerang"};
     private int [] kode_lokasi = {1,2,3,4,5,6};
+    
+    /**
+     * REVIEW :
+     *      1. Sepertinya atribut Nama_lokasi dan Kode_lokasi tidak perlu 
+     *          karena sudah ada array nama_lokasi dan array kode_lokasi
+     */
     private String Nama_Lokasi;
     private int Kode_Lokasi;
+    
     int m = nama_lokasi.length;
     
     public void tampil_Lokasi () {
@@ -67,6 +74,10 @@ public class Location {
         return nama_lokasi[kodeTempat-1];
     }
     
+    /**
+     *  Review :
+     *          1. atribut tipe lokasi simpan di awal bersama atribut nama_lokasi dan kode_lokasi
+     */
     private int [] tipe_Lokasi = {0,0,1,1,0,0};
     public int getTipe_Lokasi (int KodeLoc)
     {

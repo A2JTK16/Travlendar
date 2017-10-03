@@ -17,7 +17,7 @@ import java.util.Date;
 public class Event {
     /**
      * REVIEW
-     * 1.   Bisa Ditambahkan kode_lokasi dan id_traveller,
+     * 1.   Perlu Ditambahkan kode_lokasi dan id_traveller,
      *      Supaya Dapat Memiliki Relasi dengan Lokasi dan Traveller.
      *      kode_event Dapat Menjadi Object Counter atau
      *      Tidak Perlu di Set Karena Nantinya di Database Dapat
@@ -62,13 +62,7 @@ public class Event {
 
     
     public void setDepartureTime(Date departuretime) {
-        /**
-         * Rev Mufid
-         * Pengecekan : jika Depature Time terjadi setelah Arrivaltime
-         * Maka akan otomatis ditukar.
-         * 
-         * Method ini akan error jika arrivalTime nya masih null.
-         */
+
         this.departuretime = departuretime;
     }
 

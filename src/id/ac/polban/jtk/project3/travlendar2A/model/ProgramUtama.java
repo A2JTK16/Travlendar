@@ -18,17 +18,19 @@ import java.util.List;
  */
 
 public class ProgramUtama{
-    
+
     /**
-     * REVIEW
-     * 1.   Great. 
-     * 2.   Untuk Event, dapat ditambahkan array list karena satu traveller memiliki banyak event
-     * 3.   Dapat ditampilkan rekomendasi kendaraan dari jarak kedua acara.
-     *      Jika selisih waktu berangkat dari Event pertama dengan waktu tiba di Event kedua
-     *      lebih besar daripada waktu yang harus ditempuh oleh semua moda transportasi,
-     *      maka tampilkan saran kendaraan tersebut.
-     *      Note : hal ini dapat dibuat class baru
+     *  REVIEW :
+     *          1.  Efisiensi kodingan (hapus yg ga perlu, pakai method yg efisien)
+     *              Misalnya yg objek Location method getJarak (array jarak) mubazir
+     *              jika dipakai hanya untuk menampilkan salahsatu isi array jarak.
      * 
+     *              Lebih baik getJarak sekali lalu tampilkan isi array daripada 
+     *              getJarak()[arr][arr] dalam loop
+     * 
+     *          2.  List Event simpan di Objek Traveller
+     * 
+     *          3.  kode lokasi dan Waktu (Date Time) disimpan ke Objek Event
      */
     
     protected Location locationEvent;

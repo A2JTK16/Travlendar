@@ -13,15 +13,8 @@ public class DistanceMatrix {
     /**
      * REVIEW 
      * 
-     * 1.   Kota_awal dan kota_tujuan Bentuk Integer Saja, Tidak Memerlukan String.
-     *      Selanjutnya, Kode Kota Tersebut Diubah Menjadi Alamat Indeks Array,
-     *      Lalu Kembalikan Isi Array Tersebut.
-     * 2.   Kota Bisa Pakai 'enum' untuk Memudahkan
-     * 3.   Diperlukan Method untuk Mengembalikan Nilai Jarak
-     * 4.   Lebih Baik Teknik Mendapatkan Jarak Pakai Indeks Array Saja Langsung,
-     *      Tidak Memerlukan Nested Loop Karena Kode Kota Tidak Berubah dan
-     *      Memiliki Keterkaitan dengan Indeks Array 
-     *      Contoh : Array jarak[1][2] Berisi Jarak Bandung - Bekasi
+     * 1.   Method yg tidak perlu dapat dihapus
+     * 
      */
     
     //deklarasi atribut

@@ -8,10 +8,7 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
 
 /**
  * REVIEW
- * 1.   id_traveller Dapat Memakai Object Counter,
- *      Kedepannya Saat Integrasi dengan Database, id_traveller Tidak Perlu
- *      di-Set Karena Dapat Memiliki Sifat auto_increment
- * 2.   Mohon Alasan Inisiasi Parameter di Konstruktor dengan Referensi
+ * 1.   Perlu ditamahkan ArrayList Event
  */
 
 /**
