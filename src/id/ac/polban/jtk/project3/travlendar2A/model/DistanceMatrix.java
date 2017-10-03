@@ -60,9 +60,7 @@ public class DistanceMatrix {
     public double[][] getJarak() {
         return jarak;
     }
-    public double getdistance(){
-        return distance;
-    }
+
     /**
      * @param jarak the jarak to set
      */

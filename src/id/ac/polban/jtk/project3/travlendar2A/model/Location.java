@@ -18,11 +18,18 @@ public class Location {
     private int [] kode_lokasi = {1,2,3,4,5,6};
     private String Nama_Lokasi;
     private int Kode_Lokasi;
-
+    int m = nama_lokasi.length;
+    
+    public void tampil_Lokasi () {
+        for (int i=1;i<=m;i++){
+            System.out.println(i + ". " + getNamaLoc(i));
+        }
+    }
+    
     public String[] getNama_lokasi() {
         return nama_lokasi;
     }
-
+    
     public void setNama_lokasi(String[] nama_lokasi) {
         this.nama_lokasi = nama_lokasi;
     }
@@ -36,7 +43,7 @@ public class Location {
     }
 
     public int getKode_Lokasi() {
-        for (int i=0;i<17;i++)
+        for (int i=0;i<m;i++)
         {
           if (Nama_Lokasi.equals(nama_lokasi[i]))  
           this.Kode_Lokasi=kode_lokasi[i];
@@ -54,6 +61,10 @@ public class Location {
 
     public void setNama_Lokasi(String Nama_Lokasi) {
         this.Nama_Lokasi = Nama_Lokasi;
+    }
+    
+    public String getNamaLoc (int kodeTempat) {
+        return nama_lokasi[kodeTempat-1];
     }
 }
 
