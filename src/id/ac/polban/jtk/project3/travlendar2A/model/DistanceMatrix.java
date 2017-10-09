@@ -17,11 +17,6 @@ public class DistanceMatrix {
      * 
      */
     
-    //deklarasi atribut
-    double distance;
-    private double jarak_lokasi;
-    private int  kode_kota1;
-    private int kode_kota2;
     /*private double [][] jarak = {{0,	134,	177,	135,	160,	209,	149,	201,	89.4,	244,	192,	202,	53.3,	118,	90.1,	71.1,	126},
                                {132,	0,	62.2,	248,	208,	200,	199,	192,	54.2,	236,	183,	316,	78.4,	110,	173,	184,	240},
                                {212,    81.8,   0,      305,	175,    247,    319,	249,	110,	292,	239,	372,	135,	166,	140,	241,	296},

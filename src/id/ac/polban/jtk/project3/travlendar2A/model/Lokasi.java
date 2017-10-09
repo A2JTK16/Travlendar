@@ -12,43 +12,36 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
  * @author Auliya Aqma Dinillah
  */
 public class Lokasi {
-    //private String [] nama_lokasi = {"Bandung", "Bekasi", "Bogor","Ciamis", "Cianjur","Cirebon","Garut","Indramayu","Karawang","Kuningan","Majalengka", "Pangandaran","Purwakarta","Subang","Sukabumi","Sumedang","Tasikmalaya"};
-    //private int [] kode_lokasi = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
-    private String [] nama_lokasi = {"Rumah", "Kantor DPRD Bangka Tengah", "Bandara Depati Amir", "Bandara Soekarno Hatta", "Kantor DPRD Jakarta", "Tanggerang"};
-    private int [] kode_lokasi = {1,2,3,4,5,6};
-    private int [] tipe_Lokasi = {0,0,1,1,0,0};
-    /**
+    
+     /**
      * REVIEW :
      *      1. Sepertinya atribut Nama_lokasi dan Kode_lokasi tidak perlu 
      *          karena sudah ada array nama_lokasi dan array kode_lokasi
      */
-    private String Nama_Lokasi;
-    private int Kode_Lokasi;
-    int m = nama_lokasi.length;
+        
+    /**
+     *  Review :
+     *          1. atribut tipe lokasi simpan di awal bersama atribut nama_lokasi dan kode_lokasi
+     */
+
+    //private String [] nama_lokasi = {"Bandung", "Bekasi", "Bogor","Ciamis", "Cianjur","Cirebon","Garut","Indramayu","Karawang","Kuningan","Majalengka", "Pangandaran","Purwakarta","Subang","Sukabumi","Sumedang","Tasikmalaya"};
+    //private int [] kode_lokasi = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
+    
+    private String [] alamat_tempat = {"Rumah", "Kantor DPRD Bangka Tengah", "Bandara Depati Amir", "Bandara Soekarno Hatta", "Kantor DPRD Jakarta", "Tanggerang"};
+    private int [] kd_lokasi = {1,2,3,4,5,6};
+    private int [] tipe_Lokasi = {0,0,1,1,0,0};
+    
+    int m = alamat_tempat.length;
     
     public void tampil_Lokasi () {
         for (int i=1;i<=m;i++){
             System.out.println(i + ". " + getNamaLoc(i));
         }
     }
-
-    public int getKode_Lokasi() {
-        for (int i=0;i<m;i++)
-        {
-          if (Nama_Lokasi.equals(nama_lokasi[i]))  
-          this.Kode_Lokasi=kode_lokasi[i];
-        }
-        return Kode_Lokasi;
-    }
     
     public String getNamaLoc (int kodeTempat) {
-        return nama_lokasi[kodeTempat-1];
+        return alamat_tempat[kodeTempat-1];
     }
-    
-    /**
-     *  Review :
-     *          1. atribut tipe lokasi simpan di awal bersama atribut nama_lokasi dan kode_lokasi
-     */
 
     public int getTipe_Lokasi (int KodeLoc)
     {
