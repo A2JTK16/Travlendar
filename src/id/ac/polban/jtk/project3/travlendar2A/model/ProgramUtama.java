@@ -11,7 +11,6 @@ import java.util.ArrayList;
 //import java.util.Calendar;
 import java.util.Scanner;
 import java.util.Date;
-import java.util.List;
 /**
  *
  * @author AGS
@@ -26,50 +25,40 @@ public class ProgramUtama{
     protected ParseDate parsedt;
     protected Traveller traveller;
     
-    public ProgramUtama(Agenda event, Moda_Transportasi transport, Lokasi lokasi, DistanceMatrix distance, EstimasiWaktu esTime){
-        this.event = event;
-        this.transport = transport;
-        this.lokasi = lokasi;
-        this.distance = distance;
-        this.esTime = esTime;
-    }
-    
     public static void main(String[] args) throws ParseException{
-        //ProgramUtama objMain = new ProgramUtama();
-        //Event event = new Agenda();
-        Agenda agenda = new Agenda();
+        
         Lokasi lokasiEvent = new Lokasi();
         DistanceMatrix jarakLokasi = new DistanceMatrix();
         EstimasiWaktu esTime = new EstimasiWaktu();
         Moda_Transportasi nama_transportasi = new Moda_Transportasi();
         ParseDate parsedt = new ParseDate();
-        Date arrivalTime = null;
-        Date departureTime = null; 
+        Date waktumulai;
+        Date waktuberakhir; 
         int transportation;
-        int option = 1;
+        int option;
         int id, kodelokasi, kodekotaawal, kodekotatujuan;
         double speed=0;
-        String fullname, username, email, password, eventName, tanggalStr, waktuStr, lokasi, kotaawal = null, kotatujuan = null;
+        String nama_lengkap, nama_pengguna, alamat_email, kata_sandi, nama_agenda, tanggalStr, waktuStr, lokasi, kotaawal = null, kotatujuan = null;
         Scanner n = new Scanner(System.in);
         double diff = 0, diffSeconds = 0, diffMinutes = 0, diffHours = 0;
        // ArrayList<ProgramUtama> eventList = new ArrayList();
-        List<String> list = new ArrayList<String>();
-        
+        //List<String> list = new ArrayList<String>();
+        ArrayList<Agenda> daftar_agenda = new ArrayList<>();
         //--------------------Input Data Traveller (Name, username, pass,....)--------------------------------------//
         //--------------------- DAPAT DIBUAT METHOD BARU ----------------------------------------------------------//
 
         /*System.out.println("Masukkan Nama Lengkap Anda : ");
-        fullname = n.nextLine();
+        nama_lengkap = n.nextLine();
         
         System.out.println("Masukkan Username Anda : ");
-        username = n.nextLine();
+        nama_pengguna = n.nextLine();
         
         System.out.println("Masukkan email Anda : ");
-        email = n.nextLine();
+        alamat_email = n.nextLine();
         
         System.out.println("Masukkan password Anda : ");
-        password = n.nextLine();
-        Traveller traveller = new Traveller(fullname, username, email, password); */
+        kata_sandi = n.nextLine();
+        Traveller traveller = new Traveller(nama_lengkap, nama_pengguna, alamat_email, kata_sandi); */
         //Kode di atas belum digunakan karena usernya hanya satu, yaitu Ibu Maryam
         //-------------------------------------------------------------------------------------------------------------//
         
@@ -87,17 +76,17 @@ public class ProgramUtama{
                    */  
                   
                     //------------Input Data Agenda(Nama event, waktu berangkat, waktu tiba)-----------------------------------//
-
+                    Agenda agenda = new Agenda();
                     System.out.println("Nama Event : ");
-                    eventName = n.nextLine();
-                    agenda.setNama_agenda(eventName);
+                    nama_agenda = n.nextLine();
+                    agenda.setNama_agenda(nama_agenda);
                         
                     /**
                      * REVIEW : UNTUK SET ARRIVALTIME DAN DEPATURE TIME DAAPAT DBUAT METHOD BARU
                      */
                     //--------------------------------------------------------------------------------------------//
                     do{
-                        System.out.println("Masukkan Tanggal Berangkat\nDate (Format dd-mm-yyyy) : ");
+                        System.out.println("Masukkan Tanggal Mulai Agenda\nDate (Format dd-mm-yyyy) : ");
                     } 
                     while(!parsedt.setDateValue(n.next())); 
             
@@ -109,7 +98,7 @@ public class ProgramUtama{
                     //-------------------------------------------------------------------------------------------//
                     
                     do{
-                        System.out.println("Masukkan Tanggal Tiba\nDate (Format dd-mm-yyyy) : ");
+                        System.out.println("Masukkan Tanggal Berakhirnya Agenda\nDate (Format dd-mm-yyyy) : ");
                     } 
                     while(!parsedt.setDateValue(n.next())); 
             
@@ -126,10 +115,10 @@ public class ProgramUtama{
                      */
                     
                     
-                    arrivalTime = agenda.getWaktu_mulai_agenda();
-                    departureTime = agenda.getWaktu_berakhir_agenda();
+                    waktumulai = agenda.getWaktu_mulai_agenda();
+                    waktuberakhir = agenda.getWaktu_berakhir_agenda();
                     
-                    diff = arrivalTime.getTime() - departureTime.getTime(); //untuk menghitung selisih jam
+                    diff = waktumulai.getTime() - waktuberakhir.getTime(); //untuk menghitung selisih jam
                     diffSeconds = diff / 1000 % 60; //selisih jam 
                     diffMinutes = diff / (60 * 1000) % 60; //selisih menit
                     diffHours = (diff / (60 * 60 * 1000)); //selisih detik
@@ -158,16 +147,17 @@ public class ProgramUtama{
                        // ProgramUtama objMain = new ProgramUtama(event.getEvent(), transport, locationEvent, distance, esTime);
                         //eventList.add(objMain);
                         //list.add(traveller.getFullname());
-                        list.add(agenda.getEvent());
-                        list.add(transportasi);
+                        //list.add(agenda.getEvent());
+                        //list.add(transportasi);
+                        daftar_agenda.add(agenda);
                     } else {
                         break;
                     }
                     break;
                 case 2 :
                     // DAPAT DIBUAT METHOD BARU //
-                   for (String s : list) {
-                        System.out.println(s);
+                   for (Agenda s : daftar_agenda) {
+                        System.out.println(s.getEvent());
                         }
                     break;           
             }
