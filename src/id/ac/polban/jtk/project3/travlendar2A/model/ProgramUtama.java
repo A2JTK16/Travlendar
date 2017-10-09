@@ -18,7 +18,7 @@ import java.util.Date;
 
 public class ProgramUtama{        
     protected Lokasi lokasi;
-    protected DistanceMatrix distance;
+    protected Perjalanan distance;
     protected EstimasiWaktu esTime;
     protected Moda_Transportasi transport;
     protected Agenda event;
@@ -28,7 +28,7 @@ public class ProgramUtama{
     public static void main(String[] args) throws ParseException{
         
         Lokasi lokasiEvent = new Lokasi();
-        DistanceMatrix jarakLokasi = new DistanceMatrix();
+        Perjalanan jarakLokasi = new Perjalanan();
         EstimasiWaktu esTime = new EstimasiWaktu();
         Moda_Transportasi nama_transportasi = new Moda_Transportasi();
         ParseDate parsedt = new ParseDate();

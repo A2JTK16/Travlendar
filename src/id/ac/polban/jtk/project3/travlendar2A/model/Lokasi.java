@@ -33,6 +33,8 @@ public class Lokasi {
     
     int m = alamat_tempat.length;
     
+    //===============method==================
+    
     public void tampil_Lokasi () {
         for (int i=1;i<=m;i++){
             System.out.println(i + ". " + getNamaLoc(i));
