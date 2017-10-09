@@ -22,7 +22,7 @@
 	<div class="footer-bawah">
     <div class="footer">
         <div class="copyright">
-        travelendar.com
+        Travelendar
         </div> <!--copyright-->
 
         <div class="copyright2">

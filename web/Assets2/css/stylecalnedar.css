@@ -191,8 +191,8 @@ a:hover{
 
 .logonya img{
     float: left;
-    width: 35px;
-    height: 47px;
+    width: 33px;
+    height: 49px;
 }
 
 .logo{
@@ -204,7 +204,7 @@ a:hover{
 
 .kotak-acount{
     float: right;
-    margin-right: 6%;
+    margin-right: 2%;
     background: #1976D2;
 }
 
@@ -761,9 +761,10 @@ a:hover{
         .copyright{
                 float: left;
                 width: 90px;
-                font: 20px Arial;
+                font: 25px Arial;
                 font-weight: bold;
-                color: #fafafa;
+                color: dimgray;
+                margin-left:30px;
         }
 
         .copyright2{
@@ -772,6 +773,7 @@ a:hover{
                 float: right;
                 width: auto;
                 font: 16px Arial;
-                color: #fafafa;
+                color: dimgray;
+                margin-right: 30px;
         }
 

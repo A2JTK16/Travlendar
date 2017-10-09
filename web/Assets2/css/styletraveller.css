@@ -164,7 +164,7 @@ a:hover{
   float: left;
   width: 100%;
   height: auto;
-  background: #1565C0;
+  background: linear-gradient(135deg,#043a61,#0471b1 26%,#0985bb 51%,#16a2b1 76%,#22bc9d);;
   position: fixed;
   border-top: 3px solid #1976D2;
   box-shadow: 0 2px 2px #727272;
@@ -185,8 +185,8 @@ a:hover{
 
 .logonya img{
     float: left;
-    width: 35px;
-    height: 47px;
+    width: 33px;
+    height: 49px;
 }
 
 .logo{
@@ -197,9 +197,7 @@ a:hover{
 }
 
 .kotak-acount{
-    float: right;
-    margin-right: 6%;
-    background: #1976D2;
+ 
 }
 
 .acount-nama{
@@ -358,6 +356,7 @@ a:hover{
 		border: none;
                 border-radius: 0.5em 0.5em 0 0;
                 border-bottom: 3px solid #1565C0;
+                
 	}
         
 	.menu-manage{
@@ -755,9 +754,10 @@ a:hover{
         .copyright{
                 float: left;
                 width: 90px;
-                font: 20px Arial;
+                font: 25px Arial;
                 font-weight: bold;
-                color: #fafafa;
+                color: dimgray;
+                margin-left:30px;
         }
 
         .copyright2{
@@ -766,6 +766,7 @@ a:hover{
                 float: right;
                 width: auto;
                 font: 16px Arial;
-                color: #fafafa;
+                color: dimgray;
+                margin-right: 30px;
         }
 
