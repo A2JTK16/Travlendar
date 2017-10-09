@@ -19,23 +19,23 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
 public class Traveller {
     //atribut pada kelas traveller
     private int id_traveller;
-    private String username;
-    private String email;
-    private String password;
-    private String fullname;
+    private String nama_pengguna;
+    private String alamat_email;
+    private String kata_sandi;
+    private String nama_lengkap;
     
     /**
      * 
-     * @param fullname
-     * @param username
-     * @param email
-     * @param password 
+     * @param nama_lengkap
+     * @param nama_pengguna
+     * @param alamat_email
+     * @param kata_sandi
      */
-    public Traveller(String fullname, String username, String email, String password) {
-        this.fullname = fullname;
-        this.username = username;
-        this.email = email;
-        this.password = password;
+    public Traveller(String nama_lengkap, String nama_pengguna, String alamat_email, String kata_sandi) {
+        this.nama_lengkap = nama_lengkap;
+        this.nama_pengguna = nama_pengguna;
+        this.alamat_email = alamat_email;
+        this.kata_sandi = kata_sandi;
     }
     
     /*
@@ -43,7 +43,7 @@ public class Traveller {
      * Karena apabila tidak ada setter maka variabel akan/harus menjadi bertipe final(konstan) sehingga
      * nantinya variabel tersebut tidak dapat di rubah isinya
     */
-    
+
     /**
      * @return the id_traveller
      */
@@ -59,59 +59,58 @@ public class Traveller {
     }
 
     /**
-     * @return the username
+     * @return the nama_pengguna
      */
-    public String getUsername() {
-        return username;
+    public String getNama_pengguna() {
+        return nama_pengguna;
     }
 
     /**
-     * @param username the username to set
+     * @param nama_pengguna the nama_pengguna to set
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNama_pengguna(String nama_pengguna) {
+        this.nama_pengguna = nama_pengguna;
     }
 
     /**
-     * @return the email
+     * @return the alamat_email
      */
-    public String getEmail() {
-        return email;
+    public String getAlamat_email() {
+        return alamat_email;
     }
 
     /**
-     * @param email the email to set
+     * @param alamat_email the alamat_email to set
      */
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAlamat_email(String alamat_email) {
+        this.alamat_email = alamat_email;
     }
 
     /**
-     * @return the password
+     * @return the kata_sandi
      */
-    public String getPassword() {
-        return password;
+    public String getKata_sandi() {
+        return kata_sandi;
     }
 
     /**
-     * @param password the password to set
+     * @param kata_sandi the kata_sandi to set
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setKata_sandi(String kata_sandi) {
+        this.kata_sandi = kata_sandi;
     }
 
     /**
-     * @return the fullname
+     * @return the nama_lengkap
      */
-    public String getFullname() {
-        return fullname;
+    public String getNama_lengkap() {
+        return nama_lengkap;
     }
 
     /**
-     * @param fullname the fullname to set
+     * @param nama_lengkap the nama_lengkap to set
      */
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setNama_lengkap(String nama_lengkap) {
+        this.nama_lengkap = nama_lengkap;
     }
-    
 }

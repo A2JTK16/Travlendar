@@ -10,10 +10,10 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
  *
  * @author Reza Dwi Kurniawan
  */
-public class ModaTransportasi {
+public class Moda_Transportasi {
     private int speedKendaraan;
     private boolean availableTransportation;
-    public enum Transport{
+    public enum nama_transportasi{
         MOBIL, MOTOR, PESAWAT, KERETA, BUS;
     }
     
@@ -25,7 +25,7 @@ public class ModaTransportasi {
         return availableTransportation;
     }
     
-    public double getSpeedKendaraan (Transport vhc){
+    public double getSpeedKendaraan (nama_transportasi vhc){
         switch(vhc){
             //satuan kecepatan adalah km/jam
             case MOBIL :
@@ -49,17 +49,17 @@ public class ModaTransportasi {
     
     public void transportRecomendation(double distance, double waktuKosong){
         double[] arrayOfEta = new double [5]; //array untuk menampung variabel estimation time arrival (eta)
-        ModaTransportasi tm = new ModaTransportasi();
+        Moda_Transportasi tm = new Moda_Transportasi();
         EstimasiWaktu et = new EstimasiWaktu();
-        Location loc = new Location();
-        Event event = new Event();
+        Lokasi loc = new Lokasi();
+        Agenda event = new Agenda();
         boolean noTransport = true;
         et.setDistance(distance);
-        arrayOfEta[0] = et.countEstimationTime(tm.getSpeedKendaraan(Transport.PESAWAT),et.getDistance()); //var penampung estimation jika menggunakan pesawat
-        arrayOfEta[1] = et.countEstimationTime(tm.getSpeedKendaraan(Transport.KERETA),et.getDistance()); //var penampung estimation jika menggunakan kereta
-        arrayOfEta[2] = et.countEstimationTime(tm.getSpeedKendaraan(Transport.MOTOR),et.getDistance());  //var penampung estimation jika menggunakan motor
-        arrayOfEta[3] = et.countEstimationTime(tm.getSpeedKendaraan(Transport.MOBIL),et.getDistance());  //var penampung estimation jika menggunakan mobil
-        arrayOfEta[4] = et.countEstimationTime(tm.getSpeedKendaraan(Transport.BUS),et.getDistance());    //var penampung estimation jika menggunakan bus
+        arrayOfEta[0] = et.countEstimationTime(tm.getSpeedKendaraan(nama_transportasi.PESAWAT),et.getDistance()); //var penampung estimation jika menggunakan pesawat
+        arrayOfEta[1] = et.countEstimationTime(tm.getSpeedKendaraan(nama_transportasi.KERETA),et.getDistance()); //var penampung estimation jika menggunakan kereta
+        arrayOfEta[2] = et.countEstimationTime(tm.getSpeedKendaraan(nama_transportasi.MOTOR),et.getDistance());  //var penampung estimation jika menggunakan motor
+        arrayOfEta[3] = et.countEstimationTime(tm.getSpeedKendaraan(nama_transportasi.MOBIL),et.getDistance());  //var penampung estimation jika menggunakan mobil
+        arrayOfEta[4] = et.countEstimationTime(tm.getSpeedKendaraan(nama_transportasi.BUS),et.getDistance());    //var penampung estimation jika menggunakan bus
         System.out.println("\nRekomendasi kendaraan yang dapat digunakan: \n");
         for (int i=0; i<5; i++){
             if (arrayOfEta[i]<=waktuKosong){    //pengecekan jika waktu yg diperlukan ketika menaiki kendaraan lebih kecil dari waktu kosong yang dimiliki
@@ -71,7 +71,7 @@ public class ModaTransportasi {
                             et.printEstimationTime(arrayOfEta[i]);
                             System.out.println("\n");
                         } else {
-                            //System.out.println("nn");
+                            
                         }
                         break;
                     case 1:

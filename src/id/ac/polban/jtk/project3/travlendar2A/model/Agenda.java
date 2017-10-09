@@ -14,7 +14,7 @@ import java.util.Date;
  *
  * @author AGS
  */
-public class Event {
+public class Agenda {
     /**
      * REVIEW
      * 1.   Perlu Ditambahkan kode_lokasi dan id_traveller,
@@ -26,60 +26,62 @@ public class Event {
      * 3.   Perbaiki Lagi Getter dan Setter nya
      */
     
-    private String nama_event;
-    private Date arrivaltime;
-    private Date departuretime;
+    private String nama_agenda;
+    private Date waktu_mulai_agenda;
+    private Date waktu_berakhir_agenda;
     private int kodeLokasiAwal;
     private int kodeLokasiTujuan;
+    private String catatan; 
+    private Date tanggal;
     
-    public Event(){
-        this.nama_event = null;
-        this.arrivaltime = null;
-        this.departuretime = null;
+    public Agenda(){
+        this.nama_agenda = null;
+        this.waktu_mulai_agenda = null;
+        this.waktu_berakhir_agenda = null;
     }
    
     public String getEvent() {
-        Location objLoc = new Location();
-        return ("Nama Event : " + this.nama_event + "\nWaktu Berangkat : " + this.getDeparturetime() + "\nWaktu Tiba : " + this.getArrivaltime() + "\nLokasi : " + objLoc.getNamaLoc(this.getKodeLokasiTujuan()) + "\n") ;
+        Lokasi objLoc = new Lokasi();
+        return ("Nama Event : " + this.nama_agenda + "\nWaktu Berangkat : " + this.getWaktu_berakhir_agenda() + "\nWaktu Tiba : " + this.getWaktu_mulai_agenda() + "\nLokasi : " + objLoc.getNamaLoc(this.getKodeLokasiTujuan()) + "\n") ;
     }
 
     /**
-     * @param nama_event the nama_event to set
+     * @param nama_agenda the nama_agenda to set
      */
-    public void setNama_event(String nama_event) {
-         this.nama_event = nama_event;
+    public void setNama_agenda(String nama_agenda) {
+         this.nama_agenda = nama_agenda;
     }
 
     
-    public void setArrivalTime(Date arrivaltime) {
-        if(this.departuretime.before(arrivaltime)) {
-            this.arrivaltime = arrivaltime;
+    public void setWaktu_mulai_agenda(Date waktu_mulai_agenda) {
+        if(this.waktu_berakhir_agenda.before(waktu_mulai_agenda)) {
+            this.waktu_mulai_agenda = waktu_mulai_agenda;
         } else {
             System.out.println("Arrival time and departure time that you enter interchangeable, we will exchange it");
-            this.arrivaltime = this.getDeparturetime();
-            this.departuretime = arrivaltime;
+            this.waktu_mulai_agenda = this.getWaktu_berakhir_agenda();
+            this.waktu_berakhir_agenda = waktu_mulai_agenda;
         }
         
     }
 
     
-    public void setDepartureTime(Date departuretime) {
+    public void setWaktu_berakhir_agenda(Date waktu_berakhir_agenda) {
 
-        this.departuretime = departuretime;
+        this.waktu_berakhir_agenda = waktu_berakhir_agenda;
     }
 
     /**
-     * @return the arrivaltime
+     * @return the waktu_mulai_agenda
      */
-    public Date getArrivaltime() {
-        return arrivaltime;
+    public Date getWaktu_mulai_agenda() {
+        return waktu_mulai_agenda;
     }
 
     /**
-     * @return the departuretime
+     * @return the waktu_berakhir_agenda
      */
-    public Date getDeparturetime() {
-        return departuretime;
+    public Date getWaktu_berakhir_agenda() {
+        return waktu_berakhir_agenda;
     }
 
     /**

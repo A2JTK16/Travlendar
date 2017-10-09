@@ -1,6 +1,4 @@
 package id.ac.polban.jtk.project3.travlendar2A.model;
-import id.ac.polban.jtk.project3.travlendar2A.model.ModaTransportasi.Transport;
-
 
 /*
  * To change this license header, choose License Headers in Project Properties.
