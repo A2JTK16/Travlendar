@@ -197,7 +197,8 @@ a:hover{
 }
 
 .kotak-acount{
- 
+    float: right;
+    background-color: transparent;
 }
 
 .acount-nama{
@@ -229,7 +230,7 @@ a:hover{
 
 .dropbtn {
     margin-right: 6%;
-    background-color: #4CAF50;
+    background-color: transparent;
     color: white;
     padding: 2px;
     margin: 2px;
@@ -239,7 +240,7 @@ a:hover{
 }
 
 .dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
+    background-color: transparent;
 }
 
 .dropdown {

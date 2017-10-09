@@ -170,7 +170,7 @@ a:hover{
   float: left;
   width: 100%;
   height: auto;
-  background: #1565C0;
+  background: linear-gradient(135deg,#043a61,#0471b1 26%,#0985bb 51%,#16a2b1 76%,#22bc9d);;
   position: fixed;
   border-top: 3px solid #1976D2;
   box-shadow: 0 2px 2px #727272;
@@ -204,8 +204,7 @@ a:hover{
 
 .kotak-acount{
     float: right;
-    margin-right: 2%;
-    background: #1976D2;
+    background-color: transparent;
 }
 
 .acount-nama{
@@ -237,7 +236,7 @@ a:hover{
 
 .dropbtn {
     margin-right: 6%;
-    background-color: #4CAF50;
+    background-color: transparent;
     color: white;
     padding: 2px;
     margin: 2px;
@@ -247,7 +246,7 @@ a:hover{
 }
 
 .dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
+    background-color: transparent;
 }
 
 .dropdown {
