@@ -11,7 +11,63 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
  *
  * @author Auliya Aqma Dinillah
  */
-public class Lokasi extends Kota{
+public class Lokasi{
+
+    /**
+     * @return the kd_kota
+     */
+    public int getKd_kota() {
+        return kd_kota;
+    }
+
+    /**
+     * @param kd_kota the kd_kota to set
+     */
+    public void setKd_kota(int kd_kota) {
+        this.kd_kota = kd_kota;
+    }
+
+    /**
+     * @return the nm_kota
+     */
+    public String getNm_kota() {
+        return nm_kota;
+    }
+
+    /**
+     * @param nm_kota the nm_kota to set
+     */
+    public void setNm_kota(String nm_kota) {
+        this.nm_kota = nm_kota;
+    }
+
+    /**
+     * @return the kd_provinsi
+     */
+    public int getKd_provinsi() {
+        return kd_provinsi;
+    }
+
+    /**
+     * @param kd_provinsi the kd_provinsi to set
+     */
+    public void setKd_provinsi(int kd_provinsi) {
+        this.kd_provinsi = kd_provinsi;
+    }
+
+    /**
+     * @return the nm_provinsi
+     */
+    public String getNm_provinsi() {
+        return nm_provinsi;
+    }
+
+    /**
+     * @param nm_provinsi the nm_provinsi to set
+     */
+    public void setNm_provinsi(String nm_provinsi) {
+        this.nm_provinsi = nm_provinsi;
+    }
     
      /**
      * REVIEW :
@@ -30,6 +86,10 @@ public class Lokasi extends Kota{
     private String [] alamat_tempat = {"Rumah", "Kantor DPRD Bangka Tengah", "Bandara Depati Amir", "Bandara Soekarno Hatta", "Kantor DPRD Jakarta", "Tanggerang"};
     private int [] kd_lokasi = {1,2,3,4,5,6};
     private int [] tipe_Lokasi = {0,0,1,1,0,0}; //1=bandara, 0=biasa
+    private int kd_kota;
+    private String nm_kota;
+    private int kd_provinsi;
+    private String nm_provinsi;
     
     int m = alamat_tempat.length;
     
