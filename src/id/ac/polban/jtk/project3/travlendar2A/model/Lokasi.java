@@ -11,7 +11,7 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
  *
  * @author Auliya Aqma Dinillah
  */
-public class Lokasi {
+public class Lokasi extends Kota{
     
      /**
      * REVIEW :
@@ -29,27 +29,31 @@ public class Lokasi {
     
     private String [] alamat_tempat = {"Rumah", "Kantor DPRD Bangka Tengah", "Bandara Depati Amir", "Bandara Soekarno Hatta", "Kantor DPRD Jakarta", "Tanggerang"};
     private int [] kd_lokasi = {1,2,3,4,5,6};
-    private int [] tipe_Lokasi = {0,0,1,1,0,0};
+    private int [] tipe_Lokasi = {0,0,1,1,0,0}; //1=bandara, 0=biasa
     
     int m = alamat_tempat.length;
     
     //===============method==================
     
+    //untuk menampilkan daftar alamat
     public void tampil_Lokasi () {
         for (int i=1;i<=m;i++){
             System.out.println(i + ". " + getNamaLoc(i));
         }
     }
     
+    //untuk mereturn alamat
     public String getNamaLoc (int kodeTempat) {
         return alamat_tempat[kodeTempat-1];
     }
 
+    //untuk mereturn tipe lokasi (bandara atau bukan)
     public int getTipe_Lokasi (int KodeLoc)
     {
         return tipe_Lokasi[KodeLoc];
     }
     
+    //untuk pengecekan apakah bisa menggunakan pesawat atau tidak
     public boolean bisaDilaluiPesawat(int kodeTempatAwal, int kodeTempatAkhir)
     {
         Lokasi objLoc = new Lokasi ();

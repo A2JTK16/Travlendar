@@ -9,7 +9,7 @@ package id.ac.polban.jtk.project3.travlendar2A.model;
  *
  * @author Auliya Aqma Dinillah
  */
-public class Kota {
+public class Kota extends Provinsi{
     private int kd_kota;
     private String nm_kota;
 
