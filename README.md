@@ -1,6 +1,8 @@
-# Travlendar Back End
+# Travlendar
 
 ## Deskripsi
-Aplikasi ini adalah aplikasi Console Java Travlendar. 
+Aplikasi ini adalah aplikasi Web Java Travlendar. 
 
 ## Back End Team
+
+## Front End Team
