@@ -1,6 +1,6 @@
-# Travlendar Web FrontEnd A2 
+# Travlendar Back End
 
 ## Deskripsi
-Ini adalah aplikasi website berbasis java menggunakan Netbeans 8.2
+Aplikasi ini adalah aplikasi Console Java Travlendar. 
 
-## Front End Team
+## Back End Team
