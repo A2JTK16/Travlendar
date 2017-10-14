@@ -66,7 +66,7 @@
 				<h4> List Of Traveller </h4>
 				<div class="kotak-search">
 					<div class="icon-search">
-						<img src="${pageContext.request.contextPath}/Assets2/icon/search.png">
+						<img src="../Assets2/icon/search.png">
 					</div> <!--icon-search-->
 					<input class="search "type="text" placeholder="Search Traveller ... "/>
 				</div> <!--kotak-search-->
