@@ -262,10 +262,10 @@
 		</div> <!--middle-->
 		
 		<div class="middle">
-                    <div class="kotak-traveller">
+                  <!--  <div class="kotak-traveller">
                     
 				    	
-							  	<div class="modal-header">
+							    <div class="modal-header">
 							      <h5>Add New Event</h5>
 							    </div>
 							 
@@ -384,14 +384,20 @@
 							
 							
 				  
-                    </div>
+                    </div> -->
                     
                     <div class="kotak-traveller">
 			<div id='calendar'></div>
 			
 			
                     </div>
+                  
+                    <div class="kotak-traveller">
+                        <a href="../Event/index.jsp"><button id="myBtn"> + Add New Event </button></a>
+                    </div> <!--kotak-traveller-->
 		</div> <!--/ .middle -->
+                
+               
 
 		
 	</div> <!--/ .main -->

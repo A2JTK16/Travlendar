@@ -771,3 +771,72 @@ a:hover{
                 margin-right: 30px;
         }
 
+.kotakna{
+	float: left;
+	margin: 10px;
+	padding: 10px;
+	max-width: 700px;
+	height: auto;
+        overflow: hidden;
+	border: 1px solid #ddd;
+	border-radius: 0.2em;
+}
+
+
+.k-text{
+    padding: 2px;
+    margin: 2px;
+    width: auto;
+    float: left;
+}
+
+.k-textna{
+    font: 15px Arial;
+    color: #454545;
+    padding: 9px;
+    padding-bottom: 14px;
+    margin: 9px;
+}
+
+.k-input{
+    padding: 2px;
+    margin: 2px;
+    width: auto;
+    float: left;
+}
+
+.k-event{
+    padding: 8px;
+    margin: 8px;
+    font: 15px Arial;
+    color: #454545;
+    border: 1px solid #ddd;
+}
+
+.lendar{
+    float: left;
+    padding: 5px;
+    margin: 5px;
+    margin-right: 80px;
+}
+
+.lendar img{
+    width: 35px;
+    height: 35px;
+}
+
+.back, .save{
+    padding: 7px;
+    margin: 7px;
+    font: 14px Arial;
+    font-weight: bold;
+    height: 50px;
+    width: 100px;
+    color: #fafafa;
+    background:#008CBA;
+    border: none;
+}
+
+.save{
+    background: #4CAF50;
+}

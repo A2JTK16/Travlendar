@@ -31,7 +31,7 @@
                     session.setAttribute("userid", userid);
                     out.println("welcome " + userid);
                     out.println("<a href='logout.jsp'>Log out</a>");
-                    response.sendRedirect("Schedule");
+                    response.sendRedirect("Traveller");
                 } else {
                     out.println("<span class='gagal'> Invalid password </span><a class='try-again' href='index.jsp'>try again</a>");
                 }
