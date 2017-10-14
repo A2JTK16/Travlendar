@@ -10,8 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/stylecalnedar.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/responsive-calendar.css">
+<link rel="stylesheet" type="text/css" href="../Assets2/css/stylecalnedar.css">
+<link rel="stylesheet" type="text/css" href="../Assets2/css/responsive-calendar.css">
 <title>JSP Page</title>
 <meta charset='utf-8' />
 <link href='fullcalendar.min.css' rel='stylesheet' />
@@ -115,7 +115,7 @@
 <div class="menu-atas">
 	<div class="header">
             <div class="logonya">
-                <img src="${pageContext.request.contextPath}/Assets2/icon/logo.png">
+                <img src="../Assets2/icon/logo.png">
             </div>
             <div class="logo">
                 <h1>Travelendar</h1>
@@ -131,7 +131,7 @@
                        <button onclick="myFunction()" class="dropbtn">
                            
                            <div class="icon-account">
-                            <img src="${pageContext.request.contextPath}/Assets2/icon/Account.png">
+                            <img src="../Assets2/icon/Account.png">
                            </div>
                            
                        </button>
@@ -182,7 +182,7 @@
 		
                         <div class="menu-admin"> 
 				<div class="icon-setting">
-                                    <img src="${pageContext.request.contextPath}/Assets2/icon/welcome.png">
+                                    <img src="../Assets2/icon/welcome.png">
 				</div> <!--icon-setting-->
                             
 				<h2 class="text-admin">Administrator</h2>
@@ -193,7 +193,7 @@
 			<div class="hides">			
 				<button onclick="javascript:show()">
                                     <div class="turun">
-                                        <img src="${pageContext.request.contextPath}/Assets2/icon/responsive.png">
+                                        <img src="../Assets2/icon/responsive.png">
                                     </div>
 				</button>
 			</div>
@@ -206,7 +206,7 @@
                         <a href="../Traveller/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/traveller.png">
+					<img src="../Assets2/icon/traveller.png">
 				</div> <!--icon-setting-->
 				<h2>Traveller</h2>
 	
@@ -216,7 +216,7 @@
                         <a href="../Location/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/lokasi.png">
+					<img src="../Assets2/icon/lokasi.png">
 				</div> <!--icon-setting-->
                                 <h2>Location</h2>
 			</div>
@@ -225,7 +225,7 @@
                         <a href="../TransportationMode/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/car.png">
+					<img src="../Assets2/icon/car.png">
 				</div> <!--icon-setting-->
                                 <h2>Transportation Mode</h2>
 			</div> <!--menu-manage-->
@@ -234,7 +234,7 @@
                         <a href="../DistanceMatrix/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/jarak.png">
+					<img src="../Assets2/icon/jarak.png">
 				</div> <!--icon-setting-->
 				<h2>Distance</h2>
 			</div>
@@ -243,7 +243,7 @@
                         <a href="../EstimationTime/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/time.png">
+					<img src="../Assets2/icon/time.png">
 				</div> <!--icon-setting-->
                                 <h2>Estimation Time</h2>
 			</div> <!--menu-manage-->

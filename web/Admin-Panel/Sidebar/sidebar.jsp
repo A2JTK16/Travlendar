@@ -19,7 +19,7 @@
 		
                         <div class="menu-admin"> 
 				<div class="icon-setting">
-                                    <img src="${pageContext.request.contextPath}/Assets2/icon/welcome.png">
+                                    <img src="../Assets2/icon/welcome.png">
 				</div> <!--icon-setting-->
                             
 				<h2 class="text-admin">Administrator</h2>
@@ -30,7 +30,7 @@
 			<div class="hides">			
 				<button onclick="javascript:show()">
                                     <div class="turun">
-                                        <img src="${pageContext.request.contextPath}/Assets2/icon/responsive.png">
+                                        <img src="../Assets2/icon/responsive.png">
                                     </div>
 				</button>
 			</div>
@@ -42,7 +42,7 @@
                         <a href="../Traveller/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/traveller.png">
+					<img src="../Assets2/icon/traveller.png">
 				</div> <!--icon-setting-->
 				<h2>Traveller</h2>
 	
@@ -52,7 +52,7 @@
                         <a href="../Location/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/lokasi.png">
+					<img src="../Assets2/icon/lokasi.png">
 				</div> <!--icon-setting-->
                                 <h2>Location</h2>
 			</div>
@@ -61,7 +61,7 @@
                         <a href="../TransportationMode/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/car.png">
+					<img src="../Assets2/icon/car.png">
 				</div> <!--icon-setting-->
                                 <h2>Transportation Mode</h2>
 			</div> <!--menu-manage-->
@@ -70,7 +70,7 @@
                         <a href="../DistanceMatrix/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/jarak.png">
+					<img src="../Assets2/icon/jarak.png">
 				</div> <!--icon-setting-->
 				<h2>Distance</h2>
 			</div>
@@ -79,7 +79,7 @@
                         <a href="../EstimationTime/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
-					<img src="${pageContext.request.contextPath}/Assets2/icon/time.png">
+					<img src="../Assets2/icon/time.png">
 				</div> <!--icon-setting-->
                                 <h2>Estimation Time</h2>
 			</div> <!--menu-manage-->

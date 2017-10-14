@@ -52,14 +52,14 @@
                                     <input class="k-event" type="text" style="width: 300px">
                                     <br>
                                     <input class="k-event" id="date" type="date" value="2017-09-08" style="float:left"/> 
-                                    <div class="lendar"> <img src="${pageContext.request.contextPath}/Assets2/icon/calendar-event.png"> </div>
+                                    <div class="lendar"> <img src="../Assets2/icon/calendar-event.png"> </div>
                                     <br>
                                     <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>:
                                     <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>
                                     <br>
                                     
                                     <input class="k-event" id="date" type="date" value="2017-09-08" style="float:left;"/>
-                                    <div class="lendar"> <img src="${pageContext.request.contextPath}/Assets2/icon/calendar-event.png"> </div>
+                                    <div class="lendar"> <img src="../Assets2/icon/calendar-event.png"> </div>
                                     <br>
                                     <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>:
                                     <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>

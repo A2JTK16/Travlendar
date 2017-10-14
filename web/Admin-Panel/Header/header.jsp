@@ -10,8 +10,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/styletraveller.css">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/responsive.css">
+        <link rel="stylesheet" type="text/css" href="../Assets2/css/styletraveller.css">
+        <link rel="stylesheet" type="text/css" href="../Assets2/css/responsive.css">
         <title>Header</title>
     </head>
     <body>
@@ -23,7 +23,7 @@
 <div class="menu-atas">
 	<div class="header">
             <div class="logonya">
-                <img src="${pageContext.request.contextPath}/Assets2/icon/logo.png">
+                <img src="../Assets2/icon/logo.png">
             </div>
             <div class="logo">
                 <h1>Travelendar</h1>
@@ -39,7 +39,7 @@
                        <button onclick="myFunction()" class="dropbtn">
                            
                            <div class="icon-account">
-                            <img src="${pageContext.request.contextPath}/Assets2/icon/Account.png">
+                            <img src="../Assets2/icon/Account.png">
                            </div>
                            
                        </button>
