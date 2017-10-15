@@ -116,8 +116,8 @@
                 <label for="show-menu" class="show-menu"></label>
                         <ul id="menu">
                                 <li><a href="#">Month</a></li>
-                                <li class="active"><a href="halaman_utama.jsp">Day</a>
-                                <li><a href="list_event.jsp">List</a>
+                                <li><a href="halaman_utama.jsp">Day</a>
+                                <li  class="active"><a href="list_event.jsp">List</a>
                                 <li><a href="#">Add New Event +</a></li>
                         </ul>
                 </nav>
@@ -127,14 +127,10 @@
 
 
 
-            <iframe class="middle" height="400px" src="calendar_table.jsp" scrolling="yes">
+            <iframe class="middle" height="560px" src="event_table.jsp" scrolling="yes">
 
             </iframe>
 
-            <div class="middle2">
-                <div class="text-view"> Save list event for this day  ?.. </div>
-                <a href="#"><button class="view-travel"> Save as Pdf ! </button></a>
-            </div> <!--middle2-->
 
         </div> <!--main-->
 

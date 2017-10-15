@@ -32,7 +32,7 @@
             <div class="dropdown" style="float:right;">
                 <button class="dropbtn">
                     <div class="icon-account">
-                            <img src="Assets/icon/Account2.png">
+                            <img src="Assets/icon/akun1.png">
                     </div>
                 </button>
                 <div class="dropdown-content">
@@ -45,7 +45,7 @@
             <div class="dropdown" style="float:right;">
                 <button class="dropbtn">
                     <div class="icon-account">
-                            <img src="Assets/icon/notif.png">
+                            <img src="Assets/icon/notif2.png">
                     </div>
                 </button>
                 <div class="dropdown-content">

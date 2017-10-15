@@ -30,6 +30,21 @@ body{
         padding: 10px;
 }
 
+.wadah2{
+	max-width: 100%;
+	margin: auto;
+	background: #0471b1;
+	overflow: hidden;
+        padding: 10px;
+}
+
+.slogan{
+        padding-top: 18px;
+	margin: 9px;
+	background: none;
+	overflow: hidden;
+}
+
 p{
 	margin-bottom: 20px;
 	line-height: 1.5em;
@@ -37,9 +52,19 @@ p{
 
 
 h1{
-	padding: 4px;
-	margin: 4px;
-	font: 26px sans-serif;
+	padding: 3px;
+	margin: 3px;
+	font: 30px Trebuchet MS;
+	font-weight: bold;
+	color: #e0e0e0;
+	background: none;
+}
+
+.text-view{
+        float: left;
+	padding: 16px;
+	margin: 16px;
+	font: 30px Trebuchet MS;
 	font-weight: bold;
 	color: #454545;
 	background: none;
@@ -65,6 +90,15 @@ h4{
 	background: none;
 	border: none;
 	border-radius: 0.2em;
+}
+
+h6{
+	padding: 12px;
+	margin: 12px;
+	font: 60px monospace;
+	font-weight: bold;
+	color: #fafafa;
+	text-align: center;
 }
 
 .kotak-search{
@@ -172,10 +206,10 @@ a:hover{
   float: left;
   width: 100%;
   height: auto;
-  background: #fff;
+  background:#616161;
   position: fixed;
   border-top: 3px solid #1976D2;
-  box-shadow: 0 2px 2px #727272;
+  box-shadow: 0 2px 2px #bdbdbd;
   top: 0;
   left: 0;
   z-index: 9999;
@@ -235,7 +269,7 @@ a:hover{
 
 
 .dropbtn {
-    background-color: #fff;
+    background-color: #757575;
     color: white;
     padding: 4px;
     margin: 4px;
@@ -282,6 +316,7 @@ a:hover{
     float: right;
     overflow: hidden;
     border: 1px solid #0D47A1;
+    background: #757575;
 }
 
 .cari{
@@ -290,8 +325,9 @@ a:hover{
     height: 30px;
     width: 300px;
     font: 14px Arial;
-    color: #757575;
+    color: #fafafa;
     border: none;
+    background: transparent;
 }
 
 .icon-cari{
@@ -318,6 +354,7 @@ a:hover{
             padding: 9px;
             margin: 9px;
             border: 1px solid #ddd;
+            border-radius: 0.3em;
             background: #f4f4f4;
             overflow: hidden;
         }        
@@ -354,19 +391,45 @@ a:hover{
 		margin: 10px;
 		float: left;
 	}
-
+        
+        
+ 
+.middle2{
+		width: 73%;
+		border: none;
+                border-radius: 0.2em;
+                box-shadow: 0 1px 1px #b3b3b3;
+		background: #f4f4f4;
+		overflow: hidden;
+		padding: 10px;
+		margin: 10px;
+		float: left;
+	}        
+        
+        .moda{
+            padding: 0;
+            margin: 0;
+        }
+        
+        .moda img{
+            padding: 0 auto;
+            width: 30px;
+            height: 30px;
+        }
+        
+        
 #wrapper {width: 600px; margin: 5px auto;overflow: hidden;}
 
-nav[role="dropdown"] a, label.show-menu {color: #fff !important;text-decoration: none;font-size: 14px;display:block; font-family:sans-serif;}
+nav[role="dropdown"] a, label.show-menu {color: #fff !important;text-decoration: none;font-size: 14px;display:block; font-family:Helvetica;}
 nav[role="dropdown"] ul {padding: 0;margin: 0 auto;width: 100%;list-style: none;}
 nav[role="dropdown"] ul > li {float: left;padding: .64em .55em;width: 22%;
-/*start gradient bg*/background: #014a7d; background:  #006db0;
-text-align: center;cursor: pointer; border: 1px solid #cccccc; margin-right:0.2%;height: 39px;}
+/*start gradient bg*/background: #014a7d;
+text-align: center;cursor: pointer; border: none; margin-right:0.2%;height: 39px;}
 nav[role="dropdown"] ul > li:first-child {width:22%; moz-border-radius-topleft: 4px;-webkit-border-top-left-radius: 4px;border-top-left-radius: 4px;}
 nav[role="dropdown"] ul > li:last-child  {width:33%; moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px; border-top-right-radius: 4px;}
 nav[role="dropdown"] ul > li:hover > a {color: #f1f1f1 !important;}
-nav[role="dropdown"] ul > li:hover {background: #014a7d; border:1px #333 solid;}
-nav[role="dropdown"] ul > li.active {background:rgba(215,130,0,1.00); border:1px rgba(164,81,1,1.00) solid;}
+nav[role="dropdown"] ul > li:hover {background: #054e69; border:1px #333 solid;}
+nav[role="dropdown"] ul > li.active {background:rgba(215,130,0,1.00); border:none;}
 
 /*  properties to display mobile navigation */
 nav[role="dropdown"] .show-menu {text-decoration: none;	color: #ffffff;  border: 0.15em solid rgba(60, 60, 60, 0.2); background:rgba(11,78,138,1.00); text-align: right; min-height: 2.25em;  cursor: pointer; display: none;}
@@ -526,7 +589,17 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
 }
 
 
-
+.view-travel{
+    float: right;
+    width: 250px;
+    height: 100px;
+    font: 18px Arial;
+    font-weight: bold;
+    color: #fafafa;
+    background: #0471b1;
+    border: none;
+    border-radius: 0.2em;
+}
 
 
 		/* 
@@ -535,11 +608,13 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
 		table { 
 			width: 100%; 
 			border-collapse: collapse;
+                        background: #f4f4f4;
 		}
 		/* Zebra striping */
 		tr:nth-of-type(odd) { 
 			background: #eee; 
 		}
+                
 		
 		td, th{ 
 			padding: 7px;
