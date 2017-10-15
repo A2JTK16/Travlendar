@@ -3,9 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package id.ac.polban.jtk.project3.travlendar2A.model;
+package id.ac.polban.jtk.project3.travlendar2A.Test;
 
 
+import id.ac.polban.jtk.project3.travlendar2A.Helpers.Moda_Transportasi;
+import id.ac.polban.jtk.project3.travlendar2A.Helpers.Moda_Transportasi;
+import id.ac.polban.jtk.project3.travlendar2A.Helpers.ParseDate;
+import id.ac.polban.jtk.project3.travlendar2A.Helpers.ParseDate;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Agenda;
+import id.ac.polban.jtk.project3.travlendar2A.Models.EstimasiWaktu;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Lokasi;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Perjalanan;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
 import java.text.ParseException;
 import java.util.ArrayList;
 //import java.util.Calendar;

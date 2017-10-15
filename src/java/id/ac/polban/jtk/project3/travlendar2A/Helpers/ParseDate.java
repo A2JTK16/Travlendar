@@ -5,7 +5,7 @@
  * 
  * Author : Mufid Jamaluddin
  */
-package id.ac.polban.jtk.project3.travlendar2A.model;
+package id.ac.polban.jtk.project3.travlendar2A.Helpers;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

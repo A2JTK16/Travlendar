@@ -1,4 +1,8 @@
-package id.ac.polban.jtk.project3.travlendar2A.model;
+package id.ac.polban.jtk.project3.travlendar2A.Helpers;
+
+import id.ac.polban.jtk.project3.travlendar2A.Models.Agenda;
+import id.ac.polban.jtk.project3.travlendar2A.Models.EstimasiWaktu;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Lokasi;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
