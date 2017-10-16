@@ -126,7 +126,7 @@
                 </div>
 
 
-
+            <div class="ket-tgl"> September 2017 </div> 
             <iframe class="middle" height="560px" src="event_table.jsp" scrolling="yes">
 
             </iframe>

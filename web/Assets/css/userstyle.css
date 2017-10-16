@@ -489,8 +489,32 @@ a:hover{
     border: none;
 }
 
-        
+.k-transport{
+    	float: left;
+        margin-right: 5px;
+        margin-left: 5px;
+	background: none;
+	overflow: hidden;
+        padding: 10px;
+}
 
+.k-popup{
+    	max-height: 100%;
+	margin: auto;
+	background: none;
+	overflow: hidden;
+        padding: 10px;
+}
+
+.trans{
+    float: left;
+    padding: 5px;
+    margin: 5px;
+}
+.trans img{
+    width: 95px;
+    height: 95px;
+}
 
         .moda{
             padding: 0;
@@ -502,47 +526,6 @@ a:hover{
             width: 30px;
             height: 30px;
         }
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-}
-
-.modal-content {
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 0;
-    border: 1px solid #888;
-    width: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s
-}        
-
-#myBtn{
-    padding: 7px;
-    margin: 7px;
-    margin-top: 17px;
-    font: 14px Arial;
-    font-weight: bold;
-    height: 50px;
-    width: 100px;
-    color: #fafafa;
-    background:#008CBA;
-    border: none;
-}
 
 #wrapper {width: 600px; margin: 5px auto;overflow: hidden;}
 
@@ -804,3 +787,192 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
                 color: dimgray;
                 margin-right: 30px;
         }
+
+        
+        
+        
+
+/* =============================================================================== */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+	padding: 10px;
+	padding-top: 80px;
+   	margin: 10px auto;
+    bottom: 0;
+    background-color: transparent;
+    width: auto;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background: linear-gradient(135deg,#043a61,#0471b1 26%,#0985bb 51%,#16a2b1 76%,#22bc9d);
+    color: white;
+}
+
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+
+#myBtn{
+    padding: 7px;
+    margin: 20px;
+    font: 14px Arial;
+    font-weight: bold;
+    height: 50px;
+    width: 100px;
+    color: #fafafa;
+    background:#008CBA;
+    border: none;
+	}
+#myBtnview{
+    padding: 7px;
+    margin: 7px;
+    font: 12px Arial;
+    font-weight: bold;
+    color: #fafafa;
+    background:#008CBA;
+    border: none;
+	}
+        
+#myBtnview, #myBtnview2, #myBtnview3, #myBtnview3, #myBtnview4 {
+    padding: 7px;
+    margin: 7px;
+    font: 12px Arial;
+    font-weight: bold;
+    color: #fafafa;
+    background:#008CBA;
+    border: none;
+}
+
+.deletelist{
+    padding: 7px;
+    margin: 7px;
+    font: 12px Arial;
+    font-weight: bold;
+    color: #fafafa;
+    background:#ff9900;
+    border: none;
+}
+        
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 800px;
+  margin: 0 auto 100px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}
+
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+.form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.form .register-form {
+  display: none;
+}
+	
+.ket-tgl{
+    float: left;
+    padding: 3px;
+    margin: 3px;
+    margin-left: 10px;
+    font: 18px Arial;
+    font-weight: bold;
+    color: #f4f4f4;
+}
