@@ -45,8 +45,14 @@
 							      <p class="message">Already registered? <a href="#">Sign In</a></p>
 							    </form>
 							    <form class="login-form">
-							      <input type="text" placeholder="Name of Location ..."/>
-							      <input type="text" placeholder="Address ..."/>
+                                                                <select class="dropdown-location">
+                                                                    <option value="SLocation0">Jawa Barat</option>
+                                                                    <option value="SLocation1">Jakarta</option>
+                                                                    <option value="SLocation2">Banten</option>
+                                                                    <option value="SLocation3">Jawa Tengah</option>
+                                                                    <option value="SLocation4">Jawa TImur</option>
+                                                                </select>
+							      <input type="text" placeholder="City Name ..."/>
 							      <button> Save </button>
                                                               <%--<p class="message">Not registered? <a href="#">Create an account</a></p>--%>
 							    </form>
@@ -62,6 +68,13 @@
 		
 			<div class="kotak-traveller">
 				<h4> List Of Location </h4>
+                                <select class="dropdown-location-choose">
+                                    <option value="SLocation0">Jawa Barat</option>
+                                    <option value="SLocation1">Jakarta</option>
+                                    <option value="SLocation2">Banten</option>
+                                    <option value="SLocation3">Jawa Tengah</option>
+                                    <option value="SLocation4">Jawa TImur</option>
+                                </select>
 				<div class="kotak-search">
 					<div class="icon-search">
 						<img src="${pageContext.request.contextPath}/Assets2/icon/search.png">
@@ -75,43 +88,37 @@
 						<thead>
 						<tr>
 							<th>ID</th>
-							<th>Location</th>
-							<th>Detail</th>
+                                                        <th>City</th>
 							<th>Action</th>
 						</tr>
 						</thead>
 						<tbody>
 						<tr>
 							<td>001</td>
-							<td>Home</td>
-							<td>Jl. Bangka</td>
+							<td>Bandung</td>							
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
                                                 
                                                 <tr>
 							<td>002</td>
-							<td>Bandara Depati Amir</td>
-							<td>Jl. Bangka</td>
+							<td>Garut</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
                                                 
                                                 <tr>
 							<td>003</td>
-							<td>Bandara Soekarno Hatta</td>
-							<td>Jl. Bandung</td>
+							<td>Tasikmalaya</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
 						
                                                 <tr>
 							<td>004</td>
-							<td>Kantor DPRD Jakarta</td>
-							<td>Situsaeur, Bojongloa Kidul</td>
+							<td>Sumedang</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
                                                 
                                                 <tr>
 							<td>005</td>
-							<td>Tanggerang</td>
-							<td>Jl.Tanggerang</td>
+							<td>Cirebon</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
 						
