@@ -293,6 +293,18 @@ a:hover{
     font-size: 14px;
     color: #535559;
 }
+.dropdown-location-choose{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    width: 250px;
+    height: 30px;
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    color: #535559;
+}
 
 .dropdown-time{
     float: left;
