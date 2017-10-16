@@ -526,6 +526,18 @@ a:hover{
             width: 30px;
             height: 30px;
         }
+        
+        .moda2{
+            float: left;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .moda2 img{
+            padding: 0 auto;
+            width: 30px;
+            height: 30px;
+        }
 
 #wrapper {width: 600px; margin: 5px auto;overflow: hidden;}
 
@@ -920,17 +932,7 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-.form input {
-  font-family: "Roboto", sans-serif;
-  outline: 0;
-  background: #f2f2f2;
-  width: 100%;
-  border: 0;
-  margin: 0 0 15px;
-  padding: 15px;
-  box-sizing: border-box;
-  font-size: 14px;
-}
+
 
 
 .form button {
@@ -975,4 +977,36 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
     font: 18px Arial;
     font-weight: bold;
     color: #f4f4f4;
+}
+
+.kotak-event{
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    width: auto;
+    height: auto;
+    overflow: hidden;
+}
+
+.geser1{
+    float: left;
+    padding: 3px;
+    margin: 3px;
+    margin-right: 100px;
+}
+
+.note{
+    float: left;
+    padding: 3px;
+    margin: 3px;
+}
+
+.kotak-note{
+    float: left;
+    padding: 3px;
+    margin: 3px;
+    height: 40px;
+    width: 300px;
+    background: transparent;
+    border: 1px solid #ddd;
 }

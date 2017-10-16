@@ -118,7 +118,7 @@
                                 <li><a href="#">Month</a></li>
                                 <li class="active"><a href="halaman_utama.jsp">Day</a>
                                 <li><a href="list_event.jsp">List</a>
-                                <li><a href="#">Add New Event +</a></li>
+                                <li><a href="add_new_event.jsp">Add New Event +</a></li>
                         </ul>
                 </nav>
                 <!-- end navigation -->

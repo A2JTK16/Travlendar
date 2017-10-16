@@ -55,6 +55,38 @@
                                                                                                 <div class="modal-header">
                                                                                               <span class="close">&times;</span>
                                                                                               <h5>Event Info</h5>
+                                                                                              
+                                                                                              <div class="kotak-event">
+                                                                                                  <span class="geser1">ke Kantor,</span><span class="geser1">11/9/2017 07:00 AM - </span> <span class="geser1">11/9/2017 08:00 AM</span>
+                                                                                                  <span class="geser1">Place : DPRD Bangka </span>
+                                                                                              </div>
+                                                                                              
+                                                                                              <div class="kotak-event">
+                                                                                                  <div class="note"> Note :</div>
+                                                                                                  <input class="kotak-note" type="text">
+                                                                                              </div>
+                                                                                              
+                                                                                              <div class="kotak-event">
+                                                                                                  <span class="geser1">Form Rumah,</span> Kab. Bangka Tengah <span class="geser1">Prov. Bangka Belitung</span>
+                                                                                              </div>
+                                                                                              
+                                                                                              <div class="kotak-event">
+                                                                                                  <span class="geser1">15 KM</span>
+                                                                                              </div>
+                                                                                              
+                                                                                              <div class="kotak-event">
+                                                                                                  <span class="geser1"> To, Koba Pada Mulia , Kab. Bangka Tengah, Prov. Bangka Belitung </span>
+                                                                                              </div>
+                                                                                              
+                                                                                              <div class="kotak-event">
+                                                                                                  <div class="moda2"><img src="Assets/icon/motor2.png"></div><span class="geser1">  Use </span> 
+                                                            
+                                                                <span class="geser1"> At 06:30 AM </span> 
+                                                                                              </div>
+                                                                                              
+                                                                                              <div class="kotak-event">
+                                                                                                  <input type="submit" class="deletelist" value="Edit">
+                                                                                              </div>
                                                                                             </div>
 
                                                                                           </div>
