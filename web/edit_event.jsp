@@ -1,6 +1,6 @@
-<%--
-    Document   : add_new_event
-    Created on : Oct 15, 2017, 7:34:17 PM
+<%-- 
+    Document   : edit_event
+    Created on : Oct 16, 2017, 9:01:43 PM
     Author     : Agit
 --%>
 
@@ -45,24 +45,24 @@
                                     <div class="k-textna">Note</div>
                                 </div>
                                 <div class="k-input">
-                                    <input class="k-event" type="text" style="width: 300px">
+                                    <input class="k-event" placeholder="Ke Kantor" type="text" style="width: 300px">
                                     <br>
-                                    <input class="k-event" id="date" type="date" value="2017-09-08" style="float:left"/> 
+                                    <input class="k-event" id="date" type="date" value="2017-09-11" style="float:left"/> 
                                     <div class="lendar"> <img src="Assets/icon/calendar-event.png"> </div>
                                     <br>
-                                    <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>:
+                                    <input class="k-event" id="time" type="time" style="width: 120px" value="07:00"/>:
                                     <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>
                                     <br>
                                     
-                                    <input class="k-event" id="date" type="date" value="2017-09-08" style="float:left;"/>
+                                    <input class="k-event" id="date" type="date" value="2017-09-11" style="float:left;"/>
                                     <div class="lendar"> <img src="Assets/icon/calendar-event.png"> </div>
                                     <br>
-                                    <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>:
+                                    <input class="k-event" id="time" type="time" style="width: 120px" value="08:00"/>:
                                     <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>
                                     <br>
-                                    <input class="k-event" type="text" style="width: 300px">
+                                    <input class="k-event" placeholder="Kantor DPRD Bangka" type="text" style="width: 300px">
                                     <br>
-                                    <input class="k-event" type="text" style="width: 300px; height: 100px">
+                                    <input class="k-event" placeholder="Absensi dan ambil surat tugas" type="text" style="width: 300px; height: 100px">
                                   
                                     <br>
                                     <br>
@@ -87,14 +87,14 @@
                                 
                                 <div class="k-input">
                                     <select class="k-event">
-                                        <option value="StartingLocation">Province ...</option>
+                                        <option value="StartingLocation">Bangka Belitung</option>
                                         <option value="SLocation1">Jawa Barat</option>
                                         <option value="SLocation2">Jakarta</option>
                                         <option value="SLocation3">Bangka</option>
                                     </select>
                                     
                                     <select class="k-event">
-                                        <option value="StartingLocation">City ...</option>
+                                        <option value="StartingLocation">Kab. Bangka Tengah</option>
                                         <option value="SLocation1">Bandung</option>
                                                                      <option value="SLocation2">Bekasi</option>
                                                                      <option value="SLocation3">Bogor</option>
@@ -112,20 +112,20 @@
                                                                      <option value="SLocation6">Tasikmalaya</option>
                                     </select>
                                     <br>
-                                    <input class="k-event" type="text" placeholder="detail ..."/>
+                                    <input class="k-event" type="text" placeholder="Rumah"/>
                                     <br>
-                                    <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>:
-                                    <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>
+                                    <input class="k-event" id="time" type="time" style="width: 120px" value="06:00"/>:
+                                    <input class="k-event" id="time" type="time" style="width: 120px" value="00:10"/>
                                     <br>
                                     <select class="k-event">
-                                        <option value="StartingLocation">Province ...</option>
+                                        <option value="StartingLocation">Bangka Belitung</option>
                                         <option value="SLocation1">Jawa Barat</option>
                                         <option value="SLocation2">Jakarta</option>
                                         <option value="SLocation3">Bangka</option>
                                     </select>
                                     
                                     <select class="k-event">
-                                        <option value="StartingLocation">City ...</option>
+                                        <option value="StartingLocation">Kab. Bangka Tengah</option>
                                         <option value="SLocation1">Bandung</option>
                                                                      <option value="SLocation2">Bekasi</option>
                                                                      <option value="SLocation3">Bogor</option>
@@ -143,12 +143,12 @@
                                                                      <option value="SLocation6">Tasikmalaya</option>
                                     </select>
                                     <br>
-                                    <input class="k-event" type="text" placeholder="detail ..."/>
+                                    <input class="k-event" type="text" placeholder="Koba, Padang Mulia"/>
                                     <br>
                                     <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>:
                                     <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>
                                     <br>
-                                    <input class="k-event" type="text" placeholder=""/> Km
+                                    <input class="k-event" type="text" placeholder="15"/> Km
                                     <br>
                                     <br>
                                     <br>
@@ -178,7 +178,7 @@
                                                                   </div>
                                                                    <div class="k-transport">
                                                                       <div class="trans"> <img src="Assets/icon/car.png"> </div>
-                                                                      <form> <input type="radio" name="transtime" value="cartime"> 40m </form>
+                                                                      <form> <input type="radio" name="transtime" value="cartime" checked> 40m </form>
                                                                   </div>
                                                                    <div class="k-transport">
                                                                       <div class="trans"> <img src="Assets/icon/motor3.png"> </div>

@@ -489,8 +489,32 @@ a:hover{
     border: none;
 }
 
-        
+.k-transport{
+    	float: left;
+        margin-right: 5px;
+        margin-left: 5px;
+	background: none;
+	overflow: hidden;
+        padding: 10px;
+}
 
+.k-popup{
+    	max-height: 100%;
+	margin: auto;
+	background: none;
+	overflow: hidden;
+        padding: 10px;
+}
+
+.trans{
+    float: left;
+    padding: 5px;
+    margin: 5px;
+}
+.trans img{
+    width: 95px;
+    height: 95px;
+}
 
         .moda{
             padding: 0;
@@ -845,7 +869,7 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
 
 #myBtn{
     padding: 7px;
-    margin: 7px;
+    margin: 20px;
     font: 14px Arial;
     font-weight: bold;
     height: 50px;
