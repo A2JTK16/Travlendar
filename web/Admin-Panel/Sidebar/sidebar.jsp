@@ -76,14 +76,14 @@
 			</div>
                         </a>
 			
-                        <a href="../EstimationTime/index.jsp">
+                        <!--<a href="../EstimationTime/index.jsp">
 			<div class="menu-manage">
 				<div class="icon-setting">
 					<img src="../Assets2/icon/time.png">
 				</div> <!--icon-setting-->
-                                <h2>Estimation Time</h2>
+                                <!--<h2>Estimation Time</h2>
 			</div> <!--menu-manage-->
-                        </a>
+                        <!--</a>-->
                         
                         
                                 
