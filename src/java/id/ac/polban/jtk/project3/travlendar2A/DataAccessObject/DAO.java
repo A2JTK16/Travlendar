@@ -12,22 +12,34 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Class induk untuk koneksi ke Database
  * @author Zulkifli Arsyad
  */
 public class DAO { 
     
+    /**
+     * Atribut
+     */
     private String jdbcURL;
     private String jdbcUsername;
     private String jdbcPassword;
     private Connection jdbcConnection;
-
+    
+    /**
+     * Konstruktor
+     * @param jdbcURL
+     * @param jdbcUsername
+     * @param jdbcPassword 
+     */
     public DAO(String jdbcURL, String jdbcUsername, String jdbcPassword) {
         this.jdbcURL = jdbcURL;
         this.jdbcUsername = jdbcUsername;
         this.jdbcPassword = jdbcPassword;
     }
-
+    
+    /**
+     * Method untuk koneksi ke Database MySQL
+     */
     protected void connect()
     {
         try {
@@ -43,7 +55,11 @@ public class DAO {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    /**
+     * Method untuk disconnect ke Database
+     * (Jangan lupa beres koneksi, tutup lg )
+     */
     protected void disconnect()
     {
         try {
@@ -78,7 +94,11 @@ public class DAO {
     public void setJdbcPassword(String jdbcPassword) {
         this.jdbcPassword = jdbcPassword;
     }
-
+    
+    /**
+     * Method untuk mendapatkan jdbc connection
+     * @return 
+     */
     public Connection getJdbcConnection() {
         return jdbcConnection;
     }

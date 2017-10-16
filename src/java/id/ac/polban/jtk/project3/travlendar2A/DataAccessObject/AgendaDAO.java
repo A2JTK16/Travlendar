@@ -21,4 +21,8 @@ public class AgendaDAO extends DAO
      * 
      * Lih Class Diagram
      */
+    
+    /**
+     * Jangan lupa ketika beres koneksi, diskonek aja
+     */
 }
