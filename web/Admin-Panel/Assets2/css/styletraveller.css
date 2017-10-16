@@ -773,9 +773,9 @@ a:hover{
 
 .kotakna{
 	float: left;
-	margin: 10px;
-	padding: 10px;
-	max-width: 700px;
+	margin: 2px;
+	padding: 2px;
+	max-width: 600px;
 	height: auto;
         overflow: hidden;
 	border: 1px solid #ddd;

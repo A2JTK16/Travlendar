@@ -46,43 +46,43 @@
 						</thead>
 						<tbody>
 						<tr>
-							<td>Universitas Kristen Maranatha</td>
-							<td>Politeknik Negeri Bandung</td>
-							<td>2.6</td>
-                                                        <td>3.9 m</td>
+							<td>Rumah</td>
+							<td>Kantor DPRD Bangka Tengah</td>
+							<td>40</td>
+                                                        <td>60 minute</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
-							<td>Politeknik Negeri Bandung</td>
-							<td>Bosscha Observatory</td>
-							<td>11.4</td>
-                                                        <td>17.1 m</td>
+							<td>Rumah</td>
+							<td>Bandara Depati Amir</td>
+							<td>98</td>
+                                                        <td>147 minute</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
-							<td>Bosscha Observatory</td>
-							<td>Maribaya Waterfall</td>
-							<td>9.1</td>
-                                                        <td>13.65 m</td>
+							<td>Bandara Depati Amir</td>
+							<td>Bandara Soekarno Hatta</td>
+							<td>749</td>
+                                                        <td>1124 minute</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
-							<td>Maribaya Waterfall</td>
-							<td>Saung Angklung Udjo</td>
-							<td>16.1</td>
-                                                        <td>24.15 m</td>
+							<td>Bandara Soekarno Hatta</td>
+							<td>Kantor DPRD Jakarta</td>
+							<td>28.3</td>
+                                                        <td>43 minute</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>
 						
 						
 						<tr>
-							<td>Saung Angklung Udjo</td>
-							<td>Paris Van Java</td>
-							<td>8.1</td>
-                                                        <td>12.15 m</td>
+							<td>Bandara Soekarno Hatta</td>
+							<td>Tanggerang</td>
+							<td>35.4</td>
+                                                        <td>54 minute</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>
 	

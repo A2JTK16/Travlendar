@@ -107,24 +107,24 @@
 						</tr>
 						
 						<tr>
-							<td>Rumah</td>
+							<td>Bandara Depati Amir</td>
 							<td>Bandara Soekarno Hatta</td>
-							<td>847</td>
+							<td>749</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>
 						
 						<tr>
-							<td>Rumah</td>
+							<td>Bandara Soekarno Hatta</td>
 							<td>Kantor DPRD Jakarta</td>
-							<td>875.3</td>
+							<td>28.3</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>
 						
 						
 						<tr>
-							<td>Rumah</td>
+							<td>Bandara Soekarno Hatta</td>
 							<td>Tanggerang</td>
-							<td>904.6</td>
+							<td>35.4</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
 						</tr>
 	
