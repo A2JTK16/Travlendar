@@ -33,7 +33,7 @@ body{
 .wadah2{
 	max-width: 100%;
 	margin: auto;
-	background: #0471b1;
+	background: linear-gradient(135deg,#043a61,#0471b1 26%,#0985bb 51%,#16a2b1 76%,#22bc9d);
 	overflow: hidden;
         padding: 10px;
 }
@@ -56,7 +56,7 @@ h1{
 	margin: 3px;
 	font: 30px Trebuchet MS;
 	font-weight: bold;
-	color: #e0e0e0;
+	color: #0471b1;
 	background: none;
 }
 
@@ -105,7 +105,7 @@ h6{
 	float: right;
 	background: none;
 	overflow: hidden;
-	border: 1px solid #eee;
+	border: 1px solid ;
 	border-radius: 100px;
 }
 
@@ -197,7 +197,7 @@ a:hover{
 
 .jarak-atas{
 	max-width: 100%;
-	height: 65px;
+	height: 58px;
 	background: none;
 	overflow: hidden;
 }
@@ -206,13 +206,14 @@ a:hover{
   float: left;
   width: 100%;
   height: auto;
-  background:#616161;
+  background:#f4f4f4;
   position: fixed;
   border-top: 3px solid #1976D2;
   box-shadow: 0 2px 2px #bdbdbd;
   top: 0;
   left: 0;
   z-index: 9999;
+  margin-top:-3px;
 }
 
 .logonya{
@@ -269,12 +270,12 @@ a:hover{
 
 
 .dropbtn {
-    background-color: #757575;
+    background-color: transparent;
     color: white;
     padding: 4px;
     margin: 4px;
     font-size: 16px;
-    border: 1px solid #0D47A1;
+    border: 0px solid #0D47A1;
     cursor: pointer;
 }
 
@@ -300,23 +301,23 @@ a:hover{
     display: block;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover {background-color: #1abc9c;color:#f9f9f9}
 
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
-.dropdown:hover .dropbtn {
-    background-color: #64B5F6;
-}
+/*.dropdown:hover .dropbtn {
+//    background-color: asd;
+}*/
 
 .kotak-cari{
     padding: 4px;
     margin: 4px;
     float: right;
     overflow: hidden;
-    border: 1px solid #0D47A1;
-    background: #757575;
+    border: 0px solid #0D47A1;
+    background: #ffffff;
 }
 
 .cari{
@@ -325,7 +326,7 @@ a:hover{
     height: 30px;
     width: 300px;
     font: 14px Arial;
-    color: #fafafa;
+    color: #717171;
     border: none;
     background: transparent;
 }
@@ -429,7 +430,7 @@ nav[role="dropdown"] ul > li:first-child {width:22%; moz-border-radius-topleft: 
 nav[role="dropdown"] ul > li:last-child  {width:33%; moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px; border-top-right-radius: 4px;}
 nav[role="dropdown"] ul > li:hover > a {color: #f1f1f1 !important;}
 nav[role="dropdown"] ul > li:hover {background: #054e69; border:1px #333 solid;}
-nav[role="dropdown"] ul > li.active {background:rgba(215,130,0,1.00); border:none;}
+nav[role="dropdown"] ul > li.active {background:#1abc9c; border:none;}
 
 /*  properties to display mobile navigation */
 nav[role="dropdown"] .show-menu {text-decoration: none;	color: #ffffff;  border: 0.15em solid rgba(60, 60, 60, 0.2); background:rgba(11,78,138,1.00); text-align: right; min-height: 2.25em;  cursor: pointer; display: none;}

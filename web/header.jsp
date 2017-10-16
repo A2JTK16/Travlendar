@@ -23,7 +23,7 @@
 <div class="menu-atas">
 	<div class="header">
             <div class="logonya">
-                <img src="Assets/icon/logo.png">
+                <img src="Assets/icon/logo3.png">
             </div>
             <div class="logo">
                 <h1>Travelendar</h1>

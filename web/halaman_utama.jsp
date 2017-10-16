@@ -19,7 +19,7 @@
         
         <%@include file="header.jsp" %>
 
-    <div class="waddah">
+   <!--<div class="waddah">
         <div class="slogan">
             <h6> Manage My Plan </h6>
         </div>
