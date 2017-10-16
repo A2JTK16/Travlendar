@@ -36,6 +36,7 @@ body{
 	background: linear-gradient(135deg,#043a61,#0471b1 26%,#0985bb 51%,#16a2b1 76%,#22bc9d);
 	overflow: hidden;
         padding: 10px;
+        
 }
 
 .slogan{
@@ -407,6 +408,90 @@ a:hover{
 		float: left;
 	}        
         
+	.middle-center{
+		width: 90%;
+		border: none;
+                border-radius: 0.2em;
+                box-shadow: 0 2px 2px #b3b3b3;
+		background: #e5e5e5;
+		overflow: hidden;
+		padding: 10px;
+		margin: auto;
+                margin-top: 10px;
+	}        
+        
+        
+.kotakna{
+	float: left;
+	margin: 2px;
+        margin-left: 50px;
+	padding: 2px;
+	max-width: 600px;
+	height: auto;
+        overflow: hidden;
+	border: none;
+	border-radius: 0.2em;
+}
+
+
+.k-text{
+    padding: 2px;
+    margin: 2px;
+    width: auto;
+    float: left;
+}
+
+.k-textna{
+    font: 15px Arial;
+    color: #454545;
+    padding: 9px;
+    padding-bottom: 14px;
+    margin: 9px;
+}
+
+.k-input{
+    padding: 2px;
+    margin: 2px;
+    width: auto;
+    float: left;
+}
+
+.k-event{
+    padding: 8px;
+    margin: 8px;
+    margin-top: 10px;
+    font: 15px Arial;
+    color: #454545;
+    border: 1px solid #ddd;
+}
+
+.lendar{
+    float: left;
+    padding: 5px;
+    margin: 5px;
+    margin-right: 80px;
+}
+
+.lendar img{
+    width: 35px;
+    height: 35px;
+}
+
+.back{
+    padding: 7px;
+    margin: 7px;
+    font: 14px Arial;
+    font-weight: bold;
+    height: 50px;
+    width: 100px;
+    color: #fafafa;
+    background:#008CBA;
+    border: none;
+}
+
+        
+
+
         .moda{
             padding: 0;
             margin: 0;
@@ -417,8 +502,48 @@ a:hover{
             width: 30px;
             height: 30px;
         }
-        
-        
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}        
+
+#myBtn{
+    padding: 7px;
+    margin: 7px;
+    margin-top: 17px;
+    font: 14px Arial;
+    font-weight: bold;
+    height: 50px;
+    width: 100px;
+    color: #fafafa;
+    background:#008CBA;
+    border: none;
+}
+
 #wrapper {width: 600px; margin: 5px auto;overflow: hidden;}
 
 nav[role="dropdown"] a, label.show-menu {color: #fff !important;text-decoration: none;font-size: 14px;display:block; font-family:Helvetica;}
