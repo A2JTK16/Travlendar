@@ -119,6 +119,7 @@ public class ModaController extends HttpServlet
                 try
                 {
                     this.modaDao.saveDataToDB(objModa);
+                    request.setAttribute("message", "Anda sukses menyimpan data ke DB");
                 }
                 catch (SQLException ex)
                 {
