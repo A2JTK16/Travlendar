@@ -9,6 +9,7 @@ import id.ac.polban.jtk.project3.travlendar2A.DataAccessObject.ModaTransportasiD
 import id.ac.polban.jtk.project3.travlendar2A.Models.ModaTransportasi;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,19 +48,89 @@ public class ModaController extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-        List<ModaTransportasi> listModa;
-        try {
-            listModa = this.modaDao.getDataFromDB();
-        } catch (SQLException ex) {
-            listModa = null;
+        String aksiPage;
+        
+        aksiPage = request.getParameter("aksi");
+        
+        if(aksiPage != null)
+        {
+            aksiPage = "show";
         }
         
-        request.setAttribute("modaTransList", listModa);
-
-
-        request.setAttribute("content", "modatransportasi");
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-        //request.getRequestDispatcher("Admin-Panel/TransportationMode/index.jsp").forward(request, response);
+            if (aksiPage.equals("show")) 
+            {
+                List<ModaTransportasi> listModa;
+                try
+                {
+                    listModa = this.modaDao.getDataFromDB();
+                } catch (SQLException ex)
+                {
+                    listModa = null;
+                }
+                
+                request.setAttribute("modaTransList", listModa);
+                
+                
+                request.setAttribute("content", "modatransportasi");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+            else if(aksiPage.equals("add"))
+            {
+                request.setAttribute("content", "addmodatransportasi");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+        
+        
     }
+    
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    {
+        String aksiPage;
+        ModaTransportasi objModa;
+        int tempInt;
+        float tempFloat;
+        String tempString;
+        aksiPage = request.getParameter("input");
+        
+        if(aksiPage != null)
+        {
+            if (aksiPage.equals("baru")) 
+            {
+                objModa = new ModaTransportasi();
+                
+                tempInt = Integer.parseInt(request.getParameter("kode_trans"));
+                objModa.setKodeTransportasi(tempInt);
+                
+                tempString = request.getParameter("nama_trans");
+                objModa.setNamaTransportasi(tempString);
+                
+                
+                tempFloat = Float.parseFloat(request.getParameter("kecepatan"));
+                objModa.setKecepatan(tempFloat);
+                
+                try
+                {
+                    this.modaDao.saveDataToDB(objModa);
+                }
+                catch (SQLException ex)
+                {
+                    request.setAttribute("message", "Anda gagal menyimpan data ke DB");
+                }
+                
+                request.setAttribute("content", "addmodatransportasi");
+                
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+        }
+    }
+
     
 }

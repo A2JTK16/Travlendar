@@ -50,4 +50,35 @@ import java.util.List;
         
         return listData;
     }   
+    
+        /**
+     * Menyimpan data ke database
+     * @param modaTrs
+     * @throws SQLException 
+     */
+    public void saveDataToDB(ModaTransportasi modaTrs) throws SQLException
+    {
+        /**
+         * Buat Koneksi ke DBMS
+         */
+        super.connect();
+        /**
+         * Buat Statement
+         */
+        Statement statement;
+        statement = super.getJdbcConnection().createStatement();
+        /**
+         * Eksekusi Query
+         */
+        String sql = "INSERT INTO mode_transportasi(KD_TRSMODE, NAMA_TRANSPORTASI, KECEPATAN) VALUES ("+modaTrs.getKodeTransportasi()+","+modaTrs.getNamaTransportasi()+","+modaTrs.getKecepatan()+")";
+        statement.executeQuery(sql);
+        /**
+         * Tutup Statement
+         */
+        statement.close();
+        /**
+         * Tutup Koneksi
+         */
+        super.disconnect();
+    }
 }
