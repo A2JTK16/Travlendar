@@ -50,15 +50,13 @@
                                     <input class="k-event" id="date" type="date" value="2017-09-11" style="float:left"/> 
                                     <div class="lendar"> <img src="Assets/icon/calendar-event.png"> </div>
                                     <br>
-                                    <input class="k-event" id="time" type="time" style="width: 120px" value="07:00"/>:
-                                    <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>
+                                    <input class="k-event" id="time" type="time" style="width: 120px" value="07:00"/>
                                     <br>
                                     
                                     <input class="k-event" id="date" type="date" value="2017-09-11" style="float:left;"/>
                                     <div class="lendar"> <img src="Assets/icon/calendar-event.png"> </div>
                                     <br>
-                                    <input class="k-event" id="time" type="time" style="width: 120px" value="08:00"/>:
-                                    <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>
+                                    <input class="k-event" id="time" type="time" style="width: 120px" value="08:00"/>
                                     <br>
                                     <input class="k-event" placeholder="Kantor DPRD Bangka" type="text" style="width: 300px">
                                     <br>
@@ -114,8 +112,7 @@
                                     <br>
                                     <input class="k-event" type="text" placeholder="Rumah"/>
                                     <br>
-                                    <input class="k-event" id="time" type="time" style="width: 120px" value="06:00"/>:
-                                    <input class="k-event" id="time" type="time" style="width: 120px" value="00:10"/>
+                                    <input class="k-event" id="time" type="time" style="width: 120px" value="06:10"/>
                                     <br>
                                     <select class="k-event">
                                         <option value="StartingLocation">Bangka Belitung</option>
@@ -145,8 +142,7 @@
                                     <br>
                                     <input class="k-event" type="text" placeholder="Koba, Padang Mulia"/>
                                     <br>
-                                    <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>:
-                                    <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>
+                                    <input class="k-event" id="time" type="time" style="width: 120px" value="06:50"/>
                                     <br>
                                     <input class="k-event" type="text" placeholder="15"/> Km
                                     <br>
