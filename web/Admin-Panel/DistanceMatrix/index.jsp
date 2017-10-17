@@ -85,48 +85,75 @@
 					<table>
 						<thead>
 						<tr>
-							<th>Starting Location</th>
-							<th>Destination</th>
-							<th>Distance (km)</th>
-							<th style="width: 125px">Action</th>
+							<th>-</th>
+							<th>Bandung</th>
+                                                        <th>Bekasi</th>
+                                                        <th>Bogor</th>
+                                                        <th>Ciamis</th>
+                                                        <th>Cianjur</th>
+                                                        <th>Cirebon</th>
 						</tr>
 						</thead>
 						<tbody>
-						<tr>
-							<td>Rumah</td>
-							<td>Kantor DPRD Bangka Tengah</td>
-							<td>40</td>
-                                                	<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
-						</tr>
+                                                <tr>
+                                                    <th>Bandung</th>
+                                                    <td>0</td>
+                                                    <td>134</td>
+                                                    <td>177</td>
+                                                    <td>135</td>
+                                                    <td>160</td>
+                                                    <td>209</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <th>Bekasi</th>
+                                                    <td>132</td>
+                                                    <td>0</td>
+                                                    <td>62.2</td>
+                                                    <td>248</td>
+                                                    <td>208</td>
+                                                    <td>200</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <th>Bogor</th>
+                                                    <td>212</td>
+                                                    <td>81.8</td>
+                                                    <td>0</td>
+                                                    <td>305</td>
+                                                    <td>175</td>
+                                                    <td>247</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <th>Ciamis</th>
+                                                    <td>125</td>
+                                                    <td>237</td>
+                                                    <td>306</td>
+                                                    <td>0</td>
+                                                    <td>233</td>
+                                                    <td>116</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <th>Cianjur</th>
+                                                    <td>101</td>
+                                                    <td>196</td>
+                                                    <td>176</td>
+                                                    <td>230</td>
+                                                    <td>0</td>
+                                                    <td>295</td>
+                                                </tr>
 						
-						<tr>
-							<td>Rumah</td>
-							<td>Bandara Depati Amir</td>
-							<td>98</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
-						</tr>
-						
-						<tr>
-							<td>Bandara Depati Amir</td>
-							<td>Bandara Soekarno Hatta</td>
-							<td>749</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
-						</tr>
-						
-						<tr>
-							<td>Bandara Soekarno Hatta</td>
-							<td>Kantor DPRD Jakarta</td>
-							<td>28.3</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
-						</tr>
-						
-						
-						<tr>
-							<td>Bandara Soekarno Hatta</td>
-							<td>Tanggerang</td>
-							<td>35.4</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()"> Delete </a> </td>
-						</tr>
+                                                <tr>
+                                                    <th>Cirebon</th>
+                                                    <td>229</td>
+                                                    <td>178</td>
+                                                    <td>257</td>
+                                                    <td>105</td>
+                                                    <td>1345</td>
+                                                    <td>0</td>
+                                                </tr>
 	
                                                 <script type="text/javascript" language="JavaScript">
                                                 function konfirmasi()
