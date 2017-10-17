@@ -1,8 +1,8 @@
 package id.ac.polban.jtk.project3.travlendar2A.Helpers;
 
-import id.ac.polban.jtk.project3.travlendar2A.Models.Agenda;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import id.ac.polban.jtk.project3.travlendar2A.Models.EstimasiWaktu;
-import id.ac.polban.jtk.project3.travlendar2A.Models.Lokasi;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Location;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -55,8 +55,8 @@ public class Moda_Transportasi {
         double[] arrayOfEta = new double [5]; //array untuk menampung variabel estimation time arrival (eta)
         Moda_Transportasi tm = new Moda_Transportasi();
         EstimasiWaktu et = new EstimasiWaktu();
-        Lokasi loc = new Lokasi();
-        Agenda event = new Agenda();
+        Location loc = new Location();
+        Event event = new Event();
         boolean noTransport = true;
         et.setDistance(distance);
         arrayOfEta[0] = et.countEstimationTime(tm.getSpeedKendaraan(nama_transportasi.PESAWAT),et.getDistance()); //var penampung estimation jika menggunakan pesawat

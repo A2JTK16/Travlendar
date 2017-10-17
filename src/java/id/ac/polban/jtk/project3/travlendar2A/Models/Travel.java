@@ -12,7 +12,7 @@ package id.ac.polban.jtk.project3.travlendar2A.Models;
 
 import java.util.Date;
 
-public class Perjalanan {
+public class Travel {
     /**
      * REVIEW 
      * 

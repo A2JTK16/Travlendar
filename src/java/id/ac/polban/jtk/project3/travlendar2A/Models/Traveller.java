@@ -18,24 +18,24 @@ package id.ac.polban.jtk.project3.travlendar2A.Models;
 
 public class Traveller {
     //atribut pada kelas traveller
-    private int id_traveller;
-    private String nama_pengguna;
-    private String alamat_email;
-    private String kata_sandi;
-    private String nama_lengkap;
+    private int traveller_id;
+    private String traveller_name;
+    private String traveller_email;
+    private String traveller_password;
+    private String traveller_fullName;
     
     /**
      * 
-     * @param nama_lengkap
-     * @param nama_pengguna
-     * @param alamat_email
-     * @param kata_sandi
+     * @param traveller_fullName
+     * @param traveller_name
+     * @param traveller_email
+     * @param traveller_password
      */
-    public Traveller(String nama_lengkap, String nama_pengguna, String alamat_email, String kata_sandi) {
-        this.nama_lengkap = nama_lengkap;
-        this.nama_pengguna = nama_pengguna;
-        this.alamat_email = alamat_email;
-        this.kata_sandi = kata_sandi;
+    public Traveller(String traveller_fullName, String traveller_name, String traveller_email, String traveller_password) {
+        this.traveller_fullName = traveller_fullName;
+        this.traveller_name = traveller_name;
+        this.traveller_email = traveller_email;
+        this.traveller_password = traveller_password;
     }
     
     /*
@@ -45,72 +45,72 @@ public class Traveller {
     */
 
     /**
-     * @return the id_traveller
+     * @return the traveller_id
      */
-    public int getId_traveller() {
-        return id_traveller;
+    public int getTraveller_id() {
+        return traveller_id;
     }
 
     /**
-     * @param id_traveller the id_traveller to set
+     * @param traveller_id the traveller_id to set
      */
-    public void setId_traveller(int id_traveller) {
-        this.id_traveller = id_traveller;
+    public void setTraveller_id(int traveller_id) {
+        this.traveller_id = traveller_id;
     }
 
     /**
-     * @return the nama_pengguna
+     * @return the traveller_name
      */
-    public String getNama_pengguna() {
-        return nama_pengguna;
+    public String getTraveller_name() {
+        return traveller_name;
     }
 
     /**
-     * @param nama_pengguna the nama_pengguna to set
+     * @param traveller_name the traveller_name to set
      */
-    public void setNama_pengguna(String nama_pengguna) {
-        this.nama_pengguna = nama_pengguna;
+    public void setTraveller_name(String traveller_name) {
+        this.traveller_name = traveller_name;
     }
 
     /**
-     * @return the alamat_email
+     * @return the traveller_email
      */
-    public String getAlamat_email() {
-        return alamat_email;
+    public String getTraveller_email() {
+        return traveller_email;
     }
 
     /**
-     * @param alamat_email the alamat_email to set
+     * @param traveller_email the traveller_email to set
      */
-    public void setAlamat_email(String alamat_email) {
-        this.alamat_email = alamat_email;
+    public void setTraveller_email(String traveller_email) {
+        this.traveller_email = traveller_email;
     }
 
     /**
-     * @return the kata_sandi
+     * @return the traveller_password
      */
-    public String getKata_sandi() {
-        return kata_sandi;
+    public String getTraveller_password() {
+        return traveller_password;
     }
 
     /**
-     * @param kata_sandi the kata_sandi to set
+     * @param traveller_password the traveller_password to set
      */
-    public void setKata_sandi(String kata_sandi) {
-        this.kata_sandi = kata_sandi;
+    public void setTraveller_password(String traveller_password) {
+        this.traveller_password = traveller_password;
     }
 
     /**
-     * @return the nama_lengkap
+     * @return the traveller_fullName
      */
-    public String getNama_lengkap() {
-        return nama_lengkap;
+    public String getTraveller_fullName() {
+        return traveller_fullName;
     }
 
     /**
-     * @param nama_lengkap the nama_lengkap to set
+     * @param traveller_fullName the traveller_fullName to set
      */
-    public void setNama_lengkap(String nama_lengkap) {
-        this.nama_lengkap = nama_lengkap;
+    public void setTraveller_fullName(String traveller_fullName) {
+        this.traveller_fullName = traveller_fullName;
     }
 }

@@ -102,4 +102,58 @@ public class ParseDate {
         }
     }
     
+    /**
+     *
+     * @param dateValStr
+     * @return
+     */
+    public static Date getDateValueFromStr(String dateValStr)
+    {
+        if(dateValStr == null)
+            return null;
+        
+        SimpleDateFormat datetimeformatter;
+        datetimeformatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+        
+        try 
+        {  
+            return datetimeformatter.parse(dateValStr);
+        } 
+        catch (ParseException e) 
+        {
+            return null;
+        }
+    }
+    
+    /**
+     *
+     * @param dateValStr
+     * @return
+     */
+    public static Date getDateValueID(String dateValStr)
+    {
+        SimpleDateFormat datetimeformatter;
+        datetimeformatter = new SimpleDateFormat("dd-MM-yyyy HH.mm"); 
+        
+        try 
+        {  
+            return datetimeformatter.parse(dateValStr);
+        } 
+        catch (ParseException e) 
+        {
+            return null;
+        }
+    }
+    
+    public static String getStrFromDate(Date date)
+    {
+        String dateStr;
+        SimpleDateFormat datetimeformatter;
+        datetimeformatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        
+        dateStr = datetimeformatter.format(date);
+        
+        return dateStr;
+    }
+    
 }

@@ -10,10 +10,10 @@ import id.ac.polban.jtk.project3.travlendar2A.Helpers.Moda_Transportasi;
 import id.ac.polban.jtk.project3.travlendar2A.Helpers.Moda_Transportasi;
 import id.ac.polban.jtk.project3.travlendar2A.Helpers.ParseDate;
 import id.ac.polban.jtk.project3.travlendar2A.Helpers.ParseDate;
-import id.ac.polban.jtk.project3.travlendar2A.Models.Agenda;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import id.ac.polban.jtk.project3.travlendar2A.Models.EstimasiWaktu;
-import id.ac.polban.jtk.project3.travlendar2A.Models.Lokasi;
-import id.ac.polban.jtk.project3.travlendar2A.Models.Perjalanan;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Location;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Travel;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -26,18 +26,18 @@ import java.util.Date;
  */
 
 public class ProgramUtama{        
-    protected Lokasi lokasi;
-    protected Perjalanan distance;
+    protected Location lokasi;
+    protected Travel distance;
     protected EstimasiWaktu esTime;
     protected Moda_Transportasi transport;
-    protected Agenda event;
+    protected Event event;
     protected ParseDate parsedt;
     protected Traveller traveller;
     
     public static void main(String[] args) throws ParseException{
         
-        Lokasi lokasiEvent = new Lokasi();
-        Perjalanan jarakLokasi = new Perjalanan();
+        Location lokasiEvent = new Location();
+        Travel jarakLokasi = new Travel();
         EstimasiWaktu esTime = new EstimasiWaktu();
         Moda_Transportasi nama_transportasi = new Moda_Transportasi();
         ParseDate parsedt = new ParseDate();
@@ -52,7 +52,7 @@ public class ProgramUtama{
         double diff = 0, diffSeconds = 0, diffMinutes = 0, diffHours = 0;
        // ArrayList<ProgramUtama> eventList = new ArrayList();
         //List<String> list = new ArrayList<String>();
-        ArrayList<Agenda> daftar_agenda = new ArrayList<>();
+        ArrayList<Event> daftar_agenda = new ArrayList<>();
         //--------------------Input Data Traveller (Name, username, pass,....)--------------------------------------//
         //--------------------- DAPAT DIBUAT METHOD BARU ----------------------------------------------------------//
 
@@ -84,8 +84,8 @@ public class ProgramUtama{
                    * Isinya input Event, ArrivalTime, DepatureTime, dsb
                    */  
                   
-                    //------------Input Data Agenda(Nama event, waktu berangkat, waktu tiba)-----------------------------------//
-                    Agenda agenda = new Agenda();
+                    //------------Input Data Event(Nama event, waktu berangkat, waktu tiba)-----------------------------------//
+                    Event agenda = new Event();
                     System.out.println("Nama Event : ");
                     nama_agenda = n.nextLine();
                     agenda.setNama_agenda(nama_agenda);
@@ -165,7 +165,7 @@ public class ProgramUtama{
                     break;
                 case 2 :
                     // DAPAT DIBUAT METHOD BARU //
-                   for (Agenda s : daftar_agenda) {
+                   for (Event s : daftar_agenda) {
                         System.out.println(s.getEvent());
                         }
                     break;           

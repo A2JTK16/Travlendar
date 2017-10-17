@@ -11,7 +11,7 @@ package id.ac.polban.jtk.project3.travlendar2A.Models;
  *
  * @author Auliya Aqma Dinillah
  */
-public class Lokasi{
+public class Location{
 
     /**
      * @return the kd_kota
@@ -116,7 +116,7 @@ public class Lokasi{
     //untuk pengecekan apakah bisa menggunakan pesawat atau tidak
     public boolean bisaDilaluiPesawat(int kodeTempatAwal, int kodeTempatAkhir)
     {
-        Lokasi objLoc = new Lokasi ();
+        Location objLoc = new Location ();
         if(objLoc.getTipe_Lokasi(kodeTempatAwal) == objLoc.getTipe_Lokasi(kodeTempatAkhir))
         {
             return true;

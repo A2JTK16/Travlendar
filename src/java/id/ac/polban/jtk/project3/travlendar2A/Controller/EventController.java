@@ -5,21 +5,24 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Controller;
 
-import id.ac.polban.jtk.project3.travlendar2A.DataAccessObject.AgendaDAO;
+import id.ac.polban.jtk.project3.travlendar2A.DataAccessObject.EventDAO;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "index", urlPatterns = {"/index"}) /* URL Controllernya */
-public class AgendaController extends HttpServlet 
+@WebServlet(name = "event", urlPatterns = {"/event"}) /* URL Controllernya */
+public class EventController extends HttpServlet 
 {
     /**
      * Atribut wajib
      */
-    private AgendaDAO agendaDAO;
+    private EventDAO eventDAO;
 
     /**
      * Override instansiasi
@@ -36,7 +39,7 @@ public class AgendaController extends HttpServlet
         /**
          * Buat Hubungan dengan Database
          */
-        agendaDAO = new AgendaDAO(jdbcURL, jdbcUsername, jdbcPassword);
+        eventDAO = new EventDAO(jdbcURL, jdbcUsername, jdbcPassword);
     }
     /**
      * Method GET dan POST URL (doGet & doPost)
@@ -62,6 +65,17 @@ public class AgendaController extends HttpServlet
         * 
         * kirimkan ke JSP nya pakai requestdispatcher forward
         */
+        List<Event> listEvent;
+        try{
+            listEvent = this.eventDAO.listAllAgenda(0, 0);
+        }catch (SQLException e){
+            listEvent = null;
+        }
+        
+        req.setAttribute("eventList", listEvent);
+        
+        req.setAttribute("content", "event");
+        req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 
     /**
