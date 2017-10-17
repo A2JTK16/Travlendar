@@ -79,7 +79,6 @@
                                     <div class="k-textna">Destination</div>
                                     <div class="k-textna"> </div>
                                     <div class="k-textna"> </div>
-                                    <div class="k-textna">Arrival Time</div>
                                     <div class="k-textna">Distance</div>
                                 </div>
                                 
@@ -141,8 +140,6 @@
                                     </select>
                                     <br>
                                     <input class="k-event" type="text" placeholder="detail ..."/>
-                                    <br>
-                                    <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>
                                     <br>
                                     <input class="k-event" type="text" placeholder=""/> Km
                                     <br>
