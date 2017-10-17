@@ -46,7 +46,7 @@
                                                                      <option value="SLocation3">Bus</option>
                                                                      <option value="SLocation4">Wagon</option>
                                                                 </select>
-							       <input type="text" placeholder="Add Description ..."/>
+							       <input type="text" placeholder="Average Speed (km/h) ..."/>
 							      <button> Save </button>
 							    </form>
 							  </div> <!--jenis transportasion-->
@@ -75,7 +75,7 @@
 						<tr>
 							<th>ID Tranportation</th>
 							<th>Transportation Name</th>
-                                                        <th>Speed</th>
+                                                        <th>Average Speed</th>
 							<th>Action</th>
 						</tr>
 						</thead>
