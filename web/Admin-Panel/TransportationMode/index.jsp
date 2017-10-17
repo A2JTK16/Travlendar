@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -79,7 +80,21 @@
 						</tr>
 						</thead>
 						<tbody>
-						<tr>
+						
+                                                    <!--
+                                                <c:forEach items="{modaTransList}" var="modaTrans">
+                                                <tr>           
+                                                    
+                                                    <td><c:out value="{modaTrans.getKodeTransportasi()}"/></td>
+                                                    <td><c:out value="{modaTrans.getNamaTransportasi()}"/></td>
+                                                    <td><c:out value="{modaTrans.getKecepatan()}"/></td>
+                                                    <td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
+							
+                                                </tr>
+                                                    -->
+                                                </c:forEach>
+                                                    
+                                                <tr>
 							<td>001</td>
 							<td>Car</td>
                                                         <td>50 km/jam</td>
@@ -114,6 +129,7 @@
                                                         <td>40 km/jam</td>
 							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
 						</tr>
+                                                
                                                 
                                                 <script type="text/javascript" language="JavaScript">
                                                 function konfirmasi()

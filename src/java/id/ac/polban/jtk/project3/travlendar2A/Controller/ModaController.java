@@ -58,8 +58,8 @@ public class ModaController extends HttpServlet
 
 
         request.setAttribute("content", "modatransportasi");
-        
         request.getRequestDispatcher("index.jsp").forward(request, response);
+        //request.getRequestDispatcher("Admin-Panel/TransportationMode/index.jsp").forward(request, response);
     }
     
 }
