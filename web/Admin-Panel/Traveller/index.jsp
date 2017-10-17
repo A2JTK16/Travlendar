@@ -79,79 +79,78 @@
 							<th>ID</th>
                                                         <th>Fullname</th>
 							<th>Action</th>
-                                                        <th> Calendar </th>
 						</tr>
 						</thead>
 						<tbody>
 						<tr>
 							<td>01</td>
 							<td>Maryam Mursalah</td>
-                                                        <td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>							
-                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a><a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>							
+                                                        
                                                 </tr>
 						
 						<tr>
 							<td>02</td>
 							<td>Said Al Fakhri</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+							<td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
+                                                        
 						</tr>
 						
 						<tr>
 							<td>03</td>
 							<td>Dede Diana</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+							<td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
+                                                        
                                                 </tr>
 						
 						<tr>
 							<td>04</td>
 							<td>Alfin Jastinera</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+							<td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
+                                                        
                                                 </tr>
 						
 						
 						<tr>
 							<td>05</td>
 							<td>Agit Prasetya</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+							<td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
+                                                        
                                                 </tr>
 						
 						<tr>
 							<td>06</td>
 							<td>Maulana Ibrahim</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+							<td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
+                                                        
                                                 </tr>
 						
 						<tr>
 							<td>07</td>
 							<td>Mufid Jamaluddin</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+							<td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
+                                                        
                                                 </tr>
 						
 						<tr>
 							<td>08</td>
 							<td>Putri Dian</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+							<td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
+                                                        
                                                 </tr>
                                                 
                                                 <tr>
 							<td>09</td>
 							<td>Reza Dwi Kurniawan</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+							<td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
+                                                        
                                                 </tr>
                                                 
                                                 <tr>
 							<td>10</td>
 							<td>Nurindah Yuniarti</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-                                                        <td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a></td>
+							<td> <a class="action3" href="../CalendarEvent/index.jsp"> View Calendar </a> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
+                                                        
                                                 </tr>
 						
                                                  <script type="text/javascript" language="JavaScript">

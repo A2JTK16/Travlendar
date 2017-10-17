@@ -411,6 +411,21 @@ a:hover{
 		border: none;
 		border-radius: 0.2em;
 	}
+        
+        #myBtnnext{
+		
+		float: right;
+		padding: 7px;
+		margin: 7px;
+                width: 100px;
+                height: 50px;
+		font: 16px Arial;
+		font-weight: bold;
+		color: #fafafa;
+		background: #4CAF50;
+		border: none;
+		border-radius: 0.2em;
+	}
 
 	.middle{
 		width: 73%;
@@ -851,4 +866,31 @@ a:hover{
 
 .save{
     background: #4CAF50;
+}
+
+.k-popup{
+    	max-height: 100%;
+	margin: auto;
+	background: none;
+	overflow: hidden;
+        padding: 10px;
+}
+
+.k-transport{
+    	float: left;
+        margin-right: 5px;
+        margin-left: 5px;
+	background: none;
+	overflow: hidden;
+        padding: 10px;
+}
+
+.trans{
+    float: left;
+    padding: 5px;
+    margin: 5px;
+}
+.trans img{
+    width: 95px;
+    height: 95px;
 }
