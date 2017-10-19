@@ -426,6 +426,23 @@ a:hover{
 		border: none;
 		border-radius: 0.2em;
 	}
+        
+        #myBtnsave{
+		
+		float: right;
+		padding: 3px;
+		margin: 3px;
+                margin-right: 15px;
+                margin-top: 15px;
+                width: 80px;
+                height: 40px;
+		font: 14px Arial;
+		font-weight: bold;
+		color: #fafafa;
+		background: #4CAF50;
+		border: none;
+		border-radius: 0.2em;
+	}
 
 	.middle{
 		width: 73%;

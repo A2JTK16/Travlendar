@@ -184,7 +184,7 @@
                                                                       <div class="trans"> <img src="../Assets2/icon/walk.png"> </div>
                                                                       <form> <input type="radio" name="transtime" value="walktime"> 4h 15m </form>
                                                                   </div>                                                                  
-                                                                  
+                                                                  <button id="myBtnsave">Save</button>
                                                               </div>
 							    
 							  </div>

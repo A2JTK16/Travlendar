@@ -890,6 +890,22 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
     background:#008CBA;
     border: none;
 	}
+        #myBtnsave{
+		
+		float: right;
+		padding: 3px;
+		margin: 3px;
+                margin-right: 15px;
+                margin-top: 15px;
+                width: 80px;
+                height: 40px;
+		font: 14px Arial;
+		font-weight: bold;
+		color: #fafafa;
+		background: #4CAF50;
+		border: none;
+		border-radius: 0.2em;
+	}
 #myBtnview{
     padding: 7px;
     margin: 7px;
