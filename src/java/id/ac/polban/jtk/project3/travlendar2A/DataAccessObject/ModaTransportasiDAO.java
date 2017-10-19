@@ -70,7 +70,7 @@ import java.util.List;
         /**
          * Eksekusi Query
          */
-        String sql = String.format("INSERT INTO mode_transportasi(KD_TRSMODE, NAMA_TRANSPORTASI, KECEPATAN) VALUES ('%s','%s','%s')", modaTrs.getKodeTransportasi(),modaTrs.getNamaTransportasi(), modaTrs.getKecepatan() );
+        String sql = String.format("INSERT INTO transportation_mode(TRANSPORTATION_CODE, TRANSPORTATION_NAME, TRANSPORTATION_SPEED) VALUES ('%s','%s','%s')", modaTrs.getKodeTransportasi(),modaTrs.getNamaTransportasi(), modaTrs.getKecepatan() );
         statement.executeQuery(sql);
         /**
          * Tutup Statement
