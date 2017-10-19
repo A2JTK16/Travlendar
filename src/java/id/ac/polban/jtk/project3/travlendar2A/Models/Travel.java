@@ -13,6 +13,14 @@ package id.ac.polban.jtk.project3.travlendar2A.Models;
 import java.util.Date;
 
 public class Travel {
+    
+    private String transportation_code;
+    private int traveller_id;
+    private String province_code;
+    private String city_code;
+    private int location_id;
+    private int event_id;
+    private Date departure_time;
     /**
      * REVIEW 
      * 
@@ -48,11 +56,109 @@ public class Travel {
                                 {904.6,	864,6,	806.6,	35.4,	29.3,	0},     //Tanggerang
                                 };
     private Date arrival_time;
-    private Date departure_time;
+    //private Date departure_time;
     
     //===========================method=============================
     public double getDistance (int kodeTempatAwal, int kodeTempatAkhir)
     {
         return jarak[kodeTempatAwal-1][kodeTempatAkhir-1];
+    }
+
+    /**
+     * @return the transportation_code
+     */
+    public String getTransportation_code() {
+        return transportation_code;
+    }
+
+    /**
+     * @param transportation_code the transportation_code to set
+     */
+    public void setTransportation_code(String transportation_code) {
+        this.transportation_code = transportation_code;
+    }
+
+    /**
+     * @return the traveller_id
+     */
+    public int getTraveller_id() {
+        return traveller_id;
+    }
+
+    /**
+     * @param traveller_id the traveller_id to set
+     */
+    public void setTraveller_id(int traveller_id) {
+        this.traveller_id = traveller_id;
+    }
+
+    /**
+     * @return the province_code
+     */
+    public String getProvince_code() {
+        return province_code;
+    }
+
+    /**
+     * @param province_code the province_code to set
+     */
+    public void setProvince_code(String province_code) {
+        this.province_code = province_code;
+    }
+
+    /**
+     * @return the city_code
+     */
+    public String getCity_code() {
+        return city_code;
+    }
+
+    /**
+     * @param city_code the city_code to set
+     */
+    public void setCity_code(String city_code) {
+        this.city_code = city_code;
+    }
+
+    /**
+     * @return the location_id
+     */
+    public int getLocation_id() {
+        return location_id;
+    }
+
+    /**
+     * @param location_id the location_id to set
+     */
+    public void setLocation_id(int location_id) {
+        this.location_id = location_id;
+    }
+
+    /**
+     * @return the event_id
+     */
+    public int getEvent_id() {
+        return event_id;
+    }
+
+    /**
+     * @param event_id the event_id to set
+     */
+    public void setEvent_id(int event_id) {
+        this.event_id = event_id;
+    }
+
+    /**
+     * @return the departure_time
+     */
+    public Date getDeparture_time() {
+        return departure_time;
+    }
+
+    /**
+     * @param departure_time the departure_time to set
+     */
+    public void setDeparture_time(Date departure_time) {
+        this.departure_time = departure_time;
     }
 }

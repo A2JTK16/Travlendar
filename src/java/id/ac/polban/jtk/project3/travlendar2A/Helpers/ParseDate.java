@@ -113,7 +113,7 @@ public class ParseDate {
             return null;
         
         SimpleDateFormat datetimeformatter;
-        datetimeformatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+        datetimeformatter = new SimpleDateFormat("yyyy-MM-dd HH:mm"); 
         
         try 
         {  

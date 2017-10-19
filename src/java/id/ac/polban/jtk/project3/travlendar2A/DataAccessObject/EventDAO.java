@@ -30,7 +30,7 @@ public class EventDAO extends DAO
      * 
      * Lih Class Diagram
      */
-    public List<Event> listAllAgenda(int halaman, int batas) throws SQLException{
+    public List<Event> getDataFromDB(int halaman, int batas) throws SQLException{
         List<Event> listEvent;
         Event event;
         String sql;
@@ -62,11 +62,11 @@ public class EventDAO extends DAO
                 tempDate = ParseDate.getDateValueFromStr(resultSet.getString("END_EVENT"));
                 event.setEnd_event(tempDate);
                 
-                tempInt = resultSet.getInt("KODE_LOKASI_AWAL");
+                /*tempInt = resultSet.getInt("KODE_LOKASI_AWAL");
                 event.setKodeLokasiAwal(tempInt);
                 
                 tempInt = resultSet.getInt("KODE_LOKASI_TUJUAN");
-                event.setKodeLokasiTujuan(tempInt);
+                event.setKodeLokasiTujuan(tempInt);*/
                 
                 tempStr = resultSet.getString("NOTE");
                 event.setNote(sql);
@@ -110,11 +110,11 @@ public class EventDAO extends DAO
      * @param myEvent
      * @return 
      */
-    public boolean simpan(Event myEvent)
+    public boolean saveDataToDB(Event myEvent)
     {
         String sql;
         boolean isSaveSuccess;
-        sql = String.format("INSERT INTO tes.event(EVENT_NAME, START_EVENT, END_EVENT, NOTE, PLACE) VALUES ('%s', '%s', '%s', '%s', '%s')",myEvent.getEvent_name(), ParseDate.getStrFromDate(myEvent.getStart_event()),ParseDate.getStrFromDate(myEvent.getEnd_event()),myEvent.getNote());
+        sql = String.format("INSERT INTO tes.event(EVENT_NAME, START_EVENT, END_EVENT, NOTE, PLACE) VALUES ('%s', '%s', '%s', '%s', '%s')", myEvent.getEvent_name(), ParseDate.getStrFromDate(myEvent.getStart_event()), ParseDate.getStrFromDate(myEvent.getEnd_event()), myEvent.getNote(), myEvent.getPlace());
         super.connect();
         Statement statement;
         

@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
         <center><h1>Input User</h1></center>
-        <form action="${pageContext.request.contextPath}/index?input=traveller" method="post">
+        <form action="${pageContext.request.contextPath}/moda?input=traveller" method="post">
             <table style="margin:20px auto;">
 		<tr>
                     <td>Kode Transportasi (int)</td>

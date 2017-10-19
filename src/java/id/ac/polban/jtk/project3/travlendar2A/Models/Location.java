@@ -13,61 +13,10 @@ package id.ac.polban.jtk.project3.travlendar2A.Models;
  */
 public class Location{
 
-    /**
-     * @return the kd_kota
-     */
-    public int getKd_kota() {
-        return kd_kota;
-    }
-
-    /**
-     * @param kd_kota the kd_kota to set
-     */
-    public void setKd_kota(int kd_kota) {
-        this.kd_kota = kd_kota;
-    }
-
-    /**
-     * @return the nm_kota
-     */
-    public String getNm_kota() {
-        return nm_kota;
-    }
-
-    /**
-     * @param nm_kota the nm_kota to set
-     */
-    public void setNm_kota(String nm_kota) {
-        this.nm_kota = nm_kota;
-    }
-
-    /**
-     * @return the kd_provinsi
-     */
-    public int getKd_provinsi() {
-        return kd_provinsi;
-    }
-
-    /**
-     * @param kd_provinsi the kd_provinsi to set
-     */
-    public void setKd_provinsi(int kd_provinsi) {
-        this.kd_provinsi = kd_provinsi;
-    }
-
-    /**
-     * @return the nm_provinsi
-     */
-    public String getNm_provinsi() {
-        return nm_provinsi;
-    }
-
-    /**
-     * @param nm_provinsi the nm_provinsi to set
-     */
-    public void setNm_provinsi(String nm_provinsi) {
-        this.nm_provinsi = nm_provinsi;
-    }
+    private String province_code;
+    private String city_code;
+    private int location_id;
+    private String address_place;
     
      /**
      * REVIEW :
@@ -123,5 +72,61 @@ public class Location{
         } else {
             return false;
         }
+    }
+
+    /**
+     * @return the province_code
+     */
+    public String getProvince_code() {
+        return province_code;
+    }
+
+    /**
+     * @param province_code the province_code to set
+     */
+    public void setProvince_code(String province_code) {
+        this.province_code = province_code;
+    }
+
+    /**
+     * @return the city_code
+     */
+    public String getCity_code() {
+        return city_code;
+    }
+
+    /**
+     * @param city_code the city_code to set
+     */
+    public void setCity_code(String city_code) {
+        this.city_code = city_code;
+    }
+
+    /**
+     * @return the location_id
+     */
+    public int getLocation_id() {
+        return location_id;
+    }
+
+    /**
+     * @param location_id the location_id to set
+     */
+    public void setLocation_id(int location_id) {
+        this.location_id = location_id;
+    }
+
+    /**
+     * @return the address_place
+     */
+    public String getAddress_place() {
+        return address_place;
+    }
+
+    /**
+     * @param address_place the address_place to set
+     */
+    public void setAddress_place(String address_place) {
+        this.address_place = address_place;
     }
 }

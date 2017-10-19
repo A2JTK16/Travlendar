@@ -25,12 +25,16 @@ public class Event {
  2.   Saran Saya untuk Date Parser dibuat Class Khusus
  3.   Perbaiki Lagi Getter dan Setter nya
      */
+    private int traveller_id;
+    private String province_code;
+    private String city_code;
+    private int location_id;
     private int event_id;
     private String event_name;
     private Date start_event;
     private Date end_event;
-    private int kodeLokasiAwal;
-    private int kodeLokasiTujuan;
+    /*private int kodeLokasiAwal;
+    private int kodeLokasiTujuan;*/
     private String note; 
     private String place;
     
@@ -40,10 +44,10 @@ public class Event {
         this.end_event = null;
     }
    
-    public String getEvent() {
+    /*public String getEvent() {
         Location objLoc = new Location();
         return ("Nama Event : " + this.getEvent_name() + "\nWaktu Berangkat : " + this.getEnd_event() + "\nWaktu Tiba : " + this.getStart_event() + "\nLokasi : " + objLoc.getNamaLoc(this.getKodeLokasiTujuan()) + "\n") ;
-    }
+    }*/
 
     /**
      * @param event_name the event_name to set
@@ -54,13 +58,14 @@ public class Event {
 
     
     public void setStart_event(Date start_event) {
-        if(this.end_event.before(start_event)) {
+        
+       /* if(this.end_event.before(start_event)) { */
             this.start_event = start_event;
-        } else {
+       /* } else { 
             System.out.println("Arrival time and departure time that you enter interchangeable, we will exchange it");
             this.start_event = this.getEnd_event();
             this.end_event = start_event;
-        }
+        } */
         
     }
 
@@ -87,30 +92,30 @@ public class Event {
     /**
      * @return the kodeLokasiAwal
      */
-    public int getKodeLokasiAwal() {
+    /*public int getKodeLokasiAwal() {
         return kodeLokasiAwal;
-    }
+    }*/
 
     /**
      * @param kodeLokasiAwal the kodeLokasiAwal to set
      */
-    public void setKodeLokasiAwal(int kodeLokasiAwal) {
+    /*public void setKodeLokasiAwal(int kodeLokasiAwal) {
         this.kodeLokasiAwal = kodeLokasiAwal;
-    }
+    }*/
 
     /**
      * @return the kodeLokasiTujuan
      */
-    public int getKodeLokasiTujuan() {
+    /*public int getKodeLokasiTujuan() {
         return kodeLokasiTujuan;
-    }
+    }*/
 
     /**
      * @param kodeLokasiTujuan the kodeLokasiTujuan to set
      */
-    public void setKodeLokasiTujuan(int kodeLokasiTujuan) {
+    /*public void setKodeLokasiTujuan(int kodeLokasiTujuan) {
         this.kodeLokasiTujuan = kodeLokasiTujuan;
-    }
+    }*/
 
     /**
      * @return the note
@@ -152,6 +157,62 @@ public class Event {
      */
     public void setEvent_id(int event_id) {
         this.event_id = event_id;
+    }
+
+    /**
+     * @return the traveller_id
+     */
+    public int getTraveller_id() {
+        return traveller_id;
+    }
+
+    /**
+     * @param traveller_id the traveller_id to set
+     */
+    public void setTraveller_id(int traveller_id) {
+        this.traveller_id = traveller_id;
+    }
+
+    /**
+     * @return the province_code
+     */
+    public String getProvince_code() {
+        return province_code;
+    }
+
+    /**
+     * @param province_code the province_code to set
+     */
+    public void setProvince_code(String province_code) {
+        this.province_code = province_code;
+    }
+
+    /**
+     * @return the city_code
+     */
+    public String getCity_code() {
+        return city_code;
+    }
+
+    /**
+     * @param city_code the city_code to set
+     */
+    public void setCity_code(String city_code) {
+        this.city_code = city_code;
+    }
+
+    /**
+     * @return the location_id
+     */
+    public int getLocation_id() {
+        return location_id;
+    }
+
+    /**
+     * @param location_id the location_id to set
+     */
+    public void setLocation_id(int location_id) {
+        this.location_id = location_id;
     }
 }
     

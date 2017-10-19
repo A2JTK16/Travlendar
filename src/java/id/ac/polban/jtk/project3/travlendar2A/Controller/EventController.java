@@ -6,6 +6,7 @@
 package id.ac.polban.jtk.project3.travlendar2A.Controller;
 
 import id.ac.polban.jtk.project3.travlendar2A.DataAccessObject.EventDAO;
+import id.ac.polban.jtk.project3.travlendar2A.Helpers.ParseDate;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -67,7 +68,7 @@ public class EventController extends HttpServlet
         */
         List<Event> listEvent;
         try{
-            listEvent = this.eventDAO.listAllAgenda(0, 0);
+            listEvent = this.eventDAO.getDataFromDB(0, 5);
         }catch (SQLException e){
             listEvent = null;
         }
@@ -95,5 +96,51 @@ public class EventController extends HttpServlet
         * Masukkan ke objek dan masukkan ke Database via DAO
         * Setelah itu, pindah ke JSP nya pakai requestdispatcher forward / response forward
         */
+        String aksiPage;
+        Event objEvent;
+        boolean isSuccess;
+        int tempInt;
+        float tempFloat;
+        String tempString;
+        aksiPage = req.getParameter("input");
+        
+        if(aksiPage != null)
+        {
+            if (aksiPage.equals("baru")) 
+            {
+                objEvent = new Event();
+                
+                /*tempInt = Integer.parseInt(req.getParameter("event_id"));
+                objEvent.setEvent_id(tempInt);*/
+                
+                tempString = req.getParameter("event_name");
+                if(tempString == null) System.out.println("Gagal ambil data dari request event name");
+                objEvent.setEvent_name(tempString);
+                
+                objEvent.setStart_event(ParseDate.getDateValueID(req.getParameter("start_event")));
+                
+                objEvent.setEnd_event(ParseDate.getDateValueID(req.getParameter("end_event")));
+                
+                tempString = req.getParameter("note");
+                
+                if(tempString == null) System.out.println("Gagal ambil data dari request event name");
+                objEvent.setNote(tempString);
+                
+                tempString = req.getParameter("place");
+                objEvent.setPlace(tempString);
+                
+                
+                isSuccess = this.eventDAO.saveDataToDB(objEvent);
+                
+                if(isSuccess)
+                    req.setAttribute("message", "Anda sukses menyimpan data ke DB");
+                else 
+                    req.setAttribute("message", "Anda gagal menyimpan data ke DB");
+                
+                req.setAttribute("content", "addevent");
+                
+                req.getRequestDispatcher("index.jsp").forward(req, resp);
+            }
+        }
     }
 }
