@@ -16,13 +16,13 @@
     </head>
     <body>
         
-        <%@include file="../Header/header.jsp" %>
+        <%@include file="../Teamplate/Header/header.jsp" %>
         
 <div class="wadah">
 	
 	<div class="main">
 		
-		<%@include file="../Sidebar/sidebar.jsp" %>
+		<%@include file="../Teamplate/Sidebar/sidebar.jsp" %>
 
 		<div class="middle">
 				<div class="judul-manage"> MANAGE TRAVELLER </div>
@@ -88,6 +88,6 @@
  
 </div> <!--wadah-->
 
-<%@include file="../Footer/footer.jsp" %>
+<%@include file="../Teamplate/Footer/footer.jsp" %>
     </body>
 </html>

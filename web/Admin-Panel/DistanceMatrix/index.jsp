@@ -16,13 +16,13 @@
     </head>
     <body>
 
-<%@include file="../Header/header.jsp" %>
+<%@include file="../Teamplate/Header/header.jsp" %>
 
 <div class="wadah">
 	
 	<div class="main">
 		
-		<%@include file="../Sidebar/sidebar.jsp" %>
+		<%@include file="../Teamplate/Sidebar/sidebar.jsp" %>
 
 		<div class="middle">
 				<div class="judul-manage"> MANAGE DISTANCE MATRIX </div>
@@ -73,12 +73,12 @@
 		
 			<div class="kotak-traveller">
 				<h4> Distance Matrix </h4>
-                                <div class="kotak-search">
+                                <!--<div class="kotak-search">
 					<div class="icon-search">
-						<img src="${pageContext.request.contextPath}/Assets2/icon/search.png">
-					</div> <!--icon-search-->
-					<input class="search "type="text" placeholder="Search Here ... "/>
-				</div> <!--kotak-search-->
+						<img src="../Assets2/icon/search.png">
+					</div> 
+					<input class="search "type="text" placeholder="Search Traveller ... "/>
+				</div> -->
 			</div> <!--kotak-traveller-->
 	
 			<div class="kotak-traveller">
@@ -222,6 +222,6 @@
  
 </div> <!--wadah-->
 
-<%@include file="../Footer/footer.jsp" %>
+<%@include file="../Teamplate/Footer/footer.jsp" %>
     </body>
 </html>

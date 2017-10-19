@@ -16,13 +16,13 @@
     </head>
     <body>
         
-        <%@include file="../Header/header.jsp" %>
+        <%@include file="../Teamplate/Header/header.jsp" %>
 
 <div class="wadah">
 	
 	<div class="main">
 		
-            <%@include file="../Sidebar/sidebar.jsp" %>
+            <%@include file="../Teamplate/Sidebar/sidebar.jsp" %>
           
 		<div class="middle">
 				<div class="judul-manage"> MANAGE TRAVELLER </div>
@@ -64,12 +64,12 @@
 		
 			<div class="kotak-traveller">
 				<h4> List Of Traveller </h4>
-				<div class="kotak-search">
+				<!--<div class="kotak-search">
 					<div class="icon-search">
 						<img src="../Assets2/icon/search.png">
-					</div> <!--icon-search-->
+					</div> 
 					<input class="search "type="text" placeholder="Search Traveller ... "/>
-				</div> <!--kotak-search-->
+				</div> -->
 			</div> <!--kotak-traveller-->
 	
 			<div class="kotak-traveller">
@@ -221,7 +221,7 @@
  
 </div> <!--wadah-->
 
-<%@include file="../Footer/footer.jsp" %>
+<%@include file="../Teamplate/Footer/footer.jsp" %>
 
     </body>
 </html>

@@ -178,7 +178,7 @@
 	<div class="main">
 		
             
-            <%@include file="../Sidebar/sidebar.jsp" %>
+            <%@include file="../Teamplate/Sidebar/sidebar.jsp" %>
 
 		<div class="middle">
                
