@@ -70,7 +70,7 @@ public class DistanceDAO extends DAO{
         /**
          * Eksekusi Query
          */
-        String sql = "INSERT INTO distance(KD_PROVINSI_AKHIR, KD_KOTA_AKHIR, ID_LOKASI_AKHIR, KD_PROVINSI_AWAL, KD_KOTA_AWAL, ID_LOKASI_AWAL, DISTANCE) VALUES ("+distance.getKd_provinsi_akhir()+","+distance.getKd_kota__akhir()+","+distance.getId_lokasi_akhir()+","+distance.getKd_provinsi_awal()+","+distance.getKd_kota_awal()+","+distance.getId_lokasi_awal()+","+distance.getDistance()+")";
+        String sql = "INSERT INTO distance(KD_PROVINSI_AKHIR, KD_KOTA_AKHIR, ID_LOKASI_AKHIR, KD_PROVINSI_AWAL, KD_KOTA_AWAL, ID_LOKASI_AWAL, DISTANCE) VALUES ('"+distance.getKd_provinsi_akhir()+"','"+distance.getKd_kota__akhir()+"','"+distance.getId_lokasi_akhir()+"','"+distance.getKd_provinsi_awal()+"','"+distance.getKd_kota_awal()+"','"+distance.getId_lokasi_awal()+"','"+distance.getDistance()+"')";
         statement.executeQuery(sql);
         /**
          * Tutup Statement
