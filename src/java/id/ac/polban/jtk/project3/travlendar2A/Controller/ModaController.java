@@ -9,7 +9,6 @@ import id.ac.polban.jtk.project3.travlendar2A.DataAccessObject.ModaTransportasiD
 import id.ac.polban.jtk.project3.travlendar2A.Models.ModaTransportasi;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +29,7 @@ public class ModaController extends HttpServlet
     
     public ModaController()
     {
-        String jdbcURL = "jdbc:mysql://localhost:3306/travlendar2a?zeroDateTimeBehavior=convertToNull";
+        String jdbcURL = "jdbc:mysql://localhost:3306/travlendar";
         String jdbcUsername = "root";
         String jdbcPassword = "";
         
@@ -57,28 +56,29 @@ public class ModaController extends HttpServlet
             aksiPage = "show";
         }
         
-            if (aksiPage.equals("show")) 
+        if (aksiPage.equals("show")) 
+        {
+            List<ModaTransportasi> listModa;
+            try
             {
-                List<ModaTransportasi> listModa;
-                try
-                {
-                    listModa = this.modaDao.getDataFromDB();
-                } catch (SQLException ex)
-                {
-                    listModa = null;
-                }
-                
-                request.setAttribute("modaTransList", listModa);
-                
-                
-                request.setAttribute("content", "modatransportasi");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-            }
-            else if(aksiPage.equals("add"))
+                listModa = this.modaDao.getDataFromDB();
+            }     
+            catch (SQLException ex)
             {
-                request.setAttribute("content", "addmodatransportasi");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                listModa = null;
             }
+                
+            request.setAttribute("modaTransList", listModa);
+                
+                
+            request.setAttribute("content", "modatransportasi");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+        else if(aksiPage.equals("add"))
+        {
+            request.setAttribute("content", "addmodatransportasi");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
         
         
     }

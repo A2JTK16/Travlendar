@@ -26,7 +26,7 @@ import java.util.List;
         listData = new ArrayList();
         ModaTransportasi modaTrans;
         
-        String sql = "SELECT `KD_TRSMODE`, `NAMA_TRANSPORTASI`, `KECEPATAN` FROM `travlendar2a`.`mode_transportasi`";
+        String sql = "SELECT * FROM `transportation_mode`";
         super.connect();
         
         Statement stmt;
@@ -38,9 +38,9 @@ import java.util.List;
         while(rs.next()){
             modaTrans = new ModaTransportasi();
             
-            modaTrans.setKecepatan(rs.getFloat("KECEPATAN"));
-            modaTrans.setKodeTransportasi(rs.getInt("KD_TRSMODE"));
-            modaTrans.setNamaTransportasi(rs.getString("NAMA_TRANSPORTASI"));
+            modaTrans.setKecepatan(rs.getFloat("TRANSPORTATION_SPEED"));
+            modaTrans.setKodeTransportasi(rs.getString("TRANSPORTATION_CODE"));
+            modaTrans.setNamaTransportasi(rs.getString("TRANSPORTATION_NAME"));
             
             listData.add(modaTrans);
         }

@@ -10,21 +10,21 @@ package id.ac.polban.jtk.project3.travlendar2A.Models;
  * @author mufidjamaluddin
  */
 public class ModaTransportasi {
-   private int KodeTransportasi;
+   private String KodeTransportasi;
    private String NamaTransportasi;
    private float Kecepatan;
 
     /**
      * @return the KodeTransportasi
      */
-    public int getKodeTransportasi() {
+    public String getKodeTransportasi() {
         return KodeTransportasi;
     }
 
     /**
      * @param KodeTransportasi the KodeTransportasi to set
      */
-    public void setKodeTransportasi(int KodeTransportasi) {
+    public void setKodeTransportasi(String KodeTransportasi) {
         this.KodeTransportasi = KodeTransportasi;
     }
 
