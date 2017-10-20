@@ -34,7 +34,7 @@ public class EventController extends HttpServlet
        // String jdbcURL = getServletContext().getInitParameter("jdbcURL"); 
        // String jdbcUsername = getServletContext().getInitParameter("jdbcUsername"); 
        // String jdbcPassword = getServletContext().getInitParameter("jdbcPassword"); 
-        String jdbcURL = "jdbc:mysql://localhost:3306/travlendar?zeroDateTimeBehavior=convertToNull";
+        String jdbcURL = "jdbc:mysql://localhost:3306/travlendardb?zeroDateTimeBehavior=convertToNull";
         String jdbcUsername = "root";
         String jdbcPassword = "";
         /**

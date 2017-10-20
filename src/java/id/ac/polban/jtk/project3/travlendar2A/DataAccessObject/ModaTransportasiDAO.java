@@ -58,6 +58,7 @@ import java.util.List;
      */
     public void saveDataToDB(ModaTransportasi modaTrs) throws SQLException
     {
+        String sql = String.format("INSERT INTO `transportation_mode`(`TRANSPORTATION_CODE`, `TRANSPORTATION_NAME`, `TRANSPORTATION_SPEED`) VALUES ('%s','%s','%s')", modaTrs.getKodeTransportasi(),modaTrs.getNamaTransportasi(), modaTrs.getKecepatan() );
         /**
          * Buat Koneksi ke DBMS
          */
@@ -70,8 +71,8 @@ import java.util.List;
         /**
          * Eksekusi Query
          */
-        String sql = String.format("INSERT INTO transportation_mode(TRANSPORTATION_CODE, TRANSPORTATION_NAME, TRANSPORTATION_SPEED) VALUES ('%s','%s','%s')", modaTrs.getKodeTransportasi(),modaTrs.getNamaTransportasi(), modaTrs.getKecepatan() );
-        statement.executeQuery(sql);
+        
+        statement.executeUpdate(sql);
         /**
          * Tutup Statement
          */

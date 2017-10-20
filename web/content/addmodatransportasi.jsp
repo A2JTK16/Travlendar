@@ -6,19 +6,19 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
         <center><h1>Input User</h1></center>
-        <form action="${pageContext.request.contextPath}/moda?input=traveller" method="post">
+        <form action="${pageContext.request.contextPath}/moda?input=baru" method="post">
             <table style="margin:20px auto;">
 		<tr>
-                    <td>Kode Transportasi (int)</td>
-                    <td><input type="text" name="kode_trans"></td>
+                    <td>Kode Transportasi (char(2))</td>
+                    <td><input type="text" name="kode_trans" values=""></td>
 		</tr>
 		<tr>
                     <td>Nama Transportasi (string)</td>
-                    <td><input type="text" name="nama_trans"></td>
+                    <td><input type="text" name="nama_trans" values=""></td>
 		</tr>
                 <tr>
                     <td>Kecepatan (float)</td>
-                    <td><input type="text" name="kecepatan"></td>
+                    <td><input type="text" name="kecepatan" values=""></td>
 		</tr>
 
 		<tr>
