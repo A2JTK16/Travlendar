@@ -1,7 +1,7 @@
-package id.ac.polban.jtk.project3.travlendar2A.Helpers;
+package id.ac.polban.jtk.project3.travlendar2A.Models;
 
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
-import id.ac.polban.jtk.project3.travlendar2A.Models.EstimasiWaktu;
+import id.ac.polban.jtk.project3.travlendar2A.Models.EstimationTime;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Location;
 
 /*
@@ -54,7 +54,7 @@ public class Moda_Transportasi {
     public void transportRecomendation(double distance, double waktuKosong){
         double[] arrayOfEta = new double [5]; //array untuk menampung variabel estimation time arrival (eta)
         Moda_Transportasi tm = new Moda_Transportasi();
-        EstimasiWaktu et = new EstimasiWaktu();
+        EstimationTime et = new EstimationTime();
         Location loc = new Location();
         Event event = new Event();
         boolean noTransport = true;
@@ -70,7 +70,7 @@ public class Moda_Transportasi {
                 noTransport=false;
                 switch(i){
                     case 0: 
-                        if (!(loc.bisaDilaluiPesawat(event.getKodeLokasiAwal(), event.getKodeLokasiTujuan()))){
+                        if (!(loc.bisaDilaluiPesawat(event.getLocation_id(), event.getLocation_id()))){
                             System.out.print("-> Pesawat, waktu tempuh ");
                             et.printEstimationTime(arrayOfEta[i]);
                             System.out.println("\n");

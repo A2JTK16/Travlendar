@@ -6,7 +6,7 @@
 package id.ac.polban.jtk.project3.travlendar2A.Controller;
 
 import id.ac.polban.jtk.project3.travlendar2A.DataAccessObject.EventDAO;
-import id.ac.polban.jtk.project3.travlendar2A.Helpers.ParseDate;
+import id.ac.polban.jtk.project3.travlendar2A.Helpers.DateTHelper;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -117,9 +117,9 @@ public class EventController extends HttpServlet
                 if(tempString == null) System.out.println("Gagal ambil data dari request event name");
                 objEvent.setEvent_name(tempString);
                 
-                objEvent.setStart_event(ParseDate.getDateValueID(req.getParameter("start_event")));
+                objEvent.setStart_event(DateTHelper.parseDate("dd-MM-yyyy HH:mm",req.getParameter("start_event")));
                 
-                objEvent.setEnd_event(ParseDate.getDateValueID(req.getParameter("end_event")));
+                objEvent.setEnd_event(DateTHelper.parseDate("dd-MM-yyyy HH:mm",req.getParameter("end_event")));
                 
                 tempString = req.getParameter("note");
                 

@@ -5,7 +5,7 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.DataAccessObject;
 
-import id.ac.polban.jtk.project3.travlendar2A.Helpers.ParseDate;
+import id.ac.polban.jtk.project3.travlendar2A.Helpers.DateTHelper;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -56,10 +56,10 @@ public class EventDAO extends DAO
                 tempStr = resultSet.getString("EVENT_NAME");
                 event.setEvent_name(tempStr);
                 
-                tempDate = ParseDate.getDateValueFromStr(resultSet.getString("START_EVENT"));
+                tempDate = DateTHelper.parseDateM(resultSet.getString("START_EVENT"));
                 event.setStart_event(tempDate);
                     
-                tempDate = ParseDate.getDateValueFromStr(resultSet.getString("END_EVENT"));
+                tempDate = DateTHelper.parseDateM(resultSet.getString("END_EVENT"));
                 event.setEnd_event(tempDate);
                 
                 /*tempInt = resultSet.getInt("KODE_LOKASI_AWAL");
@@ -114,7 +114,7 @@ public class EventDAO extends DAO
     {
         String sql;
         boolean isSaveSuccess;
-        sql = String.format("INSERT INTO tes.event(EVENT_NAME, START_EVENT, END_EVENT, NOTE, PLACE) VALUES ('%s', '%s', '%s', '%s', '%s')", myEvent.getEvent_name(), ParseDate.getStrFromDate(myEvent.getStart_event()), ParseDate.getStrFromDate(myEvent.getEnd_event()), myEvent.getNote(), myEvent.getPlace());
+        sql = String.format("INSERT INTO tes.event(EVENT_NAME, START_EVENT, END_EVENT, NOTE, PLACE) VALUES ('%s', '%s', '%s', '%s', '%s')", myEvent.getEvent_name(), DateTHelper.toStringM(myEvent.getStart_event()), DateTHelper.toStringM(myEvent.getEnd_event()), myEvent.getNote(), myEvent.getPlace());
         super.connect();
         Statement statement;
         

@@ -6,12 +6,12 @@
 package id.ac.polban.jtk.project3.travlendar2A.Test;
 
 
-import id.ac.polban.jtk.project3.travlendar2A.Helpers.Moda_Transportasi;
-import id.ac.polban.jtk.project3.travlendar2A.Helpers.Moda_Transportasi;
-import id.ac.polban.jtk.project3.travlendar2A.Helpers.ParseDate;
-import id.ac.polban.jtk.project3.travlendar2A.Helpers.ParseDate;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Moda_Transportasi;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Moda_Transportasi;
+import id.ac.polban.jtk.project3.travlendar2A.Helpers.DateTHelper;
+import id.ac.polban.jtk.project3.travlendar2A.Helpers.DateTHelper;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
-import id.ac.polban.jtk.project3.travlendar2A.Models.EstimasiWaktu;
+import id.ac.polban.jtk.project3.travlendar2A.Models.EstimationTime;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Location;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Travel;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
@@ -28,19 +28,19 @@ import java.util.Date;
 public class ProgramUtama{        
     protected Location lokasi;
     protected Travel distance;
-    protected EstimasiWaktu esTime;
+    protected EstimationTime esTime;
     protected Moda_Transportasi transport;
     protected Event event;
-    protected ParseDate parsedt;
+    protected DateTHelper parsedt;
     protected Traveller traveller;
     
     public static void main(String[] args) throws ParseException{
         
         Location lokasiEvent = new Location();
         Travel jarakLokasi = new Travel();
-        EstimasiWaktu esTime = new EstimasiWaktu();
+        EstimationTime esTime = new EstimationTime();
         Moda_Transportasi nama_transportasi = new Moda_Transportasi();
-        ParseDate parsedt = new ParseDate();
+        DateTHelper parsedt = new DateTHelper();
         Date waktumulai;
         Date waktuberakhir; 
         int transportation;

@@ -106,8 +106,8 @@ public class ModaController extends HttpServlet
             {
                 objModa = new ModaTransportasi();
                 
-                tempInt = Integer.parseInt(request.getParameter("kode_trans"));
-                objModa.setKodeTransportasi(tempInt);
+                tempString = request.getParameter("kode_trans");
+                objModa.setKodeTransportasi(tempString);
                 
                 tempString = request.getParameter("nama_trans");
                 objModa.setNamaTransportasi(tempString);

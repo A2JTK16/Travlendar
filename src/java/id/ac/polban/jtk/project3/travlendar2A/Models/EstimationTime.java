@@ -10,7 +10,8 @@ package id.ac.polban.jtk.project3.travlendar2A.Models;
  *
  * @author Reza Dwi Kurniawan
  */
-public class EstimasiWaktu {
+public class EstimationTime
+{
     private double distance;
     private double speed;
     private double eta; //eta merupakan singkatan dari estimation time arrival
