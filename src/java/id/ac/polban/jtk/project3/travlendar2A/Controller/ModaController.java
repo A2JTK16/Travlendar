@@ -29,7 +29,7 @@ public class ModaController extends HttpServlet
     
     public ModaController()
     {
-        String jdbcURL = "jdbc:mysql://localhost:3306/travlendar";
+        String jdbcURL = "jdbc:mysql://localhost:3306/travlendardb";
         String jdbcUsername = "root";
         String jdbcPassword = "";
         
@@ -131,7 +131,5 @@ public class ModaController extends HttpServlet
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         }
-    }
-
-    
+    }    
 }

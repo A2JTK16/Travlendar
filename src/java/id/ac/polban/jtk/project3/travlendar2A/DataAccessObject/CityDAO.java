@@ -5,7 +5,7 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.DataAccessObject;
 
-import id.ac.polban.jtk.project3.travlendar2A.Models.Province;
+import id.ac.polban.jtk.project3.travlendar2A.Models.City;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,20 +14,21 @@ import java.util.List;
 
 /**
  *
- * @author AGS
+ * @author Reza Dwi Kurniawan
  */
-public class ProvinceDAO extends DAO{
+public class CityDAO extends DAO {    
+        public CityDAO (String jdbcURL, String jdbcUsername, String jdbcPassword){
+            super(jdbcURL, jdbcUsername, jdbcPassword);
+        }
+
     
-    public ProvinceDAO (String jdbcURL, String jdbcUsername, String jdbcPassword){
-        super(jdbcURL, jdbcUsername, jdbcPassword);
-    }
     
-    public List<Province> getDataFromDB() throws SQLException {
-        List <Province> listData;
+    public List<City> getDataFromDB() throws SQLException {
+        List <City> listData;
         listData = new ArrayList();
-        Province province;
+        City city;
         
-        String sql = "SELECT * FROM province";
+        String sql = "SELECT `CITY_CODE`, `CITY_NAME` FROM `travlendardb`.`city`";
         super.connect();
         
         Statement stmt;
@@ -37,18 +38,17 @@ public class ProvinceDAO extends DAO{
         rs = stmt.executeQuery(sql);
         
         while(rs.next()){
-            province = new Province();
+            city = new City();
             
-            province.setProvince_code(rs.getString("PROVINCE_CODE"));
-            province.setProvince_name(rs.getString("PROVINCE_NAME"));
+            city.setCityCode(rs.getString("CITY_CODE"));
+            city.setCityName(rs.getString("CITY_NAME"));
             
-            
-            listData.add(province);
+            listData.add(city);
         }
         
         stmt.close();
         super.disconnect();
-        
+            
         return listData;
-    }
+    }   
 }
