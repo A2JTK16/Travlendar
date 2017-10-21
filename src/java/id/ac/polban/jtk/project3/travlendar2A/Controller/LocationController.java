@@ -5,8 +5,8 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Controller;
 
-import id.ac.polban.jtk.project3.travlendar2A.DataAccessObject.CityDAO;
-import id.ac.polban.jtk.project3.travlendar2A.DataAccessObject.ProvinceDAO;
+import id.ac.polban.jtk.project3.travlendar2A.Models.DAO.CityDAO;
+import id.ac.polban.jtk.project3.travlendar2A.Models.DAO.ProvinceDAO;
 import id.ac.polban.jtk.project3.travlendar2A.Models.City;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Province;
 import java.io.IOException;

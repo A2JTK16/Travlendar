@@ -5,6 +5,7 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Models.DAO;
 
+import id.ac.polban.jtk.project3.travlendar2A.Models.DAO.DAO;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Province;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,7 +28,7 @@ public class ProvinceDAO extends DAO{
         listData = new ArrayList();
         Province province;
         
-        String sql = "SELECT * FROM tes.province";
+        String sql = "SELECT * FROM province";
         super.connect();
         
         Statement stmt;

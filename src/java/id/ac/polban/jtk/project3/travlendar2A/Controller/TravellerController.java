@@ -5,7 +5,7 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Controller;
 
-import id.ac.polban.jtk.project3.travlendar2A.DataAccessObject.TravellerDAO;
+import id.ac.polban.jtk.project3.travlendar2A.Models.DAO.TravellerDAO;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
 import java.io.IOException;
 import java.sql.SQLException;
