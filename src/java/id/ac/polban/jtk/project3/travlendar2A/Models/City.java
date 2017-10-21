@@ -7,52 +7,37 @@ package id.ac.polban.jtk.project3.travlendar2A.Models;
 
 /**
  *
- * @author AGS
+ * @author Reza Dwi Kurniawan
  */
 public class City {
-    private String city_code;
-    private String city_name;
-    private String province_code;
+    private String cityCode;
+    private String cityName;
 
     /**
-     * @return the city_code
+     * @return the cityCode
      */
-    public String getCity_code() {
-        return city_code;
+    public String getCityCode() {
+        return cityCode;
     }
 
     /**
-     * @param city_code the city_code to set
+     * @param cityCode the cityCode to set
      */
-    public void setCity_code(String city_code) {
-        this.city_code = city_code;
+    public void setCityCode(String cityCode) {
+        this.cityCode = cityCode;
     }
 
     /**
-     * @return the city_name
+     * @return the cityName
      */
-    public String getCity_name() {
-        return city_name;
+    public String getCityName() {
+        return cityName;
     }
 
     /**
-     * @param city_name the city_name to set
+     * @param cityName the cityName to set
      */
-    public void setCity_name(String city_name) {
-        this.city_name = city_name;
-    }
-
-    /**
-     * @return the province_code
-     */
-    public String getProvince_code() {
-        return province_code;
-    }
-
-    /**
-     * @param province_code the province_code to set
-     */
-    public void setProvince_code(String province_code) {
-        this.province_code = province_code;
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 }

@@ -24,20 +24,14 @@ public class Traveller {
     private String traveller_password;
     private String traveller_fullName;
     
-    /**
-     * 
-     * @param traveller_fullName
-     * @param traveller_name
-     * @param traveller_email
-     * @param traveller_password
-     */
-    public Traveller(String traveller_fullName, String traveller_name, String traveller_email, String traveller_password) {
-        this.traveller_fullName = traveller_fullName;
-        this.traveller_name = traveller_name;
-        this.traveller_email = traveller_email;
-        this.traveller_password = traveller_password;
-    }
     
+    public Traveller() {
+//        this.traveller_fullName = traveller_fullName;
+//        this.traveller_name = traveller_name;
+//        this.traveller_email = traveller_email;
+//        this.traveller_password = traveller_password;
+    }
+
     /*
      * Setter digunakan untuk setting apabila data Traveller telah di diisi dengan menggunakan konstruktor 
      * Karena apabila tidak ada setter maka variabel akan/harus menjadi bertipe final(konstan) sehingga
