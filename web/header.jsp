@@ -1,9 +1,10 @@
 <%-- 
     Document   : header
     Created on : Sep 24, 2017, 9:32:16 AM
-    Author     : Lenovo
+    Author     : Diana
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,15 +13,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="Assets/css/userstyle.css">
         <link rel="stylesheet" type="text/css" href="Assets/css/userresponsive.css">
-        <title>Header</title>
+        <link rel="stylesheet" type="text/css" href="Assets/css/calendar.css">
+        <title><c:out value="${content}"/> Trav2A</title>
     </head>
     <body>
                 
-<div class="jarak-atas">
+    <div class="jarak-atas">
 
-</div> <!--jarak-atas-->
+    </div> <!--jarak-atas-->
 
-<div class="menu-atas">
+    <div class="menu-atas">
 	<div class="header">
             <div class="logonya">
                 <img src="Assets/icon/logo3.png">
@@ -31,9 +33,9 @@
             
             <div class="dropdown" style="float:right;">
                 <button class="dropbtn">
-                    <div class="icon-account">
+                    <a class="icon-account">
                             <img src="Assets/icon/akun1.png">
-                    </div>
+                    </a>
                 </button>
                 <div class="dropdown-content">
                   <a href="#">Link 1</a>
@@ -44,9 +46,9 @@
             
             <div class="dropdown" style="float:right;">
                 <button class="dropbtn">
-                    <div class="icon-account">
+                    <a class="icon-account">
                             <img src="Assets/icon/notif2.png">
-                    </div>
+                    </a>
                 </button>
                 <div class="dropdown-content">
                   <a href="#">Notif 1</a>
@@ -54,10 +56,7 @@
                   <a href="#">Notif 3</a>
                 </div>
             </div>
-            
-            
-            
-            
+                  
             <div class="kotak-cari">
                 <div class="icon-cari">
                     <img src="Assets/icon/search.png">
@@ -67,9 +66,8 @@
           
 	</div> <!--header-->
      
-</div> <!--menu-atas-->
+    </div> <!--menu-atas-->
 
-
-
-    </body>
-</html>
+    <!-- Isi kontennya di sini, ketika di include otomatis nyambung dengan konten -->
+    
+    <!-- Isi footernya termasuk tutup tag html dan body di sini, ketika di include otomatis nyambung dengan konten -->

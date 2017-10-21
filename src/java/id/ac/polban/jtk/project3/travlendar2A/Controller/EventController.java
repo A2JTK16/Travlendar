@@ -5,7 +5,7 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Controller;
 
-import id.ac.polban.jtk.project3.travlendar2A.DataAccessObject.EventDAO;
+import id.ac.polban.jtk.project3.travlendar2A.Models.DAO.EventDAO;
 import id.ac.polban.jtk.project3.travlendar2A.Helpers.DateTHelper;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import java.io.IOException;

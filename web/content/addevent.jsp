@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-        <center><h1>Input Agenda</h1></center>
+    <center><h1 class="judul-manage">Input Agenda</h1></center>
         <form action="${pageContext.request.contextPath}/event?input=baru" method="post">
             <table style="margin:20px auto;">
 		<tr>

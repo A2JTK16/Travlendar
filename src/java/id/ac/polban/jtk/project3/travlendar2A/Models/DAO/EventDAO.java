@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package id.ac.polban.jtk.project3.travlendar2A.DataAccessObject;
+package id.ac.polban.jtk.project3.travlendar2A.Models.DAO;
 
 import id.ac.polban.jtk.project3.travlendar2A.Helpers.DateTHelper;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
@@ -29,6 +29,10 @@ public class EventDAO extends DAO
      * Save data objek dengan Query SQL
      * 
      * Lih Class Diagram
+     * @param halaman
+     * @param batas
+     * @return 
+     * @throws java.sql.SQLException 
      */
     public List<Event> getDataFromDB(int halaman, int batas) throws SQLException{
         List<Event> listEvent;

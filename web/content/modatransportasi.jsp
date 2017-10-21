@@ -12,6 +12,8 @@
             <th>Kode</th>
             <th>Nama Kendaraan</th>
             <th>Kecepatan</th>
+            <th></th>
+            <th></th>
         </tr>
         
         <c:forEach items="${modaTransList}" var="modaTrans">
@@ -19,6 +21,12 @@
             <td><c:out value="${modaTrans.getKodeTransportasi()}"/></td>
             <td><c:out value="${modaTrans.getNamaTransportasi()}"/></td>
             <td><c:out value="${modaTrans.getKecepatan()}"/></td>
+            <td><a href="   <c:url value="moda">
+                                <c:param name="action" value="edit"/>
+                                <c:param name="code" value="${modaTrans.getKodeTransportasi()}"/>
+                            </c:url>
+                        ">Edit</a></td>
+            <td><a href="#">Delete</a></td>
         </tr>
         </c:forEach>
         

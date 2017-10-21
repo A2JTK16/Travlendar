@@ -6,27 +6,35 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>
-            <c:out value="${content}"/> Travlendar A2
-        </title>
-    </head>
-    <body>
-        <h1>Travlendar A2</h1>
-        <p><c:out value="${message}"/></p>
+
+<!-- Include Header, termasuk CSS nya -->
+<jsp:include page="header.jsp"/>
+
+<div class="wadah">
+    <div class="main">
+        
+        <p class="message"><c:out value="${message}"/></p>
         
         <c:set var="content" scope="request" value="${content}"/>
         <c:choose>
             <c:when test="${content == null}">
-                <c:out value="Masukkan URL Controller yg Benar"/>
+                <h1 class="judul">Menu Admin</h1>
+                <a href="   <c:url value="moda">
+                                <c:param name="action" value="show"/>
+                            </c:url>
+                        ">Daftar List Moda Transportasi</a><br/>
+                <a href="   <c:url value="moda">
+                                <c:param name="action" value="add"/>
+                            </c:url>
+                        ">Add List Moda Transportasi</a>
+
             </c:when>
             <c:otherwise>
                 <jsp:include page="content/${content}.jsp"/>
             </c:otherwise>
         </c:choose>
-        
-    </body>
-</html>
+    </div>
+</div>                 
+                        
+<!-- Include Footer, termasuk Tutup Tag Body dan Tutup tag Html nya -->   
+<jsp:include page="footer.jsp"/>

@@ -5,11 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-        <center><h1>Input User</h1></center>
-        <form action="${pageContext.request.contextPath}/moda?input=traveller" method="post">
+        <center><h1 class="judul-manage">Input User</h1></center>
+        <form action="${pageContext.request.contextPath}/moda?input=baru" method="post">
             <table style="margin:20px auto;">
 		<tr>
-                    <td>Kode Transportasi (int)</td>
+                    <td>Kode Transportasi (char2)</td>
                     <td><input type="text" name="kode_trans"></td>
 		</tr>
 		<tr>
