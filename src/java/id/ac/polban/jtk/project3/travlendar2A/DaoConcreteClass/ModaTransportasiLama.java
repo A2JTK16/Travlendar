@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package id.ac.polban.jtk.project3.travlendar2A.DataAccessObject;
+package id.ac.polban.jtk.project3.travlendar2A.DaoConcreteClass;
 
-import id.ac.polban.jtk.project3.travlendar2A.Models.DAO.DAO;
+import id.ac.polban.jtk.project3.travlendar2A.DaoConcreteClass.DAO;
 import id.ac.polban.jtk.project3.travlendar2A.Models.ModaTransportasi;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,8 +17,8 @@ import java.util.List;
  *
  * @author Reza Dwi Kurniawan
  */
-    public class ModaTransportasiDAO extends DAO {
-        public ModaTransportasiDAO (String jdbcURL, String jdbcUsername, String jdbcPassword){
+    public class ModaTransportasiLama extends DAO {
+        public ModaTransportasiLama (String jdbcURL, String jdbcUsername, String jdbcPassword){
             super(jdbcURL, jdbcUsername, jdbcPassword);
         }
     

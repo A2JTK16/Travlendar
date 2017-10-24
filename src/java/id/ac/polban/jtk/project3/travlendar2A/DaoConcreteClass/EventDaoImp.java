@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package id.ac.polban.jtk.project3.travlendar2A.Models.DAO;
+package id.ac.polban.jtk.project3.travlendar2A.DaoConcreteClass;
 
+import id.ac.polban.jtk.project3.travlendar2A.DaoInterface.IEventDao;
 import id.ac.polban.jtk.project3.travlendar2A.Helpers.DateTHelper;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import java.sql.ResultSet;
@@ -15,10 +16,11 @@ import java.util.Date;
 import java.util.List;
 
 
-public class EventDAO extends DAO
+public class EventDaoImp extends DAO implements IEventDao
 {
+    private int limit;
     
-    public EventDAO(String jdbcURL, String jdbcUsername, String jdbcPassword) {
+    public EventDaoImp(String jdbcURL, String jdbcUsername, String jdbcPassword) {
         super(jdbcURL, jdbcUsername, jdbcPassword);
     }
     
@@ -30,11 +32,11 @@ public class EventDAO extends DAO
      * 
      * Lih Class Diagram
      * @param halaman
-     * @param batas
      * @return 
      * @throws java.sql.SQLException 
      */
-    public List<Event> getDataFromDB(int halaman, int batas) throws SQLException{
+    @Override
+    public List<Event> getListFromDB(int halaman, int travellerId) throws SQLException{
         List<Event> listEvent;
         Event event;
         String sql;
@@ -42,8 +44,8 @@ public class EventDAO extends DAO
         String tempStr;
         Date tempDate;
         listEvent = new ArrayList();
-        tempInt = (halaman-1) * batas;
-        sql = String.format("SELECT * FROM tes.event order by EVENT_ID asc LIMIT %d, %d",tempInt,batas);
+        tempInt = (halaman-1) * this.limit;
+        sql = String.format("SELECT * FROM tes.event order by EVENT_ID asc LIMIT %d, %d",tempInt,this.limit);
         super.connect();
         Statement statement;
         ResultSet resultSet;
@@ -73,10 +75,10 @@ public class EventDAO extends DAO
                 event.setKodeLokasiTujuan(tempInt);*/
                 
                 tempStr = resultSet.getString("NOTE");
-                event.setNote(sql);
+                event.setNote(tempStr);
                 
                 tempStr = resultSet.getString("PLACE");
-                event.setPlace(sql);
+                event.setPlace(tempStr);
                 
                 listEvent.add(event);
             }
@@ -111,10 +113,11 @@ public class EventDAO extends DAO
     
     /**
      *
-     * @param myEvent
-     * @return 
+     * @param myEvent 
+     * @throws java.sql.SQLException 
      */
-    public boolean saveDataToDB(Event myEvent)
+    @Override
+    public void saveDataToDB(Event myEvent) throws SQLException
     {
         String sql;
         boolean isSaveSuccess;
@@ -122,20 +125,41 @@ public class EventDAO extends DAO
         super.connect();
         Statement statement;
         
-        try{
-            statement = super.getJdbcConnection().createStatement();
-            statement.executeUpdate(sql);
-            statement.close();
-            isSaveSuccess = true;
-        }
-        catch(SQLException e)
-        {
-            isSaveSuccess = false;
-        }
-        
+        statement = super.getJdbcConnection().createStatement();
+        statement.executeUpdate(sql);
+        statement.close();
+      
         super.disconnect();
-        
-        return isSaveSuccess;
+    }
+
+    @Override
+    public Event getDataBefore(int eventCode, int travellerId) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getCountPage(int travellerId) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isEventAvaiable(int eventCode, int travellerId) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateDataToDB(Event myEvent) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteDataFromDB(int travellerId, int eventCode) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Event getDataFromDB(int eventCode, int travellerId) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

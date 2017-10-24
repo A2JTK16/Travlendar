@@ -5,12 +5,16 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Controller;
 
-import id.ac.polban.jtk.project3.travlendar2A.Models.DAO.EventDAO;
+import id.ac.polban.jtk.project3.travlendar2A.DaoConcreteClass.EventDaoImp;
+import id.ac.polban.jtk.project3.travlendar2A.DaoConcreteClass.TravelDaoImp;
 import id.ac.polban.jtk.project3.travlendar2A.Helpers.DateTHelper;
+import id.ac.polban.jtk.project3.travlendar2A.Helpers.PagingListIntHelper;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,8 +27,9 @@ public class EventController extends HttpServlet
     /**
      * Atribut wajib
      */
-    private EventDAO eventDAO;
-
+    private EventDaoImp eventDAO;
+    private TravelDaoImp travelDao;
+    private PagingListIntHelper pagingHelp;
     /**
      * Override instansiasi
      */
@@ -40,7 +45,7 @@ public class EventController extends HttpServlet
         /**
          * Buat Hubungan dengan Database
          */
-        eventDAO = new EventDAO(jdbcURL, jdbcUsername, jdbcPassword);
+        eventDAO = new EventDaoImp(jdbcURL, jdbcUsername, jdbcPassword);
     }
     /**
      * Method GET dan POST URL (doGet & doPost)
@@ -68,7 +73,7 @@ public class EventController extends HttpServlet
         */
         List<Event> listEvent;
         try{
-            listEvent = this.eventDAO.getDataFromDB(0, 5);
+            listEvent = this.eventDAO.getListFromDB(1, 1);
         }catch (SQLException e){
             listEvent = null;
         }
@@ -130,12 +135,16 @@ public class EventController extends HttpServlet
                 objEvent.setPlace(tempString);
                 
                 
-                isSuccess = this.eventDAO.saveDataToDB(objEvent);
-                
-                if(isSuccess)
+                try 
+                {
+                    this.eventDAO.saveDataToDB(objEvent);
                     req.setAttribute("message", "Anda sukses menyimpan data ke DB");
-                else 
+                } 
+                catch (SQLException ex) 
+                {
+                    Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
                     req.setAttribute("message", "Anda gagal menyimpan data ke DB");
+                }
                 
                 req.setAttribute("content", "addevent");
                 

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package id.ac.polban.jtk.project3.travlendar2A.Models.DAO;
+package id.ac.polban.jtk.project3.travlendar2A.DaoConcreteClass;
 
-import id.ac.polban.jtk.project3.travlendar2A.Models.DAO.DAO;
+import id.ac.polban.jtk.project3.travlendar2A.DaoInterface.IProvinceDao;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Province;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,13 +17,16 @@ import java.util.List;
  *
  * @author AGS
  */
-public class ProvinceDAO extends DAO{
+public class ProvinceDaoImp extends DAO implements IProvinceDao
+{
     
-    public ProvinceDAO (String jdbcURL, String jdbcUsername, String jdbcPassword){
+    public ProvinceDaoImp (String jdbcURL, String jdbcUsername, String jdbcPassword){
         super(jdbcURL, jdbcUsername, jdbcPassword);
     }
     
-    public List<Province> getDataFromDB() throws SQLException {
+    @Override
+    public List<Province> getListFromDB(int page) throws SQLException 
+    {
         List <Province> listData;
         listData = new ArrayList();
         Province province;
@@ -52,4 +55,20 @@ public class ProvinceDAO extends DAO{
         
         return listData;
     }
+
+    @Override
+    public Province getDataFromDB(String provinceCode) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getCountPage() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isProvinceAvaiable(String provinceCode) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

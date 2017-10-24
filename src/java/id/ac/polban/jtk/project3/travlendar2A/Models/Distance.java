@@ -14,9 +14,11 @@ public class Distance {
     private String kd_provinsi_akhir;
     private String kd_kota__akhir;
     private int id_lokasi_akhir;
+    
     private String kd_provinsi_awal;
     private String kd_kota_awal;
     private int id_lokasi_awal;
+    
     private double distance;
 
     /**

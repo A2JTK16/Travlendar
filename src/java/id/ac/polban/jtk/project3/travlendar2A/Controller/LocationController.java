@@ -5,8 +5,9 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Controller;
 
-import id.ac.polban.jtk.project3.travlendar2A.Models.DAO.CityDAO;
-import id.ac.polban.jtk.project3.travlendar2A.Models.DAO.ProvinceDAO;
+import id.ac.polban.jtk.project3.travlendar2A.DaoConcreteClass.CityDaoImp;
+import id.ac.polban.jtk.project3.travlendar2A.DaoConcreteClass.ProvinceDaoImp;
+import id.ac.polban.jtk.project3.travlendar2A.Helpers.PagingListIntHelper;
 import id.ac.polban.jtk.project3.travlendar2A.Models.City;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Province;
 import java.io.IOException;
@@ -25,16 +26,17 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "location", urlPatterns = {"/location"})
 public class LocationController extends HttpServlet {
     
-    CityDAO cityDao;
-    ProvinceDAO provinceDao;
+    private CityDaoImp cityDao;
+    private ProvinceDaoImp provinceDao;
+    private PagingListIntHelper pagingHelp;
     
     public LocationController(){
         String jdbcUrl = "jdbc:mysql://localhost:3306/travlendardb?zeroDateTimeBehavior=convertToNull";
         String jdbcUser = "root";
         String jdbcPass = "";
         
-        cityDao = new CityDAO(jdbcUrl, jdbcUser, jdbcPass);
-        provinceDao = new ProvinceDAO(jdbcUrl, jdbcUser, jdbcPass);
+        cityDao = new CityDaoImp(jdbcUrl, jdbcUser, jdbcPass);
+        provinceDao = new ProvinceDaoImp(jdbcUrl, jdbcUser, jdbcPass);
     }
     
     
@@ -43,8 +45,8 @@ public class LocationController extends HttpServlet {
         List<City> listCity;
         List<Province> listProvince;
         try {
-            listCity = this.cityDao.getDataFromDB();
-            listProvince = this.provinceDao.getDataFromDB();
+            listCity = this.cityDao.getListFromDB(1);
+            listProvince = this.provinceDao.getListFromDB(1);
         } catch (SQLException ex) {
             listCity = null;
             listProvince = null;

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package id.ac.polban.jtk.project3.travlendar2A.Models.DAO;
+package id.ac.polban.jtk.project3.travlendar2A.DaoConcreteClass;
 
+import id.ac.polban.jtk.project3.travlendar2A.DaoInterface.ITransportationMdDao;
 import id.ac.polban.jtk.project3.travlendar2A.Models.ModaTransportasi;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +19,7 @@ import java.util.List;
  * 
  * @author Reza Dwi Kurniawan, Mufid Jamaluddin
  */
-public class ModaTransportasiDAO extends DAO 
+public class TransportationMdDaoImp extends DAO implements ITransportationMdDao
 {
     /**
      * Atribut
@@ -35,7 +36,7 @@ public class ModaTransportasiDAO extends DAO
      * @param jdbcPassword 
      * @param limit 
      */
-    public ModaTransportasiDAO (String jdbcURL, String jdbcUsername, String jdbcPassword, int limit)
+    public TransportationMdDaoImp (String jdbcURL, String jdbcUsername, String jdbcPassword, int limit)
     {
         super(jdbcURL, jdbcUsername, jdbcPassword);
         this.limit = limit;
@@ -49,10 +50,15 @@ public class ModaTransportasiDAO extends DAO
      * @return 
      * @throws java.sql.SQLException 
      */
+    @Override
     public ModaTransportasi getDataFromDB(String trscode) throws SQLException
     {   
         // jika trscode nya null
         if(trscode==null)
+            return null;
+        
+        // jika panjang nya lebih dari panjang schema db
+        if(trscode.length()>2)
             return null;
         
         ModaTransportasi modaTrans;
@@ -88,7 +94,7 @@ public class ModaTransportasiDAO extends DAO
         // tutup koneksi
         super.disconnect();
         
-        return null;
+        return modaTrans;
     }
     
     /**
@@ -100,15 +106,18 @@ public class ModaTransportasiDAO extends DAO
      * @return 
      * @throws java.sql.SQLException 
      */
+    @Override
     public int getCountPage() throws SQLException
     {
         // deklarasi
+        int recCount;
         int page;
+        double pageD;
         Statement statement;
         ResultSet resultset;
         
         // inisiasi
-        page = 0;
+        recCount = 0;
         
         // koneksi
         super.connect();
@@ -117,14 +126,27 @@ public class ModaTransportasiDAO extends DAO
         // eksekusi query
         resultset = statement.executeQuery("SELECT COUNT(*) FROM `transportation_mode`");
         
+        
         while(resultset.next())
         {
-            page = resultset.getInt("COUNT(*)");
+            recCount = resultset.getInt("COUNT(*)");
         }
-
+        
         // diskonek
+        resultset.close();
         super.disconnect();
         
+        // menghitung jumlah page
+        pageD = (double) recCount / this.limit;
+        page = (int) recCount / this.limit;
+        
+        // pembulatan
+        pageD = (double) pageD - page;
+        if(pageD > 0) 
+        {
+            page += 1;
+        }
+           
         return page;
     }
     
@@ -141,6 +163,7 @@ public class ModaTransportasiDAO extends DAO
      * @return 
      * @throws java.sql.SQLException 
      */
+    @Override
     public boolean isModeAvaiable(String modaCode) throws SQLException
     {
         // deklarasi
@@ -186,6 +209,7 @@ public class ModaTransportasiDAO extends DAO
      * @return List
      * @throws SQLException 
      */
+    @Override
     public List<ModaTransportasi> getListFromDB(int page) throws SQLException 
     {     
         // penampung modatransportasi
@@ -239,6 +263,7 @@ public class ModaTransportasiDAO extends DAO
      * @param modaTrs
      * @throws SQLException 
      */
+    @Override
     public void saveDataToDB(ModaTransportasi modaTrs) throws SQLException
     {
         /**
@@ -274,7 +299,8 @@ public class ModaTransportasiDAO extends DAO
      * @param modaTrs
      * @throws SQLException 
      */
-    public void updateDataToDB(String modaCode, ModaTransportasi modaTrs) throws SQLException
+    @Override
+    public void updateDataToDB(ModaTransportasi modaTrs) throws SQLException
     {
         // deklarasi
         String sql;
@@ -290,8 +316,10 @@ public class ModaTransportasiDAO extends DAO
         statement = super.getJdbcConnection().createStatement();
         /**
          * Eksekusi Query
+         * 
+         * Note : PK tdk boleh diupdate
          */
-        sql = String.format("UPDATE `transportation_mode` SET `TRANSPORTATION_CODE`='%s',`TRANSPORTATION_NAME`='%s',`TRANSPORTATION_SPEED`='%s' WHERE `TRANSPORTATION_CODE`='%s'", modaTrs.getKodeTransportasi(),modaTrs.getNamaTransportasi(), modaTrs.getKecepatan(), modaCode );
+        sql = String.format("UPDATE `transportation_mode` SET `TRANSPORTATION_NAME`='%s',`TRANSPORTATION_SPEED`='%s' WHERE `TRANSPORTATION_CODE`='%s'",modaTrs.getNamaTransportasi(), modaTrs.getKecepatan(), modaTrs.getKodeTransportasi() );
         statement.executeUpdate(sql);
         /**
          * Tutup Statement
@@ -311,6 +339,7 @@ public class ModaTransportasiDAO extends DAO
      * @param modaCode
      * @throws SQLException 
      */
+    @Override
     public void deleteDataToDB(String modaCode) throws SQLException
     {
         // deklarasi

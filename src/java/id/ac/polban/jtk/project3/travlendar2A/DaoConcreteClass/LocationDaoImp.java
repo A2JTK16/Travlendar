@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package id.ac.polban.jtk.project3.travlendar2A.Models.DAO;
+package id.ac.polban.jtk.project3.travlendar2A.DaoConcreteClass;
 
 import id.ac.polban.jtk.project3.travlendar2A.Models.Location;
 import java.sql.SQLException;
@@ -11,9 +11,8 @@ import java.util.List;
 
 /**
  *
- * @author mufidjamaluddin
  */
-public class LocationDAO extends DAO
+public class LocationDaoImp extends DAO
 {
     /**
      * Atribut
@@ -30,7 +29,7 @@ public class LocationDAO extends DAO
      * @param jdbcPassword 
      * @param limit 
      */
-    public LocationDAO (String jdbcURL, String jdbcUsername, String jdbcPassword, int limit)
+    public LocationDaoImp (String jdbcURL, String jdbcUsername, String jdbcPassword, int limit)
     {
         super(jdbcURL, jdbcUsername, jdbcPassword);
         this.limit = limit;
@@ -40,7 +39,7 @@ public class LocationDAO extends DAO
      * Method untuk Mendapatkan Data Satu Record
      * Berdasarkan Kode Location
      * 
-     * @param trscode
+     * @param locCode
      * @return 
      * @throws java.sql.SQLException 
      */

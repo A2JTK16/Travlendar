@@ -5,10 +5,12 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Controller;
 
-import id.ac.polban.jtk.project3.travlendar2A.Models.DAO.ModaTransportasiDAO;
+import id.ac.polban.jtk.project3.travlendar2A.DaoConcreteClass.TransportationMdDaoImp;
+import id.ac.polban.jtk.project3.travlendar2A.Helpers.PagingListIntHelper;
 import id.ac.polban.jtk.project3.travlendar2A.Models.ModaTransportasi;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +36,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "moda", urlPatterns = {"/moda"})
 public class ModaController extends HttpServlet 
 {
-    private ModaTransportasiDAO modaDao;
+    private TransportationMdDaoImp modaDao;
+    private PagingListIntHelper pagingHelp;
     
     /**
      * 
@@ -50,7 +53,7 @@ public class ModaController extends HttpServlet
         String jdbcPassword = "";
         int limit = 10;
         
-        modaDao = new ModaTransportasiDAO(jdbcURL, jdbcUsername, jdbcPassword, limit);
+        modaDao = new TransportationMdDaoImp(jdbcURL, jdbcUsername, jdbcPassword, limit);
     }
      
     /**

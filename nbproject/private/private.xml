@@ -2,17 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/src/java/id/ac/polban/jtk/project3/travlendar2A/Controller/EventController.java</file>
-            <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/src/java/id/ac/polban/jtk/project3/travlendar2A/Models/EstimationTime.java</file>
-            <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/src/java/id/ac/polban/jtk/project3/travlendar2A/Helpers/DateTHelper.java</file>
-            <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/src/java/id/ac/polban/jtk/project3/travlendar2A/DataAccessObject/ProvinceDAO.java</file>
-            <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/src/java/id/ac/polban/jtk/project3/travlendar2A/Models/Moda_Transportasi.java</file>
-            <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/src/java/id/ac/polban/jtk/project3/travlendar2A/DataAccessObject/ModaTransportasiDAO.java</file>
-            <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/src/java/id/ac/polban/jtk/project3/travlendar2A/Controller/ModaController.java</file>
-            <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/src/java/id/ac/polban/jtk/project3/travlendar2A/DataAccessObject/EventDAO.java</file>
-            <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/src/java/id/ac/polban/jtk/project3/travlendar2A/DataAccessObject/DistanceDAO.java</file>
-            <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/src/java/id/ac/polban/jtk/project3/travlendar2A/Models/ModaTransportasi.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

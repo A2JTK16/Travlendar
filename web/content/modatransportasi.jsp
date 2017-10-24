@@ -31,3 +31,11 @@
         </c:forEach>
         
     </table>
+
+    <div class="pagination">
+        <a href="index.html" class="page active">first</a>
+        <a href="index.html" class="page"> 3 </a>
+        <a href="index.html" class="page"> 5 </a>
+        <a href="index.html" class="page"> 6 </a>
+        <a href="index.html" class="page">last</a>
+    </div>
