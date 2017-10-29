@@ -173,6 +173,35 @@ public class ModaController extends HttpServlet
                 response.sendRedirect("moda?action=show");
                 //request.getRequestDispatcher("?action=show").forward(request, response);
             }
+            
+            else if (aksiPage.equals("terbaru")) 
+            {
+                objModa = new ModaTransportasi();
+                
+                tempString = request.getParameter("TRANSPORTATION_CODE");
+                objModa.setKodeTransportasi(tempString);
+                
+                tempString = request.getParameter("TRANSPORTATION_NAME");
+                objModa.setNamaTransportasi(tempString);
+              
+                tempFloat = Float.parseFloat(request.getParameter("TRANSPORTATION_SPEED"));
+                objModa.setKecepatan(tempFloat);
+                
+                try
+                {
+                    this.modaDao.updateDataToDB(objModa);
+                    request.setAttribute("message", "Anda sukses menyimpan data ke DB");
+                }
+                catch (SQLException ex)
+                {
+                    request.setAttribute("message", "Anda gagal menyimpan data ke DB");
+                }
+                
+              
+                response.sendRedirect("moda?action=show");
+                //request.getRequestDispatcher("?action=show").forward(request, response);
+            }
+            
         }
     }
     

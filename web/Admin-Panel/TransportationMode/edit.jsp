@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,16 +34,22 @@
 		
 		<div class="middle">
 		
-			<div class="kotak-traveller">
+			<div class="kotak-traveller" >
 				<h4> Edit Data Transportation Mode </h4>	
 			</div> <!--kotak-traveller-->
 	
-			<div class="kotak-traveller">
-				<div class="text-edit"> Edit Transportation Name </div>
-					<input class="edtp" type="text" name="TRANSPORTATION_NAME" placeholder="">
+			<form class="kotak-traveller" action="${pageContext.request.contextPath}/Admin-Panel/moda?input=terbaru" method="post">
+				<div class="text-edit"> Edit Transportation Code </div>
+					<input class="edtp" type="text" name="TRANSPORTATION_CODE" placeholder="<c:out value="${modaTransObj.getKodeTransportasi()}"/>">
 					<br/>
-				<a href="index.jsp"><button class="update-traveller"> Update </button></a>
-			</div> <!--kotak-traveller-->			
+                                <div class="text-edit"> Edit Transportation Name </div>
+					<input class="edtp" type="text" name="TRANSPORTATION_NAME" placeholder="">
+                                        <br>
+                                <div class="text-edit"> Edit Speed </div>
+					<input class="edtp" type="text" name="TRANSPORTATION_SPEED" placeholder="">
+                                        <br>
+				<button class="update-traveller"> Update </button>
+			</form> <!--kotak-traveller-->			
 			
 		</div> <!--/ .middle -->
 

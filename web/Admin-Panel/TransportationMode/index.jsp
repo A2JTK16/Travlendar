@@ -76,12 +76,8 @@
                                                         <td><c:out value="${modaTrans.getKodeTransportasi()}"/></td>
                                                         <td><c:out value="${modaTrans.getNamaTransportasi()}"/></td>
                                                         <td><c:out value="${modaTrans.getKecepatan()}"/> km/h</td>
-                                                        <td><a class="action" href="   <c:url value="moda">
-                                                            <c:param name="action" value="edit"/>
-                                                            <c:param name="code" value="${modaTrans.getKodeTransportasi()}"/>
-                                                            </c:url>
-                                                            ">Edit</a>
-                                                            <a class="action2" href="#">Delete</a></td>
+                                                        <td><a class="action" href="${pageContext.request.contextPath}/Admin-Panel/TransportationMode/edit.jsp">Edit</a>
+                                                            <a class="action2" onclick="return konfirmasi()" href="#">Delete</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                     
