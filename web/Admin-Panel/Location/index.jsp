@@ -45,14 +45,14 @@
 							      <p class="message">Already registered? <a href="#">Sign In</a></p>
 							    </form>
 							    <form class="login-form">
-                                                                <select class="dropdown-location">
+                                                                <select class="dropdown-location" type="text" name="PROVINCE_NAME">
                                                                     <option value="SLocation0">Jawa Barat</option>
                                                                     <option value="SLocation1">Jakarta</option>
                                                                     <option value="SLocation2">Banten</option>
                                                                     <option value="SLocation3">Jawa Tengah</option>
                                                                     <option value="SLocation4">Jawa TImur</option>
                                                                 </select>
-							      <input type="text" placeholder="City Name ..."/>
+							      <input type="text" name="CITY_NAME" placeholder="City Name ..."/>
 							      <button> Save </button>
                                                               <%--<p class="message">Not registered? <a href="#">Create an account</a></p>--%>
 							    </form>
@@ -68,7 +68,7 @@
 		
 			<div class="kotak-traveller">
 				<h4> List Of Location </h4>
-                                <select class="dropdown-location-choose">
+                                <select class="dropdown-location-choose" type="text" name="PROVINCE_NAME">
                                     <option value="SLocation0">Jawa Barat</option>
                                     <option value="SLocation1">Jakarta</option>
                                     <option value="SLocation2">Banten</option>

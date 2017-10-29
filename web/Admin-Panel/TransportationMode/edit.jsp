@@ -38,7 +38,7 @@
 	
 			<div class="kotak-traveller">
 				<div class="text-edit"> Edit Transportation Name </div>
-					<input class="edtp" type="text" placeholder="">
+					<input class="edtp" type="text" name="TRANSPORTATION_NAME" placeholder="">
 					<br/>
 				<a href="index.jsp"><button class="update-traveller"> Update </button></a>
 			</div> <!--kotak-traveller-->			

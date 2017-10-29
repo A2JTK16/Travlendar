@@ -46,10 +46,10 @@
 							      <p class="message">Already registered? <a href="#">Sign In</a></p>
 							    </form>
 							    <form class="login-form">
-							      <input type="text" placeholder="Fullname ..."/>
-							      <input type="text" placeholder="Username ..."/>
-							      <input type="text" placeholder="Email ..."/>
-							      <input type="password" placeholder="Password ..."/>
+							      <input type="text" name="TRAVELLER_FULLNAME" placeholder="Fullname ..."/>
+							      <input type="text" name="TRAVELLER_NAME" placeholder="Username ..."/>
+							      <input type="text" name="TRAVELLER_EMAIL" placeholder="Email ..."/>
+							      <input type="password" name="TRAVELLER_PASSWORD" placeholder="Password ..."/>
 							      <button> Save </button>							     
 							    </form>
 							  </div>

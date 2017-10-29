@@ -38,13 +38,13 @@
 	
 			<div class="kotak-traveller">
 				<div class="text-edit"> Edit Fullname </div>
-					<input class="edtp" type="text" placeholder="">
+					<input class="edtp" type="text" name="TRAVELLER_FULLNAME" placeholder="">
 				<div class="text-edit"> Edit Username </div>
-					<input class="edtp" type="text" placeholder="">
+					<input class="edtp" type="text" name="TRAVELLER_NAME" placeholder="">
 				<div class="text-edit"> Edit Email </div>
-					<input class="edtp" type="text" placeholder="">
+					<input class="edtp" type="text" name="TRAVELLER_EMAIL" placeholder="">
 				<div class="text-edit"> Edit Password </div>
-					<input class="edtp" type="password" placeholder="">
+					<input class="edtp" type="password" name="TRAVELLER_PASSWORD" placeholder="">
 					<br/>
 				<a href="index.jsp"><button class="update-traveller"> Update </button></a>
 			</div> <!--kotak-traveller-->			

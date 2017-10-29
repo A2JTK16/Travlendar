@@ -38,9 +38,9 @@
 	
 			<div class="kotak-traveller">
 				<div class="text-edit"> Edit Location Name </div>
-					<input class="edtp" type="text" placeholder="">
+					<input class="edtp" type="text" name="PROVINCE_NAME" placeholder="">
 				<div class="text-edit"> Edit Address </div>
-					<input class="edtp" type="text" placeholder="">
+					<input class="edtp" type="text" name="CITY_NAME" placeholder="">
 					<br/>
 				<a href="index.jsp"><button class="update-traveller"> Update </button></a>
 			</div> <!--kotak-traveller-->			

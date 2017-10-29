@@ -49,22 +49,22 @@
                                     <div class="k-textna">Note</div>
                                 </div>
                                 <div class="k-input">
-                                    <input class="k-event" type="text" style="width: 300px">
+                                    <input class="k-event" type="text" name="EVENT_NAME" style="width: 300px">
                                     <br>
-                                    <input class="k-event" id="date" type="date" value="2017-09-08" style="float:left"/> 
+                                    <input class="k-event" id="date" type="date" name="START_EVENT" value="2017-09-08" style="float:left"/> 
                                     <div class="lendar"> <img src="../Assets2/icon/calendar-event.png"> </div>
                                     <br>
                                     <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>
                                     <br>
                                     
-                                    <input class="k-event" id="date" type="date" value="2017-09-08" style="float:left;"/>
+                                    <input class="k-event" id="date" type="date" name="END_EVENT" value="2017-09-08" style="float:left;"/>
                                     <div class="lendar"> <img src="../Assets2/icon/calendar-event.png"> </div>
                                     <br>
                                     <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>
                                     <br>
-                                    <input class="k-event" type="text" style="width: 300px">
+                                    <input class="k-event" type="text" name="PLACE" style="width: 300px">
                                     <br>
-                                    <input class="k-event" type="text" style="width: 300px; height: 100px">
+                                    <input class="k-event" type="text" name="NOTE" style="width: 300px; height: 100px">
                                 </div>
                                 <br>
                                 <a href="../CalendarEvent/index.jsp"> <button class="back"> Back </button></a>
@@ -84,14 +84,14 @@
                                 
                                 <div class="k-input">
                                     <select class="k-event">
-                                        <option value="StartingLocation">Province ...</option>
+                                        <option value="StartingLocation" type="text" name="PROVINCE_NAME">Province ...</option>
                                         <option value="SLocation1">Jawa Barat</option>
                                         <option value="SLocation2">Jakarta</option>
                                         <option value="SLocation3">Bangka</option>
                                     </select>
                                     
                                     <select class="k-event">
-                                        <option value="StartingLocation">City ...</option>
+                                        <option value="StartingLocation" type="text" name="CITY_NAME">City ...</option>
                                         <option value="SLocation1">Bandung</option>
                                                                      <option value="SLocation2">Bekasi</option>
                                                                      <option value="SLocation3">Bogor</option>
@@ -114,14 +114,14 @@
                                     <input class="k-event" id="time" type="time" style="width: 120px" value="00:00"/>
                                     <br>
                                     <select class="k-event">
-                                        <option value="StartingLocation">Province ...</option>
+                                        <option value="StartingLocation" type="text" name="PROVINCE_NAME">Province ...</option>
                                         <option value="SLocation1">Jawa Barat</option>
                                         <option value="SLocation2">Jakarta</option>
                                         <option value="SLocation3">Bangka</option>
                                     </select>
                                     
                                     <select class="k-event">
-                                        <option value="StartingLocation">City ...</option>
+                                        <option value="StartingLocation" type="text" name="CITY_NAME">City ...</option>
                                         <option value="SLocation1">Bandung</option>
                                                                      <option value="SLocation2">Bekasi</option>
                                                                      <option value="SLocation3">Bogor</option>
@@ -141,7 +141,7 @@
                                     <br>
                                     <input class="k-event" type="text" placeholder="detail ..."/>
                                     <br>
-                                    <input class="k-event" type="text" placeholder=""/> Km
+                                    <input class="k-event" type="text" name="DISTANCE" placeholder=""/> Km
                                     <br>
                                     <br>
                                     <br>

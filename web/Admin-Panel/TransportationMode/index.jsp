@@ -39,14 +39,14 @@
 							    </div>
 
 							    <form class="distance-form">
-                                                                <select class="dropdown-location">
+                                                                <select class="dropdown-location" type="text" name="TRANSPORTATION_NAME">
                                                                      <option value="StartingLocation">Add Transportation Name ...</option>
                                                                      <option value="SLocation1">Car</option>
                                                                      <option value="SLocation2">Motorcycle</option>
                                                                      <option value="SLocation3">Bus</option>
                                                                      <option value="SLocation4">Wagon</option>
                                                                 </select>
-							       <input type="text" placeholder="Average Speed (km/h) ..."/>
+							       <input type="text" name="TRANSPORTATION_SPEED" placeholder="Average Speed (km/h) ..."/>
 							      <button> Save </button>
 							    </form>
 							  </div> <!--jenis transportasion-->
