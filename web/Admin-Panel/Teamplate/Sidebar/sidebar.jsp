@@ -39,7 +39,7 @@
 			<div id="hidden-mobile">
 			
                         
-                        <a href="${pageContext.request.contextPath}/Admin-Panel/Traveller/index.jsp">
+                        <a href="${pageContext.request.contextPath}/Admin-Panel/traveller?action=show">
 			<div class="menu-manage">
 				<div class="icon-setting">
 					<img src="${pageContext.request.contextPath}/Admin-Panel/Assets2/icon/traveller.png">

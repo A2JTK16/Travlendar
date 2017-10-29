@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Reza Dwi Kurniawan
  */
-@WebServlet(name = "traveller", urlPatterns = {"/traveller"})
+@WebServlet(name = "traveller", urlPatterns = {"/Admin-Panel/traveller"})
 public class TravellerController extends HttpServlet {
     private TravellerDaoImp travDao;
     private PagingListIntHelper pagingHelp;
@@ -37,7 +37,7 @@ public class TravellerController extends HttpServlet {
         // String jdbcURL = getServletContext().getInitParameter("jdbcURL"); 
         // String jdbcUsername = getServletContext().getInitParameter("jdbcUsername"); 
         // String jdbcPassword = getServletContext().getInitParameter("jdbcPassword"); 
-        String jdbcURL = "jdbc:mysql://localhost:3306/travlendar";
+        String jdbcURL = "jdbc:mysql://localhost:3306/travlendardb";
         String jdbcUsername = "root";
         String jdbcPassword = "";
         int limit = 10;
@@ -65,11 +65,13 @@ public class TravellerController extends HttpServlet {
                     // set httprequest atribut dengan list dari database
                     this.setAttrList(request);
                     // set content include
-                    request.setAttribute("content", "traveller");
+                    //request.setAttribute("content", "traveller");
+                    request.getRequestDispatcher("Traveller/index.jsp").forward(request, response);
                     break;
                 case "add":
                     // set content atribute
-                    request.setAttribute("content", "addtraveller");    
+                    //request.setAttribute("content", "addtraveller");    
+                    request.getRequestDispatcher("Traveller/index.jsp").forward(request, response);
                     break;
                 case "edit":
                     // set httprequest atribut dengan obj modatransportasi dari database
@@ -83,7 +85,7 @@ public class TravellerController extends HttpServlet {
                     break;
             }
             // forward ke index.jsp dengan dapat menggunakan reesource yg ada
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            //request.getRequestDispatcher("Traveller/index.jsp").forward(request, response);
         }
         else
         {

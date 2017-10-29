@@ -47,7 +47,7 @@ public class TravellerDaoImp extends DAO implements ITravellerDao
         
         page = (page-1) * this.limit;
         
-        String sql = String.format("SELECT * FROM `travlendar`.`traveller` LIMIT %d, %d", page, this.limit);
+        String sql = String.format("SELECT * FROM `traveller` LIMIT %d, %d", page, this.limit);
         
         super.connect();
         
@@ -102,7 +102,7 @@ public class TravellerDaoImp extends DAO implements ITravellerDao
         // buat statementStatement statement;
         statement = super.getJdbcConnection().createStatement();
         // eksekusi query
-        resultset = statement.executeQuery("SELECT COUNT(*) FROM `transportation_mode`");
+        resultset = statement.executeQuery("SELECT COUNT(*) FROM `traveller`");
         
         
         while(resultset.next())
@@ -197,7 +197,7 @@ public class TravellerDaoImp extends DAO implements ITravellerDao
         statement = super.getJdbcConnection().createStatement();
         
         // eksekusi query
-        sql = String.format("SELECT * FROM `traveller` WHERE `TRANSPORTATION_CODE` = '%s'",travellerId);
+        sql = String.format("SELECT * FROM `traveller` WHERE `TRAVELLER_ID` = '%s'",travellerId);
         resultset = statement.executeQuery(sql);
         
         // jika ada result
