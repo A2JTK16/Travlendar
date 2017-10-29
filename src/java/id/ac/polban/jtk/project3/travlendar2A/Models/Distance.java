@@ -11,111 +11,57 @@ package id.ac.polban.jtk.project3.travlendar2A.Models;
  */
 public class Distance {
     
-    private String kd_provinsi_akhir;
-    private String kd_kota__akhir;
-    private int id_lokasi_akhir;
+    private int start_location_id;
     
-    private String kd_provinsi_awal;
-    private String kd_kota_awal;
-    private int id_lokasi_awal;
+    private int end_location_id;
     
-    private double distance;
+    private float distance;
+
+    /**
+     * @return the start_location_id
+     */
+    public int getStart_location_id() {
+        return start_location_id;
+    }
+
+    /**
+     * @param start_location_id the start_location_id to set
+     */
+    public void setStart_location_id(int start_location_id) {
+        this.start_location_id = start_location_id;
+    }
+
+    /**
+     * @return the id_lokasi_awal
+     */
 
     /**
      * @return the distance
      */
-    public double getDistance() {
+    public float getDistance() {
         return distance;
     }
 
     /**
      * @param distance the distance to set
      */
-    public void setDistance(double distance) {
+    public void setDistance(float distance) {
         this.distance = distance;
     }
 
     /**
-     * @return the kd_provinsi_akhir
+     * @return the end_location_id
      */
-    public String getKd_provinsi_akhir() {
-        return kd_provinsi_akhir;
+    public int getEnd_location_id() {
+        return end_location_id;
     }
 
     /**
-     * @param kd_provinsi_akhir the kd_provinsi_akhir to set
+     * @param end_location_id the end_location_id to set
      */
-    public void setKd_provinsi_akhir(String kd_provinsi_akhir) {
-        this.kd_provinsi_akhir = kd_provinsi_akhir;
+    public void setEnd_location_id(int end_location_id) {
+        this.end_location_id = end_location_id;
     }
 
-    /**
-     * @return the kd_kota__akhir
-     */
-    public String getKd_kota__akhir() {
-        return kd_kota__akhir;
-    }
-
-    /**
-     * @param kd_kota__akhir the kd_kota__akhir to set
-     */
-    public void setKd_kota__akhir(String kd_kota__akhir) {
-        this.kd_kota__akhir = kd_kota__akhir;
-    }
-
-    /**
-     * @return the id_lokasi_akhir
-     */
-    public int getId_lokasi_akhir() {
-        return id_lokasi_akhir;
-    }
-
-    /**
-     * @param id_lokasi_akhir the id_lokasi_akhir to set
-     */
-    public void setId_lokasi_akhir(int id_lokasi_akhir) {
-        this.id_lokasi_akhir = id_lokasi_akhir;
-    }
-
-    /**
-     * @return the kd_provinsi_awal
-     */
-    public String getKd_provinsi_awal() {
-        return kd_provinsi_awal;
-    }
-
-    /**
-     * @param kd_provinsi_awal the kd_provinsi_awal to set
-     */
-    public void setKd_provinsi_awal(String kd_provinsi_awal) {
-        this.kd_provinsi_awal = kd_provinsi_awal;
-    }
-
-    /**
-     * @return the kd_kota_awal
-     */
-    public String getKd_kota_awal() {
-        return kd_kota_awal;
-    }
-
-    /**
-     * @param kd_kota_awal the kd_kota_awal to set
-     */
-    public void setKd_kota_awal(String kd_kota_awal) {
-        this.kd_kota_awal = kd_kota_awal;
-    }
-
-    /**
-     * @return the id_lokasi_awal
-     */
-    public int getId_lokasi_awal() {
-        return id_lokasi_awal;
-    }
-
-    /**
-     * @param id_lokasi_awal the id_lokasi_awal to set
-     */
-    public void setId_lokasi_awal(int id_lokasi_awal) {
-        this.id_lokasi_awal = id_lokasi_awal;
-    }
+   
 }

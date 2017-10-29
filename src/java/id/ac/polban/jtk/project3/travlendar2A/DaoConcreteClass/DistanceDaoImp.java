@@ -32,11 +32,11 @@ public class DistanceDaoImp extends DAO implements IDistanceDao
      */
     @Override
     public List<Distance> getListFromDB(int page) throws SQLException {
-        List <Distance> listData;
-        listData = new ArrayList();
+        List <Distance> listDistance;
+        listDistance = new ArrayList();
         Distance distance;
         
-        String sql = "SELECT * FROM tes.distance";
+        String sql = "SELECT * FROM `distance`";
         super.connect();
         
         Statement stmt;
@@ -48,22 +48,18 @@ public class DistanceDaoImp extends DAO implements IDistanceDao
         while(rs.next()){
             distance = new Distance();
             
-            distance.setKd_provinsi_akhir(rs.getString("KD_PROVINSI_AKHIR"));
-            distance.setKd_kota__akhir(rs.getString("KD_KOTA_AKHIR"));
-            distance.setId_lokasi_akhir(rs.getInt("ID_LOKASI_AKHIR"));
-            distance.setKd_provinsi_awal(rs.getString("KD_PROVINSI_AWAL"));
-            distance.setKd_kota_awal(rs.getString("KD_KOTA_AWAL"));
-            distance.setId_lokasi_awal(rs.getInt("ID_LOKASI_AWAL"));
+            distance.setStart_location_id(rs.getInt("START_LOCATION_ID"));
+            distance.setEnd_location_id(rs.getInt("END_LOCATION_ID"));
             distance.setDistance(rs.getFloat("DISTANCE"));
             
             
-            listData.add(distance);
+            listDistance.add(distance);
         }
         
         stmt.close();
         super.disconnect();
         
-        return listData;
+        return listDistance;
     }
     
     @Override
@@ -81,7 +77,7 @@ public class DistanceDaoImp extends DAO implements IDistanceDao
         /**
          * Eksekusi Query
          */
-        String sql = "INSERT INTO distance(KD_PROVINSI_AKHIR, KD_KOTA_AKHIR, ID_LOKASI_AKHIR, KD_PROVINSI_AWAL, KD_KOTA_AWAL, ID_LOKASI_AWAL, DISTANCE) VALUES ('"+distance.getKd_provinsi_akhir()+"','"+distance.getKd_kota__akhir()+"','"+distance.getId_lokasi_akhir()+"','"+distance.getKd_provinsi_awal()+"','"+distance.getKd_kota_awal()+"','"+distance.getId_lokasi_awal()+"','"+distance.getDistance()+"')";
+        String sql = "INSERT INTO distance(START_LOCATION_ID, END_LOCATION_ID, DISTANCE) VALUES ('"+distance.getStart_location_id()+"','"+distance.getEnd_location_id()+"','"+distance.getDistance()+"')";
         statement.executeQuery(sql);
         /**
          * Tutup Statement
