@@ -169,10 +169,9 @@ public class ModaController extends HttpServlet
                     request.setAttribute("message", "Anda gagal menyimpan data ke DB");
                 }
                 
-                //request.setAttribute("content", "addmodatransportasi");
-                
-                //request.getRequestDispatcher("index.jsp").forward(request, response);
-                request.getRequestDispatcher("TransportationMode/index.jsp").forward(request, response);
+              
+                response.sendRedirect("moda?action=show");
+                //request.getRequestDispatcher("?action=show").forward(request, response);
             }
         }
     }
