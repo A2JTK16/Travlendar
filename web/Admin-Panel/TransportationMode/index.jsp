@@ -1,27 +1,28 @@
-<%-- 
+ <%-- 
     Document   : index
     Created on : Sep 21, 2017, 4:59:43 PM
     Author     : Nia
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/styletraveller.css">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/responsive.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Admin-Panel/Assets2/css/styletraveller.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Admin-Panel/Assets2/css/responsive.css">
         <title>JSP Page</title>
     </head>
     <body>
-        <%@include file="../Teamplate/Header/header.jsp" %>
+        <%@include file="/Admin-Panel/Teamplate/Header/header.jsp" %>
 <div class="wadah">
 	
 	<div class="main">
 		
-		<%@include file="../Teamplate/Sidebar/sidebar.jsp" %>
+		<%@include file="/Admin-Panel/Teamplate/Sidebar/sidebar.jsp" %>
 
 		<div class="middle">
 				<div class="judul-manage">MANAGE TRANSPORTATION MODE</div>
@@ -38,16 +39,11 @@
 							      <h5>List Of Transportation Mode</h5>
 							    </div>
 
-							    <form class="distance-form">
-                                                                <select class="dropdown-location" type="text" name="TRANSPORTATION_NAME">
-                                                                     <option value="StartingLocation">Add Transportation Name ...</option>
-                                                                     <option value="SLocation1">Car</option>
-                                                                     <option value="SLocation2">Motorcycle</option>
-                                                                     <option value="SLocation3">Bus</option>
-                                                                     <option value="SLocation4">Wagon</option>
-                                                                </select>
-							       <input type="text" name="TRANSPORTATION_SPEED" placeholder="Average Speed (km/h) ..."/>
-							      <button> Save </button>
+							    <form class="distance-form" action="${pageContext.request.contextPath}/Admin-Panel/moda?input=baru" method="post">
+                                                               <input type="text" name="kode_trans" placeholder="Transportation Code (char)"/>
+							       <input type="text" name="nama_trans" placeholder="Transportation Mode (string)"/>
+                                                               <input type="text" name="kecepatan" placeholder="Average Speed in km/h (float)"/>
+                                                               <button type="submit"> Save </button>
 							    </form>
 							  </div> <!--jenis transportasion-->
 							
@@ -60,13 +56,7 @@
 		<div class="middle">
 		
 			<div class="kotak-traveller">
-				<h4> Distance Matrix </h4>
-                                <!--<div class="kotak-search">
-					<div class="icon-search">
-						<img src="../Assets2/icon/search.png">
-					</div> 
-					<input class="search "type="text" placeholder="Search Traveller ... "/>
-				</div> -->
+				<h4> Transportation List </h4>
 			</div> <!--kotak-traveller-->
 	
 			<div class="kotak-traveller">
@@ -81,54 +71,21 @@
 						</thead>
 						<tbody>
 						
-                                                    <!--
-                                                <c:forEach items="{modaTransList}" var="modaTrans">
-                                                <tr>           
-                                                    
-                                                    <td><c:out value="{modaTrans.getKodeTransportasi()}"/></td>
-                                                    <td><c:out value="{modaTrans.getNamaTransportasi()}"/></td>
-                                                    <td><c:out value="{modaTrans.getKecepatan()}"/></td>
-                                                    <td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-							
-                                                </tr>
-                                                    -->
+                                                <c:forEach items="${modaTransList}" var="modaTrans">
+                                                    <tr>           
+                                                        <td><c:out value="${modaTrans.getKodeTransportasi()}"/></td>
+                                                        <td><c:out value="${modaTrans.getNamaTransportasi()}"/></td>
+                                                        <td><c:out value="${modaTrans.getKecepatan()}"/> km/h</td>
+                                                        <td><a class="action" href="   <c:url value="moda">
+                                                            <c:param name="action" value="edit"/>
+                                                            <c:param name="code" value="${modaTrans.getKodeTransportasi()}"/>
+                                                            </c:url>
+                                                            ">Edit</a>
+                                                            <a class="action2" href="#">Delete</a></td>
+                                                    </tr>
                                                 </c:forEach>
                                                     
-                                                <tr>
-							<td>001</td>
-							<td>Car</td>
-                                                        <td>50 km/jam</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-							
-						</tr>
-						
-						<tr>
-							<td>002</td>
-							<td>Motorcycle</td>
-                                                        <td>60 km/jam</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-						</tr>
                                                 
-                                                <tr>
-							<td>003</td>
-							<td>Bus</td>
-                                                        <td>40 km/jam</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-						</tr>
-                                                
-                                                <tr>
-							<td>004</td>
-							<td>Wagon</td>
-                                                        <td>150 km/jam</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-						</tr>
-                                                
-                                                <tr>
-							<td>004</td>
-							<td>Working</td>
-                                                        <td>40 km/jam</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-						</tr>
                                                 
                                                 
                                                 <script type="text/javascript" language="JavaScript">
@@ -199,6 +156,6 @@
  
 </div> <!--wadah-->
 
-<%@include file="../Teamplate/Footer/footer.jsp" %>
+<%@include file="/Admin-Panel/Teamplate/Footer/footer.jsp" %>
     </body>
 </html>

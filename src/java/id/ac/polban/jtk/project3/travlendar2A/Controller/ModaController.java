@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Reza Dwi Kurniawan
  */
-@WebServlet(name = "moda", urlPatterns = {"/moda"})
+@WebServlet(name = "moda", urlPatterns = {"/Admin-Panel/moda"})
 public class ModaController extends HttpServlet 
 {
     private TransportationMdDaoImp modaDao;
@@ -48,7 +48,7 @@ public class ModaController extends HttpServlet
         // String jdbcURL = getServletContext().getInitParameter("jdbcURL"); 
         // String jdbcUsername = getServletContext().getInitParameter("jdbcUsername"); 
         // String jdbcPassword = getServletContext().getInitParameter("jdbcPassword"); 
-        String jdbcURL = "jdbc:mysql://localhost:3306/travlendar";
+        String jdbcURL = "jdbc:mysql://localhost:3306/travlendardb";
         String jdbcUsername = "root";
         String jdbcPassword = "";
         int limit = 10;
@@ -87,11 +87,13 @@ public class ModaController extends HttpServlet
                     // set httprequest atribut dengan list dari database
                     this.setAttrList(request);
                     // set content include
-                    request.setAttribute("content", "modatransportasi");
+                    //request.setAttribute("content", "modatransportasi");
+                    request.getRequestDispatcher("TransportationMode/index.jsp").forward(request, response);
                     break;
                 case "add":
                     // set content atribute
-                    request.setAttribute("content", "addmodatransportasi");    
+                    //request.setAttribute("content", "addmodatransportasi");    
+                    request.getRequestDispatcher("TransportationMode/index.jsp").forward(request, response);
                     break;
                 case "edit":
                     // set httprequest atribut dengan obj modatransportasi dari database
@@ -105,7 +107,7 @@ public class ModaController extends HttpServlet
                     break;
             }
             // forward ke index.jsp dengan dapat menggunakan reesource yg ada
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            //request.getRequestDispatcher("TransportationMode/index.jsp").forward(request, response);
         }
         else
         {
@@ -167,9 +169,10 @@ public class ModaController extends HttpServlet
                     request.setAttribute("message", "Anda gagal menyimpan data ke DB");
                 }
                 
-                request.setAttribute("content", "addmodatransportasi");
+                //request.setAttribute("content", "addmodatransportasi");
                 
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                //request.getRequestDispatcher("index.jsp").forward(request, response);
+                request.getRequestDispatcher("TransportationMode/index.jsp").forward(request, response);
             }
         }
     }

@@ -31,7 +31,7 @@ public class LocationController extends HttpServlet {
     private PagingListIntHelper pagingHelp;
     
     public LocationController(){
-        String jdbcUrl = "jdbc:mysql://localhost:3306/travlendardb?zeroDateTimeBehavior=convertToNull";
+        String jdbcUrl = "jdbc:mysql://localhost:3306/travlendardb";
         String jdbcUser = "root";
         String jdbcPass = "";
         

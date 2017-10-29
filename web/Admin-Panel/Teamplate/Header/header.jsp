@@ -23,7 +23,7 @@
 <div class="menu-atas">
 	<div class="header">
             <div class="logonya">
-                <img src="../Assets2/icon/logo.png">
+                <img src="${pageContext.request.contextPath}/Admin-Panel/Assets2/icon/logo.png">
             </div>
             <div class="logo">
                 <h1>Travelendar</h1>
@@ -39,7 +39,7 @@
                        <button onclick="myFunction()" class="dropbtn">
                            
                            <div class="icon-account">
-                            <img src="../Assets2/icon/Account.png">
+                            <img src="${pageContext.request.contextPath}/Admin-Panel/Assets2/icon/Account.png">
                            </div>
                            
                        </button>
