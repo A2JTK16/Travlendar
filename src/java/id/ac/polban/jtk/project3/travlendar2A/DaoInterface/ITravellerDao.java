@@ -22,7 +22,7 @@ public interface ITravellerDao
      * @param travellerId@return 
      * @throws java.sql.SQLException
      */
-    public Traveller getDataFromDB(int travellerId) throws SQLException;  
+    public Traveller getDataFromDB(Integer travellerId) throws SQLException;  
     
     /**
      * Method untuk mendapatkan jumlah halaman

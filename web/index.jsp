@@ -26,8 +26,15 @@
                 <a href="   <c:url value="moda">
                                 <c:param name="action" value="add"/>
                             </c:url>
-                        ">Add List Moda Transportasi</a>
-
+                        ">Add List Moda Transportasi</a><br/>
+                <a href="   <c:url value="traveller">
+                                <c:param name="action" value="show"/>
+                            </c:url>
+                        ">Daftar List Traveller</a><br/>
+                <a href="   <c:url value="traveller">
+                                <c:param name="action" value="add"/>
+                            </c:url>
+                        ">Add List Traveller</a><br/>
             </c:when>
             <c:otherwise>
                 <jsp:include page="content/${content}.jsp"/>
