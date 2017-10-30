@@ -37,7 +37,7 @@ public class TravellerController extends HttpServlet {
         // String jdbcURL = getServletContext().getInitParameter("jdbcURL"); 
         // String jdbcUsername = getServletContext().getInitParameter("jdbcUsername"); 
         // String jdbcPassword = getServletContext().getInitParameter("jdbcPassword"); 
-        String jdbcURL = "jdbc:mysql://localhost:3306/travlendardb";
+        String jdbcURL = "jdbc:mysql://localhost:3306/travlendar";
         String jdbcUsername = "root";
         String jdbcPassword = "";
         int limit = 10;
@@ -78,6 +78,13 @@ public class TravellerController extends HttpServlet {
                     this.setAttrObj(request);
                     // edit content attribute
                     request.setAttribute("content", "edittraveller");
+                    break;
+                case "hapus":
+                    // set httprequest atribut dengan obj modatransportasi dari database
+                    this.setAttrObj(request);
+                    // edit content attribute
+                    //request.setAttribute("content", "edittraveller");
+                    request.getRequestDispatcher("Traveller/index.jsp").forward(request, response);
                     break;
                 default:
                     // set message
@@ -238,6 +245,23 @@ public class TravellerController extends HttpServlet {
                 response.sendRedirect("traveller?action=show");
                 //request.getRequestDispatcher("?action=show").forward(request, response);
             }            
+            else if (aksiPage.equals("delete")) 
+            {
+                int intCd = Integer.parseInt(request.getParameter("trav_id"));
+                try
+                {
+                    this.travDao.deleteDataFromDB(intCd);
+                    request.setAttribute("message", "Anda sukses menyimpan data ke DB");
+                }
+                catch (SQLException ex)
+                {
+                    request.setAttribute("message", "Anda gagal menyimpan data ke DB");
+                }
+                
+              
+                response.sendRedirect("traveller?action=show");
+                //request.getRequestDispatcher("?action=show").forward(request, response);
+            }
         }
     }    
-}    
+}

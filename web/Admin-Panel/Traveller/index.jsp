@@ -79,7 +79,10 @@
                                                         <td><c:out value="${traveller.getTraveller_id()}"/></td>
                                                         <td><c:out value="${traveller.getTraveller_fullName()}"/></td>
                                                         <td><a class="action" href="${pageContext.request.contextPath}/Admin-Panel/Traveller/edit.jsp">Edit</a>
-                                                            <a class="action2" onclick="return konfirmasi()" href="#">Delete</a></td>
+                                                            <form action = "${pageContext.request.contextPath}/Admin-Panel/traveller?input=delete" method="post">
+                                                                <input type="hidden" name="trav_id" value="${traveller.getTraveller_id()}">
+                                                                <input type="submit" value="Delete">
+                                                        </form>
                                                     </tr>                                                        
                                                 </c:forEach>
                                                     

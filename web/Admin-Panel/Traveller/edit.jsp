@@ -39,7 +39,7 @@
 			<div class="kotak-traveller">
                             <form class="kotak-traveller" action="${pageContext.request.contextPath}/Admin-Panel/traveller?input=terbaru" method="post">
 				<div class="text-edit"> ID </div>
-					<input class="edtp" type="text" name="id_trav" placeholder="<c:out value="${travellerObj.getTraveller_id()}"/>">
+					<input class="edtp" type="text" name="id_trav" placeholder="">
                                 <div class="text-edit"> Edit Fullname </div>
 					<input class="edtp" type="text" name="fullname_trav" placeholder="">
 				<div class="text-edit"> Edit Username </div>
@@ -94,7 +94,7 @@
 				    }
 				}
 			</script>
- 
+
 </div> <!--wadah-->
 <%@include file="../Teamplate/Footer/footer.jsp" %>
     </body>
