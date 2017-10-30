@@ -174,15 +174,15 @@
                                                                   </div>
                                                                    <div class="k-transport">
                                                                       <div class="trans"> <img src="../Assets2/icon/car.png"> </div>
-                                                                      <form> <input type="radio" name="transtime" value="cartime"> 40m </form>
+                                                                      <div class="radiona"><input type="radio" name="transtime" value="cartime"> 40m</div> 
                                                                   </div>
                                                                    <div class="k-transport">
                                                                       <div class="trans"> <img src="../Assets2/icon/motor3.png"> </div>
-                                                                      <form> <input type="radio" name="transtime" value="motortime"> 25m </form>
+                                                                      <div class="radiona"><input type="radio" name="transtime" value="motortime"> 25m</div>
                                                                   </div>
                                                                    <div class="k-transport">
                                                                       <div class="trans"> <img src="../Assets2/icon/walk.png"> </div>
-                                                                      <form> <input type="radio" name="transtime" value="walktime"> 4h 15m </form>
+                                                                      <div class="radiona"><input type="radio" name="transtime" value="walktime"> 4h 15m</div>
                                                                   </div>                                                                  
                                                                   <button id="myBtnsave">Save</button>
                                                               </div>

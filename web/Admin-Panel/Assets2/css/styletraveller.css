@@ -110,7 +110,8 @@ h4{
 	height: 26px;
 }
 
-.action, .action2, .action3{
+.action, .action3{
+        float: left;
 	padding: 4px;
 	margin: 4px;
 	border: none;
@@ -119,7 +120,15 @@ h4{
 }
 
 .action2 {
+        float: left;
 	background: #EF5350;
+        font: 14px Arial;
+        font-weight: bold;
+        color: #fafafa;
+        padding: 4px;
+        margin: 4px;
+        border: none;
+        border-radius: 0.2em;
 }
 
 .action3 {
@@ -968,4 +977,8 @@ a:hover{
     margin: 10px;
     font: 14px Arial;
     border: 1px solid #ddd;
+}
+
+.delete-kiri{
+    float: left;
 }
