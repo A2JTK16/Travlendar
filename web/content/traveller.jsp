@@ -30,7 +30,11 @@
                                 <c:param name="code" value="${traveller.getTraveller_id()}"/>
                             </c:url>
                         ">Edit</a></td>
-            <td><a href="#">Delete</a></td>
+            <td><a href="<c:url value="traveller">
+                                <c:param name="action" value="delete"/>
+                                <c:param name="code" value="${traveller.getTraveller_id()}"/>
+                            </c:url>    
+                   ">Delete</a></td>
         </tr>
         </c:forEach>
         

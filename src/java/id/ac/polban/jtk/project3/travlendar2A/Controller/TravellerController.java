@@ -37,7 +37,7 @@ public class TravellerController extends HttpServlet {
         // String jdbcURL = getServletContext().getInitParameter("jdbcURL"); 
         // String jdbcUsername = getServletContext().getInitParameter("jdbcUsername"); 
         // String jdbcPassword = getServletContext().getInitParameter("jdbcPassword"); 
-        String jdbcURL = "jdbc:mysql://localhost:3306/travlendardb";
+        String jdbcURL = "jdbc:mysql://localhost:3306/travlendar";
         String jdbcUsername = "root";
         String jdbcPassword = "";
         int limit = 10;
@@ -175,8 +175,7 @@ public class TravellerController extends HttpServlet {
             {
                 objTraveller = new Traveller();
                 
-                tempString = request.getParameter("id_trav");
-                tempInt = Integer.parseInt(tempString);
+                tempInt = Integer.parseInt(request.getParameter("id_trav"));
                 objTraveller.setTraveller_id(tempInt);
                 
                 tempString = request.getParameter("nama_trav");
@@ -206,6 +205,39 @@ public class TravellerController extends HttpServlet {
                 response.sendRedirect("traveller?action=show");
                 //request.getRequestDispatcher("?action=show").forward(request, response);
             }
+            else if (aksiPage.equals("terbaru")) 
+            {
+                objTraveller = new Traveller();
+                
+                tempInt = Integer.parseInt(request.getParameter("id_trav"));
+                objTraveller.setTraveller_id(tempInt);
+                
+                tempString = request.getParameter("nama_trav");
+                objTraveller.setTraveller_name(tempString);
+              
+                tempString = request.getParameter("email_trav");
+                objTraveller.setTraveller_email(tempString);
+              
+                tempString = request.getParameter("password_trav");
+                objTraveller.setTraveller_password(tempString);
+              
+                tempString = request.getParameter("fullname_trav");
+                objTraveller.setTraveller_fullName(tempString);
+                
+                try
+                {
+                    this.travDao.updateDataToDB(objTraveller);
+                    request.setAttribute("message", "Anda sukses menyimpan data ke DB");
+                }
+                catch (SQLException ex)
+                {
+                    request.setAttribute("message", "Anda gagal menyimpan data ke DB");
+                }
+                
+              
+                response.sendRedirect("traveller?action=show");
+                //request.getRequestDispatcher("?action=show").forward(request, response);
+            }            
         }
     }    
 }    

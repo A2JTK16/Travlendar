@@ -276,7 +276,7 @@ public class TravellerDaoImp extends DAO implements ITravellerDao
          * 
          * Note : PK tdk boleh diupdate
          */
-        sql = String.format("UPDATE `traveller` SET `TRAVELLER_NAME`='%s',`TRAVELLER_EMAIL`='%s',`TRAVELLER_PASSWORD`='%s', `TRAVELLER_FULLNAME`='%s' WHERE `TRAVELLER_ID`='%s'", travellerObj.getTraveller_name(),travellerObj.getTraveller_email(), travellerObj.getTraveller_password(), travellerObj.getTraveller_fullName(),travellerObj.getTraveller_id() );
+        sql = String.format("UPDATE `traveller` SET `TRAVELLER_NAME`='%s',`TRAVELLER_EMAIL`='%s',`TRAVELLER_PASSWORD`='%s', `TRAVELLER_FULLNAME`='%s' WHERE `TRAVELLER_ID`='%d'", travellerObj.getTraveller_name(),travellerObj.getTraveller_email(), travellerObj.getTraveller_password(), travellerObj.getTraveller_fullName(),travellerObj.getTraveller_id() );
         statement.executeUpdate(sql);
         /**
          * Tutup Statement

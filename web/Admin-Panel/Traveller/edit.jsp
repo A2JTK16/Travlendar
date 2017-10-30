@@ -37,17 +37,21 @@
 			</div> <!--kotak-traveller-->
 	
 			<div class="kotak-traveller">
-				<div class="text-edit"> Edit Fullname </div>
-					<input class="edtp" type="text" name="TRAVELLER_FULLNAME" placeholder="">
+                            <form class="kotak-traveller" action="${pageContext.request.contextPath}/Admin-Panel/traveller?input=terbaru" method="post">
+				<div class="text-edit"> ID </div>
+					<input class="edtp" type="text" name="id_trav" placeholder="<c:out value="${travellerObj.getTraveller_id()}"/>">
+                                <div class="text-edit"> Edit Fullname </div>
+					<input class="edtp" type="text" name="fullname_trav" placeholder="">
 				<div class="text-edit"> Edit Username </div>
-					<input class="edtp" type="text" name="TRAVELLER_NAME" placeholder="">
+					<input class="edtp" type="text" name="nama_trav" placeholder="">
 				<div class="text-edit"> Edit Email </div>
-					<input class="edtp" type="text" name="TRAVELLER_EMAIL" placeholder="">
+					<input class="edtp" type="text" name="email_trav" placeholder="">
 				<div class="text-edit"> Edit Password </div>
-					<input class="edtp" type="password" name="TRAVELLER_PASSWORD" placeholder="">
+					<input class="edtp" type="password" name="password_trav" placeholder="">
 					<br/>
 				<a href="index.jsp"><button class="update-traveller"> Update </button></a>
-			</div> <!--kotak-traveller-->			
+                            </form>
+                        </div> <!--kotak-traveller-->			
 			
 		</div> <!--/ .middle -->
 

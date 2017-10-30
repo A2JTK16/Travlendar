@@ -34,7 +34,7 @@
 				  <div class="modal-content">
 				    	
 							  <div class="form">
-							  	<div class="modal-header">
+                                            		  	<div class="modal-header">
 							      <span class="close">&times;</span>
 							      <h5>List Of Transportation Mode</h5>
 							    </div>

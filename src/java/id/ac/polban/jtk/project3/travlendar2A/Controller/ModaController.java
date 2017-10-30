@@ -10,7 +10,6 @@ import id.ac.polban.jtk.project3.travlendar2A.Helpers.PagingListIntHelper;
 import id.ac.polban.jtk.project3.travlendar2A.Models.ModaTransportasi;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,7 +47,7 @@ public class ModaController extends HttpServlet
         // String jdbcURL = getServletContext().getInitParameter("jdbcURL"); 
         // String jdbcUsername = getServletContext().getInitParameter("jdbcUsername"); 
         // String jdbcPassword = getServletContext().getInitParameter("jdbcPassword"); 
-        String jdbcURL = "jdbc:mysql://localhost:3306/travlendardb";
+        String jdbcURL = "jdbc:mysql://localhost:3306/travlendar";
         String jdbcUsername = "root";
         String jdbcPassword = "";
         int limit = 10;
@@ -92,8 +91,8 @@ public class ModaController extends HttpServlet
                     break;
                 case "add":
                     // set content atribute
-                    //request.setAttribute("content", "addmodatransportasi");    
-                    request.getRequestDispatcher("TransportationMode/index.jsp").forward(request, response);
+                    request.setAttribute("content", "addmodatransportasi");    
+                    //request.getRequestDispatcher("TransportationMode/index.jsp").forward(request, response);
                     break;
                 case "edit":
                     // set httprequest atribut dengan obj modatransportasi dari database
@@ -107,7 +106,8 @@ public class ModaController extends HttpServlet
                     break;
             }
             // forward ke index.jsp dengan dapat menggunakan reesource yg ada
-            //request.getRequestDispatcher("TransportationMode/index.jsp").forward(request, response);
+            request.getRequestDispatcher("TransportationMode/index.jsp").forward(request, response);
+            //request.getRequestDispatcher("index.jsp").forward(request, response);
         }
         else
         {
@@ -181,7 +181,7 @@ public class ModaController extends HttpServlet
                 tempString = request.getParameter("TRANSPORTATION_CODE");
                 objModa.setKodeTransportasi(tempString);
                 
-                tempString = request.getParameter("TRANSPORTATION_NAME");
+                tempString = request.getParameter("T1RANSPORTATION_NAME");
                 objModa.setNamaTransportasi(tempString);
               
                 tempFloat = Float.parseFloat(request.getParameter("TRANSPORTATION_SPEED"));
