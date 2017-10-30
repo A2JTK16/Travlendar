@@ -46,7 +46,7 @@
                       <div id="myDropdown" class="dropdown-content">
                         <a href="#home">Home</a>
                         <a href="#about">Profile</a>
-                        <a href="../index.jsp">Logout</a>
+                        <a href="../Admin-Panel/index.jsp">Logout</a>
                       </div>
                     </div>
                 </div> <!--kotak-acount-->
