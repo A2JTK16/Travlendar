@@ -85,7 +85,7 @@
                                                                 <div class="delete-kiri"><input class="action2" type="submit" value="Delete"></div>
                                                                 
                                                             </form>
-                                                                <td> <a class="action3" href="../Admin-Panel/CalendarEvent/index.jsp"> View Calendar </a> </td>
+                                                                <td> <a class="action3" href="${pageContext.request.contextPath}/Admin-Panel/event?action=show"> View Calendar </a> </td>
                                                     </tr>                                                        
                                                 </c:forEach>
                                                     

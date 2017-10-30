@@ -3,30 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/src/java/id/ac/polban/jtk/project3/travlendar2A/Models/Traveller.java</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/src/java/id/ac/polban/jtk/project3/travlendar2A/Controller/TravellerController.java</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/web/edit_event.jsp</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/web/content/traveller.jsp</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/src/java/id/ac/polban/jtk/project3/travlendar2A/DaoConcreteClass/TravelDaoImp.java</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/src/java/id/ac/polban/jtk/project3/travlendar2A/Models/ModaTransportasi.java</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/src/java/id/ac/polban/jtk/project3/travlendar2A/DaoConcreteClass/TravellerDaoImp.java</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/src/java/id/ac/polban/jtk/project3/travlendar2A/DaoInterface/ITravellerDao.java</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/web/Admin-Panel/TransportationMode/edit.jsp</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/web/content/addtraveller.jsp</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/src/java/id/ac/polban/jtk/project3/travlendar2A/Models/Travel.java</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/web/add_new_event.jsp</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/web/content/modatransportasi.jsp</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/web/Admin-Panel/Traveller/edit.jsp</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/web/content/event.jsp</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/src/java/id/ac/polban/jtk/project3/travlendar2A/DaoConcreteClass/TransportationMdDaoImp.java</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/web/content/edittraveller.jsp</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/web/index.jsp</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/web/content/addmodatransportasi.jsp</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/src/java/id/ac/polban/jtk/project3/travlendar2A/Controller/LocationController.java</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/web/Admin-Panel/Traveller/index.jsp</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/web/content/editmodatransportasi.jsp</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/web/Admin-Panel/TransportationMode/index.jsp</file>
-            <file>file:/E:/Repo%20Proyek/Travlendar-master/web/Admin-Panel/index.jsp</file>
+            <file>file:/E:/tugas%20kuliah/tingkat%202/github%20proyek%203/Travlendar/web/Admin-Panel/Teamplate/Header/header.jsp</file>
         </group>
     </open-files>
 </project-private>
