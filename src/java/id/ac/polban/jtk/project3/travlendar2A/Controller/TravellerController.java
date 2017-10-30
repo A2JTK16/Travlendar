@@ -37,7 +37,7 @@ public class TravellerController extends HttpServlet {
         // String jdbcURL = getServletContext().getInitParameter("jdbcURL"); 
         // String jdbcUsername = getServletContext().getInitParameter("jdbcUsername"); 
         // String jdbcPassword = getServletContext().getInitParameter("jdbcPassword"); 
-        String jdbcURL = "jdbc:mysql://localhost:3306/travlendardb";
+        String jdbcURL = "jdbc:mysql://localhost:3306/travlendar";
         String jdbcUsername = "root";
         String jdbcPassword = "";
         int limit = 10;

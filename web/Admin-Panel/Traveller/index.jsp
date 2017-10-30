@@ -69,7 +69,9 @@
 						<tr>
 							<th>ID</th>
                                                         <th>Fullname</th>
-							<th>Action</th>
+							<th> Edit </th>
+                                                        <th> Delete </th>
+                                                        <th> Calendar </th>
 						</tr>
 						</thead>
 						<tbody>
@@ -81,9 +83,10 @@
                                                         <td><a class="action" href="${pageContext.request.contextPath}/Admin-Panel/Traveller/edit.jsp">Edit</a>
                                                             <form action = "${pageContext.request.contextPath}/Admin-Panel/traveller?input=delete" method="post">
                                                                 <input type="hidden" name="trav_id" value="${traveller.getTraveller_id()}">
-                                                                <input type="submit" value="Delete">
-                                                        <td> <a class="action3" href="../Admin-Panel/Calendar   Event/index.jsp"> View Calendar </a> </td>							
-                                                        </form>
+                                                                <td><input class="action2" type="submit" value="Delete"></td>
+                                                                
+                                                            </form>
+                                                                <td> <a class="action3" href="../Admin-Panel/CalendarEvent/index.jsp"> View Calendar </a> </td>
                                                     </tr>                                                        
                                                 </c:forEach>
                                                     
