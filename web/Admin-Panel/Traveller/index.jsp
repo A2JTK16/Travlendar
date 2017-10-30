@@ -82,6 +82,7 @@
                                                             <form action = "${pageContext.request.contextPath}/Admin-Panel/traveller?input=delete" method="post">
                                                                 <input type="hidden" name="trav_id" value="${traveller.getTraveller_id()}">
                                                                 <input type="submit" value="Delete">
+                                                        <td> <a class="action3" href="../Admin-Panel/Event/index.jsp"> View Calendar </a> </td>							
                                                         </form>
                                                     </tr>                                                        
                                                 </c:forEach>
