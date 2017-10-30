@@ -82,100 +82,59 @@
 			</div> <!--kotak-traveller-->
 	
 			<div class="kotak-traveller">
-					<table>
-						<thead>
-						<tr>
-							<th>-</th>
-							<th>Bandung</th>
-                                                        <th>Bekasi</th>
-                                                        <th>Bogor</th>
-                                                        <th>Ciamis</th>
-                                                        <th>Cianjur</th>
-                                                        <th>Cirebon</th>
-						</tr>
-						</thead>
-						<tbody>
-                                                <tr>
-                                                    <th>Bandung</th>
-                                                    <td>0</td>
-                                                    <td>134</td>
-                                                    <td>177</td>
-                                                    <td>135</td>
-                                                    <td>160</td>
-                                                    <td>209</td>
-                                                </tr>
-                                                
-                                                <tr>
-                                                    <th>Bekasi</th>
-                                                    <td>132</td>
-                                                    <td>0</td>
-                                                    <td>62.2</td>
-                                                    <td>248</td>
-                                                    <td>208</td>
-                                                    <td>200</td>
-                                                </tr>
-                                                
-                                                <tr>
-                                                    <th>Bogor</th>
-                                                    <td>212</td>
-                                                    <td>81.8</td>
-                                                    <td>0</td>
-                                                    <td>305</td>
-                                                    <td>175</td>
-                                                    <td>247</td>
-                                                </tr>
-                                                
-                                                <tr>
-                                                    <th>Ciamis</th>
-                                                    <td>125</td>
-                                                    <td>237</td>
-                                                    <td>306</td>
-                                                    <td>0</td>
-                                                    <td>233</td>
-                                                    <td>116</td>
-                                                </tr>
-                                                
-                                                <tr>
-                                                    <th>Cianjur</th>
-                                                    <td>101</td>
-                                                    <td>196</td>
-                                                    <td>176</td>
-                                                    <td>230</td>
-                                                    <td>0</td>
-                                                    <td>295</td>
-                                                </tr>
-						
-                                                <tr>
-                                                    <th>Cirebon</th>
-                                                    <td>229</td>
-                                                    <td>178</td>
-                                                    <td>257</td>
-                                                    <td>105</td>
-                                                    <td>1345</td>
-                                                    <td>0</td>
-                                                </tr>
-	
-                                                <script type="text/javascript" language="JavaScript">
-                                                function konfirmasi()
-                                                {
-                                                tanya = confirm("Anda Yakin Akan Menghapus Data ?");
-                                                if (tanya == true) return true;
-                                                else return false;
-                                                }</script>
-						</tbody>
-					</table>
-			</div> <!--kotak-distance-->
                         
-                        <div class="kotak-traveller">
-					<div class="pagination">
-						<a href="index.html" class="page active">first</a><a href="#" class=
-						"page"> 2 </a><a href="index.html" class="page"> 3 </a><span
-						class="page"> 4 </span><a href="index.html" class=
-						"page"> 5 </a><a href="index.html" class="page"> 6 </a><a href="index.html"
-						class="page">last</a>
-					</div>
-			</div> <!--kotak-traveller-->
-			
+                            <div class="posisi-distance">
+                            <div class="text-distance"> Province Name </div>
+                                <select class="dropdown-location" type="text" name="PROVINCE_NAME" style="border:1px solid #ddd;">
+                                                                    <option value="SLocation0">Jawa Barat</option>
+                                                                    <option value="SLocation1">Jakarta</option>
+                                                                    <option value="SLocation2">Banten</option>
+                                                                    <option value="SLocation3">Jawa Tengah</option>
+                                                                    <option value="SLocation4">Jawa TImur</option>
+                                </select>
+                            
+                            <div class="text-distance"> City Name </div>
+                            <select class="dropdown-location" type="text" name="PROVINCE_NAME" style="border:1px solid #ddd;">
+                                                                    <option value="SLocation0">Bandung</option>
+                                                                    <option value="SLocation1">Bekasi</option>
+                                                                    <option value="SLocation2">Cirebon</option>
+                                                                    <option value="SLocation3">Tasikmalaya</option>
+                                                                    <option value="SLocation4">Kuningan</option>
+                                </select>
+                            </div> <!--posisi-distance-->
+                            
+                            <div class="To-distance"> To </div>
+                            
+                            <div class="posisi-distance">
+                            <div class="text-distance"> Province Name </div>
+                                <select class="dropdown-location" type="text" name="PROVINCE_NAME" style="border:1px solid #ddd;">
+                                                                    <option value="SLocation0">Jawa Barat</option>
+                                                                    <option value="SLocation1">Jakarta</option>
+                                                                    <option value="SLocation2">Banten</option>
+                                                                    <option value="SLocation3">Jawa Tengah</option>
+                                                                    <option value="SLocation4">Jawa TImur</option>
+                                </select>
+                            
+                            <div class="text-distance"> City Name </div>
+                            <select class="dropdown-location" type="text" name="PROVINCE_NAME" style="border:1px solid #ddd;">
+                                                                    <option value="SLocation0">Bandung</option>
+                                                                    <option value="SLocation1">Bekasi</option>
+                                                                    <option value="SLocation2">Cirebon</option>
+                                                                    <option value="SLocation3">Tasikmalaya</option>
+                                                                    <option value="SLocation4">Kuningan</option>
+                                </select>
+                            </div> <!--posisi-distance-->
+                            
+                            
+                            <div class="posisi-distance">
+                            <div class="text-distance"> Distance </div>
+                                <input class="distancena" type="text" placeholder="                      ... Km"/> 
+                            </div>
+                            
+                            
+                            
+			</div> <!--kotak-distance-->
+                
 			
 		</div> <!--/ .middle -->
 

@@ -937,3 +937,35 @@ a:hover{
     width: 95px;
     height: 95px;
 }
+
+.posisi-distance{
+    float: left;
+    padding: 10px;
+    margin: 10px;
+}
+
+.text-distance{
+    padding: 7px;
+    margin: 7px;
+    font: 14px Arial;
+    font-weight: bold;
+    color: #454545;
+}
+
+.To-distance{
+    float: left;
+    padding: 7px;
+    padding-top: 100px;
+    margin: 7px;
+    font: 20px Arial;
+    font-weight: bold;
+    color: #454545;
+}
+
+.distancena{
+    float: left;
+    padding: 10px;
+    margin: 10px;
+    font: 14px Arial;
+    border: 1px solid #ddd;
+}

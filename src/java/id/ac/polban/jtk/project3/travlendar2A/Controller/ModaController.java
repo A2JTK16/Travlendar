@@ -181,7 +181,7 @@ public class ModaController extends HttpServlet
                 tempString = request.getParameter("TRANSPORTATION_CODE");
                 objModa.setKodeTransportasi(tempString);
                 
-                tempString = request.getParameter("T1RANSPORTATION_NAME");
+                tempString = request.getParameter("TRANSPORTATION_NAME");
                 objModa.setNamaTransportasi(tempString);
               
                 tempFloat = Float.parseFloat(request.getParameter("TRANSPORTATION_SPEED"));
