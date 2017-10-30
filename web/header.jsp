@@ -24,11 +24,12 @@
 
     <div class="menu-atas">
 	<div class="header">
-            <div class="logonya">
+             <div class="logonya">
                 <img src="Assets/icon/logo3.png">
+                
             </div>
             <div class="logo">
-                <h1>Travelendar</h1>
+                <img src="Assets/images/logo.png">
             </div> <!--logo-->
             
             <div class="dropdown" style="float:right;">

@@ -1,47 +1,29 @@
 <%-- 
-    Document   : agenda
-    Created on : Oct 13, 2017, 3:07:10 PM
-    Author     : mufidjamaluddin
+    Document   : index
+    Created on : Oct 16, 2017, 5:43:46 PM
+    Author     : Fadhlan
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<!-- Include Header, termasuk CSS nya -->
-<jsp:include page="header.jsp"/>
-
-<div class="wadah">
-    <div class="main">
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="Assets/css/stylehome.css">
+        <link rel="stylesheet" type="text/css" href="Assets/css/calendar.css">
+        <link rel="stylesheet" type="text/css" href="Assets/css/userresponsive.css">
+        <title>Travelendar</title>
+    </head>
+    <body>
         
-        <p class="message"><c:out value="${message}"/></p>
-        
-        <c:set var="content" scope="request" value="${content}"/>
-        <c:choose>
-            <c:when test="${content == null}">
-                <h1 class="judul">Menu Admin</h1>
-                <a href="   <c:url value="moda">
-                                <c:param name="action" value="show"/>
-                            </c:url>
-                        ">Daftar List Moda Transportasi</a><br/>
-                <a href="   <c:url value="moda">
-                                <c:param name="action" value="add"/>
-                            </c:url>
-                        ">Add List Moda Transportasi</a><br/>
-                <a href="   <c:url value="traveller">
-                                <c:param name="action" value="show"/>
-                            </c:url>
-                        ">Daftar List Traveller</a><br/>
-                <a href="   <c:url value="traveller">
-                                <c:param name="action" value="add"/>
-                            </c:url>
-                        ">Add List Traveller</a><br/>
-            </c:when>
-            <c:otherwise>
-                <jsp:include page="content/${content}.jsp"/>
-            </c:otherwise>
-        </c:choose>
-    </div>
-</div>                 
-                        
-<!-- Include Footer, termasuk Tutup Tag Body dan Tutup tag Html nya -->   
-<jsp:include page="footer.jsp"/>
+        <%@include file="headerhome.jsp" %>
+           <div class="wadah3">
+               <div class="kotak-deskripsi">
+               <div class="deskripsi">Make Your Plan be Better.</div>
+
+               </div>
+           </div>           
+        <%@include file="footer.jsp" %>
+    </body>
+</html>
