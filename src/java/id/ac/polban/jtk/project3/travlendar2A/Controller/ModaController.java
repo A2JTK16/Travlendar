@@ -47,7 +47,7 @@ public class ModaController extends HttpServlet
         // String jdbcURL = getServletContext().getInitParameter("jdbcURL"); 
         // String jdbcUsername = getServletContext().getInitParameter("jdbcUsername"); 
         // String jdbcPassword = getServletContext().getInitParameter("jdbcPassword"); 
-        String jdbcURL = "jdbc:mysql://localhost:3306/travlendar";
+        String jdbcURL = "jdbc:mysql://localhost:3306/travlendardb";
         String jdbcUsername = "root";
         String jdbcPassword = "";
         int limit = 10;
@@ -190,6 +190,24 @@ public class ModaController extends HttpServlet
                 try
                 {
                     this.modaDao.updateDataToDB(objModa);
+                    request.setAttribute("message", "Anda sukses menyimpan data ke DB");
+                }
+                catch (SQLException ex)
+                {
+                    request.setAttribute("message", "Anda gagal menyimpan data ke DB");
+                }
+                
+              
+                response.sendRedirect("moda?action=show");
+                //request.getRequestDispatcher("?action=show").forward(request, response);
+            }
+            
+             else if (aksiPage.equals("delete")) 
+            {
+                String cd = request.getParameter("kd_trans");
+                try
+                {
+                    this.modaDao.deleteDataToDB(cd);
                     request.setAttribute("message", "Anda sukses menyimpan data ke DB");
                 }
                 catch (SQLException ex)
