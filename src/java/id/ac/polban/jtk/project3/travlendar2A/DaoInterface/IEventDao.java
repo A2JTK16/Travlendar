@@ -18,13 +18,13 @@ public interface IEventDao
 {
     /**
      * Method untuk Mendapatkan Data Satu Record
-     * 
+     * Tadinya ada traveller id
      * @param eventCode
      * @param travellerId
      * @return 
      * @throws java.sql.SQLException
      */
-    public Event getDataFromDB(int eventCode, int travellerId) throws SQLException;  
+    public Event getDataFromDB(int eventCode) throws SQLException;  
     
     /**
      * Method untuk Mendapatkan Data Satu Record
@@ -78,7 +78,7 @@ public interface IEventDao
      * @return 
      * @throws java.sql.SQLException
      */
-    public List<Event> getListFromDB(int page, int travellerId) throws SQLException;
+    public List<Event> getListFromDB(int page) throws SQLException;
     
     /**
      * Method untuk menyimpan data (satuan) ke database.

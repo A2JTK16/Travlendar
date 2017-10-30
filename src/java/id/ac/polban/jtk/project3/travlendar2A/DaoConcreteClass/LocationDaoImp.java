@@ -5,14 +5,18 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.DaoConcreteClass;
 
+import id.ac.polban.jtk.project3.travlendar2A.DaoInterface.ILocationDao;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Location;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  */
-public class LocationDaoImp extends DAO
+public class LocationDaoImp extends DAO implements ILocationDao
 {
     /**
      * Atribut
@@ -29,10 +33,10 @@ public class LocationDaoImp extends DAO
      * @param jdbcPassword 
      * @param limit 
      */
-    public LocationDaoImp (String jdbcURL, String jdbcUsername, String jdbcPassword, int limit)
+    public LocationDaoImp (String jdbcURL, String jdbcUsername, String jdbcPassword)
     {
         super(jdbcURL, jdbcUsername, jdbcPassword);
-        this.limit = limit;
+        //this.limit = limit;
     }
     
     /**
@@ -92,16 +96,45 @@ public class LocationDaoImp extends DAO
      * <strong>Secara tekniks, Parameter Page dan Batas
      * Menentukan Limit Query</strong>
      * 
-     * @param page
-     * @return List
-     * @throws SQLException 
-     */
-    public List<Location> getListFromDB(int page) throws SQLException 
-    {     
-       // write code here
+     /**
+         *
+         * @return
+         * @throws SQLException
+         */
+    @Override
+    public List<Location> getListFromDB(int page) throws SQLException {
+        List <Location> listLoc;
+        listLoc = new ArrayList();
+        Location location;
         
-        return null;
-    }   
+        page = (page-1) * this.limit;
+        
+        String sql = String.format("SELECT * FROM `location`");
+        
+        super.connect();
+        
+        Statement stmt;
+        ResultSet rs;
+        
+        stmt = super.getJdbcConnection().createStatement();
+        rs = stmt.executeQuery(sql);
+        
+        while(rs.next()){
+            location = new Location();
+            
+            location.setLocation_id(rs.getInt("LOCATION_ID"));
+            location.setCity_code(rs.getString("CITY_CODE"));
+            location.setAddress_place(rs.getString("ADDRESS_PLACE"));
+    
+            
+            listLoc.add(location);
+        }
+        
+        stmt.close();
+        super.disconnect();
+            
+        return listLoc;
+        }
     
     /**
      * Method untuk menyimpan data (satuan) ke database.
@@ -140,5 +173,30 @@ public class LocationDaoImp extends DAO
     public void deleteDataInDB(String locCode) throws SQLException
     {
         // write code here
+    }
+
+    @Override
+    public Location getDataFromDB(String provinceCode, String cityCode, int locId) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Location getDataBefore(String provinceCode, String cityCode, int locId) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isLocationAvaiable(String provinceCode, String cityCode, int locId) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateDataToDB(Location myLocation) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteDataFromDB(String provinceCode, String cityCode, int locId) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

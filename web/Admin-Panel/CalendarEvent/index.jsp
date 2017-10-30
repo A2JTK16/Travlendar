@@ -10,8 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="../Assets2/css/stylecalnedar.css">
-<link rel="stylesheet" type="text/css" href="../Assets2/css/responsive-calendar.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Admin-Panel/Assets2/css/stylecalnedar.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Admin-Panel/Assets2/css/responsive-calendar.css">
 <title>JSP Page</title>
 <meta charset='utf-8' />
 <link href='fullcalendar.min.css' rel='stylesheet' />
@@ -115,7 +115,7 @@
 <div class="menu-atas">
 	<div class="header">
             <div class="logonya">
-                <img src="../Assets2/icon/logo.png">
+                <img src="${pageContext.request.contextPath}/../Admin-Panel/Assets2/icon/logo.png">
             </div>
             <div class="logo">
                 <h1>Travelendar</h1>
@@ -178,7 +178,7 @@
 	<div class="main">
 		
             
-            <%@include file="../Teamplate/Sidebar/sidebar.jsp" %>
+            <%@include file="/Admin-Panel/Teamplate/Sidebar/sidebar.jsp" %>
 
 		<div class="middle">
                

@@ -26,8 +26,6 @@ public class Event {
  3.   Perbaiki Lagi Getter dan Setter nya
      */
     private int traveller_id;
-    private String province_code;
-    private String city_code;
     private int location_id;
     private int event_id;
     private String event_name;
@@ -174,31 +172,10 @@ public class Event {
     }
 
     /**
-     * @return the province_code
+     * @return the event_id
      */
-    public String getProvince_code() {
-        return province_code;
-    }
-
-    /**
-     * @param province_code the province_code to set
-     */
-    public void setProvince_code(String province_code) {
-        this.province_code = province_code;
-    }
-
-    /**
-     * @return the city_code
-     */
-    public String getCity_code() {
-        return city_code;
-    }
-
-    /**
-     * @param city_code the city_code to set
-     */
-    public void setCity_code(String city_code) {
-        this.city_code = city_code;
+    public int getEvent_id() {
+        return event_id;
     }
 
     /**

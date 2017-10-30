@@ -36,28 +36,35 @@ public class EventDaoImp extends DAO implements IEventDao
      * @throws java.sql.SQLException 
      */
     @Override
-    public List<Event> getListFromDB(int halaman, int travellerId) throws SQLException{
+    public List<Event> getListFromDB(int halaman) throws SQLException{
         List<Event> listEvent;
         Event event;
-        String sql;
+        String sql, sql1;
         int tempInt;
         String tempStr;
         Date tempDate;
         listEvent = new ArrayList();
-        tempInt = (halaman-1) * this.limit;
-        sql = String.format("SELECT * FROM tes.event order by EVENT_ID asc LIMIT %d, %d",tempInt,this.limit);
+        //tempInt = (halaman-1) * this.limit;
+        sql = String.format("SELECT * FROM `event`");
+        //sql1 = String.format("SELECT TRAVELLER_ID FROM travlendardb.traveller");
         super.connect();
         Statement statement;
-        ResultSet resultSet;
+        ResultSet resultSet, resultSet1;
 
             statement = super.getJdbcConnection().createStatement();
             resultSet = statement.executeQuery(sql);  
-            
+            //resultSet1 = statement.executeQuery(sql1);
             while (resultSet.next()) {
                 event = new Event();
                 
+                tempInt = resultSet.getInt("LOCATION_ID");
+                event.setLocation_id(tempInt);
+                
                 tempInt = resultSet.getInt("EVENT_ID");
                 event.setEvent_id(tempInt);
+                
+                tempInt = resultSet.getInt("TRAVELLER_ID");
+                event.setTraveller_id(tempInt);
                 
                 tempStr = resultSet.getString("EVENT_NAME");
                 event.setEvent_name(tempStr);
@@ -91,7 +98,7 @@ public class EventDaoImp extends DAO implements IEventDao
     public int getPageCount(int batas)
     {
         String sql;
-        sql = "SELECT count(*) FROM tes.event";
+        sql = "SELECT count(*) FROM travlendardb.event";
         super.connect();
         Statement statement;
         int page;
@@ -121,7 +128,8 @@ public class EventDaoImp extends DAO implements IEventDao
     {
         String sql;
         boolean isSaveSuccess;
-        sql = String.format("INSERT INTO tes.event(EVENT_NAME, START_EVENT, END_EVENT, NOTE, PLACE) VALUES ('%s', '%s', '%s', '%s', '%s')", myEvent.getEvent_name(), DateTHelper.toStringM(myEvent.getStart_event()), DateTHelper.toStringM(myEvent.getEnd_event()), myEvent.getNote(), myEvent.getPlace());
+        sql = String.format("INSERT INTO `event`(`LOCATION_ID`, `EVENT_ID`, `TRAVELLER_ID`, `EVENT_NAME`, `START_EVENT`, `END_EVENT`, `NOTE`, `PLACE`) VALUES ('%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s')", myEvent.getLocation_id(), myEvent.getEvent_id(), myEvent.getTraveller_id(), myEvent.getEvent_name(), DateTHelper.toStringM(myEvent.getStart_event()), DateTHelper.toStringM(myEvent.getEnd_event()), myEvent.getNote(), myEvent.getPlace());
+        
         super.connect();
         Statement statement;
         
@@ -147,9 +155,46 @@ public class EventDaoImp extends DAO implements IEventDao
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Method untuk mengubah data record di database
+     * berdasarkan kode ModaTransportasi (pk).
+     * Jika gagal mengubah, maka akan keluar eksepsi
+     * 
+     * @param modaCode
+     * @param modaTrs
+     * @throws SQLException 
+     */
     @Override
-    public void updateDataToDB(Event myEvent) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void updateDataToDB(Event event) throws SQLException
+    {
+        // deklarasi
+        String sql;
+        Statement statement;
+        /**
+         * Buat Koneksi ke DBMS
+         */
+        super.connect();
+        /**
+         * Buat Statement
+         */
+        
+        statement = super.getJdbcConnection().createStatement();
+        /**
+         * Eksekusi Query
+         * 
+         * Note : PK tdk boleh diupdate
+         */
+        //sql = String.format("UPDATE `transportation_mode` SET `TRANSPORTATION_NAME`='%s',`TRANSPORTATION_SPEED`='%s' WHERE `TRANSPORTATION_CODE`='%s'",modaTrs.getNamaTransportasi(), modaTrs.getKecepatan(), modaTrs.getKodeTransportasi() );
+        sql = String.format("UPDATE `event` SET `LOCATION_ID`='%d', `TRAVELLER_ID`='%d', `EVENT_NAME`='%s', `START_EVENT`='%s', `END_EVENT`='%s', `NOTE`='%s', `PLACE`='%s' WHERE `EVENT_ID`='%s'", event.getLocation_id(), event.getTraveller_id(), event.getEvent_name(), event.getStart_event(), event.getEnd_event(), event.getNote(), event.getPlace(), event.getEvent_id());
+        statement.executeUpdate(sql);
+        /**
+         * Tutup Statement
+         */
+        statement.close();
+        /**
+         * Tutup Koneksi
+         */
+        super.disconnect();
     }
 
     @Override
@@ -157,9 +202,89 @@ public class EventDaoImp extends DAO implements IEventDao
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Method untuk Mendapatkan Data Satu Record
+     * Berdasarkan Kode ModaTransportasi
+     * 
+     * @param trscode
+     * @return 
+     * @throws java.sql.SQLException 
+     */
     @Override
-    public Event getDataFromDB(int eventCode, int travellerId) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Event getDataFromDB(int eventCode) throws SQLException
+    {   
+        // jika trscode nya null
+        /*if(eventCode==null)
+            return null;
+        
+        // jika panjang nya lebih dari panjang schema db
+        if(eventCode.length()>2)
+            return null;*/
+        int tempInt;
+        String tempStr;
+        Date tempDate;
+        Event event;
+        String sql;
+
+        // instansiasi
+        event = new Event();
+
+        // koneksi
+        super.connect();
+        
+        Statement statement; 
+        ResultSet resultSet;
+        
+        // buat statement
+        statement = super.getJdbcConnection().createStatement();
+        
+        // eksekusi query
+        sql = String.format("SELECT * FROM `event` WHERE `EVENT_ID` = '%d'",eventCode);
+        resultSet = statement.executeQuery(sql);
+        
+        // jika ada result
+        while(resultSet.next())
+        {
+            // mendapatkan data sesuai atribut 
+            
+            
+            tempInt = resultSet.getInt("LOCATION_ID");
+                event.setLocation_id(tempInt);
+                
+                tempInt = resultSet.getInt("EVENT_ID");
+                event.setEvent_id(tempInt);
+                
+                tempInt = resultSet.getInt("TRAVELLER_ID");
+                event.setTraveller_id(tempInt);
+                
+                tempStr = resultSet.getString("EVENT_NAME");
+                event.setEvent_name(tempStr);
+                
+                tempDate = DateTHelper.parseDateM(resultSet.getString("START_EVENT"));
+                event.setStart_event(tempDate);
+                    
+                tempDate = DateTHelper.parseDateM(resultSet.getString("END_EVENT"));
+                event.setEnd_event(tempDate);
+                
+                /*tempInt = resultSet.getInt("KODE_LOKASI_AWAL");
+                event.setKodeLokasiAwal(tempInt);
+                
+                tempInt = resultSet.getInt("KODE_LOKASI_TUJUAN");
+                event.setKodeLokasiTujuan(tempInt);*/
+                
+                tempStr = resultSet.getString("NOTE");
+                event.setNote(tempStr);
+                
+                tempStr = resultSet.getString("PLACE");
+                event.setPlace(tempStr);
+        }
+
+        // tutup statement
+        statement.close();
+        // tutup koneksi
+        super.disconnect();
+        
+        return event;
     }
     
     
