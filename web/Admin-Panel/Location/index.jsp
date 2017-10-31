@@ -4,6 +4,11 @@
     Author     : Alpin J
 --%>
 
+
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.DriverManager"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -46,11 +51,9 @@
 							    </form>
 							    <form class="login-form">
                                                                 <select class="dropdown-location" type="text" name="PROVINCE_NAME">
-                                                                    <option value="SLocation0">Jawa Barat</option>
-                                                                    <option value="SLocation1">Jakarta</option>
-                                                                    <option value="SLocation2">Banten</option>
-                                                                    <option value="SLocation3">Jawa Tengah</option>
-                                                                    <option value="SLocation4">Jawa TImur</option>
+                                                                    <c:forEach items="${provinceList}" var="province">
+                                                                        <option> <c:out value="${province.getProvince_code()}"/>${province.getProvince_name()}</option>
+                                                                    </c:forEach>
                                                                 </select>
 							      <input type="text" name="CITY_NAME" placeholder="City Name ..."/>
 							      <button> Save </button>
@@ -68,13 +71,44 @@
 		
 			<div class="kotak-traveller">
 				<h4> List Of Location </h4>
-                                <select class="dropdown-location-choose" type="text" name="PROVINCE_NAME">
-                                    <option value="SLocation0">Jawa Barat</option>
-                                    <option value="SLocation1">Jakarta</option>
-                                    <option value="SLocation2">Banten</option>
-                                    <option value="SLocation3">Jawa Tengah</option>
-                                    <option value="SLocation4">Jawa TImur</option>
+                                <select id="PROVINCE_CODE" class="dropdown-location-choose" type="text" name="PROVINCE_NAME" onchange="getSelectValue()">
+                                    <option>Select Province</option>
+                                    <%
+                                        try
+                                        {
+                                            String Query="select * from province";
+                                            Class.forName("com.mysql.jdbc.Driver").newInstance();
+                                            Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/travlendardb","root","");
+                                            Statement stm=conn.createStatement();
+                                            ResultSet rs=stm.executeQuery("select distinct PROVINCE_CODE, PROVINCE_NAME from province");
+                                            while(rs.next())
+                                            {
+                                                
+                                                %>
+                                                <option value="<%=rs.getString("PROVINCE_CODE")%>"><%=rs.getString("PROVINCE_NAME")%></option>
+                                                <%
+                                                 out.println("KODE : " + rs.getString("PROVINCE_CODE"));
+                                                 
+                                            }
+                                           // conn.close();
+                                           // rs.close();
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            ex.printStackTrace();
+                                            out.println("Error" + ex.getMessage());
+                                        }
+
+                                    %>
                                 </select>
+                                
+                                <script>
+                                    function getSelectValue()
+                                    {
+                                        var selectedValue = document.getElementById("PROVINCE_CODE").value;
+                                        console.log(selectedValue)
+                                    }
+                                </script>    
 				<!--<div class="kotak-search">
 					<div class="icon-search">
 						<img src="../Assets2/icon/search.png">
@@ -93,34 +127,43 @@
 						</tr>
 						</thead>
 						<tbody>
-						<tr>
-							<td>001</td>
-							<td>Bandung</td>							
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-						</tr>
-                                                
-                                                <tr>
-							<td>002</td>
-							<td>Garut</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-                                                
-                                                <tr>
-							<td>003</td>
-							<td>Tasikmalaya</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-						</tr>
+                                                    
+                                                <%
+                                                        String kode=request.getParameter("PROVINCE_NAME");
+                                                      try
+                                                        {
+                                                            
+                                                            String SQL = "Select CITY_CODE,CITY_NAME from city where PROVINCE_CODE='"+kode+"'";
+                                                            out.println(request.getParameter("PROVINCE_NAME"));
+                                                            out.println(request.getParameter("PROVINCE_CODE"));
+                                                            //out.println("kode: " + kode);
+                                                            String sql = "Select CITY_CODE,CITY_NAME from city where PROVINCE_CODE=32";
+                                                            Class.forName("com.mysql.jdbc.Driver").newInstance();
+                                                            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/travlendardb","root","");
+                                                            Statement stmt=con.createStatement();
+                                                            ResultSet resultset=stmt.executeQuery(sql);
+                                                            out.println(resultset=stmt.executeQuery(sql));
+                                                            while(resultset.next())
+                                                            {
+                                                                %>
+                                                              
+                                                                <tr>
+                                                                    <td><%=resultset.getString("CITY_CODE")%></td>
+                                                                    <td><%=resultset.getString("CITY_NAME")%></td>
+                                                                    <td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
+                                                                </tr>
+                                                                <%
+                                                            }
+                                                            resultset.close();
+                                                            con.close();
+                                                        }
+                                                        catch (Exception ex)
+                                                        {
+                                                            ex.printStackTrace();
+                                                            out.println("Sorry " + ex.getMessage());
+                                                        }
+                                                    %>
 						
-                                                <tr>
-							<td>004</td>
-							<td>Sumedang</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-						</tr>
-                                                
-                                                <tr>
-							<td>005</td>
-							<td>Cirebon</td>
-							<td> <a class="action" href="edit.jsp">Edit </a> <a class="action2" onclick="return konfirmasi()" href="#"> Delete </a> </td>
-						</tr>
 						
 						 <script type="text/javascript" language="JavaScript">
                                                 function konfirmasi()
