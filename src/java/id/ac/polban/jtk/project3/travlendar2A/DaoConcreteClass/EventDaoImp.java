@@ -46,7 +46,8 @@ public class EventDaoImp extends DAO implements IEventDao
         listEvent = new ArrayList();
         //tempInt = (halaman-1) * this.limit;
         sql = String.format("SELECT * FROM `event`");
-        //sql1 = String.format("SELECT TRAVELLER_ID FROM travlendardb.traveller");
+        //sql = String.format("SELECT `EVENT_NAME`, `START_EVENT`, `END_EVENT`, `NOTE`, `ADDRESS_PLACE` FROM `event`, `location` WHERE `event.LOCATION_ID` = `location.LOCATION_ID`");
+        //sql1 = String.format("SELECT ADDRESS_PLACE FROM `location`, `event` WHERE `event`.LOCATION_ID = `location`.LOCATION_ID");
         super.connect();
         Statement statement;
         ResultSet resultSet, resultSet1;
@@ -248,7 +249,7 @@ public class EventDaoImp extends DAO implements IEventDao
             // mendapatkan data sesuai atribut 
             
             
-            tempInt = resultSet.getInt("LOCATION_ID");
+                tempInt = resultSet.getInt("LOCATION_ID");
                 event.setLocation_id(tempInt);
                 
                 tempInt = resultSet.getInt("EVENT_ID");

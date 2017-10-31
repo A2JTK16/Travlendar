@@ -165,8 +165,8 @@ public class EventController extends HttpServlet
                 tempInt = Integer.parseInt(req.getParameter("event_id"));
                 objEvent.setEvent_id(tempInt);
                 
-                tempInt = Integer.parseInt(req.getParameter("traveller_id"));
-                objEvent.setTraveller_id(tempInt);
+                //tempInt = Integer.parseInt(req.getParameter("traveller_id"));
+                objEvent.setTraveller_id(1);
                 
                 tempString = req.getParameter("event_name");
                 if(tempString == null) System.out.println("Gagal ambil data dari request event name");

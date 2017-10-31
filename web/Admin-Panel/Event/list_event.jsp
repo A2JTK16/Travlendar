@@ -13,6 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Admin-Panel/Assets2/css/styletraveller.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Admin-Panel/Assets2/css/responsive.css">
+        <link rel="stylesheet" type="text/css" href="Assets/css/calendar.css">
         <title>JSP Page</title>
     </head>
     <body>
@@ -42,13 +43,26 @@
 							    
 							    <form class="login-form" action="${pageContext.request.contextPath}/Admin-Panel/event?input=baru" method="post">
 							      <input type="text" name="event_id" placeholder="Event ID ..."/>
-							      <input type="text" name="location_id" placeholder="Location ID ..."/>
-                                                              <input type="text" name="traveller_id" placeholder="Traveller ID ..."/>
+							     <!-- <input type="text" name="location_id" placeholder="Location ID ..."/>-->
+                                                             <!-- <input type="text" name="traveller_id" placeholder="Traveller ID ..."/>-->
 							      <input type="text" name="event_name" placeholder="Event Name ..."/>
 							      <input type="text" name="start_event" placeholder="Start Event (dd-MM-yyyy HH:mm:ss) ..."/>
+                                                              <!--<input class="k-event" id="date" type="date" value="2017-09-08" name="start_event" style="float:left"/>--> 
                                                               <input type="text" name="end_event" placeholder="End Event (dd-MM-yyyy HH:mm:ss) ..."/>
+                                                              <!--<input class="k-event" id="date" type="date" value="2017-09-08" name="end_event" style="float:left"/>--> 
                                                               <input type="text" name="note" placeholder="Note ..."/>
                                                               <input type="text" name="place" placeholder="Place ..."/>
+                                                              <select class="dropdown-location" name="location_id">
+                            
+                            <option value="">Select...</option>
+                            
+                             <c:forEach items="${locationList}" var="location">
+                                 <option value="<c:out value="${ location.getLocation_id() }"/>"/> <!-- Saat submit, diisi dg code city -->
+                                     <c:out value="${ location.getAddress_place() }"/> <!-- Ditampilan, hanya ditampilkan nama nya doang -->
+                                 </option>
+                            </c:forEach>
+                             
+                        </select>
                                                               <button type="submit"> Save </button>							     
 							    </form>
 							  </div>
