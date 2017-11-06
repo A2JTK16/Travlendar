@@ -191,6 +191,16 @@ public class Event {
     public void setLocation_id(int location_id) {
         this.location_id = location_id;
     }
+    
+    /**
+     *
+     * @return
+     */
+    public String toStringJson()
+    {
+        return String.format("{ title: %s, start: %s, end: %s }", this.event_name, this.start_event, this.end_event);
+    }
+    
 }
     
    

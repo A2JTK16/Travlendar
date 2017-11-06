@@ -25,6 +25,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 @WebServlet(name = "event", urlPatterns = {"/Admin-Panel/event"}) /* URL Controllernya */
 public class EventController extends HttpServlet 
@@ -87,6 +89,16 @@ public class EventController extends HttpServlet
             /* Jika isi parameter action itu show, maka tampilkan list moda kendaraan */
             switch(action)
             {
+                case "calendar":
+            
+                    try {
+                        this.setAttrListJson(request);
+                    } catch (JSONException ex) {
+                        Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            
+                    request.getRequestDispatcher("CalendarEvent/index.jsp").forward(request, response);
+                    break;
                 case "show":
                     // set httprequest atribut dengan list dari database
                     this.setAttrList(request);
@@ -300,6 +312,51 @@ public class EventController extends HttpServlet
         }
         // dikirimkan ke httprequest atribut
         request.setAttribute("eventList", listEvent);
+    }
+    
+    /**
+     * 
+     * @param request 
+     * @throws org.json.JSONException 
+     */
+    public void setAttrListJson(HttpServletRequest request) throws JSONException
+    {
+        List<Event> listEvent;
+        int page = 1;
+        JSONObject jsonObj;
+        
+        String pagestr = request.getParameter("page");
+        
+        // Jika parameter page di set
+        if(pagestr != null)
+        {
+            page = Integer.parseInt(pagestr);
+        }
+        
+        try
+        {
+            listEvent = this.eventDAO.getListFromDB(page);
+        }     
+        catch (SQLException ex)
+        {
+            // ex.printStackTrace();
+            listEvent = null;
+        }
+        
+        if(listEvent != null)
+        {
+            jsonObj = new JSONObject();
+            
+            for(Event objEvent : listEvent)
+            {
+                jsonObj.put("title", objEvent.getEvent_name());
+                jsonObj.put("start", objEvent.getStart_event());
+                jsonObj.put("end", objEvent.getEnd_event());
+            }
+            // dikirimkan ke httprequest atribut
+            request.setAttribute("jsonList", jsonObj.toString());
+        }
+        
     }
     
     /**
