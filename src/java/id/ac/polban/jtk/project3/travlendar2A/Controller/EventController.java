@@ -25,6 +25,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -323,7 +324,9 @@ public class EventController extends HttpServlet
     {
         List<Event> listEvent;
         int page = 1;
-        JSONObject jsonObj;
+        JSONArray jsonArrObj;
+        
+        jsonArrObj = new JSONArray();
         
         String pagestr = request.getParameter("page");
         
@@ -345,16 +348,9 @@ public class EventController extends HttpServlet
         
         if(listEvent != null)
         {
-            jsonObj = new JSONObject();
-            
-            for(Event objEvent : listEvent)
-            {
-                jsonObj.put("title", objEvent.getEvent_name());
-                jsonObj.put("start", objEvent.getStart_event());
-                jsonObj.put("end", objEvent.getEnd_event());
-            }
+            jsonArrObj.put(listEvent);
             // dikirimkan ke httprequest atribut
-            request.setAttribute("jsonList", jsonObj.toString());
+            request.setAttribute("jsonList", jsonArrObj.toString());
         }
         
     }

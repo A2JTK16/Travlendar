@@ -122,9 +122,9 @@ public class LocationDaoImp extends DAO implements ILocationDao
         while(rs.next()){
             location = new Location();
             
-            location.setLocation_id(rs.getInt("LOCATION_ID"));
-            location.setCity_code(rs.getString("CITY_CODE"));
-            location.setAddress_place(rs.getString("ADDRESS_PLACE"));
+           // location.setLocation_id(rs.getInt("LOCATION_ID"));
+           // location.setCity_code(rs.getString("CITY_CODE"));
+           // location.setAddress_place(rs.getString("ADDRESS_PLACE"));
     
             
             listLoc.add(location);
