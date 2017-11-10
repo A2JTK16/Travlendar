@@ -5,6 +5,7 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Controller;
 
+import id.ac.polban.jtk.project3.travlendar2A.Models.Location;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,17 +31,16 @@ public class TestjsonController extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     {
         JSONArray jsonArrObj;
-        List<String> list;
+        JSONObject jsonObj;
+        List<Location> list;
         
         list = new ArrayList<>();
         jsonArrObj = new JSONArray();
         
-        list.add("Bandung");
-        list.add("Jakarta");
-        list.add("Serang");
-        list.add("New York");
-        list.add("Manhattan");
-        list.add("Las Vegas");
+        list.add(new Location(1,"-6.877473","107.620530")); //Polban
+        list.add(new Location(2,"-2.157335","106.141148")); //Bandara Depati Amir Pangkal Pnang 
+        list.add(new Location(3,"-6.127512","106.653686")); //Bandara Soekarno Hatta
+        list.add(new Location(4,"-6.202394","106.652710")); //Tangerang
         
         jsonArrObj.put(list);
         
@@ -48,7 +48,6 @@ public class TestjsonController extends HttpServlet
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(jsonArrObj.toString());
-
         } catch (IOException ex) {
             Logger.getLogger(TestjsonController.class.getName()).log(Level.SEVERE, null, ex);
         }

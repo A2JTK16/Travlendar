@@ -11,11 +11,19 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script>
-            $(document).on("click", "#tombol", function() {  // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
-                $.get("json", function(responseJson) {    // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
-                    var $ul = $("<ul>").appendTo($("#data")); // Create HTML <ul> element and append it to HTML DOM element with ID "somediv".
-                    $.each(responseJson, function(index, item) { // Iterate over the JSON array.
-                        $("<li>").text(item).appendTo($ul);      // Create HTML <li> element, set its text content with currently iterated item and append it to the <ul>.
+            $(document).on("click", "#tombol", function() {        // Ketika ada klik
+                $.get("json", function(responseJson) {          // Eksekusi URL Controller
+                var $table = $("<br/><table>").appendTo($("#data")); // Buat html table
+                $.each(responseJson, function(index, location) {    // Loop pakai Json
+                        for(i=0; i<location.length; i++)
+                        {
+                            $("<tr>").appendTo($table)                     // format html table <tr>
+                                .append($("<td>").text(location[i].eventId))        // format html table td
+                                .append($("</td><td>").text(location[i].latitude))      // format html table td
+                                .append($("</td><td>").text(location[i].longitude))    // format html table td
+                            .append($("</tr>")); // tutup tag </tr>
+                        }
+                        $("</table>").appendTo($table);
                     });
                 });
             });
@@ -25,5 +33,6 @@ and open the template in the editor.
         <h1>Test Ambil JSON dari Controller</h1>
         <button id="tombol">Ambil Data</button>
         <div id="data"></div>
+        
     </body>
 </html>

@@ -11,11 +11,24 @@ package id.ac. polban.jtk.project3.travlendar2A.Models;
  *
  * @author Auliya Aqma Dinillah
  */
-public class Location{
+public class Location
+{
 
    private int idEvent;
    private String latitude;
    private String longitude;
+   
+    public Location()
+    {
+        
+    }
+    
+    public Location(int idEvent, String latitude, String longitude)
+    {
+        this.idEvent = idEvent;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
     /**
      * @return the idEvent
