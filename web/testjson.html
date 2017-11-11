@@ -9,30 +9,63 @@ and open the template in the editor.
         <title>Test JSON</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <script>
-            $(document).on("click", "#tombol", function() {        // Ketika ada klik
-                $.get("json", function(responseJson) {          // Eksekusi URL Controller
-                var $table = $("<br/><table>").appendTo($("#data")); // Buat html table
-                $.each(responseJson, function(index, location) {    // Loop pakai Json
-                        for(i=0; i<location.length; i++)
-                        {
-                            $("<tr>").appendTo($table)                     // format html table <tr>
-                                .append($("<td>").text(location[i].eventId))        // format html table td
-                                .append($("</td><td>").text(location[i].latitude))      // format html table td
-                                .append($("</td><td>").text(location[i].longitude))    // format html table td
-                            .append($("</tr>")); // tutup tag </tr>
-                        }
-                        $("</table>").appendTo($table);
-                    });
-                });
-            });
-        </script>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
     </head>
     <body>
-        <h1>Test Ambil JSON dari Controller</h1>
-        <button id="tombol">Ambil Data</button>
-        <div id="data"></div>
+        <h1>Test Ambil JSON Marker Google Maps API dari Controller</h1>
+       
+        <div id="map" style="width:100%;height:500px;"></div>
+        <script>
+            function myMap() 
+            {
+                var mapCanvas = document.getElementById("map");
+                var myCenter=new google.maps.LatLng(-6.872034,107.574794);
+                var mapOptions = {center: myCenter, zoom: 5};
+                var map = new google.maps.Map(mapCanvas, mapOptions);
+                var marker = new google.maps.Marker({position:myCenter});
+
+                // Menambahkan  Marker
+                google.maps.event.addListener(map, 'click', function(event) 
+                {
+                    placeMarker(map, event.latLng, "Destinasi Baru");
+                    alert("Berhasil Ditambahkan!");
+                });
+                
+                //zoom klik marker
+                google.maps.event.addListener(marker,'dblclick',function() {
+                        map.setZoom(19);
+                        map.setCenter(marker.getPosition());
+                });
+                
+                // tambah data dari controller
+                $(document).ready( function() {        // Ketika ada klik
+                    $.get("json", function(responseJson) 
+                    {          // Eksekusi URL Controller
+                        $.each(responseJson, function(index, location) {    // Loop pakai Json
+                            for(i=0; i<location.length; i++)
+                            {
+                                var loc = new google.maps.LatLng(location[i].latitude,location[i].longitude);
+                                placeMarker(map, loc, location[i].description);
+                            }
+                        });
+                    });
+                });
+            }
+
+            function placeMarker(map, location, infoLoc) {
+                var marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+                var infowindow = new google.maps.InfoWindow({
+                    content: infoLoc
+                });
+                infowindow.open(map,marker);
+            }
         
+        </script>  
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZBJOD4ZoN0bRUCMxjutiam7mtHjw0omY&callback=myMap"
+  type="text/javascript"></script>
+    
     </body>
 </html>

@@ -17,17 +17,19 @@ public class Location
    private int idEvent;
    private String latitude;
    private String longitude;
+   private String description;
    
     public Location()
     {
         
     }
     
-    public Location(int idEvent, String latitude, String longitude)
+    public Location(int idEvent, String latitude, String longitude, String desc)
     {
         this.idEvent = idEvent;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.description = desc;
     }
 
     /**
@@ -72,6 +74,20 @@ public class Location
         this.longitude = longitude;
     }
 
-  
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+   
   
 }

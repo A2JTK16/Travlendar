@@ -37,10 +37,10 @@ public class TestjsonController extends HttpServlet
         list = new ArrayList<>();
         jsonArrObj = new JSONArray();
         
-        list.add(new Location(1,"-6.877473","107.620530")); //Polban
-        list.add(new Location(2,"-2.157335","106.141148")); //Bandara Depati Amir Pangkal Pnang 
-        list.add(new Location(3,"-6.127512","106.653686")); //Bandara Soekarno Hatta
-        list.add(new Location(4,"-6.202394","106.652710")); //Tangerang
+        list.add(new Location(1,"-6.877473","107.620530","Polban")); 
+        list.add(new Location(2,"-2.157335","106.141148","Bandara Depati Amir")); 
+        list.add(new Location(3,"-6.127512","106.653686","Bandara Soekarno Hatta")); 
+       // list.add(new Location(4,"-6.753777","106.652710","Tangerang City"));
         
         jsonArrObj.put(list);
         
