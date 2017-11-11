@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      #map {
+        width: 700px; 
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- Google Maps JS API -->
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <!-- GMaps Library -->
+    <script src="gmaps.js"></script>
+    <script>
+      /* Map Object */
+        var mapObj = new GMaps({
+        el: '#map',
+        //bandung
+        lat: -6.914744, 
+        lng: 107.609810,     
+    });
+        var path = [
+       [-6.871882, 107.574785], //polban
+       [-6.860715, 107.592761], //upi
+       [-6.914744, 107.609810] //bandung
+    ];
+       
+        var pl = mapObj.drawPolyline({
+        path: path,
+        strokeColor: '#0000FF', //warna line
+        strokeOpacity: 1, //transparansi
+        strokeWeight: 10 //lebar line
+      
+    });
+
+
+    </script>
+  </body>
+</html>
+
