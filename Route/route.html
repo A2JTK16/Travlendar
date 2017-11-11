@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      #map {
+		  width: 700px;
+		  height: 500px;
+		  border: 1px solid #a0a0a0;
+		}
+    </style>
+  </head>
+  <body>
+    <div id="map">Maps Event</div>
+
+    <!-- Google Maps JS API -->
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <!-- GMaps Library -->
+    <script src="gmaps.js"></script>
+    <!--<div class="row">
+        <label for="loc_text"><span style="font-size: 13px;">Enter Transportation Mode:</span></label>
+		<form id="transMode">
+		<input type="text" id="transMode">
+		<input type="submit" value="submita">
+		</form>
+      </div>-->
+	<script>
+		var m1 = null, m2 = null;
+		var m1pos, m2pos;
+		var a = false, b = true;
+		var mapObj = new GMaps({
+			el: '#map',
+			lat: 41.8902421, //latitude awal
+			lng: 12.4924991, //longitude awal
+			zoom: 16,
+			click: function(e) {
+				if (a) {
+					mapObj.removeMarker((b) ? m1 : m2); //jika false, hapus marker dari lokasi sebelumnya
+					mapObj.removePolylines(); //menghapus garis rute
+				}
+
+				if (b) {
+					//menempatkan marker
+					m1 = mapObj.addMarker({
+						lat: e.latLng.lat(),//latitude dari lokasi awal
+						lng: e.latLng.lng(),//longitude dari lokasi awal
+						//icon: sourceIcon
+					});
+					m1pos = m1.getPosition();
+				} 
+				else {
+					//menempatkan marker
+					m2 = mapObj.addMarker({
+						lat: e.latLng.lat(),//latitude dari lokasi tujuan
+						lng: e.latLng.lng(),//longitude dari lokasi tujuan
+						//icon: destinationIcon
+					});
+					m2pos = m2.getPosition();
+				}
+				// jika kedua marker sudah ditempatkan, langsung gambar rute
+				if (m1 !== null && m2 !== null) {
+					a = true;
+                              //menggambar rute dari dua marker
+					mapObj.drawRoute({
+						origin: [m1pos.lat(), m1pos.lng()], //lokasi awal
+						destination: [m2pos.lat(), m2pos.lng()],//lokasi tujuan
+						travelMode: 'driving', //bisa diganti menjadi 'walking' atau 'transit'
+						strokeColor: '#131540',
+						strokeOpacity: 0.6,
+						strokeWeight: 6
+					});
+				}
+				b = !b;
+			}
+		});
+	</script>
+  </body>
+</html>
