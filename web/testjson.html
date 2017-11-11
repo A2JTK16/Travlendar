@@ -31,12 +31,6 @@ and open the template in the editor.
                     alert("Berhasil Ditambahkan!");
                 });
                 
-                //zoom klik marker
-                google.maps.event.addListener(marker,'dblclick',function() {
-                        map.setZoom(19);
-                        map.setCenter(marker.getPosition());
-                });
-                
                 // tambah data dari controller
                 $(document).ready( function() {        // Ketika ada klik
                     $.get("json", function(responseJson) 
@@ -60,6 +54,12 @@ and open the template in the editor.
                 var infowindow = new google.maps.InfoWindow({
                     content: infoLoc
                 });
+                //zoom klik marker
+                google.maps.event.addListener(marker,'click',function() {
+                        map.setZoom(16);
+                        map.setCenter(marker.getPosition());
+                });
+                
                 infowindow.open(map,marker);
             }
         
