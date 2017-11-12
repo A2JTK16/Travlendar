@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <style>
+      #map {
+        width:600px;
+        height: 600px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="map" style="margin-top: 30px;margin: auto"></div>
+
+
+    <!-- Google Maps JS API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_xPlThgH2bZG3ZV8_8farC_Z06etDbW4&callback=initMap"></script>
+    
+    <!-- GMaps Library -->
+    <script src="js/gmaps.js"></script>
+
+    <script>
+
+      /* Map Object */
+      var mapObj = new GMaps({
+        el: '#map',
+        lat: 48.857,
+        lng: 2.295,
+
+
+        /***********************  UI EVENT  ***********************/
+        /*  merespond event dari user,                            */ 
+        /*  seperti event dari mouse atau keyboard                */
+        /**********************************************************/
+        
+            click: function(e) {
+                alert('click');
+            },
+            dragend: function(e) {
+                alert('dragend');
+            },
+            dblclick: function (e)  {
+                alert('double click');
+            },
+            mouseover: function (e) {
+                alert('mouseover');
+            },
+            rightclick: function (e) {
+                alert('right click');
+            }
+
+        /***********************************************************/    
+
+
+
+
+        /**********************************************************/
+        /*  untuk mendaftarkan event,                             */
+        /*  dapat menggunakan addListener()                       */ 
+        /*                                                        */
+        /*  method addListener() menunggu event yang sesuai       */
+        /*  dengan perintah, lalu mengeksekusi fungsinya saat     */
+        /*  event yang sesuai terdeteksi                          */
+        /**********************************************************/
+
+        /*
+         map.addListener('center_changed', function() {
+         // menunggu event center_changed
+         // setelah center dari map berubah, kembali ke center
+
+          window.setTimeout(function() {
+             map.panTo(marker.getPosition());
+          }, 3000);
+      });
+
+      marker.addListener('click', function() {
+        map.setZoom(8);
+      });
+         
+      /***********************************************************/
+        
+        
+        
+        
+      /***********************************************************/
+      /* method addListener() juga dapat mengakses argumen       */
+      /* dari event                                              */
+      /***********************************************************/  
+      
+      /*
+      map.addListener('click', function(e) {
+        // menunggu event mouse click
+        
+          placeMarkerAndPanTo(e.latLng, map);
+          // mengambil argumen nilai latLng dari event mouse click
+          // menampilkan marker di nilai latLng yang diambil
+        
+        });
+      }
+        
+      function placeMarkerAndPanTo(latLng, map) {
+      // fungsi menampilkan marker pada Google Map API  
+        
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map
+        });
+        map.panTo(latLng);
+      }
+
+      /************************************************************/
+ 
+    });
+
+    </script>
+  </body>
+</html>
