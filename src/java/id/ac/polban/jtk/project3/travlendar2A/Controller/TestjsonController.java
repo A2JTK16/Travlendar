@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -37,7 +36,7 @@ public class TestjsonController extends HttpServlet
         list = new ArrayList<>();
         jsonArrObj = new JSONArray();
         
-        list.add(new Location(1,"-6.877473","107.620530","Polban")); 
+        list.add(new Location(1,"-6.871882","107.574785","Polban")); 
         list.add(new Location(2,"-2.157335","106.141148","Bandara Depati Amir")); 
         list.add(new Location(3,"-6.127512","106.653686","Bandara Soekarno Hatta")); 
        // list.add(new Location(4,"-6.753777","106.652710","Tangerang City"));
