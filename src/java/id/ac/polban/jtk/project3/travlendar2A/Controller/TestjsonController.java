@@ -5,8 +5,10 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Controller;
 
+import id.ac.polban.jtk.project3.travlendar2A.DaoConcreteClass.LocationDaoImp;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Location;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -25,6 +28,13 @@ import org.json.JSONObject;
 @WebServlet(name = "json", urlPatterns = {"/json"}) /* URL Controllernya */
 public class TestjsonController extends HttpServlet
 {
+    private LocationDaoImp locDaoObj;
+    
+    @Override
+    public void init()
+    {
+        this.locDaoObj = new LocationDaoImp("jdbc:mysql://localhost:3306/travlendar2Anew","root","");
+    }
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,12 +43,16 @@ public class TestjsonController extends HttpServlet
         JSONObject jsonObj;
         List<Location> list;
         
-        list = new ArrayList<>();
+        try { // AMBIL DATA DARI DATABASE
+            list = this.locDaoObj.getListFromDB(1);
+        } catch (SQLException ex) {
+            list = null;
+        }
         jsonArrObj = new JSONArray();
         
-        list.add(new Location(1,"-6.871882","107.574785","Polban")); 
-        list.add(new Location(2,"-2.157335","106.141148","Bandara Depati Amir")); 
-        list.add(new Location(3,"-6.127512","106.653686","Bandara Soekarno Hatta")); 
+        //list.add(new Location(1,"-6.871882","107.574785","Polban")); 
+        //list.add(new Location(2,"-2.157335","106.141148","Bandara Depati Amir")); 
+        //list.add(new Location(3,"-6.127512","106.653686","Bandara Soekarno Hatta")); 
        // list.add(new Location(4,"-6.753777","106.652710","Tangerang City"));
         
         jsonArrObj.put(list);
@@ -51,6 +65,28 @@ public class TestjsonController extends HttpServlet
             Logger.getLogger(TestjsonController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    {
+        Location objLoc = new Location();
+        
+        objLoc.setLat(request.getParameter("latitude"));
+        objLoc.setLng(request.getParameter("longitude"));
+        objLoc.setDesc(request.getParameter("desc"));
+        
+        try 
+        {
+            this.locDaoObj.saveDataToDB(objLoc);
+            response.setContentType("text/html");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("Input Data Sukses!");
+        } 
+        catch (SQLException | IOException ex) 
+        {
+            Logger.getLogger(TestjsonController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

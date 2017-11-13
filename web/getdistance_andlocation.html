@@ -1,34 +1,42 @@
 <!doctype html>
 <html>
-  <head>
-    <style>
-      #map {
-		  width: 700px;
+    <head>
+        <title>Add New Event</title>
+        <style>
+            #map {
+		  width: 100%;
 		  height: 500px;
 		  border: 1px solid #a0a0a0;
 		}
-    </style>
-  </head>
+        </style>
+        <!-- Google Maps JS API -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>
+        
+        <!-- JQuery Library -->
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
+        
+        <!-- GMaps Library -->
+        <script src="gmaps.js"></script>
+    </head>
   <body>
-    <br>
-    Basic example for using the Distance Matrix.<br><br>
-    Origin: <input id="orig" type="text" style="width:35em"><br><br>
+      
+      <h1>Klik Kota Tujuan Anda</h1><br><br>
+    Initial Location: <input id="orig" type="text" style="width:35em"><br><br>
     Destination: <input id="dest" type="text" style="width:35em"><br><br>
+    Masukkan Nama Tempat Tujuan: <input type="text" id="desc" value="Nama Tempat"><br/><br/>
     Distance: <input id="dist" type="text" style="width:35em">
     <div id="map">Maps Event</div>
 
-
-
-    <!-- Google Maps JS API -->
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
-    <!-- GMaps Library -->
-    <script src="gmaps.js"></script>
     <div class="row">
         <label for="loc_text"><span style="font-size: 13px;">Enter Transportation Mode:</span></label>
-      </div>
-      <div id="output">
-      </div>
-	<script>
+    </div>  
+    <div id="output">
+    </div>
+    <script>
+        // JQuery
+         $(document).ready( function()  // Ketika web udah siap
+         {       
+                //var listJson;
 		var m1 = null, m2 = null;
 		var m1pos, m2pos;
 		var corvo = false, attano = true;
@@ -37,16 +45,18 @@
 			lat: -6.914744,
 			lng: 107.609810,
 			zoom: 16,
-			click: function(e) {
-				if (corvo) {
-					mapObj.removeMarker((attano) ? m1 : m2);
-					mapObj.removePolylines();
+			click: function(e) 
+                            {
+				if (corvo) 
+                                {
+                                    mapObj.removeMarker((attano) ? m1 : m2);
+                                    mapObj.removePolylines();
 				}
 
 				if (attano) {
 					m1 = mapObj.addMarker({
 						lat: e.latLng.lat(),
-						lng: e.latLng.lng(),
+						lng: e.latLng.lng()//,
 						//icon: sourceIcon
 					});
 					m1pos = m1.getPosition();
@@ -54,12 +64,12 @@
 				else {
 					m2 = mapObj.addMarker({
 						lat: e.latLng.lat(),
-						lng: e.latLng.lng(),
+						lng: e.latLng.lng()//,
 						//icon: destinationIcon
 					});
 					m2pos = m2.getPosition();
 				}
-
+                                
 
 				// If two markers have been placed
 				if (m1 !== null && m2 !== null) {
@@ -73,42 +83,58 @@
 						strokeWeight: 6
 					});
 					//$('#trace_route').prop('disabled', false);
+                                        //listJson = [m1.getPosition(), m2.getPosition()];
+                                        
+                                        $.ajax({
+                                            type: "POST", // method post
+                                            url: "json", // url controller
+                                            dataType:'JSON',
+                                         //   data: {listjson: JSON.stringify(listJson)},
+                                            data: {latitude: m2pos.lat(), longitude: m2pos.lng(), desc: document.getElementById("desc").value},
+                                            async: false, // dikirim ketika semua beres
+                                            success: function(data){alert(data);},
+                                            failure: function(errMsg) {
+                                                alert(errMsg);
+                                            }
+                                        });
 				}
 				attano = !attano;
 			
-			var origin = new google.maps.LatLng(m1pos.lat(),m1pos.lng()),
-    		destination = new google.maps.LatLng(m2pos.lat(),m2pos.lng()),
-    		service = new google.maps.DistanceMatrixService();
+                                var origin = new google.maps.LatLng(m1pos.lat(),m1pos.lng()),
+                                destination = new google.maps.LatLng(m2pos.lat(),m2pos.lng()),
+                                service = new google.maps.DistanceMatrixService();
 
-			service.getDistanceMatrix(
-    		{
-       			 origins: [origin],
-       			 destinations: [destination],
-        		travelMode: google.maps.TravelMode.DRIVING,
-        		avoidHighways: false,
-        		avoidTolls: false
-    			}, 
-    		callback
-				);
+                                service.getDistanceMatrix(
+                                    {
+                                        origins: [origin],
+                                        destinations: [destination],
+                                        travelMode: google.maps.TravelMode.DRIVING,
+                                        avoidHighways: false,
+                                        avoidTolls: false
+                                    }, 
+                                    callback
+                                );
 
-			function callback(response, status) {
-    		var orig = document.getElementById("orig"),
-        	dest = document.getElementById("dest"),
-        	dist = document.getElementById("dist");
+                                function callback(response, status) 
+                                {
+                                    var orig = document.getElementById("orig"),
+                                    dest = document.getElementById("dest"),
+                                    dist = document.getElementById("dist");
 
-    		if(status=="OK") {
-      		orig.value = response.destinationAddresses[0];
-     	   dest.value = response.originAddresses[0];
-        	dist.value = response.rows[0].elements[0].distance.text;
-    		} else {
-        		alert("Error: " + status);
-    		}
-			}
+                                    if(status=="OK") {
+                                        dest.value = response.destinationAddresses[0];
+                                        orig.value = response.originAddresses[0];
+                                        dist.value = response.rows[0].elements[0].distance.text;
+                                    } 
+                                    else {
+                                        alert("Error: " + status);
+                                    }
+                                }
 
-			}
-		});
+                            } // tutup fungsi e ketika klik
+		}); // tutup instansiasi gmaps         
+                
+            }); // tutup JQuery    
 	</script>
-
-
   </body>
 </html>

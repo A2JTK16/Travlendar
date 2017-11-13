@@ -15,21 +15,21 @@ public class Location
 {
 
    private int idEvent;
-   private String latitude;
-   private String longitude;
-   private String description;
+   private String lat;
+   private String lng;
+   private String desc;
    
     public Location()
     {
         
     }
     
-    public Location(int idEvent, String latitude, String longitude, String desc)
+    public Location(int idEvent, String lat, String lng, String desc)
     {
         this.idEvent = idEvent;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.description = desc;
+        this.lat = lat;
+        this.lng = lng;
+        this.desc = desc;
     }
 
     /**
@@ -47,47 +47,47 @@ public class Location
     }
 
     /**
-     * @return the latitude
+     * @return the lat
      */
-    public String getLatitude() {
-        return latitude;
+    public String getLat() {
+        return lat;
     }
 
     /**
-     * @param latitude the latitude to set
+     * @param lat the lat to set
      */
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
+    public void setLat(String lat) {
+        this.lat = lat;
     }
 
     /**
-     * @return the longitude
+     * @return the lng
      */
-    public String getLongitude() {
-        return longitude;
+    public String getLng() {
+        return lng;
     }
 
     /**
-     * @param longitude the longitude to set
+     * @param lng the lng to set
      */
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
+    public void setLng(String lng) {
+        this.lng = lng;
     }
 
     /**
-     * @return the description
+     * @return the desc
      */
-    public String getDescription() {
-        return description;
+    public String getDesc() {
+        return desc;
     }
 
     /**
-     * @param description the description to set
+     * @param desc the desc to set
      */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
-   
+    
   
 }

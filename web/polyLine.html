@@ -40,7 +40,7 @@
                 $.each(responseJson, function(index, location) {    // Loop pakai Json
                     for(i=0; i<location.length; i++)
                     {
-                        path.push([location[i].latitude, location[i].longitude]);
+                        path.push([location[i].lat, location[i].lng]);
                     }
                 });
                 
