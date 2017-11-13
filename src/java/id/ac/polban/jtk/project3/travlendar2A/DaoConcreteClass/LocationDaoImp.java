@@ -107,9 +107,9 @@ public class LocationDaoImp extends DAO implements ILocationDao
         listLoc = new ArrayList();
         Location location;
         
-        page = (page-1) * this.limit;
+      //  page = (page-1) * this.limit;
         
-        String sql = String.format("SELECT * FROM `location`");
+        String sql = String.format("SELECT * FROM `markers`");
         
         super.connect();
         
@@ -122,10 +122,10 @@ public class LocationDaoImp extends DAO implements ILocationDao
         while(rs.next()){
             location = new Location();
             
-           // location.setLocation_id(rs.getInt("LOCATION_ID"));
-           // location.setCity_code(rs.getString("CITY_CODE"));
-           // location.setAddress_place(rs.getString("ADDRESS_PLACE"));
-    
+            location.setIdEvent(rs.getInt("id"));
+            location.setDesc(rs.getString("address"));
+            location.setLat(rs.getString("lat"));
+            location.setLng(rs.getString("lng"));
             
             listLoc.add(location);
         }
@@ -143,9 +143,33 @@ public class LocationDaoImp extends DAO implements ILocationDao
      * @param objLoc
      * @throws SQLException 
      */
+    @Override
     public void saveDataToDB(Location objLoc) throws SQLException
-    {
-        // write code here
+    {   
+        String sql;
+        sql = String.format("INSERT INTO `markers`(`name`, `address`, `lat`, `lng`) VALUES ('%s','%s','%s','%s')", "New Add", objLoc.getDesc(), objLoc.getLat(), objLoc.getLng() );
+        /**
+         * Buat Koneksi ke DBMS
+         */
+        super.connect();
+        /**
+         * Buat Statement
+         */
+        Statement statement;
+        statement = super.getJdbcConnection().createStatement();
+        /**
+         * Eksekusi Query
+         */
+        
+        statement.executeUpdate(sql);
+        /**
+         * Tutup Statement
+         */
+        statement.close();
+        /**
+         * Tutup Koneksi
+         */
+        super.disconnect();
     }
     
     /**
