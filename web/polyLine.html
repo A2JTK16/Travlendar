@@ -12,33 +12,49 @@
     <div id="map"></div>
 
     <!-- Google Maps JS API -->
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_xPlThgH2bZG3ZV8_8farC_Z06etDbW4"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
     <!-- GMaps Library -->
     <script src="gmaps.js"></script>
     <script>
-      /* Map Object */
-        var mapObj = new GMaps({
-        el: '#map',
-        //bandung
-        lat: -6.914744, 
-        lng: 107.609810,     
-    });
-        var path = [
-       [-6.871882, 107.574785], //polban
-       [-6.860715, 107.592761], //upi
-       [-6.914744, 107.609810] //bandung
-    ];
+
+    /* JQuery */
+        // tambah data dari controller
+        $(document).ready( function() {        // Ketika udah siap
+                    /* Map Object */
+            var mapObj = new GMaps({
+                el: '#map',
+                //bandung
+                lat: -6.871882, 
+                lng: 107.574785     
+            }); 
+            var path = [
+        //    [-6.871882, 107.574785], //polban
+        //    [-6.860715, 107.592761], //upi
+        //    [-6.914744, 107.609810] //bandung
+            ];
+            
+            
+            $.get("json", function(responseJson) 
+            {          // Eksekusi URL Controller
+                $.each(responseJson, function(index, location) {    // Loop pakai Json
+                    for(i=0; i<location.length; i++)
+                    {
+                        path.push([location[i].latitude, location[i].longitude]);
+                    }
+                });
+                
+                var pl = mapObj.drawPolyline({
+                    path: path,
+                    strokeColor: '#0000FF', //warna line
+                    strokeOpacity: 1, //transparansi
+                    strokeWeight: 10 //lebar line
+                });
+            });
+    
+        });
        
-        var pl = mapObj.drawPolyline({
-        path: path,
-        strokeColor: '#0000FF', //warna line
-        strokeOpacity: 1, //transparansi
-        strokeWeight: 10 //lebar line
-      
-    });
-
-
-    </script>
+    </script><script src="gmaps.js"></script>
   </body>
 </html>
 
