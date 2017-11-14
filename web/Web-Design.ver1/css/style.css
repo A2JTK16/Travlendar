@@ -1,0 +1,539 @@
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+
+
+.kotak-deskripsi{
+   width: 200px;
+   background: #1abc9c;
+   opacity: 0.7;
+   padding: 30px;
+    border-radius:50px;
+    margin-left:50px;
+    margin-top:110px;
+    -webkit-animation: fade-in-move-down 0.7s;
+  animation: fade-in-move-down 0.7s;
+}
+
+/* as seen on https://webkit.org/blog */
+@-webkit-keyframes fade-in-move-down {
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-3rem);
+    transform: translateY(-3rem);
+  }
+}
+
+
+
+
+/* as seen on https://webkit.org/blog */
+@-webkit-keyframes fade-in-move-down {
+        0% {opacity: 0;}
+        100% {opacity: 1;}
+}
+
+
+/* as seen on https://webkit.org/blog */
+@-webkit-keyframes fade-in-move-down {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-3rem);
+    transform: translateY(-3rem);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+color: #0471b1;
+	background: none;
+}
+
+.text-view{
+        float: left;
+	padding: 16px;
+	margin: 16px;
+	font: 30px Trebuchet MS;
+	font-weight: bold;
+	color: #454545;
+	background: none;
+}
+
+
+
+.kotak-search{
+	float: right;
+	background: none;
+	overflow: hidden;
+	border: 1px solid ;
+	border-radius: 100px;
+}
+
+.icon-search{
+	padding: 1px;
+	margin: 1px;
+	float: left;
+	overflow: hidden;
+}
+
+.icon-search img{
+	width: 35px;
+	height: 35px;
+}
+
+
+.search{
+	float: left;
+	padding: 5px;
+	margin: 5px;
+	font: 16px Arial;
+	color: #454545;
+	background: none;
+	border: none;
+	border-radius: 50px;
+}
+
+
+.icon-setting{
+	float: left;
+	padding: 4px;
+	margin: 4px;
+	overflow: hidden;
+        background: #E0E0E0;
+	border-radius: 100px;
+        box-shadow: 0 1px 2px #BDBDBD;
+}
+
+.icon-setting img{
+        float: left;
+        padding: 2px;
+        margin: 2px;
+	width: 26px;
+	height: 26px;
+}
+
+a{
+	text-decoration: none;
+        color: #EEEEEE;
+}
+a:hover{
+	color: #666;
+}
+
+
+.jarak-atas{
+	max-width: 100%;
+	height: 56px;
+	background: none;
+	overflow: hidden;
+}
+
+.menu-atas{
+  float: left;
+  width: 100%;
+  height: 56px;
+  background:#00897b;
+  position: fixed;
+  border-top: 0 0 3px solid dimgrey;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.logonya{
+    float: left;
+    padding: 2px;
+    margin: 2px;
+    margin-left: 50px;
+    overflow: hidden;
+    border: none;
+    border-radius: 100px;
+}
+
+.logonya img{
+    float: left;
+    width: 28px;
+    height: 49px;
+}
+
+.logo{
+    float: left;
+    padding: 2px;
+    margin: 2px;
+    overflow: hidden;
+}
+
+.kotak-acount{
+    float: right;
+    background-color: transparent;
+}
+
+.acount-nama{
+    float:left;
+    padding:8px;
+    margin:8px;
+    font: 17px sans-serif;
+    font-weight: bold;
+    color:#fafafa;
+}
+
+.icon-account{
+    float:left;
+    padding: 2px;
+    margin: 2px;
+    overflow: hidden;
+    border-radius:100px;
+}
+.icon-account img{
+    float: left;
+    width: 30px;
+    height: 30px;
+    
+}
+
+.sign-up{
+    float:left;
+    padding: 19px;
+    margin: 0px;
+    background: #0471b1;
+    color:#f4f4f4;
+    font: 16px Arial;
+    font-weight: bold; 
+}
+
+.sign-up a{
+    color:#f4f4f4;
+       
+}
+
+
+.sign-up a:hover{
+    color:#f4f4f4;    
+}
+
+
+.sign-in{
+    float:left;
+    padding: 18px;
+    margin: 2px;
+    overflow: hidden;
+    border-radius:100px;
+}
+
+.sign-in a{
+    color:dimgray;
+}
+
+.sign-in :hover{
+    color:#1abc9c;
+}
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    padding: 4px;
+    margin: 4px;
+    font-size: 16px;
+    border: 0px solid #0D47A1;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #1abc9c;color:#f9f9f9}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*.dropdown:hover .dropbtn {
+//    background-color: asd;
+}*/
+
+.kotak-cari{
+    padding: 4px;
+    margin: 4px;
+    float: right;
+    overflow: hidden;
+    border: 0px solid #0D47A1;
+    background: #ffffff;
+}
+
+.cari{
+    padding: 4px;
+    margin: 4px;
+    height: 30px;
+    width: 300px;
+    font: 14px Arial;
+    color: #717171;
+    border: none;
+    background: transparent;
+}
+
+.icon-cari{
+    float: left;
+    padding: 1px;
+    margin: 1px;
+}
+
+.icon-cari img{
+    width: 30px;
+    height: 30px;
+}
+
+
+        
+        #myBtn{
+		
+		float: right;
+		padding: 0px;
+		margin: 0px;
+		font: 16px Arial;
+		font-weight: bold;
+		color: dimgray;
+		border: none;
+                background:transparent;
+		
+	}
+     
+        #myBtn:hover{
+            color:#1abc9c;
+        }
+        .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+	padding: 10px;
+	padding-top: 80px;
+   	margin: 10px auto;
+    bottom: 0;
+    background-color: transparent;
+    width: auto;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+    color: dimgray;
+    margin-bottom: 60px;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background: transparent;
+    color: white;
+}
+
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+.wadah{
+        width: 100%;
+        height: auto;
+		margin: auto;
+		background: url("../images/mobil.jpg");
+		background-attachment: fixed;
+	    background-size: cover;
+		overflow: hidden;
+        padding: 10px;
+        height:620px;
+	opacity: 0.8%;
+}
+
+.wadah2{
+	width: 100%;
+	height: 300px;
+	background: #d4d4d4;
+}
+
+.wadah3{
+	width: 100%;
+	height: auto;
+	background: none;
+	overflow: hidden;
+}
+
+.kotak-intro{
+	float: left;
+	width: 100%;
+	height: 400px;
+	background: #1abc9c;
+}
+
+.kotak-tengah{
+	margin: auto;
+	width: 509px;
+	height: 400px;
+	background: #00a07e;
+}
+
+}
+
+
+/* as seen on https://webkit.org/blog */
+@-webkit-keyframes fade-in-move-down {
+        0% {opacity: 0;}
+        100% {opacity: 1;}
+}
+
+.form{
+height: 575px;
+width: 500px;
+background-color: #f7f7f7;
+margin: auto;
+margin-top: 20px;
+box-shadow: 0 4px 4px #BDBDBD;
+position: absolute;
+margin-left: 30.5%;
+        -webkit-background-size: cover;
+        -moz-background-size:  cover;
+        -o-background-size: cover;
+         background-size: cover;
+         -webkit-animation: fade-in-move-down 1s;
+        animation: fade-in-move-down 1s;
+}
+
+.slogan{
+	color: white;
+	font-family: 'Helvetica', arial, sans-serif;
+	font-size: 50px;
+	margin: auto;
+	margin-left:28%;
+}
+
+.form input[type=text]{
+	width:50%;
+	border:1px solid #aaa;
+	border-radius: 4px;
+	margin:4px 0;
+	outline:none;
+	padding:10px;
+	box-sizing: border-box;
+	transition: .3s;
+	margin-left: 24%;
+}
+
+.form .isi input[type=text]:focus{
+	border-color: #1abc9c;
+	box-shadow:0 0 8px 0 #1abc9c;
+}
+
+.form .isi input[type=date]{
+	width:50%;
+	border:1px solid #aaa;
+	border-radius: 4px;
+	margin:4px 0;
+	outline:none;
+	padding:10px;
+	box-sizing: border-box;
+	transition: .3s;
+	margin-left: 24%;
+}
+
+.form input[type=date]:focus{
+	border-color: #1abc9c;
+	box-shadow:0 0 8px 0 #1abc9c;
+}
+
+.form .isi{
+	margin-top:70px;
+}
+
+.form #map {
+        height: 20%;
+		width: 49%;
+	    margin: auto;
+}
+
+#map input[type=text]{
+	width:50%;
+	border:1px solid #aaa;
+	border-radius: 4px;
+	margin:4px 0;
+	outline:none;
+	padding:10px;
+	box-sizing: border-box;
+	transition: .3s;
+	margin-left: 24%;
+}
+
+#map input[type=text]:focus{
+	border-color: #1abc9c;
+	box-shadow:0 0 8px 0 #1abc9c;
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <meta charset="utf-8">		
+        <title>Travelendar</title>
+    </head>
+    <body>
+                
+    <div class="jarak-atas">
+
+    </div> <!--jarak-atas-->
+
+    <div class="menu-atas">
+	<div class="header">
+             <div class="logonya">
+                <img src="images/travelendar2.png">
+                
+            </div>
+            <div class="logo">
+                <img src="images/logo.png">
+            </div> <!--logo-->
+            
+            <div class="dropdown" style="float:right;">
+                <button class="dropbtn">
+                    <a class="icon-account">
+                            <img src="icon/akun1.png">
+                    </a>
+                </button>
+                <div class="dropdown-content">
+                  <a href="#">Link 1</a>
+                  <a href="#">Link 2</a>
+                  <a href="#">Link 3</a>
+                </div>
+            </div>
+            
+            <div class="dropdown" style="float:right;">
+                <button class="dropbtn">
+                    <a class="icon-account">
+                            <img src="icon/notif2.png">
+                    </a>
+                </button>
+                <div class="dropdown-content">
+                  <a href="#">Notif 1</a>
+                  <a href="#">Notif 2</a>
+                  <a href="#">Notif 3</a>
+                </div>
+            </div>
+                  
+            <div class="kotak-cari">
+                <div class="icon-cari">
+                    <img src="icon/search.png">
+                </div>
+                <input class="cari" type="text" placeholder="Find Event ..."/>
+            </div> <!--kotak-cari-->
+          
+	</div> <!--header-->
+     
+    </div> <!--menu-atas-->
+
+	<div class="wadah">
+		<div class="slogan">Make Your Plan be Better</div>
+		<div class="form">
+			<div class="isi">
+			<input type="text" placeholder="Event Name">
+			<input type="date">
+			<input type="date">
+			</div>
+			<div id="map"></div>
+			<input type="text" placeholder="Origin">
+			<input type="text" placeholder="Destination">
+            <script>
+               var map;
+               function initMap() 
+				{
+                 map = new google.maps.Map(document.getElementById('map'), {
+                 center: {
+					 lat: -6.872034, 
+					 lng: 107.574794
+				 },
+                 zoom: 15
+                });
+				
+				var marker = new google.maps.Marker({
+				position: {
+					lat: -6.872034, 
+					lng: 107.574794},	
+					map:map, 
+					draggable: true
+				});
+				
+			    var marker2 = new google.maps.Marker({
+				position: {
+					lat: -6.8732216,
+					lng: 107.575984},	
+					map:map, 
+					draggable: true
+				});
+								
+				var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
+             }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYhlG9rN4OSJHx4JhlZ1dBdjC6ZWpKTII&callback=initMap"
+    async defer></script>	
+		</div>
+	</div> <!--wadah-->
+		
+	
+	
+	<div class="wadah2">
+	
+	</div> <!--wadah2-->
+	
+	<div class="wadah3">
+		<div class="kotak-intro">
+			<div class="kotak-tengah">
+		
+	        </div> <!--tengah-->
+	    </div> <!--intro-->
+		
+
+	</div> <!--wadah3-->
+</body>
+</html>
