@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>TWD Responsive Layout</title>
+	<title>Welcome Travlendar</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Google Maps JS API -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>
@@ -44,9 +44,9 @@
                     </a>
                 </button>
                 <div class="dropdown-content">
-                  <a href="#">Link 1</a>
-                  <a href="#">Link 2</a>
-                  <a href="#">Link 3</a>
+                  <a href="#">My Account</a>
+                  <a href="#">Add Account</a>
+                  <a href="index.jsp">Sign Out</a>
                 </div>
             </div>
             
