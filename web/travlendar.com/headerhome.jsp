@@ -47,11 +47,11 @@
 							      <span class="close">&times;</span>
                                                               <div class="plogo"><img src="images/logo-sign.png"></div>
 							    </div>
-							    <form class="register-form" action="halaman_utama.jsp" method="POST">
+							    <form class="register-form" action="add_event.jsp" method="POST">
 							      <input type="text" placeholder="Username"/>
 							      <input type="password" placeholder="Password"/>
                                                               <br>
-							      <button href="halaman_utama.jsp">Sign In</button>
+							      <button>Sign In</button>
 							    </form>
 							  </div>
 							
