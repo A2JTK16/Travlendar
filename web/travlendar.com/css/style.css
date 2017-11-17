@@ -1,0 +1,624 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 17, 2017, 4:56:39 PM
+    Author     : Lenovo
+*/
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+
+body{
+	background: #fff;
+	font-family: 'Helvetica', arial, sans-serif;
+
+	font-size: 15px;
+}
+
+p{
+	margin-bottom: 20px;
+	line-height: 1.5em;
+}
+h3{
+	font: 20px Arial;
+	font-weight: bold;
+	color: #1A237E;
+	text-align: center;
+}
+
+a{
+	text-decoration: none;
+	color: #333;
+}
+a:hover{
+	color: #666;
+}
+
+.menu-induk{
+	width: auto;
+	height: auto;
+	background: #fff;
+	border-top: 3px solid #ff9900;
+}
+
+
+.container{
+	max-width: 1080px;
+	margin: 20px auto;
+	background: #fff;
+	overflow: hidden;
+	padding: 10px;
+}
+
+.container-t{
+	max-width: 1080px;
+	margin: 20px auto;
+	background: transparent;
+	overflow: hidden;
+	padding: 10px;
+}
+
+
+.jarak-atas{
+	max-width: 100%;
+	height: 56px;
+	background: none;
+	overflow: hidden;
+}
+
+.menu-atas{
+  float: left;
+  width: 100%;
+  height: 56px;
+  background:#00897b;
+  position: fixed;
+  border-top: 0 0 3px solid dimgrey;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+
+.kotak-search{
+	float: right;
+	background: none;
+	overflow: hidden;
+	border: 1px solid ;
+	border-radius: 100px;
+}
+
+.icon-search{
+	padding: 1px;
+	margin: 1px;
+	float: left;
+	overflow: hidden;
+}
+
+.icon-search img{
+	width: 35px;
+	height: 35px;
+}
+
+
+.search{
+	float: left;
+	padding: 5px;
+	margin: 5px;
+	font: 16px Arial;
+	color: #454545;
+	background: none;
+	border: none;
+	border-radius: 50px;
+}
+
+
+.icon-setting{
+	float: left;
+	padding: 4px;
+	margin: 4px;
+	overflow: hidden;
+        background: #E0E0E0;
+	border-radius: 100px;
+        box-shadow: 0 1px 2px #BDBDBD;
+}
+
+.icon-setting img{
+        float: left;
+        padding: 2px;
+        margin: 2px;
+	width: 26px;
+	height: 26px;
+}
+
+
+
+.logonya{
+    float: left;
+    padding: 2px;
+    margin: 2px;
+    margin-left: 50px;
+    overflow: hidden;
+    border: none;
+    border-radius: 100px;
+}
+
+.logonya img{
+    float: left;
+    width: 28px;
+    height: 49px;
+}
+
+.logo{
+    float: left;
+    padding: 2px;
+    margin: 2px;
+    overflow: hidden;
+}
+
+.kotak-acount{
+    float: right;
+    background-color: transparent;
+}
+
+.acount-nama{
+    float:left;
+    padding:8px;
+    margin:8px;
+    font: 17px sans-serif;
+    font-weight: bold;
+    color:#fafafa;
+}
+
+.icon-account{
+    float:left;
+    padding: 2px;
+    margin: 2px;
+    overflow: hidden;
+    border-radius:100px;
+}
+.icon-account img{
+    float: left;
+    width: 30px;
+    height: 30px;
+    
+}
+
+.sign-up{
+    float:left;
+    padding: 19px;
+    margin: 0px;
+    background: #0471b1;
+    color:#f4f4f4;
+    font: 16px Arial;
+    font-weight: bold; 
+}
+
+.sign-up a{
+    color:#f4f4f4;
+       
+}
+
+
+.sign-up a:hover{
+    color:#f4f4f4;    
+}
+
+
+.sign-in{
+    float:left;
+    padding: 18px;
+    margin: 2px;
+    overflow: hidden;
+    border-radius:100px;
+}
+
+.sign-in a{
+    color:dimgray;
+}
+
+.sign-in :hover{
+    color:#1abc9c;
+}
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    padding: 4px;
+    margin: 4px;
+    font-size: 16px;
+    border: 0px solid #0D47A1;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #1abc9c;color:#f9f9f9}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*.dropdown:hover .dropbtn {
+//    background-color: asd;
+}*/
+
+.kotak-cari{
+    padding: 4px;
+    margin: 4px;
+    float: right;
+    overflow: hidden;
+    border: 0px solid #0D47A1;
+    background: #ffffff;
+}
+
+.cari{
+    padding: 4px;
+    margin: 4px;
+    height: 30px;
+    width: 300px;
+    font: 14px Arial;
+    color: #717171;
+    border: none;
+    background: transparent;
+}
+
+.icon-cari{
+    float: left;
+    padding: 1px;
+    margin: 1px;
+}
+
+.icon-cari img{
+    width: 30px;
+    height: 30px;
+}
+
+
+/* Main */
+	.left{
+		width: 510px;
+		border: 1px solid #dedede;
+		background: #f4f4f4;
+		padding: 10px;
+		margin: 10px;
+		float: left;
+	}
+
+	.middle{
+		width: 500px;
+		border: 1px solid #dedede;
+		padding: 10px;
+		margin: 10px;
+		float: left;
+	}
+		.middle img{
+			max-width: 100%;
+			height: auto;
+		}
+
+		.middle a{
+			font-weight: bold;
+		}
+
+	.right{
+		width: 510px;
+		border: 1px solid #dedede;
+		padding: 10px;
+		margin: 10px;
+		float: left;
+	}
+
+
+	.right ul{
+		list-style-type: none;
+	}
+	.right ul li{
+		display: block;
+	}
+	.right ul li a{
+		display: block;
+		border-bottom: 1px solid #dedede;
+		margin-bottom: 10px;
+		padding: 10px 5px;
+	}
+	.right ul li a:hover{
+		color: orange;
+	}
+
+.footer{
+	clear: both;
+	border: 1px solid #dedede;
+	padding: 10px;
+	margin: 10px;
+}
+
+
+.topnav {
+  overflow: hidden;
+  background-color: none;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+
+.back-gamb{
+        width: 100%;
+        height: auto;
+	margin: auto;
+	background: url("../images/mobil.jpg");
+	overflow: hidden;
+        padding: 10px;
+        height:320px;
+        -webkit-background-size: cover;
+        -moz-background-size:  cover;
+        -o-background-size: cover;
+         background-size: cover;
+         -webkit-animation: fade-in-move-down 1s;
+        animation: fade-in-move-down 1s;
+}
+
+.induk1{
+	width: auto;
+	height: auto;
+	background: #006064;
+	overflow: hidden;
+}
+
+.induk2{
+	width: auto;
+	height: auto;
+	background: #009688;
+	overflow: hidden;
+}
+
+.induk-footer{
+	width: auto;
+	height: auto;
+	background: #1b1b1b;
+	overflow: hidden;
+}
+
+.ev-name{
+	width: 1040px;
+	padding: 10px;
+	margin: 10px;
+	border: 1px solid #b4b4b4;
+	font: 20px Arial;
+	font-weight: bold;
+	color: #1A237E;
+	text-align: center;
+}
+
+.ev{
+	width: 465px;
+	padding: 10px;
+	margin: 10px;
+	border: 1px solid #b4b4b4;
+	font: 14px Arial;
+}
+
+.tgl-ev{
+	float: left;
+	width: 250px;
+	padding: 10px;
+	margin: 10px;
+	border: 1px solid #b4b4b4;
+	font: 14px Arial;
+}
+
+.time-ev{
+	width: 120px;
+	padding: 10px;
+	margin: 10px;
+	border: 1px solid #b4b4b4;
+	font: 14px Arial;
+}
+
+.text-ev{
+	margin-left: 10px;
+	font: 14px Arial;
+	font-weight: bold;
+	color: #757575;
+}
+
+.i-save{
+	width: 200px;
+	margin: 0 auto;
+}
+
+.save-ev{
+	width: 200px;
+	padding: 10px;
+	margin: 10px;
+	font: 16px Arial;
+	font-weight: bold;
+	color: #f4f4f4;
+	background: #ff9900;
+	border: none;
+	border-radius: 0.3em;
+}
+
+.search-ev{
+	float: right;
+	padding: 2px;
+	margin: 2px;
+	height: 44px;
+	width: 250px;
+	font: 14px Arial;
+	text-align: center;
+	color: #757575;
+	border: 1px solid #b4b4b4;
+}
+
+#map {
+  width: 1060px;
+  height: 300px;
+  border: 1px solid #a0a0a0;
+}
+
+
+
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+    border: none;
+	border-radius: 0.2em;
+    background-color: #fafafa;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    border-right: 1px solid #ccc;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #1abc9c;
+	border: none;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+	overflow: hidden;
+}
+</style>
+
+
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+}
+
+/************************************************************************************
+MEDIA QUERIES
+*************************************************************************************/
+/* untuk ukuran 1080px kebawah */
+@media screen and (max-width: 1080px) {
+	
+	.container {
+		width: 100%;
+	}
+	.left {
+		width: 25%;
+		background: #fff000;
+	}
+	.middle {
+		width: 68%;
+		float: right;
+	}
+	
+	.right {
+		clear: both;
+		padding: 1% 4%;
+		width: auto;
+		float: none;
+	}
+}
+
+
+/* untuk ukuran layar 700px kebawah */
+@media screen and (max-width: 780px) {
+	
+	.header, 
+	.footer{
+		text-align: center;
+	}
+	.left {
+		width: auto;
+		float: none;
+	}
+	
+	.middle {
+		width: auto;
+		float: none;
+	}
+	
+	.right {
+		width: auto;
+		float: none;
+	}
+
+}
+
+

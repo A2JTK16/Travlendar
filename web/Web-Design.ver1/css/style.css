@@ -57,10 +57,6 @@
   }
 }
 
-color: #0471b1;
-	background: none;
-}
-
 .text-view{
         float: left;
 	padding: 16px;
@@ -442,9 +438,6 @@ a:hover{
 	height: 400px;
 	background: #00a07e;
 }
-
-}
-
 
 /* as seen on https://webkit.org/blog */
 @-webkit-keyframes fade-in-move-down {
