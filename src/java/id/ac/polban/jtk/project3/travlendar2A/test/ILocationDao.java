@@ -3,32 +3,46 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package id.ac.polban.jtk.project3.travlendar2A.DaoInterface;
+package id.ac.polban.jtk.project3.travlendar2A.test;
 
-import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
 import java.sql.SQLException;
 import java.util.List;
 
 /**
  *  Interface standar operasi akses database 
- *  tabel Traveller
+ *  tabel Location
  * 
  */
-public interface ITravellerDao 
+public interface ILocationDao 
 {
     /**
      * Method untuk Mendapatkan Data Satu Record
      * 
-     * @param travellerId@return 
+     * @param provinceCode
+     * @param cityCode
+     * @param locId
+     * @return 
      * @throws java.sql.SQLException
      */
-    public Traveller getDataFromDB(Integer travellerId) throws SQLException;  
+    public Location getDataFromDB(String provinceCode, String cityCode, int locId) throws SQLException;  
     
+    /**
+     * Method untuk Mendapatkan Data Satu Record
+     * sebelum kode loc yang telah ditentukan
+     * 
+     * @param provinceCode
+     * @param cityCode
+     * @param locId
+     * @return 
+     * @throws java.sql.SQLException
+     */
+    public Location getDataBefore(String provinceCode, String cityCode, int locId) throws SQLException;
     /**
      * Method untuk mendapatkan jumlah halaman
      * berdasarkan limit item yg telah ditentukan
      * dengan cara mengembalikan jml record/tuple
      * dari tabel database
+     * 
      * @return 
      * @throws java.sql.SQLException
      */
@@ -43,10 +57,13 @@ public interface ITravellerDao
      * Jika gagal mendapatkan data dari database,
      * maka akan keluar eksepsi
      * 
-     * @param travellerId@return 
+     * @param provinceCode
+     * @param cityCode
+     * @param locId
+     * @return 
      * @throws java.sql.SQLException
      */
-    public boolean isTravellerAvaiable(int travellerId) throws SQLException;
+    public boolean isLocationAvaiable(String provinceCode, String cityCode, int locId) throws SQLException;
     
     /**
      * Method untuk Mendapatkan Data dari Database.
@@ -61,16 +78,16 @@ public interface ITravellerDao
      * @return 
      * @throws java.sql.SQLException
      */
-    public List<Traveller> getListFromDB(int page) throws SQLException;
+    public List<Location> getListFromDB(int page) throws SQLException;
     
     /**
      * Method untuk menyimpan data (satuan) ke database.
      * Jika gagal menyimpan, maka akan keluar eksepsi
      * 
-     * @param travellerObj
+     * @param myLocation
      * @throws SQLException 
      */
-    public void saveDataToDB(Traveller travellerObj) throws SQLException;
+    public void saveDataToDB(Location myLocation) throws SQLException;
     
     /**
      * Method untuk mengubah data record di database berdasarkan PK
@@ -78,15 +95,19 @@ public interface ITravellerDao
      * 
      * Note : PK tidak boleh diubah
      * 
+     * @param myLocation
      * @throws SQLException 
      */
-    public void updateDataToDB(Traveller travellerObj) throws SQLException;
+    public void updateDataToDB(Location myLocation) throws SQLException;
     
     /**
      * Method untuk menghapus record
-     * @param travellerId
+     * 
+     * @param provinceCode
+     * @param cityCode
+     * @param locId
      * @throws SQLException 
      */
-    public void deleteDataFromDB(int travellerId) throws SQLException;
+    public void deleteDataFromDB(String provinceCode, String cityCode, int locId) throws SQLException;
     
 }

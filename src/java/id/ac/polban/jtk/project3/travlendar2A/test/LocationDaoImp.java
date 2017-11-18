@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package id.ac.polban.jtk.project3.travlendar2A.DaoConcreteClass;
+package id.ac.polban.jtk.project3.travlendar2A.test;
 
-import id.ac.polban.jtk.project3.travlendar2A.DaoInterface.ILocationDao;
-import id.ac.polban.jtk.project3.travlendar2A.Models.Location;
+import id.ac.polban.jtk.project3.travlendar2A.Dao.DaoManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,7 +15,7 @@ import java.util.List;
 /**
  *
  */
-public class LocationDaoImp extends DAO implements ILocationDao
+public class LocationDaoImp extends DaoManager implements ILocationDao
 {
     /**
      * Atribut

@@ -275,7 +275,7 @@
 <div class="induk-footer">
 	<div class="footer">
 		<h4>Footer</h4>
-		<p>Copyright &copy; 2015 <a href="http://www.tutorial-webdesign.com">Tutorial-webdesign.com</a></p>
+		<p>Copyright &copy; 2017 <a href="#">Travlendar 2A JTK with Tutorial-webdesign.com</a></p>
 	</div> <!--/ .footer -->
 </div> <!--induk-footer-->
 
