@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package id.ac.polban.jtk.project3.travlendar2A.DaoConcreteClass;
+package id.ac.polban.jtk.project3.travlendar2A.Dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * 
  * @author Zulkifli Arsyad
  */
-public class DAO { 
+public class DaoManager { 
     
     /**
      * Atribut
@@ -33,7 +33,7 @@ public class DAO {
      * @param jdbcUsername
      * @param jdbcPassword 
      */
-    public DAO(String jdbcURL, String jdbcUsername, String jdbcPassword) {
+    public DaoManager(String jdbcURL, String jdbcUsername, String jdbcPassword) {
         this.jdbcURL = jdbcURL;
         this.jdbcUsername = jdbcUsername;
         this.jdbcPassword = jdbcPassword;
@@ -67,7 +67,7 @@ public class DAO {
         catch (SQLException ex) 
         {
             // Gagal koneksi, trace log histori
-            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -89,7 +89,7 @@ public class DAO {
         catch (SQLException ex) 
         {
             // gagal menutup koneksi, trace log
-            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

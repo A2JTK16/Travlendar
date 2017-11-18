@@ -1,4 +1,4 @@
-package id.ac. polban.jtk.project3.travlendar2A.Models;
+package id.ac.polban.jtk.project3.travlendar2A.test;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

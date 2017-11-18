@@ -5,16 +5,14 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Models;
 
-import java.util.Date;
-
 /**
  *
  * @author mufidjamaluddin
  */
-public class Event 
+public class Account 
 {
     String name;
-    Date datetime;
-    String latitude;
-    String longitude;
+    String username;
+    String email;
+    String password;
 }
