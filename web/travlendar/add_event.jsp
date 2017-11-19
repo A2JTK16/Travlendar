@@ -7,10 +7,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
 	<meta charset="UTF-8">
 	<title>Welcome Travlendar</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
         <!-- Google Maps JS API -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>
         
@@ -18,9 +19,12 @@
         <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
         
         <!-- GMaps Library -->
-        <script src="gmaps.js"></script>
-	<link rel="stylesheet" href="css/style.css">
-</head>
+        <script src="js/gmaps.js"></script>
+        
+        <!-- GMaps Custom Setting for This Page -->
+        <script src="js/mapsdefault.js"></script>
+        
+    </head>
 <body>
 	
     <div class="jarak-atas">
@@ -74,11 +78,11 @@
      
     </div> <!--menu-atas-->
 
-<div class="back-gamb">
+    <div class="back-gamb">
    
-</div> <!--back-gamb-->
+    </div> <!--back-gamb-->
     
-<div class="induk1">
+    <div class="induk1">
 
 	<div class="container-t">
 	<div class="tab">
@@ -90,11 +94,11 @@
 	</div>
 	</div> <!--container-t-->
 
-</div> <!--induk1-->
+    </div> <!--induk1-->
 
-<div class="induk2">
+        <div class="induk2">
 
-	<div class="container">
+            <div class="container">
 
 		<div id="London" class="tabcontent">
 		  <input class="ev-name" id="desc" type="text" placeholder="What Your Event ??.. "/>
@@ -130,155 +134,27 @@
 		  <p>Tokyo is the capital of Japan.</p>
 		</div>
 
-		<script>
-		function openCity(evt, cityName) {
-			var i, tabcontent, tablinks;
-			tabcontent = document.getElementsByClassName("tabcontent");
-			for (i = 0; i < tabcontent.length; i++) {
-				tabcontent[i].style.display = "none";
-			}
-			tablinks = document.getElementsByClassName("tablinks");
-			for (i = 0; i < tablinks.length; i++) {
-				tablinks[i].className = tablinks[i].className.replace(" active", "");
-			}
-			document.getElementById(cityName).style.display = "block";
-			evt.currentTarget.className += " active";
-		}
+            </div> <!--container-->
 
-		// Get the element with id="defaultOpen" and click on it
-		document.getElementById("defaultOpen").click();
-		</script>
-	</div> <!--container-->
-
-	<div class="i-save">
-		<button class="save-ev"> Save Event </button>
-	</div> <!--i-save-->
+            <div class="i-save" >
+                <button class="save-ev" id="TombolSave"> Save Event </button>
+            </div> <!--i-save-->
 	
-</div> <!--induk2-->
+        </div> <!--induk2-->
+
+        <div class="container">
+            <div class="main">
+                <div id="map">Maps Event</div>
+            </div> <!--/ .main -->
+        </div> <!--container-->
 
 
-
-<div class="container">
-	<div class="main">
-        <div id="map">Maps Event</div>
-	<script>
-        // JQuery
-         $(document).ready( function()  // Ketika web udah siap
-         {       
-                //var listJson;
-                var destination, service;
-		var m1 = null, m2 = null;
-		var m1pos, m2pos;
-		var corvo = false, attano = true;
-		var mapObj = new GMaps({
-			el: '#map',
-			lat: -6.914744,
-			lng: 107.609810,
-			zoom: 16,
-			click: function(e) 
-                            {
-				if (corvo) 
-                                {
-                                    mapObj.removeMarker((attano) ? m1 : m2);
-                                    mapObj.removePolylines();
-				}
-
-				if (attano) {
-					m1 = mapObj.addMarker({
-						lat: e.latLng.lat(),
-						lng: e.latLng.lng()//,
-						//icon: sourceIcon
-					});
-					m1pos = m1.getPosition();
-				} 
-				else {
-					m2 = mapObj.addMarker({
-						lat: e.latLng.lat(),
-						lng: e.latLng.lng()//,
-						//icon: destinationIcon
-					});
-					m2pos = m2.getPosition();
-				}
-                                
-
-				// If two markers have been placed
-				if (m1 !== null && m2 !== null) {
-					corvo = true;
-					mapObj.drawRoute({
-						origin: [m1pos.lat(), m1pos.lng()],
-						destination: [m2pos.lat(), m2pos.lng()],
-						travelMode: 'driving',
-						strokeColor: '#131540',
-						strokeOpacity: 0.6,
-						strokeWeight: 6
-					});
-					//$('#trace_route').prop('disabled', false);
-                                        //listJson = [m1.getPosition(), m2.getPosition()];
-                                        
-                                        $.ajax({
-                                            type: "POST", // method post
-                                            url: "http://localhost:8080/Travlendar2A/json",
-                                            dataType:'JSON',
-                                         //   data: {listjson: JSON.stringify(listJson)},
-                                            data: {latitude: m2pos.lat(), longitude: m2pos.lng(), desc: document.getElementById("desc").value},
-                                            async: false, // dikirim ketika semua beres
-                                            success: function(data){alert(data);},
-                                            failure: function(errMsg) {
-                                                alert(errMsg);
-                                            }
-                                        });
-				}
-				attano = !attano;
-			
-                                var origin = new google.maps.LatLng(m1pos.lat(),m1pos.lng()),
-                                destination = new google.maps.LatLng(m2pos.lat(),m2pos.lng()),
-                                service = new google.maps.DistanceMatrixService();
-
-                                service.getDistanceMatrix(
-                                    {
-                                        origins: [origin],
-                                        destinations: [destination],
-                                        travelMode: google.maps.TravelMode.DRIVING,
-                                        avoidHighways: false,
-                                        avoidTolls: false
-                                    }, 
-                                    callback
-                                );
-
-                                function callback(response, status) 
-                                {
-                                    var orig = document.getElementById("orig"),
-                                    dest = document.getElementById("dest"),
-                                    dist = document.getElementById("dist");
-
-                                    if(status=="OK") {
-                                        dest.value = response.destinationAddresses[0];
-                                        orig.value = response.originAddresses[0];
-                                        dist.value = response.rows[0].elements[0].distance.text;
-                                    } 
-                                    else {
-                                        alert("Error: " + status);
-                                    }
-                                }
-
-                            } // tutup fungsi e ketika klik
-		}); // tutup instansiasi gmaps         
-                
-            }); // tutup JQuery    
-	</script>
-	
-
-	</div> <!--/ .main -->
- 
-</div> <!--container-->
-
-
-<div class="induk-footer">
-	<div class="footer">
+        <div class="induk-footer">
+            <div class="footer">
 		<h4>Footer</h4>
 		<p>Copyright &copy; 2017 <a href="#">Travlendar 2A JTK with Tutorial-webdesign.com</a></p>
-	</div> <!--/ .footer -->
-</div> <!--induk-footer-->
-
-</body>
+            </div> <!--/ .footer -->
+        </div> <!--induk-footer-->
+        
+    </body>
 </html>

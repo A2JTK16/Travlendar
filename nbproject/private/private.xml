@@ -4,10 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/src/java/id/ac/polban/jtk/project3/travlendar2A/Models/Event.java</file>
+            <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/web/getdistance_andlocation.html</file>
             <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/src/java/id/ac/polban/jtk/project3/travlendar2A/Models/UserAccount.java</file>
+            <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/web/travlendar/add_event.jsp</file>
             <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/src/java/id/ac/polban/jtk/project3/travlendar2A/Models/Account.java</file>
             <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/src/java/id/ac/polban/jtk/project3/travlendar2A/Dao/DaoManager.java</file>
             <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/src/java/id/ac/polban/jtk/project3/travlendar2A/Controller/TravlendarController.java</file>
+            <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/web/travlendar/addevent.html</file>
             <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/src/java/id/ac/polban/jtk/project3/travlendar2A/Dao/IDao.java</file>
             <file>file:/C:/Users/mufidjamaluddin/Documents/NetBeansProjects/Travlendar/src/java/id/ac/polban/jtk/project3/travlendar2A/Dao/GenericDao.java</file>
         </group>
