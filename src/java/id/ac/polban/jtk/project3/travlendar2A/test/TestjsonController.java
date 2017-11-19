@@ -46,11 +46,6 @@ public class TestjsonController extends HttpServlet
         }
         jsonArrObj = new JSONArray();
         
-        //list.add(new Location(1,"-6.871882","107.574785","Polban")); 
-        //list.add(new Location(2,"-2.157335","106.141148","Bandara Depati Amir")); 
-        //list.add(new Location(3,"-6.127512","106.653686","Bandara Soekarno Hatta")); 
-       // list.add(new Location(4,"-6.753777","106.652710","Tangerang City"));
-        
         jsonArrObj.put(list);
         
         try {
