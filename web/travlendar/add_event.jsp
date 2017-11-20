@@ -78,9 +78,13 @@
      
     </div> <!--menu-atas-->
 
-    <div class="back-gamb">
-   
-    </div> <!--back-gamb-->
+    <div class="wadah-gamb">
+        <div class="slogan">
+        <div class="sukses">
+        <h2> Make Your Plan Be Batter ! </h2>
+        </div>
+        </div>
+    </div>
     
     <div class="induk1">
 
@@ -120,26 +124,142 @@
                                         <div class="text-ev"> Distance </div>
                                         <input class="time-ev" id="dist" type="text" placeholder="Km ..."/>
 				</div>
+                            
+                                 <div class="i-save" >
+                <button class="save-ev" id="myBtn">Submit</button>
+				<!-- The Modal -->
+				<div id="myModal" class="modal">
+
+				  <!-- Modal content -->
+				  <div class="modal-content">
+				    	
+							  <div class="form">
+							    <div class="modal-header">
+							      <span class="close">&times;</span>
+							      <h4>Select Your Transportation Mode</h4>
+                                                              
+							    </div>
+                                                              <div class="k-popup">
+                                                                  <div class="k-transport">
+                                                                      <div class="trans"> <img src="icon/air2.png"> </div>
+                                                                      <br> ⭙
+                                                                  </div>
+                                                                   <div class="k-transport">
+                                                                      <div class="trans"> <img src="icon/train.png"> </div>
+                                                                      <br> ⭙
+                                                                  </div>
+                                                                   <div class="k-transport">
+                                                                      <div class="trans"> <img src="icon/car.png"> </div>
+                                                                      <div class="radiona"><input type="radio" name="transtime" value="cartime"> 40m</div> 
+                                                                  </div>
+                                                                   <div class="k-transport">
+                                                                      <div class="trans"> <img src="icon/motor3.png"> </div>
+                                                                      <div class="radiona"><input type="radio" name="transtime" value="motortime"> 25m</div>
+                                                                  </div>
+                                                                   <div class="k-transport">
+                                                                      <div class="trans"> <img src="icon/walk.png"> </div>
+                                                                      <div class="radiona"><input type="radio" name="transtime" value="walktime"> 4h 15m</div>
+                                                                  </div>                                                                  
+                                                                  <button id="myBtnsave">Save</button>
+                                                              </div>
+							    
+							  </div>
+							
+				  </div> <!--modal content-->
+				</div>
+                                <script>
+			
+				function show()
+				{
+					if(document.getElementById("hidden-mobile").style.display == 'none')
+						document.getElementById("hidden-mobile").style.display = 'block';
+					else
+						document.getElementById("hidden-mobile").style.display = 'none';
+				}
+				
+				// Get the modal
+				var modal = document.getElementById('myModal');
+
+				// Get the button that opens the modal
+				var btn = document.getElementById("myBtn");
+
+				// Get the <span> element that closes the modal
+				var span = document.getElementsByClassName("close")[0];
+
+				// When the user clicks the button, open the modal 
+				btn.onclick = function() {
+				    modal.style.display = "block";
+				}
+
+				// When the user clicks on <span> (x), close the modal
+				span.onclick = function() {
+				    modal.style.display = "none";
+				}
+
+				// When the user clicks anywhere outside of the modal, close it
+				window.onclick = function(event) {
+				    if (event.target == modal) {
+				        modal.style.display = "none";
+				    }
+				}
+			</script>
+            </div> <!--i-save-->
+
 				
 			</div> <!--/ .main -->
 		</div>
-
+                
 		<div id="Paris" class="tabcontent">
-		  <h3>List My Event</h3>
-		  <p></p> 
+                                        <table>
+						<thead>
+						<tr>
+							<th>Event Name</th>
+                                                        <th>Date & Time</th>
+							<th>Use</th>
+                                                        <th>At</th>
+                                                        <th>Location</th>
+                                                        <th>Action</th>
+						</tr>
+						</thead>
+						<tbody>
+                                                 
+                                                <c:forEach items="${travellerList}" var="traveller">
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>                                                        
+                                                </c:forEach>
+                                                    
+                                                    
+						
+                                                 <script type="text/javascript" language="JavaScript">
+                                                function konfirmasi()
+                                                {
+                                                tanya = confirm("Anda Yakin Akan Menghapus Data ?");
+                                                if (tanya == true) return true;
+                                                else return false;
+                                                }</script>
+									
+						
+						</tbody>
+					</table>
 		</div>
 
 		<div id="Tokyo" class="tabcontent">
+                  
 		  <h3>Tokyo</h3>
-		  <p>Tokyo is the capital of Japan.</p>
+                  
+                      <p> huuhhh </p>
+	          
 		</div>
 
             </div> <!--container-->
 
-            <div class="i-save" >
-                <button class="save-ev" id="TombolSave"> Save Event </button>
-            </div> <!--i-save-->
-	
+           	
         </div> <!--induk2-->
 
         <div class="container">
@@ -149,12 +269,21 @@
         </div> <!--container-->
 
 
-        <div class="induk-footer">
+        <div class="footer-atas">
+	
+        </div> <!--footer-atas-->
+
+	<div class="footer-bawah">
             <div class="footer">
-		<h4>Footer</h4>
-		<p>Copyright &copy; 2017 <a href="#">Travlendar 2A JTK with Tutorial-webdesign.com</a></p>
-            </div> <!--/ .footer -->
-        </div> <!--induk-footer-->
+                <div class="copyright">
+                    Travelendar
+                </div> <!--copyright-->
+
+                <div class="copyright2">
+                    Copyright &copy; 2017 travlendar | Designed by A2 JTK Polban
+                </div>
+            </div>
+        </div> <!--footer-bawah-->
         
     </body>
 </html>
