@@ -13,8 +13,64 @@ import java.util.Date;
  */
 public class Event 
 {
-    String name;
-    Date datetime;
-    String latitude;
-    String longitude;
+    private String name;
+    private Date datetime;
+    private String latitude;
+    private String longitude;
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the datetime
+     */
+    public Date getDatetime() {
+        return datetime;
+    }
+
+    /**
+     * @param datetime the datetime to set
+     */
+    public void setDatetime(Date datetime) {
+        this.datetime = datetime;
+    }
+
+    /**
+     * @return the latitude
+     */
+    public String getLatitude() {
+        return latitude;
+    }
+
+    /**
+     * @param latitude the latitude to set
+     */
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    /**
+     * @return the longitude
+     */
+    public String getLongitude() {
+        return longitude;
+    }
+
+    /**
+     * @param longitude the longitude to set
+     */
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
 }
