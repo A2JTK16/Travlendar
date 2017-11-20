@@ -93,7 +93,6 @@
 			  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Add New Event</button>
 			  <button class="tablinks" onclick="openCity(event, 'Paris')">View List Event</button>
 			  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Calendar Event</button>
-			  
 			  <!--<input class="search-ev" type="text" placeholder="Search Event ... "/>-->
 	</div>
 	</div> <!--container-t-->
@@ -160,49 +159,14 @@
                                                                       <div class="trans"> <img src="icon/walk.png"> </div>
                                                                       <div class="radiona"><input type="radio" name="transtime" value="walktime"> 4h 15m</div>
                                                                   </div>                                                                  
-                                                                  <button id="myBtnsave">Save</button>
+                                                                  <button id="TombolSave">Save</button>
                                                               </div>
 							    
 							  </div>
 							
 				  </div> <!--modal content-->
 				</div>
-                                <script>
-			
-				function show()
-				{
-					if(document.getElementById("hidden-mobile").style.display == 'none')
-						document.getElementById("hidden-mobile").style.display = 'block';
-					else
-						document.getElementById("hidden-mobile").style.display = 'none';
-				}
-				
-				// Get the modal
-				var modal = document.getElementById('myModal');
-
-				// Get the button that opens the modal
-				var btn = document.getElementById("myBtn");
-
-				// Get the <span> element that closes the modal
-				var span = document.getElementsByClassName("close")[0];
-
-				// When the user clicks the button, open the modal 
-				btn.onclick = function() {
-				    modal.style.display = "block";
-				}
-
-				// When the user clicks on <span> (x), close the modal
-				span.onclick = function() {
-				    modal.style.display = "none";
-				}
-
-				// When the user clicks anywhere outside of the modal, close it
-				window.onclick = function(event) {
-				    if (event.target == modal) {
-				        modal.style.display = "none";
-				    }
-				}
-			</script>
+                                
             </div> <!--i-save-->
 
 				
@@ -210,40 +174,22 @@
 		</div>
                 
 		<div id="Paris" class="tabcontent">
-                                        <table>
+                    <button id="viewList">View List</button>
+                                        <table id="tableEvent">
 						<thead>
 						<tr>
 							<th>Event Name</th>
-                                                        <th>Date & Time</th>
-							<th>Use</th>
-                                                        <th>At</th>
-                                                        <th>Location</th>
-                                                        <th>Action</th>
+                                                        <th>Latitude</th>
+                                                        <th>Longitude</th>
 						</tr>
 						</thead>
 						<tbody>
                                                  
-                                                <c:forEach items="${travellerList}" var="traveller">
-                                                    <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>                                                        
-                                                </c:forEach>
+                                               
+                                                                                                         
+                                                                                                   
                                                     
-                                                    
-						
-                                                 <script type="text/javascript" language="JavaScript">
-                                                function konfirmasi()
-                                                {
-                                                tanya = confirm("Anda Yakin Akan Menghapus Data ?");
-                                                if (tanya == true) return true;
-                                                else return false;
-                                                }</script>
-									
+							
 						
 						</tbody>
 					</table>
