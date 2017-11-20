@@ -26,6 +26,15 @@ p{
 	margin-bottom: 20px;
 	line-height: 1.5em;
 }
+
+h4{
+    padding: 3px;
+    margin: 3px;
+    font: 18px Arial;
+    font-weight: bold;
+    color: #fafafa;
+}
+
 h3{
 	font: 20px Arial;
 	font-weight: bold;
@@ -136,7 +145,6 @@ a:hover{
 	width: 26px;
 	height: 26px;
 }
-
 
 
 .logonya{
@@ -351,13 +359,52 @@ a:hover{
 		color: orange;
 	}
 
-.footer{
-	clear: both;
-	border: 1px solid #dedede;
-	padding: 10px;
-	margin: 10px;
-}
+        .footer-atas{
+                
+                height: 40px;
+                max-width: 100%;
+                border: none;
+                background: #343434;
+                overflow: hidden;
+        }
 
+
+        .footer-bawah{
+                max-width: 100%;
+                border: none;
+                background: #4D4D4D;
+                overflow: hidden;
+                height: auto;
+        }
+
+        .footer{
+                max-width: auto;
+                background: none;
+                overflow: hidden;
+                padding: 10px;
+                margin: 10px auto;
+        }
+
+
+        .copyright{
+                float: left;
+                width: 90px;
+                font: 25px Arial;
+                font-weight: bold;
+                color: #5f5f5f;
+                margin-left:30px;
+        }
+
+        .copyright2{
+                padding: 3px;
+                margin: 3px;
+                float: right;
+                width: auto;
+                font: 16px Arial;
+                color: #5f5f5f;
+                margin-right: 30px;
+                margin-top: 15px;
+        }
 
 .topnav {
   overflow: hidden;
@@ -389,20 +436,27 @@ a:hover{
 }
 
 
-.back-gamb{
-        width: 100%;
-        height: auto;
-	margin: auto;
-	background: url("../images/mobil.jpg");
-	overflow: hidden;
-        padding: 10px;
-        height:320px;
-        -webkit-background-size: cover;
-        -moz-background-size:  cover;
-        -o-background-size: cover;
-         background-size: cover;
-         -webkit-animation: fade-in-move-down 1s;
-        animation: fade-in-move-down 1s;
+.wadah-gamb{
+    width: 100%;
+    height: 320px;
+    background: url("../images/carfix.jpg") no-repeat;
+}
+
+.slogan{
+    position: absolute;
+    width: 375px;
+    height: 321px;
+    font: 30px Arial;
+    font-weight: bold;
+    font-style: italic;
+    color: #fafafa;
+    background: #1abc9c;
+    opacity: 0.7;
+}
+
+.sukses{
+    padding: 30px;
+    margin: 30px;
 }
 
 .induk1{
@@ -621,3 +675,173 @@ MEDIA QUERIES
 }
 
 
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+	padding: 10px;
+	padding-top: 80px;
+   	margin: 10px auto;
+    bottom: 0;
+    background-color: transparent;
+    width: auto;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 10px;
+    margin: 10px;
+    background: #00897b;
+    padding: 2px 16px;
+    color: white;
+}
+
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 850px;
+  margin: 0 auto 100px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+
+.k-transport{
+       	float: left;
+        margin-right: 5px;
+        margin-left: 5px;
+	background: none;
+	overflow: hidden;
+        padding: 10px;
+    }
+
+    .k-popup{
+       	max-height: 100%;
+    	margin: auto;
+    	background: none;
+        overflow: hidden;
+        padding: 10px;
+    }
+
+    .trans{
+        float: left;
+        padding: 5px;
+        margin: 5px;
+    }
+    .trans img{
+        width: 95px;
+        height: 95px;
+    }
+
+    
+    
+table { 
+			width: 100%; 
+			border-collapse: collapse;
+		}
+		/* Zebra striping */
+		tr:nth-of-type(odd) { 
+			background: #eee; 
+		}
+		
+		td, th{ 
+			padding: 7px;
+                        margin: 7px;
+			border: 1px solid #ccc; 
+			text-align: left;
+                        font: 14px Arial;
+                        font-weight: bold;
+                        color: #757575;
+		}
+                
+                th { 
+			background: #9E9E9E;
+                        font: 15px Arial;
+			font-weight: bold; 
+                        color: #fff;
+		}

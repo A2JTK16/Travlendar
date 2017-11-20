@@ -29,7 +29,7 @@ public class TestjsonController extends HttpServlet
     @Override
     public void init()
     {
-        this.locDaoObj = new LocationDaoImp("jdbc:mysql://localhost:3306/travlendar2Anew","root","");
+        this.locDaoObj = new LocationDaoImp("jdbc:mysql://localhost:3306/travlendar2anew","root","");
     }
     
     @Override
