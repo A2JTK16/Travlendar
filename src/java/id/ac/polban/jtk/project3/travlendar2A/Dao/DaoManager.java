@@ -57,7 +57,7 @@ public class DaoManager {
                 catch (ClassNotFoundException e) 
                 {
                     // kelas gagal ditemukan
-                    throw new SQLException(e);
+                    throw new SQLException(e);            // Gagal koneksi, trace log histori
                 }
                 // assignment koneksi
                 jdbcConnection = (Connection) DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
@@ -65,7 +65,6 @@ public class DaoManager {
         } 
         catch (SQLException ex) 
         {
-            // Gagal koneksi, trace log histori
             Logger.getLogger(DaoManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

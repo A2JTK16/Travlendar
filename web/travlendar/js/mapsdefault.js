@@ -144,7 +144,7 @@
                     if(m2 !== null)
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8084/Travlendar2A/json",
+                            url: "http://localhost:8080/Travlendar2A/json",
                             dataType:'JSON',
                             //   data: {listjson: JSON.stringify(listJson)},
                             data: {latitude: m2pos.lat(), longitude: m2pos.lng(), desc: document.getElementById("desc").value},
@@ -174,7 +174,7 @@
                         mapObj.removeMarker(m2);
                     mapObj.removePolylines();
                     
-                    $.get("http://localhost:8084/Travlendar2A/json", function(responseJson) 
+                    $.get("http://localhost:8080/Travlendar2A/json", function(responseJson) 
                     {          // Eksekusi URL Controller
                         $.each(responseJson, function(index, location) {    // Loop pakai Json
                             for(i=0; i<location.length; i++)
