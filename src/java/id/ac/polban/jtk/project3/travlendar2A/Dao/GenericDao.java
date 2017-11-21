@@ -30,12 +30,11 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
      * List String dari atribut class objek yang digunakan dao
      */
     private List<String> fields;
-
     /**
      * Class yang menggunakan jasa dao ini
      */
     Class T;
-
+    
     /**
      * Konstruktor
      * @param jdbcURL
@@ -57,12 +56,15 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     {
         Field[] attrClass;
         attrClass = T.getDeclaredFields();
+        List<String> attributesStr = new ArrayList<>();
         
         for(Field attribute : attrClass)
         {
             attribute.setAccessible(true); // Mengubah modifier menjadi publik
-            this.fields.add(attribute.getName().toLowerCase());
+            attributesStr.add(attribute.getName().toLowerCase());
         }
+        
+        this.setFields(attributesStr);
     }
     
     /**
@@ -198,7 +200,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     {
         String sql;
         int maxLength = this.fields.size();
-        sql = "INSERT INTO " + T.getSimpleName() + "( " + StringUtils.join(this.fields, ',') + " ) VALUES ( ";
+        sql = "INSERT INTO " + T.getSimpleName() + "( " + this.getFieldsStr() + " ) VALUES ( ";
         
         for(int i=0; i<maxLength-1; i++)
         {
@@ -245,7 +247,34 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     @Override
     public void delete(int id) 
     {
+        String sql;
+        int maxLength = this.fields.size();
+        sql = "DELETE FROM " + T.getSimpleName() + "( " + this.getFieldsStr() + " ) WHERE ( id = ? )";
         
+        /**
+         * Buat Koneksi ke DBMS
+         */
+        super.connect();
+        /**
+         * Buat Statement
+         */
+        PreparedStatement stmt;
+        try 
+        {
+            stmt = super.getJdbcConnection().prepareStatement(sql);
+            
+            stmt.setInt(1, id);
+            
+            stmt.executeUpdate();
+            /**
+             * Tutup Koneksi
+             */
+        } 
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        super.disconnect();
     }
 
     /**
@@ -254,10 +283,8 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
      */
     public String getFieldsStr() 
     {
-        
-        
-        
-        return null;
+        String fieldStr = StringUtils.join(this.fields, ',');  
+        return fieldStr;
     }
 
     /**
