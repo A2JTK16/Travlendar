@@ -23,11 +23,10 @@ public class TestObject
         
         Event objEvent = new Event();
         // setter normal
-        objEvent.setName("Polban Islamic Fair");
+        objEvent.setEvent_name("Polban Islamic Fair");
         // setter dg invokes
         Class myclass = Event.class;
-        myclass.getMethod("setLatitude", String.class).invoke(objEvent, "123.456");
-        myclass.getMethod("setLongitude", String.class).invoke(objEvent, "678.987");
+        myclass.getMethod("setNote", String.class).invoke(objEvent, "123.456 Apa");
         
         //--------------MENDAPATKAN NAMA FIELDS DARI CLASS-----------------------//
         

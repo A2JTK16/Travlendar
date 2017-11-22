@@ -5,72 +5,122 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Models;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  *
  * @author mufidjamaluddin
+ * 
+ * Sudah disamakan dengan database
  */
 public class Event 
 {
-    private String name;
-    private Date datetime;
-    private String latitude;
-    private String longitude;
+    private Long event_id;
+    private Integer location_id;
+    private Long traveller_id;
+    private String event_name;
+    private Timestamp start_event;
+    private Timestamp end_event;
+    private String note;
 
     /**
-     * @return the name
+     * @return the event_id
      */
-    public String getName() {
-        return name;
+    public Long getEvent_id() {
+        return event_id;
     }
 
     /**
-     * @param name the name to set
+     * @param event_id the event_id to set
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setEvent_id(Long event_id) {
+        this.event_id = event_id;
     }
 
     /**
-     * @return the datetime
+     * @return the location_id
      */
-    public Date getDatetime() {
-        return datetime;
+    public Integer getLocation_id() {
+        return location_id;
     }
 
     /**
-     * @param datetime the datetime to set
+     * @param location_id the location_id to set
      */
-    public void setDatetime(Date datetime) {
-        this.datetime = datetime;
+    public void setLocation_id(Integer location_id) {
+        this.location_id = location_id;
     }
 
     /**
-     * @return the latitude
+     * @return the traveller_id
      */
-    public String getLatitude() {
-        return latitude;
+    public Long getTraveller_id() {
+        return traveller_id;
     }
 
     /**
-     * @param latitude the latitude to set
+     * @param traveller_id the traveller_id to set
      */
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
+    public void setTraveller_id(Long traveller_id) {
+        this.traveller_id = traveller_id;
     }
 
     /**
-     * @return the longitude
+     * @return the event_name
      */
-    public String getLongitude() {
-        return longitude;
+    public String getEvent_name() {
+        return event_name;
     }
 
     /**
-     * @param longitude the longitude to set
+     * @param event_name the event_name to set
      */
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
+    public void setEvent_name(String event_name) {
+        this.event_name = event_name;
     }
+
+    /**
+     * @return the start_event
+     */
+    public Timestamp getStart_event() {
+        return start_event;
+    }
+
+    /**
+     * @param start_event the start_event to set
+     */
+    public void setStart_event(Timestamp start_event) {
+        this.start_event = start_event;
+    }
+
+    /**
+     * @return the end_event
+     */
+    public Timestamp getEnd_event() {
+        return end_event;
+    }
+
+    /**
+     * @param end_event the end_event to set
+     */
+    public void setEnd_event(Timestamp end_event) {
+        this.end_event = end_event;
+    }
+
+    /**
+     * @return the note
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * @param note the note to set
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    
+  
 }
