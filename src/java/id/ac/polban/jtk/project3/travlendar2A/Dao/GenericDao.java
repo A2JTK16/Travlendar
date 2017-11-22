@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.apache.tomcat.util.buf.StringUtils;
 
@@ -29,6 +30,10 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
      */
     private List<String> fields;
     /**
+     * List type dari atribut class objek yang menggunakan dao
+     */
+    private List<Class<?>> typesoffield;
+    /**
      * Class yang menggunakan jasa dao ini
      */
     private final Class<T> classModel;
@@ -42,29 +47,35 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
      */
     public GenericDao(String jdbcURL, String jdbcUsername, String jdbcPassword, Class<T> classModel) 
     {
+        /**
+         * Super class untuk koneksi
+         */
         super(jdbcURL, jdbcUsername, jdbcPassword);
+        /**
+         * Mengisi class model
+         */
         this.classModel = classModel;
-        this.setAttrFields();
-    }
-    
-    /**
-     * Menyimpan nama nama atribut yang ada dalam class model
-     */
-    private void setAttrFields()
-    {
+        /**
+         * Menyimpan nama nama atribut yang ada dalam class model
+         * dalam List
+         */
         Field[] attrClass;
         attrClass = classModel.getDeclaredFields();
-        List<String> attributesStr = new ArrayList<>();
+        List<String> attributesStr;
+        List<Class<?>> attributesType;
+        attributesStr = new ArrayList<>();
+        attributesType = new ArrayList<>();
         
         for(Field attribute : attrClass)
         {
             attribute.setAccessible(true); // Mengubah modifier menjadi publik
-            attributesStr.add(attribute.getName().toLowerCase());
+            attributesStr.add(attribute.getName());
+            attributesType.add(attribute.getType());
         }
-        
-        this.setFields(attributesStr);
+        this.fields = attributesStr;
+        this.typesoffield = attributesType;
     }
-    
+     
     /**
      * Method untuk mengeksekusi setter method suatu objek
      * 
@@ -72,22 +83,25 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
      * @param variableName
      * @param variableValue 
      */
-    private void invokeSetter(Object obj, String attributeName, Object attributeValue)
+    private void invokeSetter(Object obj, String attributeName, Class<?> attributeType, Object attributeValue)
     {
         /* attributeValue menggunakan objek Object karena dapat menggunakan Integer, String, etc... */
         try 
         {
-            /**
-            * Mendapatkan objek PropertyDescriptor menggunakan nama atribut dan class
-            * Note: Untuk menggunakan PropertyDescriptor untuk field/atribute, field/atribute harus mempunyai `Setter` dan `Getter` method.
-            */
-            PropertyDescriptor objPropertyDescriptor = new PropertyDescriptor(attributeName, classModel);
-            /* Set field/variable nilai menggunakan getWriteMethod() */
-            objPropertyDescriptor.getWriteMethod().invoke(obj, attributeValue);
-        } 
+            if(attributeValue != null)
+            {
+                /**
+                 * Mendapatkan objek PropertyDescriptor menggunakan nama atribut dan class
+                 * Note: Untuk menggunakan PropertyDescriptor untuk field/atribute, field/atribute harus mempunyai `Setter` dan `Getter` method.
+                 */
+                PropertyDescriptor objPropertyDescriptor = new PropertyDescriptor(attributeName, obj.getClass());
+                /*  Set field/variable nilai menggunakan getWriteMethod() */
+                objPropertyDescriptor.getWriteMethod().invoke(obj, attributeType.cast(attributeValue));           
+            }
+        }
         catch (IntrospectionException | IllegalAccessException | InvocationTargetException ex) 
         {
-            // e.printStackTrace();
+             ex.printStackTrace();
         }
     }
     
@@ -147,7 +161,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         listObj = new ArrayList<>();
         
         sql = "SELECT * FROM " + classModel.getSimpleName().toLowerCase();
-        
+
         /**
          * Koneksi ke Database
          */
@@ -160,16 +174,16 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
             
             while(rs.next())
             {
-                objModel = (T) classModel.newInstance();
-                
+                objModel = classModel.newInstance();
+      
                 /**
                  * Setter object
                  */
-                int i = 0;
-                for (String attribute : this.fields) 
+                for (int i=0; i<this.fields.size(); i++) 
                 {
-                    i++;
-                    this.invokeSetter(objModel, attribute, rs.getString(i));
+                    String attribute = this.fields.get(i);
+                    Class<?> typeof = this.typesoffield.get(i);
+                    this.invokeSetter(objModel, attribute, typeof, rs.getObject(i+1));
                 }
                 
                 listObj.add(objModel);
@@ -178,7 +192,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         } 
         catch (SQLException | InstantiationException | IllegalAccessException | SecurityException | IllegalArgumentException ex) 
         {
-            // e.printStackTrace();
+             ex.printStackTrace();
         }
         
         super.disconnect();
@@ -218,7 +232,8 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         {
             sql += " ? ,";
         }
-        sql += " ? ";
+        sql += " ? )";
+        System.out.println(sql);
         /**
          * Buat Koneksi ke DBMS
          */
@@ -235,7 +250,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
             for(String lst : this.fields)
             {
                 i++;
-                stmt.setString(i, (String) this.invokeGetter(object, lst));
+                stmt.setObject(i, this.invokeGetter(object, lst));
             }
             
             stmt.executeUpdate();
