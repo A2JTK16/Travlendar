@@ -11,10 +11,14 @@ import id.ac.polban.jtk.project3.travlendar2A.Models.Account;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import id.ac.polban.jtk.project3.travlendar2A.Models.UserAccount;
 import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
 
 /**
  *
@@ -37,7 +41,7 @@ public class TravlendarController extends HttpServlet
     public void init()
     {
         /**
-         * Mendapatkan username, url, password dinamis
+         * Mendapatkan username, url, password secara dinamis
          */
         String jdbcURL = getServletContext().getInitParameter("jdbcURL");
         String jdbcUsername = getServletContext().getInitParameter("jdbcUsername");
@@ -46,9 +50,9 @@ public class TravlendarController extends HttpServlet
         /**
          * Instansiasi
          */
-        this.adminDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword);
-        this.eventDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword);
-        this.userDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword);
+        this.adminDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Account.class);
+        this.eventDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Event.class);
+        this.userDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, UserAccount.class);
     }
     
     /**
@@ -62,21 +66,45 @@ public class TravlendarController extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     {
         /**
+         * JSON Array
+         */
+        JSONArray jsonArrObj = new JSONArray();
+        /**
          * http:// .... /index?action=...
          */
         String param = request.getParameter("action");
         
         switch(param)
         {
-            case "addevent" :
+            case "findEvent" :
                 // TULIS CODE DISINI !!!
                 break;
-            case "getlistevent" :
+                
+            case "getlistEvent" : // CONTOH
+                /**
+                 * Mendapatkan list event
+                 */
+                List<Event> list = this.eventDao.getList();
+                /**
+                 * Menyimpan list dan mengubahnya ke bentuk json
+                 */
+                jsonArrObj.put(list);
+                
+                /**
+                 * Mengirimkan json ke browser client
+                 */
+                this.responseJson(response, jsonArrObj.toString());
+ 
+                break;
+                
+            case "getlistUser" :
                 // TULIS CODE DISINI !!!
                 break;
-            case "searchevent" :
+                
+            case "findUser":
                 // TULIS CODE DISINI !!!
                 break;
+                
             default:
                 // TULIS CODE DISINI !!!
                 break;  
@@ -93,27 +121,73 @@ public class TravlendarController extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     {
+        String param = request.getParameter("action");
+        
+        switch(param)
+        {
+            case "addEvent":
+                // TULIS CODE DISINI !!!
+                break;
+                
+            case "editEvent":
+                // TULIS CODE DISINI !!!
+                break;
+                    
+            case "deleteEvent":
+                // TULIS CODE DISINI !!!
+                break;
+                
+            case "registerUser":
+                // TULIS CODE DISINI !!!
+                break;
+                
+            case "deleteUser":
+                // TULIS CODE DISINI !!!
+                break;
+                
+            case "addUser":
+                // TULIS CODE DISINI !!!
+                break;
+                
+            case "addAdmin":
+                // TULIS CODE DISINI !!!
+                break;
+        }
         // TULIS CODE DISINI !!!
     }
     
     /**
      * Menampilkan string teks/html ketika controller beres dipanggil
      */
-    private void showStr(HttpServletResponse response, String strMessage) throws IOException
+    private void responseStr(HttpServletResponse response, String strMessage)
     {
-        response.setContentType("text/html");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(strMessage);
+        try 
+        {
+            response.setContentType("text/html");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(strMessage);
+        } 
+        catch (IOException ex) 
+        {
+            Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /**
      * Menampilkan json ketika controller beres dipanggil
      */
-    private void showJson(HttpServletResponse response, String strJson) throws IOException
+    private void responseJson(HttpServletResponse response, String strJson)
     {
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(strJson);
+        try 
+        {
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(strJson);
+        } 
+        catch (IOException ex) 
+        {
+            Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
            
 }

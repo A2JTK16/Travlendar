@@ -21,28 +21,41 @@ public interface IDao<T>
     public List<T> getList();
     
     /**
-     * Mendapatkan data dalam object dari database berdasarkan nama
-     * @param name
+     * Mendapatkan data dalam object dari database berdasarkan paramName
+     * @param paramName
+     * @param paramValue
      * @return 
      */
-    public T getObj(String name);
+    
+    public T getObj(String paramName, String paramValue);
     
     /**
      * Menyimpan nilai atribut object ke database
+     * 
+     * 
      * @param object 
+     * @return  
      */
-    public void create(Object object);
+    public boolean create(Object object);
     
     /**
-     * Menyunting data database berdasarkan id
+     *   Menyunting data database berdasarkan id
+     *   SQL : INSERT INTO class-name ( class-attribute ) VALUES ( attribute-value-from-object )
+     * 
      * @param object
-     * @param id 
+     * @param paramName
+     * @param paramValue
+     * @return  
      */
-    public void edit(Object object, int id);
+    public boolean edit(Object object, String paramName, String paramValue);
     
     /**
-     * Menghapus data database berdasarkan id
-     * @param id 
+     *  Menghapus data database berdasarkan paramName
+     *  SQL : DELETE FROM class-name WHERE ( paramName = paramValue )
+     * 
+     * @param paramName
+     * @param paramValue
+     * @return  
      */
-    public void delete(int id);
+    public boolean delete(String paramName, String paramValue);
 }

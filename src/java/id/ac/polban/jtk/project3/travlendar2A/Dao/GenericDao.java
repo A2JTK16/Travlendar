@@ -15,8 +15,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.tomcat.util.buf.StringUtils;
 
 /**
@@ -33,20 +31,20 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     /**
      * Class yang menggunakan jasa dao ini
      */
-    Class T;
+    private final Class<T> classModel;
     
     /**
      * Konstruktor
      * @param jdbcURL
      * @param jdbcUsername
      * @param jdbcPassword 
+     * @param classModel 
      */
-    public GenericDao(String jdbcURL, String jdbcUsername, String jdbcPassword) 
+    public GenericDao(String jdbcURL, String jdbcUsername, String jdbcPassword, Class<T> classModel) 
     {
         super(jdbcURL, jdbcUsername, jdbcPassword);
-        
+        this.classModel = classModel;
         this.setAttrFields();
-        //this.setModelMethods();
     }
     
     /**
@@ -55,7 +53,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     private void setAttrFields()
     {
         Field[] attrClass;
-        attrClass = T.getDeclaredFields();
+        attrClass = classModel.getDeclaredFields();
         List<String> attributesStr = new ArrayList<>();
         
         for(Field attribute : attrClass)
@@ -83,7 +81,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
             * Mendapatkan objek PropertyDescriptor menggunakan nama atribut dan class
             * Note: Untuk menggunakan PropertyDescriptor untuk field/atribute, field/atribute harus mempunyai `Setter` dan `Getter` method.
             */
-            PropertyDescriptor objPropertyDescriptor = new PropertyDescriptor(attributeName, T);
+            PropertyDescriptor objPropertyDescriptor = new PropertyDescriptor(attributeName, classModel);
             /* Set field/variable nilai menggunakan getWriteMethod() */
             objPropertyDescriptor.getWriteMethod().invoke(obj, attributeValue);
         } 
@@ -148,7 +146,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         
         listObj = new ArrayList<>();
         
-        sql = "SELECT * FROM " + T.getSimpleName().toLowerCase();
+        sql = "SELECT * FROM " + classModel.getSimpleName().toLowerCase();
         
         /**
          * Koneksi ke Database
@@ -162,7 +160,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
             
             while(rs.next())
             {
-                objModel = (T) T.newInstance();
+                objModel = (T) classModel.newInstance();
                 
                 /**
                  * Setter object
@@ -187,20 +185,34 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         
         return listObj;
     }
-
+    
+    /**
+     * Mendapatkan data dari database berdasarkan paramName
+     * 
+     * @param paramName
+     * @param paramValue
+     * @return 
+     */
     @Override
-    public T getObj(String name) 
+    public T getObj(String paramName, String paramValue) 
     {
         // WRITE CODE HERE!
         return null;  
     }
-
+    
+    /**
+     * Menyimpan data ke database
+     * 
+     * @param object
+     * @return 
+     */
     @Override
-    public void create(Object object) 
+    public boolean create(Object object) 
     {
+        boolean isSuccess;
         String sql;
         int maxLength = this.fields.size();
-        sql = "INSERT INTO " + T.getSimpleName() + "( " + this.getFieldsStr() + " ) VALUES ( ";
+        sql = "INSERT INTO " + classModel.getSimpleName() + "( " + this.getFieldsStr() + " ) VALUES ( ";
         
         for(int i=0; i<maxLength-1; i++)
         {
@@ -228,28 +240,51 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
             
             stmt.executeUpdate();
             /**
-             * Tutup Koneksi
+             * Tutup Statement
              */
+            stmt.close();
+            
+            isSuccess = true;
         } 
         catch (SQLException ex) 
         {
-            Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
+           // Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
+            isSuccess = false;
         }
         super.disconnect();
-    }
-
-    @Override
-    public void edit(Object object, int id) 
-    {
         
+        return isSuccess;
     }
-
+    
+    /**
+     * Menyunting data yang ada dalam database
+     * 
+     * @param object
+     * @param paramName
+     * @param paramValue
+     * @return 
+     */
     @Override
-    public void delete(int id) 
+    public boolean edit(Object object, String paramName, String paramValue) 
     {
+        // TULIS CODE DISINI !!!
+        return false;
+    }
+    
+    /**
+     * Menghapus data di database
+     * 
+     * @param paramName
+     * @param paramValue
+     * @return 
+     */
+    @Override
+    public boolean delete(String paramName, String paramValue) 
+    {
+        boolean isSuccess;
         String sql;
         int maxLength = this.fields.size();
-        sql = "DELETE FROM " + T.getSimpleName() + "( " + this.getFieldsStr() + " ) WHERE ( id = ? )";
+        sql = "DELETE FROM " + classModel.getSimpleName() + " WHERE ( " + paramName + " = ? )";
         
         /**
          * Buat Koneksi ke DBMS
@@ -263,21 +298,30 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         {
             stmt = super.getJdbcConnection().prepareStatement(sql);
             
-            stmt.setInt(1, id);
+            stmt.setString(1, paramValue);
             
             stmt.executeUpdate();
-            /**
-             * Tutup Koneksi
-             */
+            
+            stmt.close();
+            
+            isSuccess = true;
         } 
         catch (SQLException ex) 
         {
-            Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
+            isSuccess = false;
         }
+        
+        /**
+         * Disconnect
+         */
         super.disconnect();
+        
+        return isSuccess;
     }
 
     /**
+     *  Mendapatkan satu string nama-nama atribute class dengan delimiter (,)
      * 
      * @return 
      */
@@ -288,7 +332,9 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     }
 
     /**
-     * @param fields the fields to set
+     *  Menyimpan list nama-nama atribute class sesuai database
+     * 
+     *  @param fields the fields to set
      */
     public void setFields(List<String> fields) 
     {

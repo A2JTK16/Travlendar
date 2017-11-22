@@ -47,7 +47,7 @@ public class TestjsonController extends HttpServlet
         jsonArrObj = new JSONArray();
         
         jsonArrObj.put(list);
-        
+  
         try {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
