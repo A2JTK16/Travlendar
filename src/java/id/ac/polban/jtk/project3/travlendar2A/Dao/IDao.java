@@ -32,14 +32,14 @@ public interface IDao<T>
     /**
      * Menyimpan nilai atribut object ke database
      * 
-     * 
      * @param object 
      * @return  
      */
     public boolean create(Object object);
     
     /**
-     *   Menyunting data database berdasarkan id
+     *   Menyimpan data ke database
+     *   Jika menyimpan gagal, return false
      *   SQL : INSERT INTO class-name ( class-attribute ) VALUES ( attribute-value-from-object )
      * 
      * @param object
@@ -51,6 +51,7 @@ public interface IDao<T>
     
     /**
      *  Menghapus data database berdasarkan paramName
+     *  Jika gagal, return false
      *  SQL : DELETE FROM class-name WHERE ( paramName = paramValue )
      * 
      * @param paramName
