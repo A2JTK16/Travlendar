@@ -14,9 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import org.apache.tomcat.util.buf.StringUtils;
 
 /**
  *
@@ -32,7 +30,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     /**
      * List type dari atribut class objek yang menggunakan dao
      */
-    private List<Class<?>> typesoffield;
+    private final List<Class<?>> typesoffield;
     /**
      * Class yang menggunakan jasa dao ini
      */
@@ -342,7 +340,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
      */
     public String getFieldsStr() 
     {
-        String fieldStr = StringUtils.join(this.fields, ',');  
+        String fieldStr = String.join(",", this.fields);
         return fieldStr;
     }
 

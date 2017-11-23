@@ -25,15 +25,15 @@ public class TestAddEvent
         
         Event event = new Event();
         
-        event.setEvent_id(new Long(4));
-        event.setEvent_name("Sarapan");
+        event.setEvent_id(new Long(5));
+        event.setEvent_name("Kerja Kelompok");
         event.setLocation_id(1);
         event.setTraveller_id(new Long(1));
         
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         
-        event.setStart_event(new Timestamp( dateFormat.parse("2009-09-22 08:08:11").getTime() ));
-        event.setEnd_event(new Timestamp( dateFormat.parse("2009-09-22 12:08:11").getTime() ));
+        event.setStart_event(new Timestamp( dateFormat.parse("2017-09-22 08:08:11").getTime() ));
+        event.setEnd_event(new Timestamp( dateFormat.parse("2017-10-22 12:08:11").getTime() ));
         
         boolean created;      
 
