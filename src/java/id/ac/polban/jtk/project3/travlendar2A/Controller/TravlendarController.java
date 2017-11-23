@@ -7,9 +7,7 @@ package id.ac.polban.jtk.project3.travlendar2A.Controller;
 
 import id.ac.polban.jtk.project3.travlendar2A.Dao.GenericDao;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.IDao;
-import id.ac.polban.jtk.project3.travlendar2A.Models.Account;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
-import id.ac.polban.jtk.project3.travlendar2A.Models.UserAccount;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -31,8 +29,6 @@ public class TravlendarController extends HttpServlet
      * Atribut
      */
     IDao<Event> eventDao;
-    IDao<Account> adminDao;
-    IDao<UserAccount> userDao;
     
     /**
      * Method yang akan dipanggil ketika servlet dihidupkan
@@ -50,9 +46,9 @@ public class TravlendarController extends HttpServlet
         /**
          * Instansiasi
          */
-        this.adminDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Account.class);
+        
         this.eventDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Event.class);
-        this.userDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, UserAccount.class);
+        
     }
     
     /**
