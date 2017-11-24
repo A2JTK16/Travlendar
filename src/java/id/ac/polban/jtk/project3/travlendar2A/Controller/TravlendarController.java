@@ -38,10 +38,14 @@ public class TravlendarController extends HttpServlet
     {
         /**
          * Mendapatkan username, url, password secara dinamis
-         */
+         
         String jdbcURL = getServletContext().getInitParameter("jdbcURL");
         String jdbcUsername = getServletContext().getInitParameter("jdbcUsername");
-        String jdbcPassword = getServletContext().getInitParameter("jdbcPassword");
+        String jdbcPassword = getServletContext().getInitParameter("jdbcPassword");       
+        */
+        String jdbcURL = "jdbc:mysql://localhost:3306/a2travlendar";
+        String jdbcUsername = "root";
+        String jdbcPassword = "";
         
         /**
          * Instansiasi
@@ -76,6 +80,11 @@ public class TravlendarController extends HttpServlet
                 // TULIS CODE DISINI !!!
                 break;
                 
+            /**
+             * cara akses json 
+             * kunjungi http://localhost:8080/index?action=getlistEvent
+             * dengan ajax
+             */
             case "getlistEvent" : // CONTOH
                 /**
                  * Mendapatkan list event
