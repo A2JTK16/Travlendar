@@ -177,7 +177,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
                 /**
                  * Setter object
                  */
-                int i = 0;
+                int i=0;
                 for (Field attribute : this.classModel.getDeclaredFields()) 
                 {
                     i++;
