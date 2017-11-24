@@ -190,7 +190,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         } 
         catch (SQLException | InstantiationException | IllegalAccessException | SecurityException | IllegalArgumentException ex) 
         {
-             ex.printStackTrace();
+            // ex.printStackTrace();
         }
         
         super.disconnect();
