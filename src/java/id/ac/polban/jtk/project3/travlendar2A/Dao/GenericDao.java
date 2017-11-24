@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  *
@@ -24,18 +26,15 @@ import java.util.List;
 public class GenericDao<T> extends DaoManager implements IDao<T>
 {
     /**
-     * List String dari atribut class objek yang digunakan dao
-     */
-    private List<String> fields;
-    /**
-     * List type dari atribut class objek yang menggunakan dao
-     */
-    private final List<Class<?>> typesoffield;
-    /**
-     * Class yang menggunakan jasa dao ini
+     * Class model yang menggunakan jasa dao ini
      */
     private final Class<T> classModel;
     
+    /**
+     * Set dari nama field class objek yang digunakan dao
+     */
+    private final Set<String> namesOfFields;
+
     /**
      * Konstruktor
      * @param jdbcURL
@@ -53,25 +52,26 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
          * Mengisi class model
          */
         this.classModel = classModel;
+        
         /**
-         * Menyimpan nama nama atribut yang ada dalam class model
-         * dalam List
+         * Menyiman nama atribut kedalam Collection
          */
-        Field[] attrClass;
-        attrClass = classModel.getDeclaredFields();
-        List<String> attributesStr;
-        List<Class<?>> attributesType;
-        attributesStr = new ArrayList<>();
-        attributesType = new ArrayList<>();
+        Set<String> attrStr = new TreeSet();
+        /**
+         * Mendapatkan atribut dari class model
+         * tidak termasuk atribut superclass
+         */
+        Field[] attrClass = this.classModel.getDeclaredFields();
         
         for(Field attribute : attrClass)
         {
             attribute.setAccessible(true); // Mengubah modifier menjadi publik
-            attributesStr.add(attribute.getName());
-            attributesType.add(attribute.getType());
+            attrStr.add(attribute.getName());
         }
-        this.fields = attributesStr;
-        this.typesoffield = attributesType;
+        /**
+         * Assignment
+         */
+        this.namesOfFields = attrStr;
     }
      
     /**
@@ -129,7 +129,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         } 
         catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | IntrospectionException e) 
         {
-            // e.printStackTrace();
+            e.printStackTrace();
             return false;
         }
     }
@@ -158,7 +158,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         
         listObj = new ArrayList<>();
         
-        sql = "SELECT * FROM " + classModel.getSimpleName().toLowerCase();
+        sql = String.join(" ", "SELECT * FROM", classModel.getSimpleName().toLowerCase());
 
         /**
          * Koneksi ke Database
@@ -177,11 +177,11 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
                 /**
                  * Setter object
                  */
-                for (int i=0; i<this.fields.size(); i++) 
+                int i = 0;
+                for (Field attribute : this.classModel.getDeclaredFields()) 
                 {
-                    String attribute = this.fields.get(i);
-                    Class<?> typeof = this.typesoffield.get(i);
-                    this.invokeSetter(objModel, attribute, typeof, rs.getObject(i+1));
+                    i++;
+                    this.invokeSetter(objModel, attribute.getName(), attribute.getType(), rs.getObject(i));
                 }
                 
                 listObj.add(objModel);
@@ -215,23 +215,23 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     /**
      * Menyimpan data ke database
      * 
-     * @param object
+     * @param objModel
      * @return 
      */
     @Override
-    public boolean create(Object object) 
+    public boolean create(Object objModel) 
     {
         boolean isSuccess;
         String sql;
-        int maxLength = this.fields.size();
-        sql = "INSERT INTO " + classModel.getSimpleName() + "( " + this.getFieldsStr() + " ) VALUES ( ";
+        sql = String.join(" ","INSERT INTO",classModel.getSimpleName(),"(",this.getFieldsStr(),") VALUES (");
         
-        for(int i=0; i<maxLength-1; i++)
+        for(int i=1; i<this.namesOfFields.size(); i++)
         {
-            sql += " ? ,";
+            sql = sql.concat(" ? ,");
         }
-        sql += " ? )";
-        System.out.println(sql);
+        sql = sql.concat(" ? )");
+        
+        //System.out.println(sql);
         /**
          * Buat Koneksi ke DBMS
          */
@@ -244,13 +244,22 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         {
             stmt = super.getJdbcConnection().prepareStatement(sql);
             
+            /**
+             * Mendapatkan attribut dari objek objModel
+             */
             int i=0;
-            for(String lst : this.fields)
+            for(String attrName : this.namesOfFields)
             {
                 i++;
-                stmt.setObject(i, this.invokeGetter(object, lst));
+                /**
+                 * Memasukkan atribut ke prepareStatement
+                 */
+                stmt.setObject(i, this.invokeGetter(objModel, attrName));
             }
             
+            /**
+             * Eksekusi update
+             */
             stmt.executeUpdate();
             /**
              * Tutup Statement
@@ -296,9 +305,8 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     {
         boolean isSuccess;
         String sql;
-        int maxLength = this.fields.size();
-        sql = "DELETE FROM " + classModel.getSimpleName() + " WHERE ( " + paramName + " = ? )";
-        
+        int maxLength = this.namesOfFields.size();
+        sql = String.join(" ","DELETE FROM",classModel.getSimpleName(),"WHERE (",paramName,"= ?)");
         /**
          * Buat Koneksi ke DBMS
          */
@@ -340,18 +348,9 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
      */
     public String getFieldsStr() 
     {
-        String fieldStr = String.join(",", this.fields);
+        String fieldStr;
+        fieldStr = String.join(",", this.namesOfFields);
         return fieldStr;
-    }
-
-    /**
-     *  Menyimpan list nama-nama atribute class sesuai database
-     * 
-     *  @param fields the fields to set
-     */
-    public void setFields(List<String> fields) 
-    {
-        this.fields = fields;
     }
     
 }
