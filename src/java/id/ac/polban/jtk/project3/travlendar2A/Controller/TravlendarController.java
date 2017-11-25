@@ -22,7 +22,7 @@ import org.json.JSONArray;
  *
  * @author mufidjamaluddin
  */
-@WebServlet(name = "index", urlPatterns = {"index"})
+@WebServlet(name = "index", urlPatterns = {"/index"})
 public class TravlendarController extends HttpServlet
 {
     /**
