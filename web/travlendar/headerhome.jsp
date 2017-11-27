@@ -30,13 +30,13 @@
             </div> <!--logo-->
             
             <div class="tombol" style="float:right;">
-                            <a href="signup_user.jsp"><div class="sign-up">Create An Account</div></a>                   
+                            <a href="signup.jsp"><div class="sign-up">Create An Account</div></a>                   
             </div>
             
             <div class="tombol" style="float:right;">
                     <div class="sign-in">
                         <button id="myBtn">Sign In</button>
-				<!-- The Modal -->
+			<!-- The Modal -->
 				<div id="myModal" class="modal">
 
 				  <!-- Modal content -->
@@ -51,19 +51,15 @@
 							      <input type="text" placeholder="Username"/>
 							      <input type="password" placeholder="Password"/>
                                                               <br>
-							      <button>Sign In</button>
+							      <button class="b-signin">Sign In</button>
 							    </form>
 							  </div>
 							
 				  </div> <!--modal content-->
 
 				</div>
-
-                    </div>
-            </div>  
-	</div> <!--header-->
         
-         			<script>
+                                <script>
 			
 				function show()
 				{
@@ -98,7 +94,13 @@
 				        modal.style.display = "none";
 				    }
 				}
-			</script>
+			</script>	
+
+                    </div>
+            </div>  
+	</div> <!--header-->
+        
+         			
      
 </div> <!--menu-atas-->
 

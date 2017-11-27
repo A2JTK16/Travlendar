@@ -40,13 +40,6 @@ body{
         padding: 10px;
 }
 
-.wadah2{
-	max-width: 100%;
-	margin: auto;
-	background: linear-gradient(135deg,#043a61,#0471b1 26%,#0985bb 51%,#16a2b1 76%,#22bc9d);
-	overflow: hidden;
-        padding: 10px;
-}
 
 .kotak-deskripsi{
    width: 200px;
@@ -138,12 +131,14 @@ p{
 }
 
 
+
 h1{
-	padding: 3px;
-	margin: 3px;
-	font: 30px Trebuchet MS;
+	padding: 10px;
+	margin: 10px;
+	font: 20px Trebuchet MS;
 	font-weight: bold;
-	color: #0471b1;
+        border-bottom: 3px solid #ff9900;
+	color: #00897b;
 	background: none;
 }
 
@@ -909,6 +904,7 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
   padding: 25px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  overflow: hidden;
 }
 
 .form input {
@@ -923,7 +919,7 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
   font-size: 14px;
 }
 
-.form button {
+.b-signin{  
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
@@ -938,7 +934,29 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
   cursor: pointer;
 }
 
+.b-signup,.b-back{
+  float: right;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 50%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.b-back{
+    background:#1976D2;
+}
+
+
 .form button:hover{color:#f4f4f4;}
+
 
 .plogo img{
     margin-left:55px;
