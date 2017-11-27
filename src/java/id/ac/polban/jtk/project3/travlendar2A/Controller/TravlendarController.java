@@ -10,6 +10,9 @@ import id.ac.polban.jtk.project3.travlendar2A.Dao.IDao;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -127,9 +130,9 @@ public class TravlendarController extends HttpServlet
                 this.responseJson(response, jsonArrObj.toString());
                 break;
                 
-            default:
+           /** default:
                 // TULIS CODE DISINI !!!
-                break;  
+                break;  */
         }
     }
     
@@ -144,42 +147,119 @@ public class TravlendarController extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     {
         String param = request.getParameter("action");
+        boolean isSuccess;
         
         switch(param)
         {
             case "addEvent":
-                // TULIS CODE DISINI !!!
+                Event objEvent = new Event();
+        
+                objEvent.setEvent_id(new Long(request.getParameter("event_id"))); // harusnya auto increment  
+                objEvent.setLocation_id(new Integer(request.getParameter("location_id")));
+                objEvent.setTraveller_id(new Long(1));
+                objEvent.setEvent_name(request.getParameter("name"));
+        
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    
+                try 
+                {
+                    objEvent.setStart_event(new Timestamp( dateFormat.parse(request.getParameter("start")).getTime() ));
+                    objEvent.setEnd_event(new Timestamp( dateFormat.parse(request.getParameter("end")).getTime() ));
+                    
+                    isSuccess = this.eventDao.create(objEvent);
+                } 
+                catch (ParseException ex) 
+                {
+                    Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
+                    isSuccess = false;
+                }
+                
+                if(isSuccess)
+                    this.responseStr(response, "Sukses Menambahkan Event Baru");
+                else
+                    this.responseStr(response, "Gagal Menambahkan Event");  
+        
                 break;
                 
             case "editEvent":
-                // TULIS CODE DISINI !!!
+                objEvent = new Event();
+        
+                objEvent.setEvent_id(new Long(request.getParameter("event_id"))); // harusnya auto increment  
+                objEvent.setLocation_id(new Integer(request.getParameter("location_id")));
+                objEvent.setTraveller_id(new Long(1));
+                objEvent.setEvent_name(request.getParameter("name"));
+        
+                dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    
+                try 
+                {
+                    objEvent.setStart_event(new Timestamp( dateFormat.parse(request.getParameter("start")).getTime() ));
+                    objEvent.setEnd_event(new Timestamp( dateFormat.parse(request.getParameter("end")).getTime() ));
+                    
+                    isSuccess = this.eventDao.edit(objEvent, "event_id", request.getParameter("event_id"));
+                } 
+                catch (ParseException ex) 
+                {
+                    Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
+                    isSuccess = false;
+                }
+                
+                if(isSuccess)
+                    this.responseStr(response, "Sukses Mengedit Event");
+                else
+                    this.responseStr(response, "Gagal Mengedit Event");  
+        
                 break;
                     
             case "deleteEvent":
-                // TULIS CODE DISINI !!!
+                
+                String id = request.getParameter("event_id");
+                
+                isSuccess = this.eventDao.delete("event_id", id);
+                
+                if(isSuccess)
+                    this.responseStr(response, "Sukses Menghapus Event");
+                else
+                    this.responseStr(response, "Gagal Menghapus Event");  
+                
                 break;
                 
             case "registerUser":
-                // TULIS CODE DISINI !!!
+                Traveller traveller = new Traveller();
+                
+                
                 break;
                 
             case "deleteUser":
                 // TULIS CODE DISINI !!!
                 break;
                 
-            case "addUser":
+            case "editUser":
                 // TULIS CODE DISINI !!!
                 break;
                 
             case "addAdmin":
                 // TULIS CODE DISINI !!!
                 break;
+                
+            case "editAdmin":
+                // TULIS CODE DISINI !!!
+                break;
+                
+            case "deleteAdmin":
+                // TULIS CODE DISINI !!!
+                break;
+            /**default:
+                this.responseStr(response, "Maaf! Permintaan Anda Tidak Dapat Dilakukan...");
+                break;*/
         }
-        // TULIS CODE DISINI !!!
     }
     
     /**
      * Menampilkan string teks/html ketika controller beres dipanggil
+     * 
+     * @param response
+     * @param strMessage 
      */
     private void responseStr(HttpServletResponse response, String strMessage)
     {
@@ -197,6 +277,8 @@ public class TravlendarController extends HttpServlet
     
     /**
      * Menampilkan json ketika controller beres dipanggil
+     * @param response
+     * @param strJson 
      */
     private void responseJson(HttpServletResponse response, String strJson)
     {
