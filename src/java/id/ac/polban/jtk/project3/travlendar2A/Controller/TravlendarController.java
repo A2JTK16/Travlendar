@@ -79,6 +79,12 @@ public class TravlendarController extends HttpServlet
         {
             case "findEvent" :
                 // TULIS CODE DISINI !!!
+                String event_id = request.getParameter("event_id");
+                
+                Event event = this.eventDao.getObj("event_id", event_id);
+                
+                jsonArrObj.put(event);
+                this.responseJson(response, jsonArrObj.toString());
                 break;
                 
             /**
@@ -112,6 +118,13 @@ public class TravlendarController extends HttpServlet
                 
             case "findUser":
                 // TULIS CODE DISINI !!!
+                String fullname = request.getParameter("fullname");
+                
+                Traveller traveller = this.travellerDao.getObj("fullname", fullname);
+                
+                //mengirimkan respon ke browser format json
+                jsonArrObj.put(traveller);
+                this.responseJson(response, jsonArrObj.toString());
                 break;
                 
             default:
