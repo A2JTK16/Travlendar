@@ -57,6 +57,22 @@ public class TestCrudEvent
             System.out.println(event.getEvent_id() + " | "+ event.getEvent_name() + " | " + event.getStart_event() + " | " + event.getEnd_event() + " | " + event.getNote());
         });
         //--------------------------------------------------------------------------------------//
+        
+        System.out.println("Test Edit Event");
+        objEvent.setEvent_name("Kerja Kelompok Bareng");
+        objEvent.setNote("APPPPPPPPPPPPPPPPPPP");
+        
+        boolean edit = dao.edit(objEvent, "event_id", "5");
+        if(!edit)
+            System.out.println("Gagal Edit!");
+        
+        list = dao.getList();
+        
+        list.forEach((event) -> {
+            System.out.println(event.getEvent_id() + " | "+ event.getEvent_name() + " | " + event.getStart_event() + " | " + event.getEnd_event() + " | " + event.getNote());
+        });
+        
+        //--------------------------------------------------------------------------------------//
         System.out.println("Test Menghapus Event yang event_id=5");
         boolean delete = dao.delete("event_id", "5");
         if(!delete) System.out.println("Delete gagal");
@@ -66,5 +82,9 @@ public class TestCrudEvent
             System.out.println(event.getEvent_id() + " | "+ event.getEvent_name() + " | " + event.getStart_event() + " | " + event.getEnd_event() + " | " + event.getNote());
         });
         
+        //--------------------------------------------------------------------------------------//
+        System.out.println("Test Menampilkan Event yang event_id=2");
+        Event event = dao.getObj("event_id", "2");
+        System.out.println(event.getEvent_id() + " | "+ event.getEvent_name() + " | " + event.getStart_event() + " | " + event.getEnd_event() + " | " + event.getNote());
     }       
 }
