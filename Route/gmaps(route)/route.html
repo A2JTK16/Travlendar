@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      #map {
+        width: 600px; 
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- Google Maps JS API -->
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <!-- GMaps Library -->
+    <script src="gmaps.js"></script>
+    <script>
+      /* Map Object */
+        //bandung
+        map.travelRoute({
+  origin: [-12.044012922866312, -77.02470665341184],
+  destination: [-12.090814532191756, -77.02271108990476],
+  travelMode: 'driving',
+  step: function(e) {
+    $('#instructions').append('<li>'+e.instructions+'</li>');
+    $('#instructions li:eq(' + e.step_number + ')').delay(450 * e.step_number).fadeIn(200, function() {
+      map.drawPolyline({
+        path: e.path,
+        strokeColor: '#131540',
+        strokeOpacity: 0.6,
+        strokeWeight: 6
+      });
+    });
+  }
+});
+
+    </script>
+  </body>
+</html>
