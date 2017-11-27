@@ -8,6 +8,7 @@ package id.ac.polban.jtk.project3.travlendar2A.Controller;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.GenericDao;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.IDao;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,7 +30,7 @@ public class TravlendarController extends HttpServlet
      * Atribut
      */
     IDao<Event> eventDao;
-    
+    IDao<Traveller> travellerDao;
     /**
      * Method yang akan dipanggil ketika servlet dihidupkan
      */
@@ -52,7 +53,7 @@ public class TravlendarController extends HttpServlet
          */
         
         this.eventDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Event.class);
-        
+        this.travellerDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Traveller.class);
     }
     
     /**
@@ -104,6 +105,9 @@ public class TravlendarController extends HttpServlet
                 
             case "getlistUser" :
                 // TULIS CODE DISINI !!!
+                List<Traveller> listTraveller = this.travellerDao.getList();
+                jsonArrObj.put(listTraveller);
+                this.responseJson(response, jsonArrObj.toString());
                 break;
                 
             case "findUser":
