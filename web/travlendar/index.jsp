@@ -15,6 +15,7 @@
     <body>
         
         <%@include file="headerhome.jsp" %>
+        
            <div class="wadah3">
                <div class="kotak-deskripsi">
                <div class="deskripsi">Make Your Plan be Better.</div>
