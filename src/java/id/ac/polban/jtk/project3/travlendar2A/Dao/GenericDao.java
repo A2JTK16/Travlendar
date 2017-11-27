@@ -6,8 +6,8 @@
 package id.ac.polban.jtk.project3.travlendar2A.Dao;
 
 import java.beans.IntrospectionException;
+import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,6 +36,10 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
      */
     private final String fieldsStr;
     /**
+     * List untuk menyimpan property dari class model
+     */
+    private List<PropertyDescriptor> propertyClass;
+    /**
      * Konstruktor
      * @param jdbcURL
      * @param jdbcUsername
@@ -53,42 +57,63 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
          */
         this.classModel = classModel;
         /**
-         * Mendapatkan String nama-nama atribut yang dipisah oleh koma
+         * Mendapatkan String nama-nama atribut yang dipisah oleh delimiter koma
          */
-        StringJoiner joiner = new StringJoiner(",");
-        
-        for(Field attribute : this.classModel.getDeclaredFields()) 
+        StringJoiner joiner = new StringJoiner(", ");
+        try
         {
-            joiner.add(attribute.getName());
+            /**
+             * Mendapatkan propery Class
+             */
+            PropertyDescriptor[] props = Introspector.getBeanInfo(classModel).getPropertyDescriptors();
+            this.propertyClass = new ArrayList<>();
+
+            for(PropertyDescriptor property : props) 
+            {
+                if(!property.getName().equals("class"))
+                {
+                    /**
+                     * Join nama-namanya dengan delimiter koma
+                     */
+                    joiner.add(property.getName());
+                    /**
+                     * Menambahkan property ke ArrayList
+                     */
+                    this.propertyClass.add(property);
+                }
+            }
         }
-        
+        catch (IntrospectionException e)
+        {
+            e.printStackTrace();
+            this.propertyClass = null;
+        }
+
+        /**
+         * Menyimpah string hasil join
+         */
         this.fieldsStr = joiner.toString();
-    }
-     
+}
+    
     /**
      * Method untuk mengeksekusi setter method suatu objek
      * 
-     * @param obj
-     * @param variableName
-     * @param variableValue 
+     * @param objPropertyDescriptor sebagai property dari class
+     * @param targetObj sebagai target objek yang akan disetter
+     * @param attributeValue sebagai nilai yang akan dimasukkan
      */
-    private void invokeSetter(Object obj, String attributeName, Class<?> attributeType, Object attributeValue)
+    private void invokeSetter(PropertyDescriptor objPropertyDescriptor, Object targetObj, Object attributeValue)
     {
         /* attributeValue menggunakan objek Object karena dapat menggunakan Integer, String, etc... */
         try 
         {
             if(attributeValue != null)
             {
-                /**
-                 * Mendapatkan objek PropertyDescriptor menggunakan nama atribut dan class
-                 * Note: Untuk menggunakan PropertyDescriptor untuk field/atribute, field/atribute harus mempunyai `Setter` dan `Getter` method.
-                 */
-                PropertyDescriptor objPropertyDescriptor = new PropertyDescriptor(attributeName, obj.getClass());
                 /*  Set field/variable nilai menggunakan getWriteMethod() */
-                objPropertyDescriptor.getWriteMethod().invoke(obj, attributeType.cast(attributeValue));           
+                objPropertyDescriptor.getWriteMethod().invoke(targetObj, objPropertyDescriptor.getPropertyType().cast(attributeValue));
             }
         }
-        catch (IntrospectionException | IllegalAccessException | InvocationTargetException ex) 
+        catch (IllegalAccessException | InvocationTargetException ex) 
         {
              ex.printStackTrace();
         }
@@ -96,35 +121,30 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     
     /**
      * Mendapatkan objek atribut dari Getter suatu objek
-     * 
-     * @param obj
-     * @param attributeName
-     * @return 
+     *
+     * @param objPropertyDescriptor sebagai property
+     * @param sourceObj sebagai objek sumber yg akan digetter salahsatu propertynya
+     * @return nilai object
      */
-    private Object invokeGetter(Object obj, String attributeName)
+    private Object invokeGetter(PropertyDescriptor objPropertyDescriptor, Object sourceObj)
     {
         try 
         {
-            /**
-            * Mendapatkan objek PropertyDescriptor menggunakan nama atribut dan class
-            * Note: Untuk menggunakan PropertyDescriptor untuk field/atribute, field/atribute harus mempunyai `Setter` dan `Getter` method.
-            */
-            PropertyDescriptor objPropertyDescriptor = new PropertyDescriptor(attributeName, obj.getClass());
-            /**
+           /**
             * Mendapatkan nilai field/atribut using getReadMethod()
             * attributeValue menggunakan objek Object karena dapat menggunakan Integer, String, etc... 
             */
-            Object attributteValue = objPropertyDescriptor.getReadMethod().invoke(obj);
+            Object attributteValue = objPropertyDescriptor.getReadMethod().invoke(sourceObj);
             
             return attributteValue;
         } 
-        catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | IntrospectionException e) 
+        catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) 
         {
             e.printStackTrace();
             return false;
         }
     }
-      
+    
     /**
      * Mendapatkan list objek T dari database
      * @return 
@@ -132,6 +152,11 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     @Override
     public List<T> getList() 
     {
+        /**
+         * Jika propertynya tdk diset
+         */
+        if(this.propertyClass == null)
+            return null;
         /**
          * List penampung data dari database
          */
@@ -149,7 +174,9 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         
         listObj = new ArrayList<>();
         
-        sql = String.format("SELECT * FROM %s", this.classModel.getSimpleName().toLowerCase());
+        //sql = String.format("SELECT * FROM %s", this.classModel.getSimpleName().toLowerCase());
+        sql = String.join(" ", "SELECT", this.getFieldsStr(), "FROM", this.classModel.getSimpleName().toLowerCase());
+        //System.out.println(sql);
         /**
          * Koneksi ke Database
          */
@@ -159,20 +186,23 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         {
             stmt = super.getJdbcConnection().createStatement();
             rs = stmt.executeQuery(sql);
-            
+                    
             while(rs.next())
             {
                 objModel = (T) classModel.newInstance();
-      
+                
                 /**
                  * Setter object
                  */
-                int i=0;
-                for (Field attribute : this.classModel.getDeclaredFields()) 
+                //int i=0;
+                //for (Field attribute : this.classModel.getDeclaredFields()) 
+                for (PropertyDescriptor descriptor : propertyClass) 
                 {
-                    i++;
-                    attribute.setAccessible(true);
-                    this.invokeSetter(objModel, attribute.getName(), attribute.getType(), rs.getObject(i));
+                    //i++;
+                    //attribute.setAccessible(true);
+                    //this.invokeSetter(objModel, attribute.getName(), attribute.getType(), rs.getObject(i));
+                    //attribute.set(objModel, attribute.getType().cast(rs.getObject(i)));
+                    this.invokeSetter(descriptor, objModel, rs.getObject(descriptor.getName()));
                 }
                 
                 listObj.add(objModel);
@@ -192,6 +222,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     /**
      * Mendapatkan data dari database berdasarkan paramName
      * 
+     * @author Reza Dwi Kurniawan
      * @param paramName
      * @param paramValue
      * @return 
@@ -199,31 +230,51 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     @Override
     public T getObj(String paramName, String paramValue) 
     {        
+        /**
+         * Jika propertynya tdk diset
+         */
+        if(this.propertyClass == null)
+            return null;
+        /**
+         * Model Objek
+         */
         T objModel = null;
+        /**
+         * SQL nya
+         */
         String sql;
         ResultSet rs;
         PreparedStatement stmt;
         
-        sql = String.format("SELECT * FROM %s WHERE %s = ? ", this.classModel.getSimpleName().toLowerCase(), paramName);
-        
+        //sql = String.format("SELECT * FROM %s WHERE %s = ? ", this.classModel.getSimpleName().toLowerCase(), paramName);
+        sql = String.join(" ", "SELECT", this.getFieldsStr(), "FROM", this.classModel.getSimpleName().toLowerCase(),"WHERE", paramName, "= ?");
+        //System.out.println(sql);
         super.connect();
         
-        try {
+        try 
+        {
             stmt = super.getJdbcConnection().prepareStatement(sql);
             stmt.setString(1, paramValue);
             rs = stmt.executeQuery();
-                        
-            objModel = (T) classModel.newInstance();
-            int i = 0;
-            for (Field attribute : this.classModel.getDeclaredFields()){
-                i++;
-                attribute.setAccessible(true);
-                this.invokeSetter(objModel, attribute.getName(), attribute.getType(), rs.getObject(i));
-            }            
-            
+            while(rs.next())
+            {
+                objModel = (T) classModel.newInstance();
+                //int i = 0;
+                //for (Field attribute : this.classModel.getDeclaredFields()){
+                for (PropertyDescriptor descriptor : propertyClass) 
+                {
+                    //i++;
+                    //attribute.setAccessible(true);
+                    //this.invokeSetter(objModel, attribute.getName(), attribute.getType(), rs.getObject(i));
+                    this.invokeSetter(descriptor, objModel, rs.getObject(descriptor.getName()));
+                }            
+            }
             stmt.close();            
-        } catch (SQLException | InstantiationException | IllegalAccessException ex) {
-            Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        catch (SQLException | InstantiationException | IllegalAccessException ex) 
+        {
+            //Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         
         super.disconnect();
@@ -240,12 +291,20 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     @Override
     public boolean create(Object objModel) 
     {
+        /**
+         * Jika propertynya tdk diset
+         */
+        if(this.propertyClass == null)
+            return false;
+        
         boolean isSuccess;
         String sql;
         StringBuilder sb;
         
         sb = new StringBuilder();
-        
+        /**
+         * Query
+         */
         sb.append("INSERT INTO ");
         sb.append(this.classModel.getSimpleName().toLowerCase());
         sb.append(" ( ");
@@ -275,14 +334,17 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
              * Mendapatkan attribut dari objek objModel
              */
             int i=0;
-            for(Field field : this.classModel.getDeclaredFields())
+            //for(Field field : this.classModel.getDeclaredFields())
+            for (PropertyDescriptor descriptor : propertyClass) 
             {
                 i++;
                 /**
                  * Memasukkan atribut ke prepareStatement
                  */
-                field.setAccessible(true);
-                stmt.setObject(i, this.invokeGetter(objModel, field.getName()));
+                //field.setAccessible(true);
+                //stmt.setObject(i, this.invokeGetter(objModel, field.getName()));
+                //stmt.setObject(i, field.get(objModel));
+                stmt.setObject(i, this.invokeGetter(descriptor, objModel));
             }
             
             /**
@@ -296,9 +358,9 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
             
             isSuccess = true;
         } 
-        catch (SQLException ex) 
+        catch (SQLException | IllegalArgumentException ex)
         {
-           // Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
             isSuccess = false;
         }
         super.disconnect();
@@ -318,19 +380,21 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     public boolean edit(Object object, String paramName, String paramValue) 
     {
         String sql;        
-        int j = 0;
         StringBuilder sb = new StringBuilder();
+        boolean isSuccess; // sukses tidaknya edit
         
         sb.append("UPDATE ");
         sb.append(this.classModel.getSimpleName().toLowerCase());
         sb.append(" SET ");
-        for (int i=0; i<this.getFieldsStr().length()-1;i++){
-            sb.append(this.getFieldsStr().indexOf(i));
+        //for (int i=0; i<this.getFieldsStr().length()-1;i++){
+        for (PropertyDescriptor descriptor : propertyClass)
+        {
+            sb.append(descriptor.getName());
             sb.append(" = ? ,");
-            j++;
         }
-        sb.append(this.getFieldsStr().indexOf(j));
-        sb.append(" = ? ");
+      
+        sb.delete(sb.length()-1, sb.length()); // hapus koma
+        
         sb.append(" WHERE ");
         sb.append(paramName);
         sb.append(" = ? ");
@@ -340,23 +404,39 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         super.connect();
         
         PreparedStatement stmt;
-        try {
+        
+        try 
+        {
             stmt = super.getJdbcConnection().prepareStatement(sql);
-            stmt.setString(j+1, paramValue);
-            int i = 0;
-            for (Field field : this.classModel.getDeclaredFields()){
-                i++;
-                field.setAccessible(true);
-                stmt.setObject(i, this.invokeGetter(object, field.getName()));
+            
+            for (int i=0; i<this.propertyClass.size(); i++)
+            {
+                PropertyDescriptor property = this.propertyClass.get(i);
+                stmt.setObject(i+1, this.invokeGetter(property, object));
             }
+            
+            stmt.setString(this.propertyClass.size()+1, paramValue);
+            //int i = 0;
+            //for (Field field : this.classModel.getDeclaredFields())
+            this.propertyClass.forEach((descriptor) -> {
+                //i++;
+                //field.setAccessible(true);
+                //stmt.setObject(i, this.invokeGetter(object, field.getName()));
+                this.invokeGetter(descriptor, object);
+            });
+            
             stmt.executeUpdate();
             stmt.close();
-        } catch (SQLException ex) {
+            isSuccess = true;
+        } 
+        catch (SQLException ex) 
+        {
             Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
+            isSuccess  = false;
         }
         super.disconnect();
         
-        return false;
+        return isSuccess;
     }
     
     /**
