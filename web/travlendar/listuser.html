@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>List User</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- JQuery Library -->
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
+    </head>
+    <body>
+        <h1>List Data Traveller</h1>
+        <table id="tableEvent">
+            <thead>
+		<tr>
+                    <th>Name</th>
+                    <th>Fullname</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Address</th>
+		</tr>
+            </thead>
+            <tbody>
+                <!-- isi table diisi oleh JavaScript dengan data dari Controller -->
+            </tbody>				
+        </table>
+        
+        <script>
+        $(document).ready(function(){
+            
+            $.get("http://localhost:8080/Travlendar2A/index?action=getlistUser", function(responseJson) 
+                    {          // Eksekusi URL Controller
+                        $.each(responseJson, function(index, user) {    // Loop pakai Json
+                            for(i=0; i<user.length; i++)
+                            {
+                                var row = '<tr><td>'+ user[i].traveller_name +'</td><td>'+ user[i].traveller_fullname +'</td><td>' + user[i].traveller_email +'</td></tr>'+ user[i].traveller_password+'</td></tr>'+ user[i].traveller_address+'</td></tr>';
+                                $('#tableEvent > tbody').append(row);
+                                
+                            }
+                        });
+                    });       
+            
+            });  
+        </script>
+    </body>
+</html>
