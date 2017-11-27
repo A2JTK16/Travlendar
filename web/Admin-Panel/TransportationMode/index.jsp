@@ -77,10 +77,12 @@
                                                         <td><c:out value="${modaTrans.getNamaTransportasi()}"/></td>
                                                         <td><c:out value="${modaTrans.getKecepatan()}"/> km/h</td>
                                                         <td><a class="action" href="${pageContext.request.contextPath}/Admin-Panel/TransportationMode/edit.jsp">Edit</a>
-                                                             <form  action = "${pageContext.request.contextPath}/Admin-Panel/moda?input=delete" method="post">
+                                                            <form  action = "${pageContext.request.contextPath}/Admin-Panel/moda?input=delete" method="post">
                                                                 <input type="hidden" name="kd_trans" value="${modaTrans.getKodeTransportasi()}">
                                                                 <input class="action2" type="submit" value="Delete">
-                                                        </form>
+                                                            </form>
+                                                        </td>
+                              
                                                           
                                                     </tr>
                                                 </c:forEach>
