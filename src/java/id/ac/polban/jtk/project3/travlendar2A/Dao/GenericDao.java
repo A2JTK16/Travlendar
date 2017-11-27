@@ -16,6 +16,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -196,9 +198,37 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
      */
     @Override
     public T getObj(String paramName, String paramValue) 
-    {
-        // WRITE CODE HERE!
-        return null;  
+    {        
+        T objModel = null;
+        String sql;
+        ResultSet rs;
+        PreparedStatement stmt;
+        
+        sql = String.format("SELECT * FROM %s WHERE %s = ? ", this.classModel.getSimpleName().toLowerCase(), paramName);
+        
+        super.connect();
+        
+        try {
+            stmt = super.getJdbcConnection().prepareStatement(sql);
+            stmt.setString(1, paramValue);
+            rs = stmt.executeQuery();
+                        
+            objModel = (T) classModel.newInstance();
+            int i = 0;
+            for (Field attribute : this.classModel.getDeclaredFields()){
+                i++;
+                attribute.setAccessible(true);
+                this.invokeSetter(objModel, attribute.getName(), attribute.getType(), rs.getObject(i));
+            }            
+            
+            stmt.close();            
+        } catch (SQLException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        super.disconnect();
+        
+        return objModel;  
     }
     
     /**
@@ -287,7 +317,45 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     @Override
     public boolean edit(Object object, String paramName, String paramValue) 
     {
-        // TULIS CODE DISINI !!!
+        String sql;        
+        int j = 0;
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("UPDATE ");
+        sb.append(this.classModel.getSimpleName().toLowerCase());
+        sb.append(" SET ");
+        for (int i=0; i<this.getFieldsStr().length()-1;i++){
+            sb.append(this.getFieldsStr().indexOf(i));
+            sb.append(" = ? ,");
+            j++;
+        }
+        sb.append(this.getFieldsStr().indexOf(j));
+        sb.append(" = ? ");
+        sb.append(" WHERE ");
+        sb.append(paramName);
+        sb.append(" = ? ");
+        
+        sql = sb.toString();
+        
+        super.connect();
+        
+        PreparedStatement stmt;
+        try {
+            stmt = super.getJdbcConnection().prepareStatement(sql);
+            stmt.setString(j+1, paramValue);
+            int i = 0;
+            for (Field field : this.classModel.getDeclaredFields()){
+                i++;
+                field.setAccessible(true);
+                stmt.setObject(i, this.invokeGetter(object, field.getName()));
+            }
+            stmt.executeUpdate();
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        super.disconnect();
+        
         return false;
     }
     

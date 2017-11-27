@@ -101,5 +101,4 @@ public class PagingListIntHelper
 
         return listPg;
     }
-
 }

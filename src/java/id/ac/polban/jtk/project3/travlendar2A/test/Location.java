@@ -86,8 +86,5 @@ public class Location
      */
     public void setDesc(String desc) {
         this.desc = desc;
-    }
-
-    
-  
+    }      
 }
