@@ -39,10 +39,10 @@ public class TestCrudEvent
         
         Event objEvent = new Event();
         
-        objEvent.setEvent_id(new Long(5));
+        objEvent.setEvent_id(new Long("5"));
         objEvent.setEvent_name("Kerja Kelompok");
         objEvent.setLocation_id(1);
-        objEvent.setTraveller_id(new Long(1));
+        objEvent.setTraveller_id(new Long("1"));
         
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         
