@@ -7,6 +7,7 @@ package id.ac.polban.jtk.project3.travlendar2A.Controller;
 
 import id.ac.polban.jtk.project3.travlendar2A.Dao.GenericDao;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.IDao;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Admin;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
 import java.io.IOException;
@@ -34,6 +35,7 @@ public class TravlendarController extends HttpServlet
      */
     IDao<Event> eventDao;
     IDao<Traveller> travellerDao;
+    IDao<Admin> adminDao;
     /**
      * Method yang akan dipanggil ketika servlet dihidupkan
      */
@@ -57,6 +59,7 @@ public class TravlendarController extends HttpServlet
         
         this.eventDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Event.class);
         this.travellerDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Traveller.class);
+        this.adminDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Admin.class);
     }
     
     /**
@@ -232,6 +235,15 @@ public class TravlendarController extends HttpServlet
                 
             case "deleteUser":
                 // TULIS CODE DISINI !!!
+                String traveller_id = request.getParameter("traveller_id");
+                
+                isSuccess = this.travellerDao.delete("traveller_id", traveller_id);
+                
+                if(isSuccess)
+                    this.responseStr(response, "Sukses Menghapus User");
+                else
+                    this.responseStr(response, "Gagal Menghapus User");  
+                
                 break;
                 
             case "editUser":
@@ -248,6 +260,16 @@ public class TravlendarController extends HttpServlet
                 
             case "deleteAdmin":
                 // TULIS CODE DISINI !!!
+                String username = request.getParameter("username");
+                
+                isSuccess = this.adminDao.delete("username", username);
+                
+                if(isSuccess)
+                    this.responseStr(response, "Sukses Menghapus Admin");
+                else
+                    this.responseStr(response, "Gagal Menghapus Admin");  
+                
+            
                 break;
             /**default:
                 this.responseStr(response, "Maaf! Permintaan Anda Tidak Dapat Dilakukan...");
