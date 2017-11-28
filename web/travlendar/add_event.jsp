@@ -1,4 +1,4 @@
- <%-- 
+<%-- 
     Document   : add_event
     Created on : Nov 17, 2017, 4:55:25 PM
     Author     : Lenovo
@@ -90,9 +90,10 @@
 
 	<div class="container-t">
 	<div class="tab">
+                          <button class="tablinks" onclick="openCity(event, 'Paris')">Month</button>
+                          <button class="tablinks" onclick="openCity(event, 'Hari')">Day</button>
+			  <button class="tablinks" onclick="openCity(event, 'Paris')">List Event</button>
 			  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Add New Event</button>
-			  <button class="tablinks" onclick="openCity(event, 'Paris')">View List Event</button>
-			  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Calendar Event</button>
 			  <!--<input class="search-ev" type="text" placeholder="Search Event ... "/>-->
 	</div>
 	</div> <!--container-t-->
@@ -102,27 +103,59 @@
         <div class="induk2">
 
             <div class="container">
+                
+                <div id="Hari" class="tabcontent">
+                                        <table id="tableEvent">
+						<thead>
+						<tr>
+						    <th>Time</th>
+                                                    <th>Evnet Name</th>
+                                                    <th>Use</th>
+                                                    <th>At</th>
+                                                    <th>Location</th>
+                                                    <th> Note </th>
+						</tr>
+						</thead>
+                                                
+                                                <tr>
+                                                    <td> </td>
+                                                    <td> </td>
+                                                    <td> </td>
+                                                    <td> </td>
+                                                    <td> </td>
+                                                    <td> </td>
+                                                </tr>
+						<tbody>
+                                                	
+						
+						</tbody>
+					</table>
+		</div>
+
 
 		<div id="London" class="tabcontent">
 		  <input class="ev-name" id="desc" type="text" placeholder="What Your Event ??.. "/>
 
 			<div class="main">
 				<div class="left">
-					<input class="ev" id="orig" type="text" placeholder="Origin ...">
-					<div class="text-ev"> Start Event </div>
-					<input class="tgl-ev" id="date" type="date" value="2017-09-08">
+					<input class="ev" id="orig" type="text" placeholder="Event Location ...">
+					<div class="text-ev"> From </div>
+					<input class="tgl-ev" id="date" type="date" value="2017-11-28">
 					<input class="time-ev" id="time" type="time" value="00:00"/>
+                                        <div class="text-ev"> Departure Time </div>
+                                        <input class="time-ev" id="dist" type="time" value="00:00"/>
 				</div>
 				
 				
 				<div class="right">
-					<input class="ev" id="dest" type="text" placeholder="Destination ...">
-					<div class="text-ev"> End Event </div>
-					<input class="tgl-ev" id="date" type="date" value="2017-09-08">
+					<input class="ev" id="dest" type="text" placeholder="Previeous Location ...">
+					<div class="text-ev"> Until </div>
+					<input class="tgl-ev" id="date" type="date" value="2017-11-28">
                                         <input class="time-ev" id="time" type="time" value="00:00"/>
-                                        <div class="text-ev"> Distance </div>
-                                        <input class="time-ev" id="dist" type="text" placeholder="Km ..."/>
+                                        
 				</div>
+                                 
+                            <input class="ev-name" id="desc" type="text" placeholder="Note .. " style="height:75px;"/>
                             
                                  <div class="i-save" >
                 <button class="save-ev" id="myBtn">Submit</button>
@@ -139,6 +172,7 @@
                                                               
 							    </div>
                                                               <div class="k-popup">
+                                                                  <form action="#" method="POST">
                                                                   <div class="k-transport">
                                                                       <div class="trans"> <img src="icon/air2.png"> </div>
                                                                       <br> ⭙
@@ -158,8 +192,10 @@
                                                                    <div class="k-transport">
                                                                       <div class="trans"> <img src="icon/walk.png"> </div>
                                                                       <div class="radiona"><input type="radio" name="transtime" value="walktime"> 4h 15m</div>
-                                                                  </div>                                                                  
+                                                                  </div>
+                                                                  
                                                                   <button id="TombolSave">Save</button>
+                                                                  </form>
                                                               </div>
 							    
 							  </div>
@@ -174,22 +210,22 @@
 		</div>
                 
 		<div id="Paris" class="tabcontent">
-                    <button id="viewList">View List</button>
+                    <button id="viewList">View</button>
                                         <table id="tableEvent">
 						<thead>
 						<tr>
-							<th>Event Name</th>
-                                                        <th>Latitude</th>
-                                                        <th>Longitude</th>
-						</tr>
+						    <th>Event Name</th>
+                                                    <th>Date & Time</th>
+                                                    <th>Use</th>
+                                                    <th>At</th>
+                                                    <th>Location</th>
+                                                    <th>Action</th>
+						</tr>   
 						</thead>
-						<tbody>
-                                                 
-                                               
-                                                                                                         
-                                                                                                   
-                                                    
-							
+                                                
+                                                <tbody>
+                                                
+	
 						
 						</tbody>
 					</table>

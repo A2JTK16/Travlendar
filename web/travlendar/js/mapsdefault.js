@@ -114,6 +114,8 @@
                                         alert("Error: " + status);
                                     }
                                 }
+                                
+                             
 
                             } // tutup fungsi e ketika klik
 		}); // tutup instansiasi gmaps         
@@ -144,7 +146,7 @@
                     if(m2 !== null)
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8080/Travlendar2A/json",
+                            url: "http://localhost:8084/Travlendar2A/json",
                             dataType:'JSON',
                             //   data: {listjson: JSON.stringify(listJson)},
                             data: {latitude: m2pos.lat(), longitude: m2pos.lng(), desc: document.getElementById("desc").value},
@@ -165,7 +167,7 @@
                         alert("Mohon klik tujuan anda!");
                 });
                 
-                
+                               
                 $('#viewList').click(function(){
                     
                     if(m1 !== null)
@@ -174,14 +176,15 @@
                         mapObj.removeMarker(m2);
                     mapObj.removePolylines();
                     
-                    $.get("http://localhost:8080/Travlendar2A/json", function(responseJson) 
+                    $.get("http://localhost:8084/Travlendar2A/json", function(responseJson) 
                     {          // Eksekusi URL Controller
                         $.each(responseJson, function(index, location) {    // Loop pakai Json
                             for(i=0; i<location.length; i++)
                             {
                                 path.push([location[i].lat, location[i].lng]);
-                                
-                                var row = '<tr><td>'+ location[i].desc +'</td><td>'+ location[i].lat +'</td><td>' + location[i].lng +'</td></tr>';
+                                var descPPP = new google.maps.LatLng(location[i].lat, location[i].lng);
+                                var row = '<tr><td>'+ location[i].desc +'</td><td> 2017-11-28 1' + i +':00 </td><td> </td><td> </td></td>'+'</td><td>'+ descPPP.toString() +'</td><td> \n\
+                                <a href="view-more.jsp"><button class="v-more"> View More </button></a> <button class="v-del"> Delete </button></td></tr>';
                                 $('#tableEvent > tbody').append(row);
                                 
                                 mapObj.addMarker({
