@@ -248,14 +248,55 @@ public class TravlendarController extends HttpServlet
                 
             case "editUser":
                 // TULIS CODE DISINI !!!
+                 Traveller objTraveller = new Traveller();
+        
+                objTraveller.setTraveller_id(new Long(request.getParameter("traveller_id"))); // harusnya auto increment  
+                objTraveller.setTraveller_name(new String(request.getParameter("name")));
+                objTraveller.setTraveller_email(new String(request.getParameter("email")));
+                objTraveller.setTraveller_fullname(new String(request.getParameter("fullname")));
+                
+    
+                isSuccess = this.travellerDao.edit(objTraveller, "traveller_id", request.getParameter("traveller_id"));
+                
+                if(isSuccess)
+                    this.responseStr(response, "Sukses Mengedit User");
+                else
+                    this.responseStr(response, "Gagal Mengedit User");  
+                
                 break;
                 
             case "addAdmin":
                 // TULIS CODE DISINI !!!
+                Admin objAdmin = new Admin();
+        
+                objAdmin.setUsername(new String(request.getParameter("username"))); 
+                objAdmin.setPassword(new String(request.getParameter("password")));
+                objAdmin.setFullname(new String(request.getParameter("fullname")));
+                objAdmin.setEmail(new String(request.getParameter("email")));
+    
+                isSuccess = this.adminDao.create(objAdmin);
+                
+                if(isSuccess)
+                    this.responseStr(response, "Sukses Menambahkan Admin Baru");
+                else
+                    this.responseStr(response, "Gagal Menambahkan Admin");  
                 break;
                 
             case "editAdmin":
                 // TULIS CODE DISINI !!!
+                objAdmin = new Admin();
+        
+                objAdmin.setUsername(new String(request.getParameter("username"))); 
+                objAdmin.setPassword(new String(request.getParameter("password")));
+                objAdmin.setFullname(new String(request.getParameter("fullname")));
+                objAdmin.setEmail(new String(request.getParameter("email")));
+    
+                isSuccess = this.adminDao.edit(objAdmin, "username",request.getParameter("username") );
+                
+                if(isSuccess)
+                    this.responseStr(response, "Sukses Mengedit Admin");
+                else
+                    this.responseStr(response, "Gagal Mengedit Admin");  
                 break;
                 
             case "deleteAdmin":
