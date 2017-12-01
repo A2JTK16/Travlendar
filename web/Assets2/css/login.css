@@ -1,0 +1,349 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 2, 2017, 9:36:17 PM
+    Author     : Lenovo
+*/
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+
+body{
+        height: 600px;
+	background: linear-gradient(135deg,#043a61,#0471b1 26%,#0985bb 51%,#16a2b1 76%,#22bc9d);
+	font-family: 'Helvetica', arial, sans-serif;
+	font-size: 15px;
+}
+
+h1{
+	padding: 2px;
+	margin: 2px;
+	font: 35px Arial;
+	font-weight: bold;
+	color: #1976D2;
+	text-align: center;
+}
+
+strong{
+	padding: 2px;
+	margin: 2px;
+	float: left;
+	color: #33691E;
+}
+
+.tah{
+	padding: 2px;
+	margin: 2px;
+	float: left;
+	color: #9E9E9E;
+}
+
+h2{
+	padding: 7px;
+	margin: 7px;
+	font: 20px Arial;
+	font-weight: bold;
+	color: #fafafa;
+	text-align: center;
+}
+
+.text-footer{
+	font: 20px Arial;
+	font-weight: bold;
+	color: #fafafa;
+}
+
+.text-cpy{
+	font: 14px Arial;
+	font-weight: bold;
+	color: #fafafa;
+}
+
+.text-cpy a{
+	color: #E65100;
+}
+
+p{
+	padding: 4px;
+	margin: 4px;
+	line-height: 1.5em;
+	font: 14px Arial;
+	font-weight: bold;
+	color: #E0E0E0;
+}
+
+.desk{
+	padding: 4px;
+	margin: 4px;
+	font: 14px Arial;
+	text-align: justify;
+	line-height: 1.7em;
+	color: #E0E0E0;
+}
+
+a{
+	text-decoration: none;
+	color: #333;
+}
+a:hover{
+	color: #666;
+}
+
+
+
+#myBtn, #SignUp{
+	float: left;
+	padding: 8px;
+	margin: 8px;
+	width: 100px;
+	font: 16px Arial;
+	font-weight: bold;
+	color: #fafafa;
+	background: #4CAF50;
+	border: none;
+	border-radius: 0.2em;
+}
+
+#SignUp{
+	background: #448AFF;
+}
+
+/* =============================================================================== */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+	padding: 10px;
+	padding-top: 80px;
+   	margin: 10px auto;
+    bottom: 0;
+    background-color: transparent;
+    width: auto;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background: linear-gradient(135deg,#043a61,#0471b1 26%,#0985bb 51%,#16a2b1 76%,#22bc9d);
+    color: white;
+}
+
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+
+/*================================================================================ */
+
+
+
+/*================================================================================ */
+
+
+
+
+.imgover{
+  position: relative;
+  float: left;
+  max-width: 450px;
+  height: auto;
+  border-radius: 0.2em;
+  overflow: hidden;
+}
+
+.imageoverna{
+  display: block;
+  width: 100%;
+  height: 300px;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-color: #008CBA;
+  overflow: hidden;
+  width: 100%;
+  height:0;
+  transition: .5s ease;
+}
+
+.imgover:hover .overlay {
+  bottom: 0;
+  height: 100%;
+}
+
+.text {
+  white-space: nowrap; 
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+ }
+
+
+
+/* =============================================================================== */
+
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}
+
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+.form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.form .register-form {
+  display: none;
+}
+
+
+.notif-login{
+    width: 400px;
+    padding: 30px;
+    margin: 30px auto;
+    overflow: hidden;
+    background: #f4f4f4;
+    border-radius: 0.3em;
+    font: 16px Arial;
+    color: #757575;
+}
+
+.gagal{
+    padding: 3px;
+    margin: 3px;
+    font: 18px Arial;
+    font-weight: bold;
+    color: #F44336;
+}
+
+.try-again{
+    padding: 2px;
+    margin: 2px;
+    font: 20px Arial;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.sukses{
+    padding: 2px;
+    margin: 2px;
+    font: 20px Arial;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+
+
+
+
+

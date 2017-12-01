@@ -10,8 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/styletraveller.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/responsive.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets/css/styletraveller.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets/css/responsive.css">
 <title>JSP Page</title>
 <meta charset='utf-8' />
 <link href='fullcalendar.min.css' rel='stylesheet' />
@@ -22,21 +22,39 @@
 <script>
 
 	$(document).ready(function() {
-                
-		$('#calendar').fullCalendar({
+		
+            $.ajax({
+                dataType : "json",
+                contentType : "application/json",
+                url: "/Travlendar2A/index?action=getlistEvent",
+                asynx: false,
+                success: function(data)
+                {
+                    $('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
 				center: 'title',
 				right: 'month,agendaWeek,agendaDay,listWeek'
 			},
-			defaultDate: '2017-09-12',
+			defaultDate: '2009-09-22',
 			navLinks: true, // can click day/week names to navigate views
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
-			events: ${jsonList}
-		});
-		
-	});
+			events: $.map(data, function(item,i)
+                                {
+                                    var event = new Object();
+                                    event.title = item.title;
+                                    event.start = moment(item.start).utc();
+                                    event.end = moment(item.end).utc();
+                                    event.id = item.id;
+                                    
+                                    return event;
+                                })
+                    
+                        });
+                }   
+            });
+        });	
 
 </script>
 <style>

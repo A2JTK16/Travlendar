@@ -6,15 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/styletraveller.css">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets2/css/responsive.css">
-        <title>JSP Page</title>
-    </head>
-    <body>
+
 		<div class="left">
 		
                         <div class="menu-admin"> 
@@ -90,6 +82,3 @@
 			</div>
 			
 		</div> <!--/ .left -->
-
-    </body>
-</html>
