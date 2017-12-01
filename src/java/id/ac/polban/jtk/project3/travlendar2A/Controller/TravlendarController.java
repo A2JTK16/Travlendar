@@ -5,15 +5,16 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.GenericDao;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.IDao;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Admin;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
+import id.ac.polban.jtk.project3.travlendar2A.Models.EventDesc;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Location;
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +22,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.JSONArray;
 
 /**
  *
@@ -31,11 +31,16 @@ import org.json.JSONArray;
 public class TravlendarController extends HttpServlet
 {
     /**
-     * Atribut
+     * Data Access Object
      */
     IDao<Event> eventDao;
     IDao<Traveller> travellerDao;
     IDao<Admin> adminDao;
+    IDao<Location> locationDao;
+    /**
+     * JSON Object Mapper
+     */
+    ObjectMapper jsonMapper;
     /**
      * Method yang akan dipanggil ketika servlet dihidupkan
      */
@@ -60,6 +65,8 @@ public class TravlendarController extends HttpServlet
         this.eventDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Event.class);
         this.travellerDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Traveller.class);
         this.adminDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Admin.class);
+        this.locationDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Location.class);
+        this.jsonMapper = new ObjectMapper();
     }
     
     /**
@@ -73,13 +80,11 @@ public class TravlendarController extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     {
         /**
-         * JSON Array
-         */
-        JSONArray jsonArrObj = new JSONArray();
-        /**
+         * Parameter dari client (uri)
          * http:// .... /index?action=...
          */
         String param = request.getParameter("action");
+        String jsonString;
         
         switch(param)
         {
@@ -88,9 +93,18 @@ public class TravlendarController extends HttpServlet
                 String event_id = request.getParameter("event_id");
                 
                 Event event = this.eventDao.getObj("event_id", event_id);
-                
-                jsonArrObj.put(event);
-                this.responseJson(response, jsonArrObj.toString());
+                /**
+                 * Mengubah ke bentuk json dan mengirimkan resonse json ke client
+                 */
+                try
+                {
+                    jsonString = this.jsonMapper.writeValueAsString(event);            
+                    this.responseJson(response, jsonString);
+                }
+                catch (JsonProcessingException ex)
+                {
+                    
+                }
                 break;
                 
             /**
@@ -98,45 +112,82 @@ public class TravlendarController extends HttpServlet
              * kunjungi http://localhost:8080/index?action=getlistEvent
              * dengan ajax
              */
-            case "getlistEvent" : // CONTOH
+            case "getlistEvent" :
                 /**
                  * Mendapatkan list event
                  */
                 List<Event> list = this.eventDao.getList();
                 /**
-                 * Menyimpan list dan mengubahnya ke bentuk json
+                 * Mengubah ke bentuk json dan mengirimkan resonse json ke client
                  */
-                jsonArrObj.put(list);
+                try
+                {
+                    jsonString = this.jsonMapper.writeValueAsString(list);            
+                    this.responseJson(response, jsonString);
+                }
+                catch (JsonProcessingException ex)
+                {
+                    
+                }
+                break;
                 
+            case "getlistLocation" :
                 /**
-                 * Mengirimkan json ke browser client
+                 * Mendapatkan list event
                  */
-                this.responseJson(response, jsonArrObj.toString());
- 
+                List<Location> listLocation = this.locationDao.getList();
+                /**
+                 * Mengubah ke bentuk json dan mengirimkan resonse json ke client
+                 */
+                try
+                {
+                    jsonString = this.jsonMapper.writeValueAsString(listLocation);            
+                    this.responseJson(response, jsonString);
+                }
+                catch (JsonProcessingException ex)
+                {
+                    
+                }
                 break;
                 
             case "getlistUser" :
                 // TULIS CODE DISINI !!!
                 List<Traveller> listTraveller = this.travellerDao.getList();
-                jsonArrObj.put(listTraveller);
-                this.responseJson(response, jsonArrObj.toString());
+                /**
+                 * Mengubah ke bentuk json dan mengirimkan resonse json ke client
+                 */
+                try
+                {
+                    jsonString = this.jsonMapper.writeValueAsString(listTraveller);            
+                    this.responseJson(response, jsonString);
+                }
+                catch (JsonProcessingException ex)
+                {
+                    
+                }
                 break;
                 
             case "findUser":
                 // TULIS CODE DISINI !!!
                 String fullname = request.getParameter("fullname");
                 
-                Traveller traveller = this.travellerDao.getObj("fullname", fullname);
+                Traveller traveller = this.travellerDao.getObj("traveller_fullname", fullname);
                 
-                //mengirimkan respon ke browser format json
-                jsonArrObj.put(traveller);
-                this.responseJson(response, jsonArrObj.toString());
+                /**
+                 * Mengubah ke bentuk json dan mengirimkan resonse json ke client
+                 */
+                try
+                {
+                    jsonString = this.jsonMapper.writeValueAsString(traveller);            
+                    this.responseJson(response, jsonString);
+                }
+                catch (JsonProcessingException ex)
+                {
+                    
+                }
                 break;
-                
-           /** default:
-                // TULIS CODE DISINI !!!
-                break;  */
-        }
+            
+        } //end switch
     }
     
     /**
@@ -149,35 +200,36 @@ public class TravlendarController extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     {
+        /**
+         * Parameter yang diterima dari client berupa json
+         */
         String param = request.getParameter("action");
-        boolean isSuccess;
+        String json = request.getParameter("json");
+        int idPK = 0;
+        int affectedRow = 0;
         
         switch(param)
         {
             case "addEvent":
-                Event objEvent = new Event();
-        
-                objEvent.setEvent_id(new Long(request.getParameter("event_id"))); // harusnya auto increment  
-                objEvent.setLocation_id(new Integer(request.getParameter("location_id")));
-                objEvent.setTraveller_id(new Long(1));
-                objEvent.setEvent_name(request.getParameter("name"));
-        
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-    
+                
                 try 
                 {
-                    objEvent.setStart_event(new Timestamp( dateFormat.parse(request.getParameter("start")).getTime() ));
-                    objEvent.setEnd_event(new Timestamp( dateFormat.parse(request.getParameter("end")).getTime() ));
+                    EventDesc eventdesc = jsonMapper.readValue(json, EventDesc.class);
+                    Event objEvent = eventdesc.getEvent();
+                    Location objLoc = eventdesc.getLocation();
                     
-                    isSuccess = this.eventDao.create(objEvent);
+                    int locId = this.locationDao.create(objLoc);
+                    
+                    objEvent.setLocation_id(locId);
+                    
+                    idPK = this.eventDao.create(objEvent);
                 } 
-                catch (ParseException ex) 
+                catch (IOException ex) 
                 {
                     Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
-                    isSuccess = false;
                 }
                 
-                if(isSuccess)
+                if(idPK > 0)
                     this.responseStr(response, "Sukses Menambahkan Event Baru");
                 else
                     this.responseStr(response, "Gagal Menambahkan Event");  
@@ -185,29 +237,22 @@ public class TravlendarController extends HttpServlet
                 break;
                 
             case "editEvent":
-                objEvent = new Event();
-        
-                objEvent.setEvent_id(new Long(request.getParameter("event_id"))); // harusnya auto increment  
-                objEvent.setLocation_id(new Integer(request.getParameter("location_id")));
-                objEvent.setTraveller_id(new Long(1));
-                objEvent.setEvent_name(request.getParameter("name"));
-        
-                dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-    
                 try 
                 {
-                    objEvent.setStart_event(new Timestamp( dateFormat.parse(request.getParameter("start")).getTime() ));
-                    objEvent.setEnd_event(new Timestamp( dateFormat.parse(request.getParameter("end")).getTime() ));
+                    EventDesc eventdesc = jsonMapper.readValue(json, EventDesc.class);
+                    Event objEvent = eventdesc.getEvent();
+                    Location objLoc = eventdesc.getLocation();
                     
-                    isSuccess = this.eventDao.edit(objEvent, "event_id", request.getParameter("event_id"));
+                    this.locationDao.edit(objLoc, "location_id", objEvent.getLocation_id().toString());
+                    
+                    affectedRow = this.eventDao.edit(objEvent, "event_id", objEvent.getEvent_id().toString());
                 } 
-                catch (ParseException ex) 
+                catch (IOException ex) 
                 {
                     Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
-                    isSuccess = false;
                 }
                 
-                if(isSuccess)
+                if(affectedRow > 0)
                     this.responseStr(response, "Sukses Mengedit Event");
                 else
                     this.responseStr(response, "Gagal Mengedit Event");  
@@ -218,9 +263,9 @@ public class TravlendarController extends HttpServlet
                 
                 String id = request.getParameter("event_id");
                 
-                isSuccess = this.eventDao.delete("event_id", id);
+                affectedRow = this.eventDao.delete("event_id", id);
                 
-                if(isSuccess)
+                if(idPK > 0)
                     this.responseStr(response, "Sukses Menghapus Event");
                 else
                     this.responseStr(response, "Gagal Menghapus Event");  
@@ -228,8 +273,21 @@ public class TravlendarController extends HttpServlet
                 break;
                 
             case "registerUser":
-                Traveller traveller = new Traveller();
+                try 
+                {
+                    Traveller traveller = jsonMapper.readValue(json, Traveller.class);
+                    
+                    idPK = this.travellerDao.create(traveller);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
+                if(idPK > 0)
+                    this.responseStr(response, "Sukses Registrasi User");
+                else
+                    this.responseStr(response, "Gagal Registrasi User");
                 
                 break;
                 
@@ -237,9 +295,9 @@ public class TravlendarController extends HttpServlet
                 // TULIS CODE DISINI !!!
                 String traveller_id = request.getParameter("traveller_id");
                 
-                isSuccess = this.travellerDao.delete("traveller_id", traveller_id);
+                idPK = this.travellerDao.delete("traveller_id", traveller_id);
                 
-                if(isSuccess)
+                if(idPK > 0)
                     this.responseStr(response, "Sukses Menghapus User");
                 else
                     this.responseStr(response, "Gagal Menghapus User");  
@@ -247,74 +305,79 @@ public class TravlendarController extends HttpServlet
                 break;
                 
             case "editUser":
-                // TULIS CODE DISINI !!!
-                 Traveller objTraveller = new Traveller();
-        
-                objTraveller.setTraveller_id(new Long(request.getParameter("traveller_id"))); // harusnya auto increment  
-                objTraveller.setTraveller_name(new String(request.getParameter("name")));
-                objTraveller.setTraveller_email(new String(request.getParameter("email")));
-                objTraveller.setTraveller_fullname(new String(request.getParameter("fullname")));
+                try 
+                {
+                    Traveller traveller = jsonMapper.readValue(json, Traveller.class);
+                    
+                    idPK = this.travellerDao.edit(traveller, "traveller_id", traveller.getTraveller_id().toString());
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
-    
-                isSuccess = this.travellerDao.edit(objTraveller, "traveller_id", request.getParameter("traveller_id"));
-                
-                if(isSuccess)
-                    this.responseStr(response, "Sukses Mengedit User");
+                if(idPK > 0)
+                    this.responseStr(response, "Sukses Edit Data");
                 else
-                    this.responseStr(response, "Gagal Mengedit User");  
+                    this.responseStr(response, "Gagal Edit Data");
                 
                 break;
                 
             case "addAdmin":
-                // TULIS CODE DISINI !!!
-                Admin objAdmin = new Admin();
-        
-                objAdmin.setUsername(new String(request.getParameter("username"))); 
-                objAdmin.setPassword(new String(request.getParameter("password")));
-                objAdmin.setFullname(new String(request.getParameter("fullname")));
-                objAdmin.setEmail(new String(request.getParameter("email")));
-    
-                isSuccess = this.adminDao.create(objAdmin);
+                try 
+                {
+                    Admin admin = jsonMapper.readValue(json, Admin.class);
+                    
+                    idPK = this.adminDao.create(admin);
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
-                if(isSuccess)
-                    this.responseStr(response, "Sukses Menambahkan Admin Baru");
+                if(idPK > 0)
+                    this.responseStr(response, "Sukses Menambahkan Admin");
                 else
-                    this.responseStr(response, "Gagal Menambahkan Admin");  
+                    this.responseStr(response, "Gagal Menambahkan Admin");
+                
                 break;
                 
             case "editAdmin":
-                // TULIS CODE DISINI !!!
-                objAdmin = new Admin();
-        
-                objAdmin.setUsername(new String(request.getParameter("username"))); 
-                objAdmin.setPassword(new String(request.getParameter("password")));
-                objAdmin.setFullname(new String(request.getParameter("fullname")));
-                objAdmin.setEmail(new String(request.getParameter("email")));
-    
-                isSuccess = this.adminDao.edit(objAdmin, "username",request.getParameter("username") );
+                try 
+                {
+                    Admin admin = jsonMapper.readValue(json, Admin.class);
+                    
+                    affectedRow = this.adminDao.edit(admin, "username", admin.getUsername());
+                } 
+                catch (IOException ex) 
+                {
+                    Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
-                if(isSuccess)
-                    this.responseStr(response, "Sukses Mengedit Admin");
+                if(affectedRow > 0)
+                    this.responseStr(response, "Sukses Edit Data");
                 else
-                    this.responseStr(response, "Gagal Mengedit Admin");  
+                    this.responseStr(response, "Gagal Edit Data");
+                
                 break;
                 
             case "deleteAdmin":
                 // TULIS CODE DISINI !!!
                 String username = request.getParameter("username");
                 
-                isSuccess = this.adminDao.delete("username", username);
+                idPK = this.adminDao.delete("username", username);
                 
-                if(isSuccess)
+                if(idPK > 0)
                     this.responseStr(response, "Sukses Menghapus Admin");
                 else
                     this.responseStr(response, "Gagal Menghapus Admin");  
                 
             
                 break;
-            /**default:
-                this.responseStr(response, "Maaf! Permintaan Anda Tidak Dapat Dilakukan...");
-                break;*/
+            
+            default:
+                this.responseStr(response, "Tidak Ditemukan !!!");
+                break;
         }
     }
     

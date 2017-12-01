@@ -14,7 +14,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.StringJoiner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,7 +41,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     /**
      * List untuk menyimpan property dari class model
      */
-    private List<PropertyDescriptor> propertyClass;
+    private final List<PropertyDescriptor> propertyClass;
     /**
      * Konstruktor
      * @param jdbcURL
@@ -57,6 +60,10 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
          */
         this.classModel = classModel;
         /**
+         * Property Class
+         */
+        this.propertyClass = new ArrayList<>();
+        /**
          * Mendapatkan String nama-nama atribut yang dipisah oleh delimiter koma
          */
         StringJoiner joiner = new StringJoiner(", ");
@@ -66,8 +73,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
              * Mendapatkan propery Class
              */
             PropertyDescriptor[] props = Introspector.getBeanInfo(classModel).getPropertyDescriptors();
-            this.propertyClass = new ArrayList<>();
-
+           
             for(PropertyDescriptor property : props) 
             {
                 if(!property.getName().equals("class"))
@@ -86,7 +92,6 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         catch (IntrospectionException e)
         {
             e.printStackTrace();
-            this.propertyClass = null;
         }
 
         /**
@@ -155,7 +160,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         /**
          * Jika propertynya tdk diset
          */
-        if(this.propertyClass == null)
+        if(this.propertyClass.isEmpty())
             return null;
         /**
          * List penampung data dari database
@@ -233,7 +238,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         /**
          * Jika propertynya tdk diset
          */
-        if(this.propertyClass == null)
+        if(this.propertyClass.isEmpty())
             return null;
         /**
          * Model Objek
@@ -289,35 +294,41 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
      * @return 
      */
     @Override
-    public boolean create(Object objModel) 
+    public int create(Object objModel) 
     {
+        if(this.propertyClass.isEmpty())
+            return 0;
         /**
-         * Jika propertynya tdk diset
+         * ID 
          */
-        if(this.propertyClass == null)
-            return false;
-        
-        boolean isSuccess;
-        String sql;
-        StringBuilder sb;
-        
-        sb = new StringBuilder();
+        int idPK = 0;
+
         /**
-         * Query
+         * Untuk membuat string sql
          */
-        sb.append("INSERT INTO ");
-        sb.append(this.classModel.getSimpleName().toLowerCase());
-        sb.append(" ( ");
-        sb.append(this.getFieldsStr());
-        sb.append(" ) VALUES ( ");
+        StringBuilder mtSql = new StringBuilder();
+        /**
+         * Mendapatkan Map Fields
+         */
+        Map<String, Object> fieldsMap = this.getFieldsMap(objModel);
+        Set<String> keySet = fieldsMap.keySet();
+        /**
+         * Membat SQL Sintaks
+         */
+        mtSql.append("INSERT INTO ");
+        mtSql.append(this.classModel.getSimpleName().toLowerCase());
+        mtSql.append("( ");
+        mtSql.append(String.join(",", keySet));
+        mtSql.append(" ) VALUES ( ");
         
-        for(int i=1; i<this.classModel.getDeclaredFields().length; i++)
+        for(int i=0; i<fieldsMap.size(); i++)
         {
-            sb.append(" ? ,");
+            mtSql.append(" ? ,");
         }
-        sb.append(" ? )");
         
-        sql = sb.toString();
+        mtSql.delete(mtSql.length()-1, mtSql.length()); // hapus koma
+        mtSql.append(" ) ");
+        //System.out.println(mtSql.toString());
         /**
          * Buat Koneksi ke DBMS
          */
@@ -328,44 +339,44 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         PreparedStatement stmt;
         try 
         {
-            stmt = super.getJdbcConnection().prepareStatement(sql);
+            stmt = super.getJdbcConnection().prepareStatement(mtSql.toString(), Statement.RETURN_GENERATED_KEYS);
             
             /**
              * Mendapatkan attribut dari objek objModel
              */
-            int i=0;
             //for(Field field : this.classModel.getDeclaredFields())
-            for (PropertyDescriptor descriptor : propertyClass) 
+            int count = 1;
+            for(String attrName : keySet)
             {
-                i++;
-                /**
-                 * Memasukkan atribut ke prepareStatement
-                 */
-                //field.setAccessible(true);
-                //stmt.setObject(i, this.invokeGetter(objModel, field.getName()));
-                //stmt.setObject(i, field.get(objModel));
-                stmt.setObject(i, this.invokeGetter(descriptor, objModel));
+                stmt.setObject(count, fieldsMap.get(attrName));
+                count++;
             }
-            
             /**
              * Eksekusi update
              */
-            stmt.executeUpdate();
+            int affectedRow = stmt.executeUpdate();
+            /**
+             * Mendapatkan PK auto_increment 
+             */
+            if(affectedRow > 0)
+            {
+                ResultSet rs = stmt.getGeneratedKeys();
+                rs.next();
+                idPK = rs.getInt(1);
+            }
             /**
              * Tutup Statement
              */
             stmt.close();
-            
-            isSuccess = true;
+
         } 
         catch (SQLException | IllegalArgumentException ex)
         {
             Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
-            isSuccess = false;
         }
         super.disconnect();
         
-        return isSuccess;
+        return idPK;
     }
     
     /**
@@ -377,29 +388,45 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
      * @return 
      */
     @Override
-    public boolean edit(Object object, String paramName, String paramValue) 
+    public int edit(Object object, String paramName, String paramValue) 
     {
-        String sql;        
-        StringBuilder sb = new StringBuilder();
-        boolean isSuccess; // sukses tidaknya edit
+        /**
+         * Jika tidak diset
+         */
+        if(this.propertyClass.isEmpty())
+            return 0;
+        /**
+         * Jika parameter nya null
+         */
+        if(paramName == null || paramValue == null)
+            return 0;
+        /**
+         * SQL Sintaks
+         */        
+        StringBuilder mtSql = new StringBuilder();
+        int affectedRow = 0;
         
-        sb.append("UPDATE ");
-        sb.append(this.classModel.getSimpleName().toLowerCase());
-        sb.append(" SET ");
-        //for (int i=0; i<this.getFieldsStr().length()-1;i++){
-        for (PropertyDescriptor descriptor : propertyClass)
+        mtSql.append("UPDATE ");
+        mtSql.append(this.classModel.getSimpleName().toLowerCase());
+        mtSql.append(" SET ");
+        /**
+         * Mendapatkan field yang tidak Null
+         */
+        Map<String, Object> fieldsMap = this.getFieldsMap(object);
+        
+        for(String attrName : fieldsMap.keySet())
         {
-            sb.append(descriptor.getName());
-            sb.append(" = ? ,");
+            mtSql.append(attrName);
+            mtSql.append(" = ? ,");
         }
-      
-        sb.delete(sb.length()-1, sb.length()); // hapus koma
         
-        sb.append(" WHERE ");
-        sb.append(paramName);
-        sb.append(" = ? ");
+        mtSql.delete(mtSql.length()-1, mtSql.length()); // hapus koma
         
-        sql = sb.toString();
+        mtSql.append(" WHERE ");
+        mtSql.append(paramName);
+        mtSql.append(" = ? ");
+        
+        //System.out.println(mtSql.toString());
         
         super.connect();
         
@@ -407,36 +434,27 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         
         try 
         {
-            stmt = super.getJdbcConnection().prepareStatement(sql);
+            stmt = super.getJdbcConnection().prepareStatement(mtSql.toString());
             
-            for (int i=0; i<this.propertyClass.size(); i++)
+            int count = 1;
+            for(Object valOb : fieldsMap.values())
             {
-                PropertyDescriptor property = this.propertyClass.get(i);
-                stmt.setObject(i+1, this.invokeGetter(property, object));
+               stmt.setObject(count, valOb);
+               count++;
             }
+            stmt.setString(count, paramValue);
             
-            stmt.setString(this.propertyClass.size()+1, paramValue);
-            //int i = 0;
-            //for (Field field : this.classModel.getDeclaredFields())
-            this.propertyClass.forEach((descriptor) -> {
-                //i++;
-                //field.setAccessible(true);
-                //stmt.setObject(i, this.invokeGetter(object, field.getName()));
-                this.invokeGetter(descriptor, object);
-            });
+            affectedRow = stmt.executeUpdate();
             
-            stmt.executeUpdate();
             stmt.close();
-            isSuccess = true;
         } 
         catch (SQLException ex) 
         {
             Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
-            isSuccess  = false;
         }
         super.disconnect();
         
-        return isSuccess;
+        return affectedRow;
     }
     
     /**
@@ -447,9 +465,15 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
      * @return 
      */
     @Override
-    public boolean delete(String paramName, String paramValue) 
+    public int delete(String paramName, String paramValue) 
     {
-        boolean isSuccess;
+        if(this.propertyClass.isEmpty())
+            return 0;
+        
+        if(paramName == null || paramValue == null)
+            return 0;
+        
+        int affectedRow = 0;
         String sql;
         sql = String.format("DELETE FROM %s WHERE ( %s = ? )",this.classModel.getSimpleName().toLowerCase(), paramName);
         /**
@@ -465,17 +489,14 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
             stmt = super.getJdbcConnection().prepareStatement(sql);
             
             stmt.setString(1, paramValue);
-            
-            stmt.executeUpdate();
+             
+            affectedRow = stmt.executeUpdate();
             
             stmt.close();
-            
-            isSuccess = true;
         } 
         catch (SQLException ex) 
         {
             //Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
-            isSuccess = false;
         }
         
         /**
@@ -483,7 +504,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
          */
         super.disconnect();
         
-        return isSuccess;
+        return affectedRow;
     }
 
     /**
@@ -496,4 +517,36 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         return this.fieldsStr;
     }
     
+    /**
+     * Mendapatkan Map dengan Key Nama Atribut dan Value nya Isi Atribut
+     * Tidak Akan Ada Atribut yang Null
+     * 
+     * @param obj
+     * @return 
+     */
+    private Map<String, Object> getFieldsMap(Object obj)
+    {
+        /**
+         * Penampung nama 
+         */
+        Map<String, Object> fields = new HashMap<>();
+        /**
+         * Mendapatkan nama field dan isinya
+         */
+        for(PropertyDescriptor property : this.propertyClass)
+        {
+            Object fieldValue = this.invokeGetter(property, obj);
+            if(fieldValue != null)
+            {
+                /**
+                 * Menambahkan key : Field Name dan Value = fieldValue
+                 */
+                fields.put(property.getName(), fieldValue);
+            }
+        }
+        /**
+         * Mengembalikan Object Map
+         */
+        return fields;
+    }
 }

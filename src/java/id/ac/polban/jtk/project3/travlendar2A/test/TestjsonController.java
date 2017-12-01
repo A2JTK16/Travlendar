@@ -5,6 +5,7 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.test;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -14,8 +15,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 /**
  *
@@ -25,18 +24,18 @@ import org.json.JSONObject;
 public class TestjsonController extends HttpServlet
 {
     private LocationDaoImp locDaoObj;
+    private ObjectMapper jsonMapper;
     
     @Override
     public void init()
     {
         this.locDaoObj = new LocationDaoImp("jdbc:mysql://localhost:3306/travlendar2Anew","root","");
+        this.jsonMapper = new ObjectMapper();
     }
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     {
-        JSONArray jsonArrObj;
-        JSONObject jsonObj;
         List<Location> list;
         
         try { // AMBIL DATA DARI DATABASE
@@ -44,15 +43,16 @@ public class TestjsonController extends HttpServlet
         } catch (SQLException ex) {
             list = null;
         }
-        jsonArrObj = new JSONArray();
-        
-        jsonArrObj.put(list);
-  
-        try {
+
+        try 
+        {
+            String jsonStr = jsonMapper.writeValueAsString(list);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(jsonArrObj.toString());
-        } catch (IOException ex) {
+            response.getWriter().write(jsonStr);
+        } 
+        catch (IOException ex) 
+        {
             Logger.getLogger(TestjsonController.class.getName()).log(Level.SEVERE, null, ex);
         }
 

@@ -5,13 +5,18 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Test.FunctionalTest.TestHelper;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.GenericDao;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.IDao;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -25,46 +30,113 @@ public class TestCrudEvent
         //--------------------------------------------------------------------------------------//
         IDao<Event> dao;
         List<Event> list;
+        ObjectMapper mapper = new ObjectMapper();
+        String json;
         dao = new GenericDao<>("jdbc:mysql://localhost:3306/a2travlendar","root","",Event.class);
         //--------------------------------------------------------------------------------------//
+        /**
+         * TEST MENAMPILKAN LIST EVENT DAN SHOW DI JSON
+         */
         System.out.println("Test Menampilkan List Event");
-        
+        /**
+         * Mendapatkan list event
+         */
         list = dao.getList();
-        
+        /**
+         * Menampilkan loop
+         */
         list.forEach((event) -> {
             System.out.println(event.getEvent_id() + " | "+ event.getEvent_name() + " | " + event.getStart_event() + " | " + event.getEnd_event() + " | " + event.getNote());
         });
+        /**
+         * Menampilkan dalam format json
+         */
+        try 
+        {
+            json = mapper.writeValueAsString(list);
+            System.out.println(json);
+        } 
+        catch (JsonProcessingException ex) 
+        {
+            Logger.getLogger(TestCrudEvent.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //--------------------------------------------------------------------------------------//
+        /**
+         * TEST MENAMBAHKAN EVENT DARI JSON
+         */
         System.out.println("Test Menambahkan Event");
+        /**
+         * Mapping json ke object
+         */
+        json = "{\"location_id\":1,\"traveller_id\":1,\"event_name\":\"Kerja Kelompok\",\"start_event\":1253581691000,\"end_event\":1253552891000,\"note\":null}";
         
-        Event objEvent = new Event();
+        System.out.println(json);
         
-        objEvent.setEvent_id(new Long("5"));
-        objEvent.setEvent_name("Kerja Kelompok");
-        objEvent.setLocation_id(1);
-        objEvent.setTraveller_id(new Long("1"));
-        
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        
-        objEvent.setStart_event(new Timestamp( dateFormat.parse("2017-09-22 08:08:11").getTime() ));
-        objEvent.setEnd_event(new Timestamp( dateFormat.parse("2017-10-22 12:08:11").getTime() ));
-        
-        boolean created = dao.create(objEvent);
-        if(!created) System.out.println("Insert gagal");
+        Event objEvent = null;
+        try 
+        {
+            objEvent = mapper.readValue(json, Event.class);
+            System.out.println("Start Event : " + objEvent.getStart_event().getTime());
+        } 
+        catch (IOException ex) 
+        {
+            Logger.getLogger(TestCrudEvent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        /**
+         * Insert ke database
+         */ 
+        int idPK = dao.create(objEvent);
+        System.out.println("Insert " + idPK);
         list = dao.getList();
-        
+        /**
+         * Tampilkan dari Database
+         */
         list.forEach((event) -> {
             System.out.println(event.getEvent_id() + " | "+ event.getEvent_name() + " | " + event.getStart_event() + " | " + event.getEnd_event() + " | " + event.getNote());
         });
+        /**
+         * Tampilkan format json
+         */
+        try 
+        {
+            json = mapper.writeValueAsString(list);
+            System.out.println(json);
+        } 
+        catch (JsonProcessingException ex) 
+        {
+            Logger.getLogger(TestCrudEvent.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //--------------------------------------------------------------------------------------//
+        /**
+         * TEST MENAMPILKAN EVENT
+         */
+        System.out.println("Test Menampilkan Event yang event_id=" + idPK);
         
+        objEvent = dao.getObj("event_id", String.format("%s", idPK));
+        System.out.println(objEvent.getEvent_id() + " | "+ objEvent.getEvent_name() + " | " + objEvent.getStart_event() + " | " + objEvent.getEnd_event() + " | " + objEvent.getNote());
+        
+        /**
+         * Tampilkan format json
+         */
+        try 
+        {
+            json = mapper.writeValueAsString(objEvent);
+            System.out.println(json);
+        } 
+        catch (JsonProcessingException ex) 
+        {
+            Logger.getLogger(TestCrudEvent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //--------------------------------------------------------------------------------------//
+        /**
+         * TEST EDIT EVENT 
+         */
         System.out.println("Test Edit Event");
         objEvent.setEvent_name("Kerja Kelompok Bareng");
         objEvent.setNote("APPPPPPPPPPPPPPPPPPP");
         
-        boolean edit = dao.edit(objEvent, "event_id", "5");
-        if(!edit)
-            System.out.println("Gagal Edit!");
+        int affectedRow = dao.edit(objEvent, "event_id", String.format("%s",idPK));
+        System.out.println("Update " + idPK + " dan affectedRow : " + affectedRow);
         
         list = dao.getList();
         
@@ -73,18 +145,18 @@ public class TestCrudEvent
         });
         
         //--------------------------------------------------------------------------------------//
+        /**
+         * Test Hapus Event
+         */
         System.out.println("Test Menghapus Event yang event_id=5");
-        boolean delete = dao.delete("event_id", "5");
-        if(!delete) System.out.println("Delete gagal");
+        affectedRow = dao.delete("event_id", String.format("%s",idPK));
+        System.out.println("Delete " + idPK + " dan affectedRow : " + affectedRow);
         list = dao.getList();
         
         list.forEach((event) -> {
             System.out.println(event.getEvent_id() + " | "+ event.getEvent_name() + " | " + event.getStart_event() + " | " + event.getEnd_event() + " | " + event.getNote());
         });
         
-        //--------------------------------------------------------------------------------------//
-        System.out.println("Test Menampilkan Event yang event_id=2");
-        Event event = dao.getObj("event_id", "2");
-        System.out.println(event.getEvent_id() + " | "+ event.getEvent_name() + " | " + event.getStart_event() + " | " + event.getEnd_event() + " | " + event.getNote());
+        //--------------------------------------------------------------------------------------//       
     }       
 }
