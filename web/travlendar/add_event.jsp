@@ -16,8 +16,10 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>
         
         <!-- JQuery Library -->
-        <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
-        
+        <!--<script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+        <script src="js/jquery.min.js"></script>
+        <!-- untuk parse tanggal -->
+        <script src="js/moment.min.js"></script>
         <!-- GMaps Library -->
         <script src="js/gmaps.js"></script>
         
@@ -109,7 +111,7 @@
 						<thead>
 						<tr>
 						    <th>Time</th>
-                                                    <th>Evnet Name</th>
+                                                    <th>Event Name</th>
                                                     <th>Use</th>
                                                     <th>At</th>
                                                     <th>Location</th>
@@ -131,7 +133,7 @@
 						</tbody>
 					</table>
 		</div>
-
+                
 
 		<div id="London" class="tabcontent">
 		  <input class="ev-name" id="desc" type="text" placeholder="What Your Event ??.. "/>
@@ -210,7 +212,7 @@
 		</div>
                 
 		<div id="Paris" class="tabcontent">
-                    <button id="viewList">View</button>
+                    <!--<button id="viewList">View</button>-->
                                         <table id="tableEvent">
 						<thead>
 						<tr>
@@ -246,6 +248,12 @@
 
         <div class="container">
             <div class="main">
+                    <select id="transportMode">
+                      <option value="DRIVING">Driving</option>
+                      <option value="WALKING">Walking</option>
+                      <option value="BICYCLING">Bicycling</option>
+                      <option value="TRANSIT">Transit</option>
+                    </select>
                 <div id="map">Maps Event</div>
             </div> <!--/ .main -->
         </div> <!--container-->

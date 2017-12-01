@@ -23,76 +23,37 @@
 
 	$(document).ready(function() {
 		
-		$('#calendar').fullCalendar({
+            $.ajax({
+                dataType : "json",
+                contentType : "application/json",
+                url: "/Travlendar2A/index?action=getlistEvent",
+                success: function(data)
+                {
+                    $('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
 				center: 'title',
 				right: 'month,agendaWeek,agendaDay,listWeek'
 			},
-			defaultDate: '2017-09-12',
+			defaultDate: '2009-09-22',
 			navLinks: true, // can click day/week names to navigate views
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
-			events: [
-				{
-					title: 'All Day Event',
-					start: '2017-09-01',
-				},
-				{
-					title: 'Long Event',
-					start: '2017-09-07',
-					end: '2017-09-10'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2017-09-09T16:00:00'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2017-09-16T16:00:00'
-				},
-				{
-					title: 'Conference',
-					start: '2017-09-11',
-					end: '2017-09-13'
-				},
-				{
-					title: 'Meeting',
-					start: '2017-09-12T10:30:00',
-					end: '2017-09-12T12:30:00'
-				},
-				{
-					title: 'Lunch',
-					start: '2017-09-12T12:00:00'
-				},
-				{
-					title: 'Meeting',
-					start: '2017-09-12T14:30:00'
-				},
-				{
-					title: 'Happy Hour',
-					start: '2017-09-12T17:30:00'
-				},
-				{
-					title: 'Dinner',
-					start: '2017-09-12T20:00:00'
-				},
-				{
-					title: 'Birthday Party',
-					start: '2017-09-13T07:00:00'
-				},
-				{
-					title: 'Click for Google',
-					url: 'http://google.com/',
-					start: '2017-09-28'
-				}
-			]
-		});
-		
-	});
-
+			events: $.map(data, function(item,i)
+                                {
+                                    var event = new Object();
+                                    event.title = item.title;
+                                    event.start = moment(item.start).utc();
+                                    event.end = moment(item.end).utc();
+                                    event.id = item.id;
+                                    
+                                    return event;
+                                })
+                    
+                        });
+                }   
+            });
+        });	
 </script>
 <style>
 
@@ -163,7 +124,7 @@
                           }
                         }
                       }
-                    }
+                    };
                     </script>                    
               <!-->  </div>
                 </div> <!--kotak-acount-->
@@ -345,7 +306,7 @@
 				var btn = document.getElementById("myBtn");
 
 				// Get the <span> element that closes the modal
-				var span = document.getElementsByClassName("close")[0];
+				//var span = document.getElementsByClassName("close")[0];
 
 				// When the user clicks the button, open the modal 
 				btn.onclick = function() {
@@ -353,16 +314,16 @@
 				}
 
 				// When the user clicks on <span> (x), close the modal
-				span.onclick = function() {
-				    modal.style.display = "none";
-				}
+				//span.onclick = function() {
+				//    modal.style.display = "none";
+				//}
 
 				// When the user clicks anywhere outside of the modal, close it
 				window.onclick = function(event) {
 				    if (event.target == modal) {
 				        modal.style.display = "none";
 				    }
-				}
+				};
 			</script>
  
 </div> <!--wadah-->

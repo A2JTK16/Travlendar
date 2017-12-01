@@ -1,0 +1,463 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 21, 2017, 1:17:39 PM
+    Author     : Agit
+*/
+
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+
+body{
+	background: #dedede;
+	font-family: 'Helvetica', arial, sans-serif;
+
+	font-size: 15px;
+}
+
+p{
+	margin-bottom: 20px;
+	line-height: 1.5em;
+}
+
+
+h1{
+	padding: 7px;
+	margin: 7px;
+	font: 20px Arial;
+	font-weight: bold;
+	color: #fafafa;
+	background: none;
+}
+
+
+h4{
+	float: left;
+	padding: 6px;
+	margin: 6px;
+	font: 18px Arial;
+	color: #454545;
+	font-weight: bold;
+	background: none;
+	border: none;
+	border-radius: 0.2em;
+}
+
+.kotak-search{
+	float: right;
+	background: none;
+	overflow: hidden;
+	border: 1px solid #eee;
+	border-radius: 100px;
+}
+
+.icon-search{
+	padding: 1px;
+	margin: 1px;
+	float: left;
+	overflow: hidden;
+}
+
+.icon-search img{
+	width: 45px;
+	height: 30px;
+}
+
+.search{
+	float: left;
+	padding: 7px;
+	margin: 7px;
+	font: 16px Arial;
+	font-weight: bold;
+	color: #454545;
+	background: none;
+	border: none;
+	border-radius: 50px;
+}
+
+.icon-setting{
+	float: left;
+	padding: 4px;
+	margin: 4px;
+	float: left;
+	overflow: hidden;
+	border: none;
+	border-radius: 100px;
+}
+
+.icon-setting img{
+	width: 30px;
+	height: 30px;
+}
+
+.action, .action2{
+	padding: 4px;
+	margin: 4px;
+	border: none;
+	border-radius: 0.2em;
+	background: #ff9900;
+}
+
+.action2{
+	background: #EF5350;
+}
+
+h5{
+	padding: 7px;
+	margin: 7px;
+	font: 16px Arial;
+	color: #fafafa;
+	font-weight: bold;
+}
+
+
+.judul-manage{
+	float: left;
+	padding: 7px;
+	margin: 7px;
+	font: 20px Arial;
+	font-weight: bold;
+	color: #454545;
+}
+
+a{
+	text-decoration: none;
+	color: #454545;
+}
+a:hover{
+	color: #666;
+}
+
+
+.jarak-atas{
+	max-width: 100%;
+	height: 60px;
+	background: none;
+	overflow: hidden;
+}
+
+.menu-atas{
+  float: left;
+  width: 100%;
+  height: auto;
+  background: #1565C0;
+  position: fixed;
+  overflow: hidden;
+  border-top: 3px solid #1976D2;
+  box-shadow: 0 2px 2px #727272;
+  top: -3px;
+  left: 0;
+  z-index: 9999;
+}
+
+.dropdown-location{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    width: 310px;
+    height: 50px;
+    background: #f4f4f4;
+    border: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    color: #535559;
+}
+
+.edit-dl{
+    margin-top: 5px;
+    margin-bottom: 20px;
+    margin-left: 13px;
+    padding-left: 5px;
+    width: 250px;
+    height: 50px;
+    background: #f4f4f4;
+    border: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    color: #535559;
+}
+
+.wadah{
+	max-width: 100%;
+	margin: auto;
+	background: #f5f5f5;
+	overflow: hidden;
+	padding: 10px;
+}
+
+
+.header{
+	border: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+/* Main */
+	.left{
+		width: 300px;
+		border: 1px solid #dedede;
+		background: #e5e5e5;
+		padding: 10px;
+		margin: 10px;
+		float: left;
+	}
+	
+	.menu-manage{
+		background: #f4f4f4;
+		overflow: hidden;
+		border: 1px solid #ddd;
+	}
+	
+	.menu-manage:hover{
+		background: #42A5F5;
+		transition: 0.3s;
+	}
+	
+	h2{
+		float: left;
+		padding: 7px;
+		margin: 7px;
+		font: 18px Arial;
+		color: #454545;
+	}
+	
+	h2:hover{
+		color: #fafafa;
+	}
+	
+	
+	#myBtn{
+		
+		float: right;
+		padding: 7px;
+		margin: 7px;
+		font: 16px Arial;
+		font-weight: bold;
+		color: #fafafa;
+		background: #4CAF50;
+		border: none;
+		border-radius: 0.2em;
+	}
+
+	.middle{
+		width: 73%;
+		border: 1px solid #dedede;
+		background: #e5e5e5;
+		overflow: hidden;
+		padding: 10px;
+		margin: 10px;
+		float: left;
+	}
+	
+	
+#SignUp{
+	background: #448AFF;
+}
+
+/* =============================================================================== */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+	padding: 10px;
+	padding-top: 80px;
+   	margin: 10px auto;
+    bottom: 0;
+    background-color: transparent;
+    width: auto;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background: linear-gradient(135deg,#043a61,#0471b1 26%,#0985bb 51%,#16a2b1 76%,#22bc9d);
+    color: white;
+}
+
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}
+
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+.form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+}	
+
+.distance-form{
+    padding: auto;
+    margin: auto;
+}
+
+.update-distance{
+    float: left;
+    padding: 7px;
+    margin: 7px;
+    font: 14px Arial;
+    color: #fafafa;
+    font-weight: bold;
+    background: #4CAF50;
+    border: none;
+    border-radius: 0.3em;
+}
+
+.edtp{
+   width: 40%;
+   padding: 10px;
+   margin: 10px;
+   border: 1px solid #ddd;
+}
+
+        .text-edit{
+		padding: 4px;
+		margin: 4px;
+		font: 16px Arial;
+		font-weight: bold;
+		color: #757575;
+	}
+
+	
+	#page-wrap {
+		margin: 50px;
+	}
+	/*p {
+		margin: 20px 0; 
+	} */
+
+		/* 
+		Generic Styling, for Desktops/Laptops 
+		*/
+		table { 
+			width: 100%; 
+			border-collapse: collapse; 
+		}
+		/* Zebra striping */
+		tr:nth-of-type(odd) { 
+			background: #eee; 
+		}
+		th { 
+			background: #9E9E9E; 
+			color: white; 
+			font-weight: bold; 
+		}
+		td, th { 
+			padding: 6px; 
+			border: 1px solid #ccc; 
+			text-align: left; 
+		}
+		
+			.middle img{
+				max-width: 100%;
+				height: auto;
+			}
+
+			.middle a{
+				font-weight: bold;
+			}

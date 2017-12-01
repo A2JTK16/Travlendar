@@ -5,13 +5,17 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  *
  * @author ASUS
  */
 public class Location {
     private Integer location_id;
+    @JsonProperty(value = "lat")
     private Float latitude;
+    @JsonProperty(value = "lng")
     private Float longitude;
 
     /**

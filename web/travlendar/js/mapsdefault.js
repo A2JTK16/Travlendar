@@ -27,8 +27,18 @@
         // JQuery
     $(document).ready( function()  // Ketika web udah siap
     {       
-                //var listJson;
-                var path = [];
+        var path = [];
+        
+        $.get("http://localhost:8080/Travlendar2A/index?action=getlistEvent", function(responseJson) 
+        {   // Eksekusi URL Controller
+            $.each(responseJson, function(index, event) 
+            {    // Loop pakai Json
+                    var row = '<tr><td>'+ event.title +'</td><td>'+ moment(event.start).format("ddd DD-MM-YYYY hh:mm a")
+                            +'</td><td> </td><td> </td><td></td>'+ event.location_id +'<td> \n\
+                                <a href="view-more.jsp"><button class="v-more"> View More </button></a> <button class="v-del"> Delete </button></td></tr>';
+                                $('#tableEvent > tbody').append(row);
+            });	
+        });      
                 var destination, service;
 		var m1 = null, m2 = null;
 		var m1pos, m2pos;
@@ -66,18 +76,19 @@
 					m2pos = m2.getPosition();
 				}
                                 
-
+                               var selectedMode = document.getElementById('transportMode').value;
+                                
 				// If two markers have been placed
 				if (m1 !== null && m2 !== null) {
 					corvo = true;
 					mapObj.drawRoute({
 						origin: [m1pos.lat(), m1pos.lng()],
 						destination: [m2pos.lat(), m2pos.lng()],
-						travelMode: 'driving',
+						travelMode: google.maps.TravelMode[selectedMode],
 						strokeColor: '#131540',
 						strokeOpacity: 0.6,
 						strokeWeight: 6
-					});
+                                            });
 					//$('#trace_route').prop('disabled', false);
                                         
                                         
@@ -92,7 +103,7 @@
                                     {
                                         origins: [origin],
                                         destinations: [destination],
-                                        travelMode: google.maps.TravelMode.DRIVING,
+                                        travelMode: google.maps.TravelMode[selectedMode],
                                         avoidHighways: false,
                                         avoidTolls: false
                                     }, 
@@ -146,7 +157,7 @@
                     if(m2 !== null)
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8084/Travlendar2A/json",
+                            url: "http://localhost:8080/Travlendar2A/json",
                             dataType:'JSON',
                             //   data: {listjson: JSON.stringify(listJson)},
                             data: {latitude: m2pos.lat(), longitude: m2pos.lng(), desc: document.getElementById("desc").value},
@@ -176,14 +187,13 @@
                         mapObj.removeMarker(m2);
                     mapObj.removePolylines();
                     
-                    $.get("http://localhost:8084/Travlendar2A/json", function(responseJson) 
+                    $.get("http://localhost:8080/Travlendar2A/index?action=getlistLocation", function(responseJson) 
                     {          // Eksekusi URL Controller
                         $.each(responseJson, function(index, location) {    // Loop pakai Json
                             for(i=0; i<location.length; i++)
                             {
                                 path.push([location[i].lat, location[i].lng]);
-                                var descPPP = new google.maps.LatLng(location[i].lat, location[i].lng);
-                                var row = '<tr><td>'+ location[i].desc +'</td><td> 2017-11-28 1' + i +':00 </td><td> </td><td> </td></td>'+'</td><td>'+ descPPP.toString() +'</td><td> \n\
+                                var row = '<tr><td>'+ location[i].lat +'</td><td> 2017-11-28 1' + i +':00 </td><td> </td><td> </td></td>'+'</td><td></td><td> \n\
                                 <a href="view-more.jsp"><button class="v-more"> View More </button></a> <button class="v-del"> Delete </button></td></tr>';
                                 $('#tableEvent > tbody').append(row);
                                 

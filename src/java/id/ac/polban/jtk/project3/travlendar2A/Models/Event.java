@@ -5,6 +5,7 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.sql.Timestamp;
 
 /**
@@ -15,11 +16,16 @@ import java.sql.Timestamp;
  */
 public class Event 
 {
+    @JsonProperty(value = "id")
     private Long event_id;
+    
     private Integer location_id;
     private Long traveller_id;
+    @JsonProperty(value = "title")
     private String event_name;
+    @JsonProperty(value = "start")
     private Timestamp start_event;
+    @JsonProperty(value = "end")
     private Timestamp end_event;
     private String note;
 

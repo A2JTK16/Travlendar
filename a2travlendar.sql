@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2017 at 11:54 PM
+-- Generation Time: Dec 01, 2017 at 05:19 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `USERNAME` varchar(25) NOT NULL PRIMARY KEY,
+  `USERNAME` varchar(25) NOT NULL,
   `PASSWORD` varchar(25) DEFAULT NULL,
   `FULLNAME` varchar(30) DEFAULT NULL,
   `EMAIL` varchar(40) DEFAULT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -42,24 +42,25 @@ CREATE TABLE `admin` (
 --
 
 CREATE TABLE `event` (
-  `EVENT_ID` bigint(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `EVENT_ID` bigint(20) NOT NULL,
   `LOCATION_ID` int(11) NOT NULL,
   `TRAVELLER_ID` bigint(20) NOT NULL,
   `EVENT_NAME` varchar(35) NOT NULL,
   `START_EVENT` datetime NOT NULL,
   `END_EVENT` datetime NOT NULL,
   `NOTE` text
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`LOCATION_ID`, `TRAVELLER_ID`, `EVENT_NAME`, `START_EVENT`, `END_EVENT`, `NOTE`) VALUES
-(1, 1, 'Belanja', '2009-09-22 08:08:11', '2009-09-22 12:08:11', NULL),
-(1, 1, 'Liburan', '2009-09-22 08:08:11', '2009-09-22 12:08:11', NULL),
-(1, 1, 'Makan', '2009-09-22 08:08:11', '2009-09-22 12:08:11', NULL),
-(1, 1, 'Sarapan', '2009-09-22 08:08:11', '2009-09-22 00:08:11', NULL);
+INSERT INTO `event` (`EVENT_ID`, `LOCATION_ID`, `TRAVELLER_ID`, `EVENT_NAME`, `START_EVENT`, `END_EVENT`, `NOTE`) VALUES
+(1, 1, 1, 'Belanja', '2009-09-22 08:08:11', '2009-09-22 12:08:11', NULL),
+(2, 1, 1, 'Liburan', '2009-09-22 08:08:11', '2009-09-22 12:08:11', NULL),
+(3, 1, 1, 'Makan', '2009-09-22 08:08:11', '2009-09-22 12:08:11', NULL),
+(4, 1, 1, 'Sarapan', '2009-09-22 08:08:11', '2009-09-22 00:08:11', NULL),
+(6, 1, 1, 'Kerja Kelompok', '2009-09-22 08:08:11', '2009-09-22 00:08:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -68,17 +69,17 @@ INSERT INTO `event` (`LOCATION_ID`, `TRAVELLER_ID`, `EVENT_NAME`, `START_EVENT`,
 --
 
 CREATE TABLE `location` (
-  `LOCATION_ID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `LOCATION_ID` int(11) NOT NULL,
   `LATITUDE` float DEFAULT NULL,
   `LONGITUDE` float DEFAULT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `location`
 --
 
-INSERT INTO `location` (`LATITUDE`, `LONGITUDE`) VALUES
-(22, 22);
+INSERT INTO `location` (`LOCATION_ID`, `LATITUDE`, `LONGITUDE`) VALUES
+(1, 22, 22);
 
 -- --------------------------------------------------------
 
@@ -87,9 +88,9 @@ INSERT INTO `location` (`LATITUDE`, `LONGITUDE`) VALUES
 --
 
 CREATE TABLE `travel` (
-  `EVENT_ID` bigint(20) PRIMARY KEY NOT NULL,
+  `EVENT_ID` bigint(20) NOT NULL,
   `DEPATURE_TIME` datetime DEFAULT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -98,31 +99,78 @@ CREATE TABLE `travel` (
 --
 
 CREATE TABLE `traveller` (
-  `TRAVELLER_ID` bigint(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `TRAVELLER_ID` bigint(20) NOT NULL,
   `TRAVELLER_NAME` varchar(30) DEFAULT NULL,
   `TRAVELLER_EMAIL` varchar(40) DEFAULT NULL,
   `TRAVELLER_PASSWORD` varchar(25) DEFAULT NULL,
   `TRAVELLER_FULLNAME` varchar(50) DEFAULT NULL,
   `TRAVELLER_ADDRESS` varchar(60) DEFAULT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `traveller`
 --
 
-INSERT INTO `traveller` (`TRAVELLER_NAME`, `TRAVELLER_EMAIL`, `TRAVELLER_PASSWORD`, `TRAVELLER_FULLNAME`, `TRAVELLER_ADDRESS`) VALUES
-('Ibu Maryam', 'aa@aa.vo', 'Maryam', 'Maryam', 'Belitung');
+INSERT INTO `traveller` (`TRAVELLER_ID`, `TRAVELLER_NAME`, `TRAVELLER_EMAIL`, `TRAVELLER_PASSWORD`, `TRAVELLER_FULLNAME`, `TRAVELLER_ADDRESS`) VALUES
+(1, 'Ibu Maryam', 'aa@aa.vo', 'Maryam', 'Maryam', 'Belitung');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`USERNAME`);
+
+--
 -- Indexes for table `event`
 --
 ALTER TABLE `event`
+  ADD PRIMARY KEY (`EVENT_ID`),
   ADD KEY `FK_CREATE` (`TRAVELLER_ID`),
   ADD KEY `FK_LOCATED` (`LOCATION_ID`);
+
+--
+-- Indexes for table `location`
+--
+ALTER TABLE `location`
+  ADD PRIMARY KEY (`LOCATION_ID`);
+
+--
+-- Indexes for table `travel`
+--
+ALTER TABLE `travel`
+  ADD PRIMARY KEY (`EVENT_ID`);
+
+--
+-- Indexes for table `traveller`
+--
+ALTER TABLE `traveller`
+  ADD PRIMARY KEY (`TRAVELLER_ID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `event`
+--
+ALTER TABLE `event`
+  MODIFY `EVENT_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `location`
+--
+ALTER TABLE `location`
+  MODIFY `LOCATION_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `traveller`
+--
+ALTER TABLE `traveller`
+  MODIFY `TRAVELLER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
