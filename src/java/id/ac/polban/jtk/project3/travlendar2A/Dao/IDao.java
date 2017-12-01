@@ -30,33 +30,37 @@ public interface IDao<T>
     public T getObj(String paramName, String paramValue);
     
     /**
-     * Menyimpan nilai atribut object ke database
+     *   Menyimpan data ke database
+     *   Mengembalikan nilai id yang auto increment
+     *   SQL : INSERT INTO class-name ( class-attribute ) VALUES ( attribute-value-from-object )
      * 
      * @param object 
      * @return  
      */
-    public boolean create(Object object);
+    public int create(Object object);
     
     /**
-     *   Menyimpan data ke database
-     *   Jika menyimpan gagal, return false
-     *   SQL : INSERT INTO class-name ( class-attribute ) VALUES ( attribute-value-from-object )
+     *   Menyunting data ke database
+     *   Mengembalikan jumlah rows yang terdampak
+     *   Mengembalikan nol jika gagal update atau parameter null
+     *   SQL : UPDATE class-name SET ( attribute-name = attribute-value-from-object )
      * 
      * @param object
      * @param paramName
      * @param paramValue
      * @return  
      */
-    public boolean edit(Object object, String paramName, String paramValue);
+    public int edit(Object object, String paramName, String paramValue);
     
     /**
      *  Menghapus data database berdasarkan paramName
-     *  Jika gagal, return false
+     *  Mengembalikan jumlah rows yang terhapus
+     *  Mengembalikan nol jika gagal update atau parameter null
      *  SQL : DELETE FROM class-name WHERE ( paramName = paramValue )
      * 
      * @param paramName
      * @param paramValue
      * @return  
      */
-    public boolean delete(String paramName, String paramValue);
+    public int delete(String paramName, String paramValue);
 }
