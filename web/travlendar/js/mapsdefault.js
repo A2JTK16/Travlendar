@@ -121,10 +121,8 @@
                 } // tutup fungsi e ketika klik
         }); // tutup instansiasi gmaps         
                 
-        function geocodeLatLng(input) 
+        function geocodeLatLng(latlng) 
         {
-            var latlngStr = input.split(',', 2);
-            var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
             var address;
             
             geocoder.geocode({'location': latlng}, function(results, status) 
@@ -152,20 +150,40 @@
         $('#getList').click(function()
         {
             openCity(event, 'Paris');
-
+        });
+        
+        var pathLocs = [];
+        
+            $.get("http://localhost:8080/Travlendar2A/index?action=getlistLocation", function(responseJson) 
+            {   // Eksekusi URL Controller
+                var locLatLng;
+                //alert(responseJson);
+                $.each(responseJson, function(index, location) 
+                {    // Loop pakai Json
+                    var lcd = JSON.stringify(location);//alert(lcd);
+                    locLatLng = {lat: parseFloat(lcd.lat), lng: parseFloat(lcd.lng)};
+                    pathLocs.push(locLatLng);
+                });
+                
+                m1 = mapObj.addMarker(locLatLng);
+                m1pos = m1.getPosition();
+            }); 
+            
             $.get("http://localhost:8080/Travlendar2A/index?action=getlistEvent", function(responseJson) 
             {   // Eksekusi URL Controller
+                var locId;
                 $.each(responseJson, function(index, event) 
                 {    // Loop pakai Json
-                    var locId = event.location_id;
-
+                    locId = event.location_id - 1;
+                    //var address = geocodeLatLng(path[locId]); 
+                    var address = JSON.stringify(pathLocs[locId].lat);
                     var row = '<tr><td>'+ event.title +'</td><td>'+ moment(event.start).format("ddd DD-MM-YYYY hh:mm a")
-                             +'</td><td> </td><td> </td><td></td>'+ event.location_id +'<td> \n\
+                             +'</td><td> </td><td> </td><td></td>'+ address +'<td> \n\
                              <a href="view-more.jsp"><button class="v-more"> View More </button></a> <button class="v-del"> Delete </button></td></tr>';
                              $('#tableEvent > tbody').append(row);
                 });	
             }); 
-        });       
+        //});       
         GMaps.geolocate({
             success: function(position) 
             {
@@ -182,11 +200,11 @@
             {
                 alert('Geolocation failed: ' + error.message);
             },
-                    not_supported: function() 
-                    {
+            not_supported: function() 
+            {
                         alert("Your browser does not support geolocation");
-                    }
-                });
+            }
+        });
                 
                 $('#TombolSave').click(function(){
                     
@@ -204,7 +222,7 @@
                         eventDesc['event'] = eventTraveller;
                         eventDesc['location'] = m2.getPosition();
                         
-                        alert(JSON.stringify(eventDesc));
+                       // alert(JSON.stringify(eventDesc));
                         
                         $.ajax({
                             type: "POST", // method post

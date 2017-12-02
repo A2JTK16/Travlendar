@@ -96,7 +96,8 @@
                           <button class="tablinks" onclick="openCity(event, 'Hari')">Day</button>
 			  <button class="tablinks" id="getList">List Event</button>
 			  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Add New Event</button>
-			  <!--<input class="search-ev" type="text" placeholder="Search Event ... "/>-->
+                          <a href="//localhost:8080/Travlendar2A/Admin-Panel/CalendarEvent"><button class="tablinks">Calendar</button></a>
+                          <!--<input class="search-ev" type="text" placeholder="Search Event ... "/>-->
 	</div>
 	</div> <!--container-t-->
 

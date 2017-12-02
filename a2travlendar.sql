@@ -56,11 +56,12 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`EVENT_ID`, `LOCATION_ID`, `TRAVELLER_ID`, `EVENT_NAME`, `START_EVENT`, `END_EVENT`, `NOTE`) VALUES
-(1, 1, 1, 'Belanja', '2009-09-22 08:08:11', '2009-09-22 12:08:11', NULL),
-(2, 1, 1, 'Liburan', '2009-09-22 08:08:11', '2009-09-22 12:08:11', NULL),
-(3, 1, 1, 'Makan', '2009-09-22 08:08:11', '2009-09-22 12:08:11', NULL),
-(4, 1, 1, 'Sarapan', '2009-09-22 08:08:11', '2009-09-22 00:08:11', NULL),
-(6, 1, 1, 'Kerja Kelompok', '2009-09-22 08:08:11', '2009-09-22 00:08:11', NULL);
+(1, 1, 1, 'Absensi dan Mengambil Surat Tugas', '2009-09-22 07:00:00', '2009-09-22 08:00:00', 'Jangan telat'),
+(2, 2, 1, 'Keberangkatan Menuju Jakarta', '2009-09-22 08:20:00', '2009-09-22 10:20:00', 'Jangan lupa bawa berkas'),
+(3, 3, 1, 'Keberangkatan Menuju Tempat Rapat', '2009-09-22 11:20:00', '2009-09-22 11:50:00','Jangan telat'),
+(4, 4, 1, 'Rapat', '2009-09-22 13:00:11', '2009-09-22 16:00:11', 'Rapat Pleno'),
+(5, 5, 1, 'Mengunjungi Anak', '2009-09-22 17:00:11', '2009-09-22 20:00:11', 'Silaturahim'),
+(6, 6, 1, 'Kembali Pulang ke Bangka', '2009-09-22 04:00:11', '2009-09-22 06:00:11', 'Jangan lupa bawa oleh-oleh');
 
 -- --------------------------------------------------------
 
@@ -79,7 +80,12 @@ CREATE TABLE `location` (
 --
 
 INSERT INTO `location` (`LOCATION_ID`, `LATITUDE`, `LONGITUDE`) VALUES
-(1, 22, 22);
+(1, -2.751039, 107.658358),
+(2, -2.160442, 106.141265),
+(3, -6.125350, 106.660013),
+(4, -6.182827, 106.828533),
+(5, -6.202394, 106.652710),
+(6, -2.160442, 106.141265);
 
 -- --------------------------------------------------------
 
@@ -164,7 +170,7 @@ ALTER TABLE `event`
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `LOCATION_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `LOCATION_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `traveller`
