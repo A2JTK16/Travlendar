@@ -361,8 +361,10 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
             if(affectedRow > 0)
             {
                 ResultSet rs = stmt.getGeneratedKeys();
-                rs.next();
-                idPK = rs.getInt(1);
+                if(rs.next())
+                    idPK = rs.getInt(1);
+                else
+                    idPK = affectedRow;
             }
             /**
              * Tutup Statement

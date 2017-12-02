@@ -6,21 +6,23 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>List Event</title>
+        <title>List User</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- JQuery Library -->
-        <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
+        <!--<script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+        <script src="js/jquery.min.js"></script>
     </head>
     <body>
-        <h1>List Event</h1>
+        <h1>List Data Traveller</h1>
         <table id="tableEvent">
             <thead>
 		<tr>
-                    <th>Event Name</th>
-                    <th>Start Event</th>
-                    <th>End Event</th>
-                    <th>Note</th>
+                    <th>No</th>
+                    <th>Username</th>
+                    <th>Fullname</th>
+                    <th>Email</th>
+                    <th>Password</th>
 		</tr>
             </thead>
             <tbody>
@@ -31,19 +33,17 @@ and open the template in the editor.
         <script>
         $(document).ready(function(){
             
-            $.get("http://localhost:8080/Travlendar2A/index?action=getlistEvent", function(responseJson) 
+            $.get("http://localhost:8080/Travlendar2A/index?action=getlistAdmin", function(responseJson) 
                     {          // Eksekusi URL Controller
-                        $.each(responseJson, function(index, event) {    // Loop pakai Json
-                            for(i=0; i<event.length; i++)
-                            {
-                                var row = '<tr><td>'+ event[i].event_name +'</td><td>'+ event[i].start_event +'</td><td>' + event[i].end_event +'</td></tr>'+ event[i].note+'</td></tr>';
+                        $.each(responseJson, function(index, admin) {    // Loop pakai Json
+                                var row = '<tr><td>'+ (index+1) +'</td><td>'+ admin.username +'</td><td>'+ admin.fullname +'</td><td>' + admin.email +'</td></td>'+ admin.password+'</td></tr>';
                                 $('#tableEvent > tbody').append(row);
-                                
-                            }
                         });
                     });       
             
-            });  
+            
+            
+        });  
         </script>
     </body>
 </html>

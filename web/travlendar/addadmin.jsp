@@ -40,20 +40,19 @@
 		<div class="form">
                     
                     <div class="modal-header">
-                        <h1> Create Your Account </h1>
+                        <h1> Add Admin </h1>
                     </div>
                     
                     <form class="register-form" id="regForm">
-                        <input class="wajibdiisi" type="text" name="traveller_fullname" placeholder="Fullname ..."/>
-			<input class="wajibdiisi" type="text" name="traveller_name" placeholder="Username ..."/>
-                        <input class="wajibdiisi" type="text" name="traveller_email" placeholder="Email ..."/>
-			<input class="wajibdiisi" type="password" name="traveller_password" placeholder="Password ..."/>
-                        <input type="text" name="traveller_address" placeholder="Your Home Address ..."/>
+                        <input class="wajibdiisi" type="text" name="fullname" placeholder="Fullname ..."/>
+			<input class="wajibdiisi" type="text" name="username" placeholder="Username ..."/>
+                        <input class="wajibdiisi" type="text" name="email" placeholder="Email ..."/>
+			<input class="wajibdiisi" type="password" name="password" placeholder="Password ..."/>
                         <br>	
                     </form>
-                    <button class="b-signup" id="tblSignup">Sign Up Now</button>
+                    <button class="b-signup" id="tblSignup">Tambah Admin Now</button>
                     <a href="index.jsp"><button class="b-back">Back</button></a>
-                    <a href="listuser.html"><button class="b-back">Show List User</button></a>
+                    <a href="listadmin.html"><button class="b-back">Show List Admin</button></a>
 		</div>			
             </div> <!--modal content-->
         </div>           
@@ -74,15 +73,6 @@
                     return indexedArray;
                 }
                 //ubah jsonarray form hasil serialize jadi json obj
-                function objectifyForm(formArray)
-                {
-                    var retObj = {};
-                    for(var field in formArray)
-                    {
-                        retObj[field['name']] = field['value'];
-                    }
-                    return retObj;
-                }
                 
                 $('#tblSignup').click(function(){
                     // Serialize form to JSON Array
@@ -106,7 +96,7 @@
                             type: "POST", // method post
                             url: "http://localhost:8080/Travlendar2A/index",
                             dataType:'JSON',
-                            data: {action: 'registerUser', json: JSON.stringify(formData) },
+                            data: {action: 'addAdmin', json: JSON.stringify(formData) },
                             async: false, // dikirim ketika semua beres
                             complete: function(msgStatus)
                             {

@@ -36,7 +36,8 @@
         
         <div class="wadah1">
         <!-- Modal content -->
-            <div class="modal-content">			    	
+            <div class="modal-content">	
+                             
 		<div class="form">
                     
                     <div class="modal-header">
@@ -44,16 +45,18 @@
                     </div>
                     
                     <form class="register-form" id="regForm">
-                        <input class="wajibdiisi" type="text" name="traveller_fullname" placeholder="Fullname ..."/>
-			<input class="wajibdiisi" type="text" name="traveller_name" placeholder="Username ..."/>
-                        <input class="wajibdiisi" type="text" name="traveller_email" placeholder="Email ..."/>
-			<input class="wajibdiisi" type="password" name="traveller_password" placeholder="Password ..."/>
+                        <input id="input0" class="wajibdiisi" type="hidden" name="traveller_id" />
+                        <input id="input1" class="wajibdiisi" type="text" name="traveller_fullname" placeholder="Fullname ..."/>
+			<input id="input2" class="wajibdiisi" type="text" name="traveller_name" placeholder="Username ..."/>
+                        <input id="input3" class="wajibdiisi" type="text" name="traveller_email" placeholder="Email ..."/>
+			<input id="input4" class="wajibdiisi" type="password" name="traveller_password" placeholder="Password ..."/>
                         <input type="text" name="traveller_address" placeholder="Your Home Address ..."/>
                         <br>	
                     </form>
-                    <button class="b-signup" id="tblSignup">Sign Up Now</button>
+                    <button class="b-signup" id="tblSignup">Edit Profil</button>
                     <a href="index.jsp"><button class="b-back">Back</button></a>
                     <a href="listuser.html"><button class="b-back">Show List User</button></a>
+                    <button class="b-signup" id="deleteAkun">Delete Akun</button>
 		</div>			
             </div> <!--modal content-->
         </div>           
@@ -63,6 +66,18 @@
         <script>
             $(document).ready( function()  // Ketika web udah siap
             {   
+                
+                $.get("http://localhost:8080/Travlendar2A/index?action=findUser&fullname=Maryam", function(responseJson) 
+                    {          // Eksekusi URL Controller
+                        //alert(responseJson.traveller_fullname);
+                        $('#input0').val(responseJson.traveller_id);
+                        $('#input1').val(responseJson.traveller_fullname);
+                        $('#input2').val(responseJson.traveller_name);
+                        $('#input3').val(responseJson.traveller_email);
+                        $('#input4').val(responseJson.traveller_password);
+                    });       
+                
+                
                 function getFormData($form)
                 {
                     var unindexedArray = $form.serializeArray();
@@ -74,15 +89,6 @@
                     return indexedArray;
                 }
                 //ubah jsonarray form hasil serialize jadi json obj
-                function objectifyForm(formArray)
-                {
-                    var retObj = {};
-                    for(var field in formArray)
-                    {
-                        retObj[field['name']] = field['value'];
-                    }
-                    return retObj;
-                }
                 
                 $('#tblSignup').click(function(){
                     // Serialize form to JSON Array
@@ -106,7 +112,7 @@
                             type: "POST", // method post
                             url: "http://localhost:8080/Travlendar2A/index",
                             dataType:'JSON',
-                            data: {action: 'registerUser', json: JSON.stringify(formData) },
+                            data: {action: 'editUser', json: JSON.stringify(formData) },
                             async: false, // dikirim ketika semua beres
                             complete: function(msgStatus)
                             {
@@ -123,6 +129,40 @@
                     }
                     else
                         alert("Mohon fullname, username, email, password Wajib Diisi!");
+                });
+            
+                $('#deleteAkun').click(function(){
+                    
+                    var isValid = false; 
+  
+                    // cek kosong enggaknya
+                    if($('#input0').val() != "")
+                        isValid = true;
+                    alert('Anda Yakin Menghapus Akun? \n Semua Data Event Anda Akan Terhapus\nTidak Dapat Kembali')
+                    // jika diisi maka
+                    if(isValid)
+                    {
+                        $.ajax({
+                            type: "POST", // method post
+                            url: "http://localhost:8080/Travlendar2A/index",
+                            dataType:'JSON',
+                            data: {action: 'deleteUser', traveller_id: $('#input0').val() },
+                            async: false, // dikirim ketika semua beres
+                            complete: function(msgStatus)
+                            {
+                                var successMessage = JSON.stringify(msgStatus.responseText);
+                                if(successMessage)
+                                {
+                                    alert(successMessage);
+                                }
+                            },
+                            failure: function(errMsg) {
+                                alert(errMsg);
+                            }
+                        });
+                    }
+                    else
+                        alert("Gagal Delete Akun!!");
                 });
             });
         </script>

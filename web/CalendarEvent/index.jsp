@@ -10,8 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets/css/styletraveller.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets/css/responsive.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets/css/userstyle.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Assets/css/userresponsive.css">
 <title>JSP Page</title>
 <meta charset='utf-8' />
 <link href='fullcalendar.min.css' rel='stylesheet' />
@@ -27,9 +27,10 @@
                 dataType : "json",
                 contentType : "application/json",
                 url: "/Travlendar2A/index?action=getlistEvent",
-                asynx: false,
                 success: function(data)
                 {
+                    var lastDate;
+                    
                     $('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
@@ -47,11 +48,13 @@
                                     event.start = moment(item.start).utc();
                                     event.end = moment(item.end).utc();
                                     event.id = item.id;
-                                    
+                                    lastDate = moment(item.start).format('YYYY-MM-DD');
                                     return event;
                                 })
                     
                         });
+                        
+                        $('#calendar').fullCalendar('gotoDate', lastDate);
                 }   
             });
         });	

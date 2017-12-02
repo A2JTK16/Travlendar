@@ -9,8 +9,7 @@
     <!-- Review : Nanti nyambung dengan headernya (termasuk head dan tag html) ketika di include -->
     
     <!-- Review : Nanti nyambung dengan kontennya ketika di include -->
-    
-    <body>
+
         <div class="footer-atas">
 	
         </div> <!--footer-atas-->
@@ -26,6 +25,3 @@
                 </div>
             </div>
         </div> <!--footer-bawah-->
-    
-    </body> <!-- Review : tutup body dan html hanya di footer -->
-</html>
