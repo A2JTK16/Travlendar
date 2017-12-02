@@ -9,7 +9,7 @@
 <html lang="en">
     <head>
 	<meta charset="UTF-8">
-	<title>Welcome Travlendar</title>
+	<title>User Panel</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
         <!-- Google Maps JS API -->
@@ -94,7 +94,7 @@
 	<div class="tab">
                           <button class="tablinks" onclick="openCity(event, 'Paris')">Month</button>
                           <button class="tablinks" onclick="openCity(event, 'Hari')">Day</button>
-			  <button class="tablinks" onclick="openCity(event, 'Paris')">List Event</button>
+			  <button class="tablinks" id="getList">List Event</button>
 			  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Add New Event</button>
 			  <!--<input class="search-ev" type="text" placeholder="Search Event ... "/>-->
 	</div>
@@ -136,14 +136,14 @@
                 
 
 		<div id="London" class="tabcontent">
-		  <input class="ev-name" id="desc" type="text" placeholder="What Your Event ??.. "/>
+		  <input class="ev-name" id="eventName" type="text" placeholder="What Your Event ??.. "/>
 
 			<div class="main">
 				<div class="left">
 					<input class="ev" id="orig" type="text" placeholder="Event Location ...">
 					<div class="text-ev"> From </div>
-					<input class="tgl-ev" id="date" type="date" value="2017-11-28">
-					<input class="time-ev" id="time" type="time" value="00:00"/>
+					<input class="tgl-ev" id="origDate" type="date" value="2017-11-28">
+					<input class="time-ev" id="origTime" type="time" value="00:00"/>
                                         <div class="text-ev"> Departure Time </div>
                                         <input class="time-ev" id="dist" type="time" value="00:00"/>
 				</div>
@@ -152,12 +152,12 @@
 				<div class="right">
 					<input class="ev" id="dest" type="text" placeholder="Previeous Location ...">
 					<div class="text-ev"> Until </div>
-					<input class="tgl-ev" id="date" type="date" value="2017-11-28">
-                                        <input class="time-ev" id="time" type="time" value="00:00"/>
+					<input class="tgl-ev" id="destDate" type="date" value="2017-11-28">
+                                        <input class="time-ev" id="destTime" type="time" value="00:00"/>
                                         
 				</div>
                                  
-                            <input class="ev-name" id="desc" type="text" placeholder="Note .. " style="height:75px;"/>
+                            <input class="ev-name" id="noteDesc" type="text" placeholder="Note .. " style="height:75px;"/>
                             
                                  <div class="i-save" >
                 <button class="save-ev" id="myBtn">Submit</button>
