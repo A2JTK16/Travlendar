@@ -28,125 +28,160 @@
     $(document).ready( function()  // Ketika web udah siap
     {       
         var path = [];
+        var lastPosition = {};
+             
+        var destination, service;
+	var m1 = null, m2 = null;
+	var m1pos, m2pos;
+        var geocoder = new google.maps.Geocoder;
         
-        $.get("http://localhost:8080/Travlendar2A/index?action=getlistEvent", function(responseJson) 
-        {   // Eksekusi URL Controller
-            $.each(responseJson, function(index, event) 
-            {    // Loop pakai Json
-                    var row = '<tr><td>'+ event.title +'</td><td>'+ moment(event.start).format("ddd DD-MM-YYYY hh:mm a")
-                            +'</td><td> </td><td> </td><td></td>'+ event.location_id +'<td> \n\
-                                <a href="view-more.jsp"><button class="v-more"> View More </button></a> <button class="v-del"> Delete </button></td></tr>';
-                                $('#tableEvent > tbody').append(row);
-            });	
-        });      
-                var destination, service;
-		var m1 = null, m2 = null;
-		var m1pos, m2pos;
-		var corvo = false, attano = true;
-                
-              document.getElementById("defaultOpen").click();
+        document.getElementById("defaultOpen").click();
               
-		var mapObj = new GMaps({
-			el: '#map',
-			lat: -6.914744,
-			lng: 107.609810,
-			zoom: 16,
-			click: function(e) 
-                            {
-				if (corvo) 
-                                {
-                                    mapObj.removeMarker((attano) ? m1 : m2);
-                                    mapObj.removePolylines();
-				}
+	var mapObj = new GMaps({
+            el: '#map',
+            lat: -6.914744,
+            lng: 107.609810,
+            zoom: 16,
+            click: function(e) 
+                {
+                    if (m2 != null) 
+                    {
+                        mapObj.removeMarker(m2);
+                        mapObj.removePolylines();
+                    }
 
-				if (attano) {
-					m1 = mapObj.addMarker({
-						lat: e.latLng.lat(),
-						lng: e.latLng.lng()//,
-						//icon: sourceIcon
-					});
-					m1pos = m1.getPosition();
-				} 
-				else {
-					m2 = mapObj.addMarker({
-						lat: e.latLng.lat(),
-						lng: e.latLng.lng()//,
-						//icon: destinationIcon
-					});
-					m2pos = m2.getPosition();
-				}
+                    if ( m1 == null) {
+			m1 = mapObj.addMarker({
+                            lat: e.latLng.lat(),
+                            lng: e.latLng.lng()//,
+					//icon: sourceIcon
+                        });
+			m1pos = m1.getPosition();
+                    } 
+                    else {
+			m2 = mapObj.addMarker({
+                            lat: e.latLng.lat(),
+                            lng: e.latLng.lng()//,
+                            //icon: destinationIcon
+			});
+			m2pos = m2.getPosition();
+                    }
                                 
-                               var selectedMode = document.getElementById('transportMode').value;
+                    var selectedMode = document.getElementById('transportMode').value;
                                 
 				// If two markers have been placed
-				if (m1 !== null && m2 !== null) {
-					corvo = true;
-					mapObj.drawRoute({
-						origin: [m1pos.lat(), m1pos.lng()],
-						destination: [m2pos.lat(), m2pos.lng()],
-						travelMode: google.maps.TravelMode[selectedMode],
-						strokeColor: '#131540',
-						strokeOpacity: 0.6,
-						strokeWeight: 6
-                                            });
-					//$('#trace_route').prop('disabled', false);
-                                        
-                                        
-				}
-				attano = !attano;
+                    if (m1 !== null && m2 !== null) 
+                    {
+                        
+                        mapObj.drawRoute({
+                            origin: [m1pos.lat(), m1pos.lng()],
+                            destination: [m2pos.lat(), m2pos.lng()],
+                            travelMode: google.maps.TravelMode[selectedMode],
+                            strokeColor: '#131540',
+                            strokeOpacity: 0.6,
+                            strokeWeight: 6
+                        });
+			//$('#trace_route').prop('disabled', false);
+                    }
 			
-                                var origin = new google.maps.LatLng(m1pos.lat(),m1pos.lng()),
-                                destination = new google.maps.LatLng(m2pos.lat(),m2pos.lng()),
-                                service = new google.maps.DistanceMatrixService();
+                    var origin = new google.maps.LatLng(m1pos.lat(),m1pos.lng()),
+                    destination = new google.maps.LatLng(m2pos.lat(),m2pos.lng()),
+                    service = new google.maps.DistanceMatrixService();
 
-                                service.getDistanceMatrix(
-                                    {
-                                        origins: [origin],
-                                        destinations: [destination],
-                                        travelMode: google.maps.TravelMode[selectedMode],
-                                        avoidHighways: false,
-                                        avoidTolls: false
-                                    }, 
-                                    callback
-                                );
+                    service.getDistanceMatrix(
+                        {
+                            origins: [origin],
+                            destinations: [destination],
+                            travelMode: google.maps.TravelMode[selectedMode],
+                            avoidHighways: false,
+                            avoidTolls: false
+                        }, 
+                        callback
+                    );
 
-                                function callback(response, status) 
-                                {
-                                    var orig = document.getElementById("orig"),
-                                    dest = document.getElementById("dest"),
-                                    dist = document.getElementById("dist");
-
-                                    if(status=="OK") {
-                                        dest.value = response.destinationAddresses[0];
-                                        orig.value = response.originAddresses[0];
-                                        dist.value = response.rows[0].elements[0].distance.text;
-                                    } 
-                                    else {
-                                        alert("Error: " + status);
-                                    }
-                                }
+                    function callback(response, status) 
+                    {
+                        var orig = document.getElementById("orig"),
+                        dest = document.getElementById("dest"),
+                        dist = document.getElementById("dist");
+                        if(status=="OK") 
+                        {
+                            dest.value = response.destinationAddresses[0];
+                            orig.value = response.originAddresses[0];
+                            dist.value = response.rows[0].elements[0].distance.text;
+                        } 
+                        else 
+                        {
+                            alert("Error: " + status);
+                        }
+                    }
                                 
                              
 
-                            } // tutup fungsi e ketika klik
-		}); // tutup instansiasi gmaps         
+                } // tutup fungsi e ketika klik
+        }); // tutup instansiasi gmaps         
                 
-                GMaps.geolocate({
-                    success: function(position) 
+        function geocodeLatLng(input) 
+        {
+            var latlngStr = input.split(',', 2);
+            var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+            var address;
+            
+            geocoder.geocode({'location': latlng}, function(results, status) 
+            {
+                if (status === 'OK') 
+                {
+                    if (results[0]) 
                     {
-                        mapObj.setCenter(position.coords.latitude, position.coords.longitude);
-                        m1 = mapObj.addMarker({
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude,
-                            title: 'Your current position'
-                        });
-                        m1pos = m1.getPosition();
-                        attano = !attano;
-                    },
-                    error: function(error) 
+                        address = results[0].formatted_address;              
+                    } 
+                    else 
                     {
-                        alert('Geolocation failed: ' + error.message);
-                    },
+                          window.alert('No results found');
+                    }
+                } 
+                else 
+                {
+                    window.alert('Geocoder failed due to: ' + status);
+                }
+            });
+            
+            return address;
+        }
+        
+        $('#getList').click(function()
+        {
+            openCity(event, 'Paris');
+
+            $.get("http://localhost:8080/Travlendar2A/index?action=getlistEvent", function(responseJson) 
+            {   // Eksekusi URL Controller
+                $.each(responseJson, function(index, event) 
+                {    // Loop pakai Json
+                    var locId = event.location_id;
+
+                    var row = '<tr><td>'+ event.title +'</td><td>'+ moment(event.start).format("ddd DD-MM-YYYY hh:mm a")
+                             +'</td><td> </td><td> </td><td></td>'+ event.location_id +'<td> \n\
+                             <a href="view-more.jsp"><button class="v-more"> View More </button></a> <button class="v-del"> Delete </button></td></tr>';
+                             $('#tableEvent > tbody').append(row);
+                });	
+            }); 
+        });       
+        GMaps.geolocate({
+            success: function(position) 
+            {
+                mapObj.setCenter(position.coords.latitude, position.coords.longitude);
+                    m1 = mapObj.addMarker({
+                       lat: position.coords.latitude,
+                       lng: position.coords.longitude,
+                       title: 'Your current position'
+                });
+                m1pos = m1.getPosition();
+                
+            },
+            error: function(error) 
+            {
+                alert('Geolocation failed: ' + error.message);
+            },
                     not_supported: function() 
                     {
                         alert("Your browser does not support geolocation");
@@ -154,26 +189,39 @@
                 });
                 
                 $('#TombolSave').click(function(){
+                    
+                    var eventTraveller = {};
+                    var eventDesc = {};
+                   
                     if(m2 !== null)
+                    {
+                        eventTraveller['title'] = $('#eventName').val();
+                        eventTraveller['start'] = new Date($('#origDate').val() +" "+$('#origTime').val());
+                        eventTraveller['end'] = new Date($('#destDate').val() +" "+$('#destTime').val());
+                        eventTraveller['note'] = $('#noteDesc').val();
+                        eventTraveller['traveller_id'] = 1;
+                    
+                        eventDesc['event'] = eventTraveller;
+                        eventDesc['location'] = m2.getPosition();
+                        
+                        alert(JSON.stringify(eventDesc));
+                        
                         $.ajax({
                             type: "POST", // method post
                             url: "http://localhost:8080/Travlendar2A/index",
                             dataType:'JSON',
                             //   data: {listjson: JSON.stringify(listJson)},
-                            data: {latitude: m2pos.lat(), longitude: m2pos.lng(), desc: document.getElementById("desc").value},
+                            data: {action: 'addEvent', json: JSON.stringify(eventDesc)},
                             async: false, // dikirim ketika semua beres
                             complete: function(msgStatus)
                             {
-                                var successMessage = JSON.stringify(msgStatus.responseText);
-                                if(successMessage)
-                                {
-                                    alert(successMessage);
-                                }
+                                alert(msgStatus.responseText);
                             },
                             failure: function(errMsg) {
                                 alert(errMsg);
                             }
                         });
+                    }
                     else
                         alert("Mohon klik tujuan anda!");
                 });
