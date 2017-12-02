@@ -29,6 +29,8 @@
                 url: "/Travlendar2A/index?action=getlistEvent",
                 success: function(data)
                 {
+                    var lastDate;
+                    
                     $('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
@@ -46,11 +48,13 @@
                                     event.start = moment(item.start).utc();
                                     event.end = moment(item.end).utc();
                                     event.id = item.id;
-                                    
+                                    lastDate = moment(item.start).format('YYYY-MM-DD');
                                     return event;
                                 })
                     
                         });
+                        
+                        $('#calendar').fullCalendar('gotoDate', lastDate);
                 }   
             });
         });	

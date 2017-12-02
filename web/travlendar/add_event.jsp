@@ -50,7 +50,7 @@
                     </a>
                 </button>
                 <div class="dropdown-content">
-                  <a href="#">My Account</a>
+                  <a href="editprofil.jsp">My Account</a>
                   <a href="#">Add Account</a>
                   <a href="index.jsp">Sign Out</a>
                 </div>

@@ -187,6 +187,22 @@ public class TravlendarController extends HttpServlet
                 }
                 break;
             
+            case "getlistAdmin" :
+                // TULIS CODE DISINI !!!
+                List<Admin> listAdmin = this.adminDao.getList();
+                /**
+                 * Mengubah ke bentuk json dan mengirimkan resonse json ke client
+                 */
+                try
+                {
+                    jsonString = this.jsonMapper.writeValueAsString(listAdmin);            
+                    this.responseJson(response, jsonString);
+                }
+                catch (JsonProcessingException ex)
+                {
+                    
+                }
+                break;
         } //end switch
     }
     
@@ -295,12 +311,18 @@ public class TravlendarController extends HttpServlet
                 // TULIS CODE DISINI !!!
                 String traveller_id = request.getParameter("traveller_id");
                 
-                idPK = this.travellerDao.delete("traveller_id", traveller_id);
+                int affectedRowEvent = this.eventDao.delete("traveller_id", traveller_id);
+                affectedRow = this.travellerDao.delete("traveller_id", traveller_id);
                 
-                if(idPK > 0)
+                if(affectedRow > 0)
                     this.responseStr(response, "Sukses Menghapus User");
                 else
-                    this.responseStr(response, "Gagal Menghapus User");  
+                {
+                    if(affectedRowEvent < 0)
+                        this.responseStr(response, "Gagal Menghapus User\nData Anda Aman");  
+                    else
+                        this.responseStr(response, "Data Event Anda Sukses Dihapus Semua\nGagal Menghapus User");
+                }
                 
                 break;
                 
@@ -328,17 +350,17 @@ public class TravlendarController extends HttpServlet
                 {
                     Admin admin = jsonMapper.readValue(json, Admin.class);
                     
-                    idPK = this.adminDao.create(admin);
+                    affectedRow = this.adminDao.create(admin);
                 } 
                 catch (IOException ex) 
                 {
                     Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
-                if(idPK > 0)
+                if(affectedRow > 0)
                     this.responseStr(response, "Sukses Menambahkan Admin");
                 else
-                    this.responseStr(response, "Gagal Menambahkan Admin");
+                    this.responseStr(response, "Gagal Menambahkan Admin\nGunakan Username Lain!!!");
                 
                 break;
                 

@@ -31,7 +31,8 @@ public interface IDao<T>
     
     /**
      *   Menyimpan data ke database
-     *   Mengembalikan nilai id yang auto increment
+     *   Mengembalikan nilai PK yang auto increment
+     *   Jika tidak memiliki PK yang auto increment, maka mengembalikan 1 jika sukses insert
      *   SQL : INSERT INTO class-name ( class-attribute ) VALUES ( attribute-value-from-object )
      * 
      * @param object 
