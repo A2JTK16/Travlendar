@@ -38,7 +38,7 @@
                     $.ajax({
                         dataType : "json",
                         contentType : "application/json",
-                        url: "/Travlendar2A/index?action=getlistEvent",
+                        url: "${pageContext.request.contextPath}/index?action=getlistEvent",
                         success: function(data)
                         {
                             var lastDate;
