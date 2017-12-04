@@ -26,6 +26,60 @@
         <!-- GMaps Custom Setting for This Page -->
         <script src="js/mapsdefault.js"></script>
         
+        <link href='calendar-event/fullcalendar.min.css' rel='stylesheet' />
+        <link href='calendar-event/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+        <script src='calendar-event/lib/moment.min.js'></script>
+        <script src='calendar-event/lib/jquery.min.js'></script>
+        <script src='calendar-event/fullcalendar.min.js'></script>
+        <script>
+
+                $(document).ready(function() {
+
+                    $.ajax({
+                        dataType : "json",
+                        contentType : "application/json",
+                        url: "/Travlendar2A/index?action=getlistEvent",
+                        success: function(data)
+                        {
+                            var lastDate;
+
+                            $('#calendar').fullCalendar({
+                                header: {
+                                        left: 'prev,next today',
+                                        center: 'title',
+                                        right: 'month,agendaWeek,agendaDay,listWeek'
+                                },
+                                defaultDate: '2009-09-22',
+                                navLinks: true, // can click day/week names to navigate views
+                                editable: true,
+                                eventLimit: true, // allow "more" link when too many events
+                                events: $.map(data, function(item,i)
+                                        {
+                                            var event = new Object();
+                                            event.title = item.title;
+                                            event.start = moment(item.start).utc();
+                                            event.end = moment(item.end).utc();
+                                            event.id = item.id;
+                                            lastDate = moment(item.start).format('YYYY-MM-DD');
+                                            return event;
+                                        })
+
+                                });
+
+                                $('#calendar').fullCalendar('gotoDate', lastDate);
+                        }   
+                    });
+                });	
+        </script>
+<style>
+
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+</style>
+        
     </head>
 <body>
 	
@@ -92,11 +146,11 @@
 
 	<div class="container-t">
 	<div class="tab">
+                          <button class="tablinks" onclick="openCity(event, 'Tasik')" id="defaultOpen">Calendar</button>
                           <button class="tablinks" onclick="openCity(event, 'Paris')">Month</button>
                           <button class="tablinks" onclick="openCity(event, 'Hari')">Day</button>
 			  <button class="tablinks" id="getList">List Event</button>
 			  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Add New Event</button>
-                          <a href="//localhost:8080/Travlendar2A/Admin-Panel/CalendarEvent"><button class="tablinks">Calendar</button></a>
                           <!--<input class="search-ev" type="text" placeholder="Search Event ... "/>-->
 	</div>
 	</div> <!--container-t-->
@@ -106,6 +160,11 @@
         <div class="induk2">
 
             <div class="container">
+                
+                <div id="Tasik" class="tabcontent">
+                   <div id='calendar'></div>
+                 
+		</div>
                 
                 <div id="Hari" class="tabcontent">
                                         <table id="tableEvent">
