@@ -104,7 +104,7 @@
                     {
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8080/Travlendar2A/index",
+                            url: "http://localhost:8084/Travlendar2A/index",
                             dataType:'JSON',
                             data: {action: 'registerUser', json: JSON.stringify(formData) },
                             async: false, // dikirim ketika semua beres

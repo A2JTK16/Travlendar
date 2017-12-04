@@ -35,7 +35,7 @@ and open the template in the editor.
         <script>
         $(document).ready(function(){
             
-            $.get("http://localhost:8080/Travlendar2A/index?action=getlistUser", function(responseJson) 
+            $.get("http://localhost:8084/Travlendar2A/index?action=getlistUser", function(responseJson) 
                     {          // Eksekusi URL Controller
                         $.each(responseJson, function(index, user) {    // Loop pakai Json
                                 var row = '<tr><td>'+ (index+1) +'</td><td>'+ user.traveller_id +'</td><td>'+ user.traveller_name +'</td><td>'+ user.traveller_fullname +'</td><td>' + user.traveller_email +'</td></td>'+ user.traveller_password+'</td><td>'+ user.traveller_address+'</td></tr>';
