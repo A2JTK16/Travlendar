@@ -165,12 +165,8 @@
                     service_walking = new google.maps.DistanceMatrixService(),
                     service_Driving = new google.maps.DistanceMatrixService(),
                     service_bicycling = new google.maps.DistanceMatrixService(),
-                    service_transit = new google.maps.DistanceMatrixService(),
+                    service_transit = new google.maps.DistanceMatrixService();
                     
-                    
-                    
-                    coba = document.getElementById("coba");
-                   
                  
                     var timesplit = origtime.value.split(""),
                     hours,hours1,minutes,minutes1,hasil,hasilmenit,hasilseluruh,meridian;
@@ -427,7 +423,7 @@
         
         var pathLocs = [];
         
-            $.get("http://localhost:8080/Travlendar2A/index?action=getlistLocation", function(responseJson) 
+            $.get("http://localhost:8084/Travlendar2A/index?action=getlistLocation", function(responseJson) 
             {   // Eksekusi URL Controller
                 var locLatLng;
                 //alert(responseJson);
@@ -442,7 +438,7 @@
                 m1pos = m1.getPosition();
             }); 
             
-            $.get("http://localhost:8080/Travlendar2A/index?action=getlistEvent", function(responseJson) 
+            $.get("http://localhost:8084/Travlendar2A/index?action=getlistEvent", function(responseJson) 
             {   // Eksekusi URL Controller
                 var locId;
                 $.each(responseJson, function(index, event) 
@@ -513,7 +509,7 @@
                         
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8080/Travlendar2A/index",
+                            url: "http://localhost:8084/Travlendar2A/index",
                             dataType:'JSON',
                             //   data: {listjson: JSON.stringify(listJson)},
                             data: {action: 'addEvent', json: JSON.stringify(eventDesc)},
@@ -540,7 +536,7 @@
                         mapObj.removeMarker(m2);
                     mapObj.removePolylines();
                     
-                    $.get("http://localhost:8080/Travlendar2A/index?action=getlistLocation", function(responseJson) 
+                    $.get("http://localhost:8084/Travlendar2A/index?action=getlistLocation", function(responseJson) 
                     {          // Eksekusi URL Controller
                         $.each(responseJson, function(index, location) {    // Loop pakai Json
                             for(i=0; i<location.length; i++)
@@ -574,7 +570,7 @@
                     var idEvent = col1;
                     $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8080/Travlendar2A/index",
+                            url: "http://localhost:8084/Travlendar2A/index",
                             dataType:'JSON',
                             data: {action: 'deleteEvent', event_id: idEvent },
                             async: false, // dikirim ketika semua beres

@@ -171,6 +171,18 @@ ALTER TABLE `event`
   ADD CONSTRAINT `FK_CREATE` FOREIGN KEY (`TRAVELLER_ID`) REFERENCES `traveller` (`TRAVELLER_ID`),
   ADD CONSTRAINT `FK_LOCATED` FOREIGN KEY (`LOCATION_ID`) REFERENCES `location` (`LOCATION_ID`);
 
+
+Create or replace view viewEvent as
+SELECT
+E.event_name, E.start_event ,
+E.end_event , E.Transportation,
+E.departure_time, E.note,
+L.latitude , L.longitude 
+FROM
+      event E, location L
+   WHERE
+      L.location_id = E.Location_id ;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
