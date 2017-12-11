@@ -600,82 +600,6 @@ div.tab button.active {
 
 
 
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-
-}
-
-/************************************************************************************
-MEDIA QUERIES
-*************************************************************************************/
-/* untuk ukuran 1080px kebawah */
-@media screen and (max-width: 1080px) {
-	
-	.container {
-		width: 100%;
-	}
-	.left {
-		width: 25%;
-		background: #fff000;
-	}
-	.middle {
-		width: 68%;
-		float: right;
-	}
-	
-	.right {
-		clear: both;
-		padding: 1% 4%;
-		width: auto;
-		float: none;
-	}
-}
-
-
-/* untuk ukuran layar 700px kebawah */
-@media screen and (max-width: 780px) {
-	
-	.header, 
-	.footer{
-		text-align: center;
-	}
-	.left {
-		width: auto;
-		float: none;
-	}
-	
-	.middle {
-		width: auto;
-		float: none;
-	}
-	
-	.right {
-		width: auto;
-		float: none;
-	}
-
-}
-
-
-
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -880,3 +804,63 @@ table {
                     width: 50px;
                     height: 50px;
                 }
+                
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.b-signin{  
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.b-signup,.b-back{
+  float: right;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 50%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.b-back{
+    background:#1976D2;
+}
+
+
+.form button:hover{color:#f4f4f4;}
+
+.setting-from{
+    width: 530px;
+    padding: 20px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-top: 3px solid #ff9900;
+    border-bottom: 3px solid #ff9900;
+}

@@ -9,9 +9,10 @@
 <html lang="en">
     <head>
 	<meta charset="UTF-8">
-	<title>User Panel</title>
+	<title>Welcome Travlendar</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/responsive.css">
         <!-- Google Maps JS API -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>
         
@@ -104,8 +105,7 @@
                     </a>
                 </button>
                 <div class="dropdown-content">
-                  <a href="editprofil.jsp">My Account</a>
-                  <a href="#">Add Account</a>
+                  <a href="setting.jsp">Setting Account</a>
                   <a href="index.jsp">Sign Out</a>
                 </div>
             </div>
@@ -147,8 +147,6 @@
 	<div class="container-t">
 	<div class="tab">
                           <button class="tablinks" onclick="openCity(event, 'Tasik')" id="defaultOpen">Calendar</button>
-                          <button class="tablinks" onclick="openCity(event, 'Paris')">Month</button>
-                          <button class="tablinks" onclick="openCity(event, 'Hari')">Day</button>
 			  <button class="tablinks" id="getList">List Event</button>
 			  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Add New Event</button>
                           <!--<input class="search-ev" type="text" placeholder="Search Event ... "/>-->
@@ -166,33 +164,6 @@
                  
 		</div>
                 
-                <div id="Hari" class="tabcontent">
-                                        <table id="tableEvent">
-						<thead>
-						<tr>
-						    <th>Time</th>
-                                                    <th>Event Name</th>
-                                                    <th>Use</th>
-                                                    <th>At</th>
-                                                    <th>Location</th>
-                                                    <th> Note </th>
-						</tr>
-						</thead>
-                                                
-                                                <tr>
-                                                    <td> </td>
-                                                    <td> </td>
-                                                    <td> </td>
-                                                    <td> </td>
-                                                    <td> </td>
-                                                    <td> </td>
-                                                </tr>
-						<tbody>
-                                                	
-						
-						</tbody>
-					</table>
-		</div>
                 
 
 		<div id="London" class="tabcontent">
@@ -205,7 +176,9 @@
 					<input class="tgl-ev" id="origDate" type="date" value="2017-11-28">
 					<input class="time-ev" id="origTime" type="time" value="00:00"/>
                                         <div class="text-ev"> Departure Time </div>
-                                        <input class="time-ev" id="dist" type="time" value="00:00"/>
+                                        <input class="tgl-ev" id="departureDate" type="date" value="2017-11-28">
+                                        <input class="time-ev" id="departureTime" class="departure" type="time" value="00:00"/>
+                                        
 				</div>
 				
 				
@@ -216,11 +189,11 @@
                                         <input class="time-ev" id="destTime" type="time" value="00:00"/>
                                         
 				</div>
-                                 
-                            <input class="ev-name" id="noteDesc" type="text" placeholder="Note .. " style="height:75px;"/>
+                                
+                                <input class="ev-name" id="noteDesc" type="text" placeholder="Note .. " style="height:75px;"/>
                             
                                  <div class="i-save" >
-                <button class="save-ev" id="myBtn">Submit</button>
+                <button class="submit" id="myBtn">Submit</button>
 				<!-- The Modal -->
 				<div id="myModal" class="modal">
 
@@ -240,20 +213,25 @@
                                                                       <br> ⭙
                                                                   </div>
                                                                    <div class="k-transport">
-                                                                      <div class="trans"> <img src="icon/train.png"> </div>
-                                                                      <br> ⭙
+                                                                       <div class="trans"> <img src="icon/train.png"></div>
+                                                                       <input type="radio" id="radio" name="transportation" value="TRANSIT">
+                                                                      <input id="transit" type="text">
+                                                                      <br>
                                                                   </div>
                                                                    <div class="k-transport">
                                                                       <div class="trans"> <img src="icon/car.png"> </div>
-                                                                      <div class="radiona"><input type="radio" name="transtime" value="cartime"> 40m</div> 
+                                                                      <input type="radio" id="radio2" name="transportation" value="DRIVING" >
+                                                                      <input id="driving" type="text">
                                                                   </div>
                                                                    <div class="k-transport">
                                                                       <div class="trans"> <img src="icon/motor3.png"> </div>
-                                                                      <div class="radiona"><input type="radio" name="transtime" value="motortime"> 25m</div>
+                                                                      <input type="radio" id="radio3" name="transportation" value="BICYCLING" >
+                                                                      <input id="bicycling" type="text">
                                                                   </div>
                                                                    <div class="k-transport">
                                                                       <div class="trans"> <img src="icon/walk.png"> </div>
-                                                                      <div class="radiona"><input type="radio" name="transtime" value="walktime"> 4h 15m</div>
+                                                                      <input type="radio" id="radio1" name="transportation" value="WALKING" >
+                                                                      <input id="walking" type="text">
                                                                   </div>
                                                                   
                                                                   <button id="TombolSave">Save</button>
@@ -308,12 +286,6 @@
 
         <div class="container">
             <div class="main">
-                    <select id="transportMode">
-                      <option value="DRIVING">Driving</option>
-                      <option value="WALKING">Walking</option>
-                      <option value="BICYCLING">Bicycling</option>
-                      <option value="TRANSIT">Transit</option>
-                    </select>
                 <div id="map">Maps Event</div>
             </div> <!--/ .main -->
         </div> <!--container-->

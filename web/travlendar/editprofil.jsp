@@ -55,8 +55,8 @@
                     </form>
                     <button class="b-signup" id="tblSignup">Edit Profil</button>
                     <a href="index.jsp"><button class="b-back">Back</button></a>
-                    <a href="listuser.html"><button class="b-back">Show List User</button></a>
-                    <button class="b-signup" id="deleteAkun">Delete Akun</button>
+                    <!--<a href="listuser.html"><button class="b-back">Show List User</button></a>-->
+                    <!--<button class="b-signup" id="deleteAkun">Delete Akun</button>-->
 		</div>			
             </div> <!--modal content-->
         </div>           
@@ -67,7 +67,7 @@
             $(document).ready( function()  // Ketika web udah siap
             {   
                 
-                $.get("http://localhost:8080/Travlendar2A/index?action=findUser&fullname=Maryam", function(responseJson) 
+                $.get("http://localhost:8084/Travlendar2A/index?action=findUser&fullname=Maryam", function(responseJson) 
                     {          // Eksekusi URL Controller
                         //alert(responseJson.traveller_fullname);
                         $('#input0').val(responseJson.traveller_id);
@@ -110,7 +110,7 @@
                     {
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8080/Travlendar2A/index",
+                            url: "http://localhost:8084/Travlendar2A/index",
                             dataType:'JSON',
                             data: {action: 'editUser', json: JSON.stringify(formData) },
                             async: false, // dikirim ketika semua beres
@@ -144,7 +144,7 @@
                     {
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8080/Travlendar2A/index",
+                            url: "http://localhost:8084/Travlendar2A/index",
                             dataType:'JSON',
                             data: {action: 'deleteUser', traveller_id: $('#input0').val() },
                             async: false, // dikirim ketika semua beres

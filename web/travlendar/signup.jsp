@@ -53,7 +53,7 @@
                     </form>
                     <button class="b-signup" id="tblSignup">Sign Up Now</button>
                     <a href="index.jsp"><button class="b-back">Back</button></a>
-                    <a href="listuser.html"><button class="b-back">Show List User</button></a>
+                    <!--<a href="listuser.html"><button class="b-back">Show List User</button></a>-->
 		</div>			
             </div> <!--modal content-->
         </div>           
@@ -125,6 +125,8 @@
                         alert("Mohon fullname, username, email, password Wajib Diisi!");
                 });
             });
+            
+            
         </script>
         
     </body>

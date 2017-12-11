@@ -12,6 +12,7 @@
 	<title>Welcome Travlendar</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/responsive.css">
         <!-- Google Maps JS API -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>
         
@@ -132,6 +133,7 @@
 
 		<div id="London" class="tabcontent">
 			<div class="main">
+                            <form action="add_event.jsp" method="POST">
 				<div class="left">
                                     <div class="text-ev"> Ke Kantor </div>
                                     <div id="map">Maps Event</div>
@@ -151,12 +153,12 @@
                                         <input class="time-ev" id="time" type="time" value="00:00"/>
 				</div>
                                  
-                            <input class="ev-name" id="desc" type="text" placeholder="Note .. " style="height:75px;"/>
-                            
-                <div class="i-save" >
-                    <button class="save-ev" id="myBtn"> Edit </button>            
-                </div> <!--i-save-->
+                                <input class="ev-name" id="desc" type="text" placeholder="Note .. " style="height:75px;"/>
 
+                                <div class="i-save" >
+                                    <button class="save-ev" id="myBtn"> Edit </button>            
+                                </div> <!--i-save-->
+                            </form>
 				
 			</div> <!--/ .main -->
 		</div>
