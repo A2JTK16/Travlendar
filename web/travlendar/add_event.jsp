@@ -147,10 +147,10 @@
 
 	<div class="container-t">
 	<div class="tab">
-                          <button class="tablinks" onclick="openCity(event, 'Tasik')" id="defaultOpen">Calendar</button>
-			  <button class="tablinks" id="getList">List Event</button>
-			  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Add New Event</button>
-                          <!--<input class="search-ev" type="text" placeholder="Search Event ... "/>-->
+            <button class="tablinks" onclick="openCity(event, 'Tasik')" id="defaultOpen">Calendar</button>
+	    <button class="tablinks" id="getList">List Event</button>
+	    <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Add New Event</button>
+            <!--<input class="search-ev" type="text" placeholder="Search Event ... "/>-->
 	</div>
 	</div> <!--container-t-->
 
@@ -274,12 +274,38 @@
 					</table>
 		</div>
 
-		<div id="Tokyo" class="tabcontent">
-                  
-		  <h3>Tokyo</h3>
-                  
-                      <p> huuhhh </p>
-	          
+		<div id="MoreEvent" class="tabcontent">
+			<div class="main">
+                            <form>
+				<div class="left">
+                                    <div class="text-ev">
+                                        <input class="ev" id="moreTitle" type="text"/>
+                                    </div>
+                                    
+				</div>
+				
+				
+				<div class="right">
+                                        <div class="text-ev"> Start </div>
+                                            <input class="ev" id="moreStart" type="text" placeholder="Ke ..."/>
+					<div class="text-ev"> Event Locations </div>
+                                            <input class="ev" id="moreAddress" type="text" placeholder="Ke ..."/>
+                                        <div class="text-ev"> Use </div>
+                                        <div class="icon-more">
+                                            <input class="ev" id="moreMode" type="text" placeholder="Ke ..."/>
+                                        </div>
+                                        <div class="text-ev"> At </div>
+                                            <input class="time-ev" id="moreDepature" />
+				</div>
+                                 
+                                <input class="ev-name" id="moreNote" type="text" style="height:75px;"/>
+
+                                <div class="i-save" >
+                                    <button class="save-ev" id="moreSave"> Edit </button>            
+                                </div> <!--i-save-->
+                            </form>
+				
+			</div> <!--/ .main -->
 		</div>
 
             </div> <!--container-->
