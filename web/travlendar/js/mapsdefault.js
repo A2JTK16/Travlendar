@@ -165,8 +165,12 @@
                     service_walking = new google.maps.DistanceMatrixService(),
                     service_Driving = new google.maps.DistanceMatrixService(),
                     service_bicycling = new google.maps.DistanceMatrixService(),
-                    service_transit = new google.maps.DistanceMatrixService();
+                    service_transit = new google.maps.DistanceMatrixService(),
                     
+                    
+                    
+                    coba = document.getElementById("coba");
+                   
                  
                     var timesplit = origtime.value.split(""),
                     hours,hours1,minutes,minutes1,hasil,hasilmenit,hasilseluruh,meridian;
@@ -423,7 +427,7 @@
         
         var pathLocs = [];
         
-            $.get("http://localhost:8084/Travlendar2A/index?action=getlistLocation", function(responseJson) 
+            $.get("http://localhost:8080/Travlendar2A/index?action=getlistLocation", function(responseJson) 
             {   // Eksekusi URL Controller
                 var locLatLng;
                 //alert(responseJson);
@@ -438,7 +442,7 @@
                 m1pos = m1.getPosition();
             }); 
             
-            $.get("http://localhost:8084/Travlendar2A/index?action=getlistEvent", function(responseJson) 
+            $.get("http://localhost:8080/Travlendar2A/index?action=getlistEvent", function(responseJson) 
             {   // Eksekusi URL Controller
                 var locId;
                 $.each(responseJson, function(index, event) 
@@ -448,11 +452,32 @@
                     var address = JSON.stringify(pathLocs[locId].lat);
                     var row = '<tr><td style="display:none">'+ event.id +'</td><td>'+ event.title +'</td><td>'+ moment(event.start).format("ddd DD-MM-YYYY hh:mm a")
                              +'</td><td>' + event.transportation + '</td><td>'+moment(event.departure_time).format("ddd DD-MM-YYYY hh:mm a")+ '</td><td></td>'+ address +'<td> \n\
-                             <a href="view-more.jsp"><button class="v-more"> View More </button></a> <button class="v-del"> Delete </button></td></tr>';
+                             <button class="v-more"> View More </button> <button class="v-del"> Delete </button></td></tr>';
                              $('#tableEvent > tbody').append(row);
                 });	
             }); 
-        //});       
+        //});
+        
+        $("#tableEvent").on('click', '.v-more', function()
+        {
+            var currentRow = $(this).closest("tr");
+            
+            var eventId = currentRow.find("td:eq(0)").html();
+            var eventTitle = currentRow.find("td:eq(1)").html();
+            var eventStart = currentRow.find("td:eq(2)").html();
+            var eventMode = currentRow.find("td:eq(3)").html();
+            var eventDepature = currentRow.find("td:eq(4)").html();
+            var eventAddress = currentRow.find("td:eq(5)").html();
+            
+            $('#moreTitle').val(eventTitle);
+            $('#moreStart').val(eventStart);
+            $('#moreMode').val(eventMode);
+            $('#moreDepature').val(eventDepature);
+            $('#moreAddress').val(eventAddress);
+            
+            openCity(event, 'MoreEvent');
+        });
+        
         GMaps.geolocate({
             success: function(position) 
             {
@@ -509,7 +534,7 @@
                         
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8084/Travlendar2A/index",
+                            url: "http://localhost:8080/Travlendar2A/index",
                             dataType:'JSON',
                             //   data: {listjson: JSON.stringify(listJson)},
                             data: {action: 'addEvent', json: JSON.stringify(eventDesc)},
@@ -527,60 +552,27 @@
                         alert("Mohon klik tujuan anda!");
                 });
                 
-                               
-                $('#viewList').click(function(){
-                    
-                    if(m1 !== null)
-                        mapObj.removeMarker(m1);
-                    if(m2 !== null)
-                        mapObj.removeMarker(m2);
-                    mapObj.removePolylines();
-                    
-                    $.get("http://localhost:8084/Travlendar2A/index?action=getlistLocation", function(responseJson) 
-                    {          // Eksekusi URL Controller
-                        $.each(responseJson, function(index, location) {    // Loop pakai Json
-                            for(i=0; i<location.length; i++)
-                            {
-                                path.push([location[i].lat, location[i].lng]);
-                                var row = '<tr><td>'+ location[i].lat +'</td><td> 2017-11-28 1' + i +':00 </td><td> </td><td> </td></td>'+'</td><td></td><td> \n\
-                                <a href="view-more.jsp"><button class="v-more"> View More </button></a> <button class="v-del"> Delete </button></td></tr>';
-                                $('#tableEvent > tbody').append(row);
-                                
-                                mapObj.addMarker({
-				   lat: location[i].lat,
-				   lng: location[i].lng//,
-				//icon: destinationIcon
-				});
-                            }
-                        });
-                
-                        var pl = mapObj.drawPolyline({
-                            path: path,
-                            strokeColor: '#0000FF', //warna line
-                            strokeOpacity: 1, //transparansi
-                            strokeWeight: 10 //lebar line
-                        });
-                    }); 
-                    
-                });                
-                
+                                              
                 $("#tableEvent").on('click', '.v-del', function() {                
                     var currentRow = $(this).closest("tr");
                     var col1 = currentRow.find("td:eq(0)").html();
                     var idEvent = col1;
                     $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8084/Travlendar2A/index",
+                            url: "http://localhost:8080/Travlendar2A/index",
                             dataType:'JSON',
                             data: {action: 'deleteEvent', event_id: idEvent },
                             async: false, // dikirim ketika semua beres
                             complete: function(msgStatus)
                             {
-                                var successMessage = JSON.stringify(msgStatus.responseText);
+                                var successMessage = msgStatus.responseText;
+                                var submsg = successMessage.substring(0, 6); 
                                 if(successMessage)
                                 {
                                     alert(successMessage);
                                 }
+                                if(submsg == "Sukses")
+                                    currentRow.remove();
                             },
                             failure: function(errMsg) {
                                 alert(errMsg);
