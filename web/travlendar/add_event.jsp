@@ -23,64 +23,24 @@
         <script src="js/moment.min.js"></script>
         <!-- GMaps Library -->
         <script src="js/gmaps.js"></script>
-        
-        <!-- GMaps Custom Setting for This Page -->
-        <script src="js/mapsdefault.js"></script>
-        
+    
         <link href='calendar-event/fullcalendar.min.css' rel='stylesheet' />
         <link href='calendar-event/fullcalendar.print.min.css' rel='stylesheet' media='print' />
         <script src='calendar-event/lib/moment.min.js'></script>
         <script src='calendar-event/lib/jquery.min.js'></script>
         <script src='calendar-event/fullcalendar.min.js'></script>
-        <script>
-
-                $(document).ready(function() {
-
-                    $.ajax({
-                        dataType : "json",
-                        contentType : "application/json",
-                        url: "${pageContext.request.contextPath}/index?action=getlistEvent",
-                        success: function(data)
-                        {
-                            var lastDate;
-
-                            $('#calendar').fullCalendar({
-                                header: {
-                                        left: 'prev,next today',
-                                        center: 'title',
-                                        right: 'month,agendaWeek,agendaDay,listWeek'
-                                },
-                                defaultDate: '2009-09-22',
-                                navLinks: true, // can click day/week names to navigate views
-                                editable: true,
-                                eventLimit: true, // allow "more" link when too many events
-                                events: $.map(data, function(item,i)
-                                        {
-                                            var event = new Object();
-                                            event.title = item.title;
-                                            event.start = moment(item.start).utc();
-                                            event.end = moment(item.end).utc();
-                                            event.id = item.id;
-                                            lastDate = moment(item.start).format('YYYY-MM-DD');
-                                            return event;
-                                        })
-
-                                });
-
-                                $('#calendar').fullCalendar('gotoDate', lastDate);
-                        }   
-                    });
-                });	
-        </script>
-<style>
-
-	#calendar {
-		max-width: 900px;
-		margin: 0 auto;
-	}
-
-</style>
         
+        <!-- GMaps and Javascript Custom Setting for This Page -->
+        <script src="js/mapsdefault.js"></script>
+        <style>
+
+                #calendar {
+                        max-width: 900px;
+                        margin: 0 auto;
+                }
+
+        </style>
+
     </head>
 <body>
 	
@@ -253,31 +213,31 @@
                 
 		<div id="Paris" class="tabcontent">
                     <!--<button id="viewList">View</button>-->
-                                        <table id="tableEvent">
-						<thead>
-						<tr>
-                                                    <th style="display:none"></th>
-						    <th>Event Name</th>
-                                                    <th>Date & Time</th>
-                                                    <th>Use</th>
-                                                    <th>At</th>
-                                                    <th>Location</th>
-                                                    <th>Action</th>
-						</tr>   
-						</thead>
+                    <table id="tableEvent">
+			<thead>
+                            <tr>
+                                <th style="display:none"></th>
+				<th>Event Name</th>
+                                <th>Date & Time</th>
+                                <th>Use</th>
+                                <th>At</th>
+                                <th>Location</th>
+                                <th>Action</th>
+                            </tr>   
+			</thead>
                                                 
-                                                <tbody>
+                        <tbody>
                                                 
 	
 						
-						</tbody>
-					</table>
+			</tbody>
+		    </table>
 		</div>
 
 		<div id="MoreEvent" class="tabcontent">
 			<div class="main">
                             <form>
-				<div class="left">
+				<div class="left" id="moreLeft">
                                     <div class="text-ev">
                                         <input class="ev" id="moreTitle" type="text"/>
                                     </div>
@@ -314,7 +274,7 @@
         </div> <!--induk2-->
 
         <div class="container">
-            <div class="main">
+            <div class="main" id="mainBottom">
                 <div id="map">Maps Event</div>
             </div> <!--/ .main -->
         </div> <!--container-->

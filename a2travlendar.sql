@@ -172,10 +172,10 @@ ALTER TABLE `event`
   ADD CONSTRAINT `FK_LOCATED` FOREIGN KEY (`LOCATION_ID`) REFERENCES `location` (`LOCATION_ID`);
 
 
-Create or replace view viewEvent as
+Create or replace view viewevent as
 SELECT
-E.event_name, E.start_event ,
-E.end_event , E.Transportation,
+E.event_id, E.event_name, E.start_event ,
+E.end_event , E.transportation,
 E.departure_time, E.note,
 L.latitude , L.longitude 
 FROM

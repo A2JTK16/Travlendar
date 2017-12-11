@@ -26,8 +26,56 @@
 
         // JQuery
     $(document).ready( function()  // Ketika web udah siap
-    {       
+    {
         var path = [];
+        // Calendar Event
+        $.ajax({
+            dataType : "json",
+            contentType : "application/json",
+            url: "http://localhost:8080/index?action=getlistEvent",
+            success: function(data)
+                {
+                    var lastDate;
+
+                    $('#calendar').fullCalendar({
+                        header: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'month,agendaWeek,agendaDay,listWeek'
+                        },
+                        defaultDate: '2017-09-22',
+                        navLinks: true, // can click day/week names to navigate views
+                        editable: true,
+                        eventLimit: true, // allow "more" link when too many events
+                        events: $.map(data, function(item,i)
+                            {
+                                var event = new Object();
+                                event.title = item.title;
+                                event.start = moment(item.start).utc();
+                                event.end = moment(item.end).utc();
+                                event.id = item.id;
+                                lastDate = moment(item.start).format('YYYY-MM-DD');
+        
+                                var row = '<tr><td style="display:none">'+ item.id 
+                                        + '</td><td>'+ item.title 
+                                        + '</td><td>'+ moment(item.start).format("ddd DD-MM-YYYY hh:mm a") 
+                                        + '</td><td>'+ item.transportation 
+                                        + '</td><td>'+ moment(item.departure_time).format("ddd DD-MM-YYYY hh:mm a")
+                                        + '</td><td>'+ item.latitude +'</td><td> \n\
+                                    <button class="v-more"> View More </button> <button class="v-del"> Delete </button></td></tr>';
+                                    $('#tableEvent > tbody').append(row);
+                                
+                                path.push([item.latitude, item.longitude]);
+                                
+                                return event;
+                            })
+                        });
+
+                    $('#calendar').fullCalendar('gotoDate', lastDate);
+                }   
+        });
+        
+        // Google Maps
         var lastPosition = {};
              
         var destination, service;
@@ -36,8 +84,7 @@
         var geocoder = new google.maps.Geocoder;
         
         document.getElementById("defaultOpen").click();
-        
-              
+                   
 	var mapObj = new GMaps({
             el: '#map',
             lat: -6.914744,
@@ -52,15 +99,30 @@
                         mapObj.removePolylines();
                     }
 
-                    if ( m1 == null) {
+                    if ( m1 == null) 
+                    {
+                        var eLat, eLng;
+                        if(path.length > 0)
+                        {
+                            eLat = path[path.length - 1].lat;
+                            eLng = path[path.length - 1].lng;
+                        }
+                        else
+                        {
+                            eLat = e.latLng.lat();
+                            eLng = e.latLng.lng();
+                        }
+                        
 			m1 = mapObj.addMarker({
-                            lat: e.latLng.lat(),
-                            lng: e.latLng.lng()//,
+                            lat: eLat,
+                            lng: eLng//,
 					//icon: sourceIcon
                         });
+                        
 			m1pos = m1.getPosition();
                     } 
-                    else {
+                    else 
+                    {
 			m2 = mapObj.addMarker({
                             lat: e.latLng.lat(),
                             lng: e.latLng.lng()//,
@@ -100,8 +162,8 @@
                         {
                             var origins = response.originAddresses;
                             var destinations = response.destinationAddresses;
-                            orig.value=origins;
-                            dest.value=destinations;
+                            orig.value = origins;
+                            dest.value = destinations;
                            
                         } 
                         else 
@@ -113,369 +175,311 @@
                     
                                 
             } // tutup fungsi e ketika klik
-        }); // tutup instansiasi gmaps         
-                
-        function geocodeLatLng(latlng) 
-        {
-            var address;
-            
-            geocoder.geocode({'location': latlng}, function(results, status) 
-            {
-                if (status === 'OK') 
-                {
-                    if (results[0]) 
-                    {
-                        address = results[0].formatted_address;              
-                    } 
-                    else 
-                    {
-                          window.alert('No results found');
-                    }
-                } 
-                else 
-                {
-                    window.alert('Geocoder failed due to: ' + status);
-                }
-            });
-            
-            return address;
-        }
+        }); // tutup instansiasi gmaps    
         
-        
-        
-       
+        mapObj.drawPolyline({
+            path: path,
+            strokeColor: '#0000FF', //warna line
+            strokeOpacity: 1, //transparansi
+            strokeWeight: 10 //lebar line
+        });
         
         $('#getList').click(function()
         {
+            mapObj.cleanRoute();
+            
+            mapObj.drawPolyline({
+                path: path,
+                strokeColor: '#0000FF', //warna line
+                strokeOpacity: 1, //transparansi
+                strokeWeight: 10 //lebar line
+            });
+        
+            $('#map').appendTo('#mainBottom');
+            
             openCity(event, 'Paris');
         });
         
-                    
-                     
-                $('.submit').click(function()
-                {
-               
-               
-                    
-				// If two markers have been placed
-                    var origtime = document.getElementById("origTime");
-                    var departure = document.getElementById("departureTime");
-                    var origin = new google.maps.LatLng(m1pos.lat(),m1pos.lng()),
-                    destination = new google.maps.LatLng(m2pos.lat(),m2pos.lng()),
-                    service_walking = new google.maps.DistanceMatrixService(),
-                    service_Driving = new google.maps.DistanceMatrixService(),
-                    service_bicycling = new google.maps.DistanceMatrixService(),
-                    service_transit = new google.maps.DistanceMatrixService(),
-                    
-                    
-                    
-                    coba = document.getElementById("coba");
-                   
-                 
-                    var timesplit = origtime.value.split(""),
-                    hours,hours1,minutes,minutes1,hasil,hasilmenit,hasilseluruh,meridian;
-                    hours = timesplit[0];
-                    hours1 = timesplit[1];
-                    minutes = timesplit[3];
-                    minutes1 = timesplit[4];
-                    if(meridian = 'PM'){
-                        hasil = (hours+hours1);
-                    }
-                    else if (meridian = 'AM'){
-                        hasil = hours1;
-                    }
-                    hasilmenit = (minutes+minutes1);
-                    hasilmenit = (hasilmenit *1)*60;
-                    hasil = (hasil *1)*3600;
-                    hasilseluruh = hasil + hasilmenit;
-                    
-                    
-                    
-                    var timesplit1 = departure.value.split(""),
-                    hoursdeparture,hoursdeparture1,minutesdeparture,minutesdeparture1,hasildeparture,hasilmenitdeparture,hasilseluruhdeparture,meridiandeparture;
-                    hoursdeparture = timesplit1[0];
-                    hoursdeparture1 = timesplit1[1];
-                    minutesdeparture = timesplit1[3];
-                    minutesdeparture1 = timesplit1[4];
-                    if(meridiandeparture = 'PM'){
-                        hasildeparture = (hoursdeparture+hoursdeparture1);
-                    }
-                    else if (meridiandeparture = 'AM'){
-                        hasildeparture = hoursdeparture1;
-                    }
-                    hasilmenitdeparture = (minutesdeparture+minutesdeparture1);
-                    hasilmenitdeparture = (hasilmenitdeparture *1)*60;
-                    hasildeparture = (hasildeparture *1)*3600;
-                    hasilseluruhdeparture = hasildeparture + hasilmenitdeparture;
-                    
-                    var estimate = hasilseluruh - hasilseluruhdeparture;
-                    if(estimate < 1){
-                        estimate = estimate * -1;
-                    }
-                    
-                    service_transit.getDistanceMatrix(
-                        {
-                            origins: [origin],
-                            destinations: [destination],
-                            travelMode: "TRANSIT",
-                            avoidHighways: false,
-                            avoidTolls: false
-                        }, 
-                        callback_transit
-                    );
-
-                    function callback_transit(response, status) 
-                    {
-
-                        
-                        var dist = document.getElementById("dist"),
-                        transit = document.getElementById("transit");
-                       
-
-                        if(status=="OK") 
-                        {
-                            var origins = response.originAddresses;
-                            var destinations = response.destinationAddresses;
-                           
-
-                            for (var i = 0; i < origins.length; i++) 
-                            {
-                                var results = response.rows[i].elements;
-                                for (var j = 0; j < results.length; j++) 
-                                {
-                                    var element = results[j];
-                                    var duration = element.duration.text;
-                                    var comparation = element.duration.value;
-                                    if(comparation > estimate){
-                                        document.getElementById('radio').style.visibility = 'hidden';
-                                        transit.value = "tidak dapat digunakan";
-                                    }
-                                    else if (comparation < estimate){
-                                       document.getElementById('radio').style.visibility = 'visible';
-                                        transit.value=duration;
-                                    }
-                                    
-                                }
-                            }
-                        } 
-                        else 
-                        {
-                            alert("Error: " + status);
-                        }
-                    } // end of callback
-                    
-                   
-                    
-                    
-                    service_walking.getDistanceMatrix(
-                        {
-                            origins: [origin],
-                            destinations: [destination],
-                            travelMode: "WALKING",
-                            avoidHighways: false,
-                            avoidTolls: false
-                        }, 
-                        callback_walking
-                    );
-
-                    function callback_walking(response, status) 
-                    {
-
-                      
-                       var  dist = document.getElementById("dist"),
-                        walking = document.getElementById("walking");
-
-                        if(status=="OK") 
-                        {
-                            var origins = response.originAddresses;
-                            var destinations = response.destinationAddresses;
-                           
-
-                            for (var i = 0; i < origins.length; i++) 
-                            {
-                                var results = response.rows[i].elements;
-                                for (var j = 0; j < results.length; j++) 
-                                {
-                                    var element = results[j];
-                                     var duration = element.duration.text;
-                                    var comparation = element.duration.value;
-                                    if(comparation > estimate){
-                                        walking.value = "tidak dapat digunakan";
-                                        document.getElementById('radio1').style.visibility = 'hidden';
-                                    }
-                                    else if(comparation<estimate){
-                                        document.getElementById('radio1').style.visibility = 'visible';
-                                        walking.value=duration;
-                                    }
-                                }
-                            }
-                        } 
-                        else 
-                        {
-                            alert("Error: " + status);
-                        }
-                    } // end of callback
-                    
-                    
-                    
-                    service_Driving.getDistanceMatrix(
-                        {
-                            origins: [origin],
-                            destinations: [destination],
-                            travelMode: "DRIVING",
-                            avoidHighways: false,
-                            avoidTolls: false
-                        }, 
-                        callback_driving
-                    );
-
-                    function callback_driving(response, status) 
-                    {
-
-                       
-                       var dist = document.getElementById("dist"),
-                        driving = document.getElementById("driving");
-
-                        if(status=="OK") 
-                        {
-                            var origins = response.originAddresses;
-                            var destinations = response.destinationAddresses;
-                          
-
-                            for (var i = 0; i < origins.length; i++) 
-                            {
-                                var results = response.rows[i].elements;
-                                for (var j = 0; j < results.length; j++) 
-                                {
-                                    var element = results[j];
-                                    var duration = element.duration.text;
-                                    var comparation = element.duration.value;
-                                   
-                                     if(comparation > estimate){
-                                        document.getElementById('radio2').style.visibility = 'hidden';
-                                        driving.value = "tidak dapat digunakan";
-                                    }
-                                    else if(comparation<estimate){
-                                        document.getElementById('radio2').style.visibility = 'visible';
-                                        driving.value=duration;
-                                    }
-                                }
-                            }
-                        } 
-                        else 
-                        {
-                            alert("Error: " + status);
-                        }
-                    } // end of callaback
-                    
-                    
-                    service_bicycling.getDistanceMatrix(
-                        {
-                            origins: [origin],
-                            destinations: [destination],
-                            travelMode: "BICYCLING",
-                            avoidHighways: false,
-                            avoidTolls: false
-                        }, 
-                        callback_bicycling
-                    );
-
-                    function callback_bicycling(response, status) 
-                    {
-
-                        
-                        var dist = document.getElementById("dist"),
-                        bicycling = document.getElementById("bicycling");
-
-                        if(status=="OK") 
-                        {
-                            var origins = response.originAddresses;
-                            var destinations = response.destinationAddresses;
-                           
-
-                            for (var i = 0; i < origins.length; i++) 
-                            {
-                                var results = response.rows[i].elements;
-                                for (var j = 0; j < results.length; j++) 
-                                {
-                                    var element = results[j];
-                                     var duration = element.duration.text;
-                                    var comparation = element.duration.value;
-                                   if(comparation < 1){
-                                       document.getElementById('radio3').style.visibility = 'hidden';
-                                        bicycling.value = "tidak tersedia";
-                                   }
-                                   else if(comparation > estimate){
-                                       document.getElementById('radio3').style.visibility = 'hidden';
-                                        bicycling.value = "tidak dapat digunakan";
-                                    }
-                                    else if(comparation<estimate){
-                                        document.getElementById('radio3').style.visibility = 'visible';
-                                        bicycling.value=duration;
-                                    }
-                                }
-                            }
-                        } 
-                        else 
-                        {
-                            alert("Error: " + status);
-                        }
-                    }
-                });
-        
-        
-        
-        var pathLocs = [];
-        
-            $.get("http://localhost:8080/Travlendar2A/index?action=getlistLocation", function(responseJson) 
-            {   // Eksekusi URL Controller
-                var locLatLng;
-                //alert(responseJson);
-                $.each(responseJson, function(index, location) 
-                {    // Loop pakai Json
-                    var lcd = JSON.stringify(location);//alert(lcd);
-                    locLatLng = {lat: parseFloat(lcd.lat), lng: parseFloat(lcd.lng)};
-                    pathLocs.push(locLatLng);
-                });
-                
-                m1 = mapObj.addMarker(locLatLng);
-                m1pos = m1.getPosition();
-            }); 
+        $('.submit').click(function()
+        {
+            // If two markers have been placed
+            var origtime = document.getElementById("origTime");
+            var departure = document.getElementById("departureTime");
+            var origin = new google.maps.LatLng(m1pos.lat(),m1pos.lng()),
+            destination = new google.maps.LatLng(m2pos.lat(),m2pos.lng()),
+            service_walking = new google.maps.DistanceMatrixService(),
+            service_Driving = new google.maps.DistanceMatrixService(),
+            service_bicycling = new google.maps.DistanceMatrixService(),
+            service_transit = new google.maps.DistanceMatrixService(),
             
-            $.get("http://localhost:8080/Travlendar2A/index?action=getlistEvent", function(responseJson) 
-            {   // Eksekusi URL Controller
-                var locId;
-                $.each(responseJson, function(index, event) 
-                {    // Loop pakai Json
-                    locId = event.location_id - 1;
-                    //var address = geocodeLatLng(path[locId]); 
-                    var address = JSON.stringify(pathLocs[locId].lat);
-                    var row = '<tr><td style="display:none">'+ event.id +'</td><td>'+ event.title +'</td><td>'+ moment(event.start).format("ddd DD-MM-YYYY hh:mm a")
-                             +'</td><td>' + event.transportation + '</td><td>'+moment(event.departure_time).format("ddd DD-MM-YYYY hh:mm a")+ '</td><td></td>'+ address +'<td> \n\
-                             <button class="v-more"> View More </button> <button class="v-del"> Delete </button></td></tr>';
-                             $('#tableEvent > tbody').append(row);
-                });	
-            }); 
-        //});
+            coba = document.getElementById("coba");
+                      
+            var timesplit = origtime.value.split(""),
+            hours,hours1,minutes,minutes1,hasil,hasilmenit,hasilseluruh,meridian;
+            hours = timesplit[0];
+            hours1 = timesplit[1];
+            minutes = timesplit[3];
+            minutes1 = timesplit[4];
+            if(meridian = 'PM'){
+                hasil = (hours+hours1);
+            }
+            else if (meridian = 'AM'){
+                hasil = hours1;
+            }
+            hasilmenit = (minutes+minutes1);
+            hasilmenit = (hasilmenit *1)*60;
+            hasil = (hasil *1)*3600;
+            hasilseluruh = hasil + hasilmenit;
+                     
+            var timesplit1 = departure.value.split(""),
+            hoursdeparture,hoursdeparture1,minutesdeparture,minutesdeparture1,hasildeparture,hasilmenitdeparture,hasilseluruhdeparture,meridiandeparture;
+            hoursdeparture = timesplit1[0];
+            hoursdeparture1 = timesplit1[1];
+            minutesdeparture = timesplit1[3];
+            minutesdeparture1 = timesplit1[4];
+            if(meridiandeparture = 'PM'){
+                hasildeparture = (hoursdeparture+hoursdeparture1);
+            }
+            else if (meridiandeparture = 'AM'){
+                hasildeparture = hoursdeparture1;
+            }
+            hasilmenitdeparture = (minutesdeparture+minutesdeparture1);
+            hasilmenitdeparture = (hasilmenitdeparture *1)*60;
+            hasildeparture = (hasildeparture *1)*3600;
+            hasilseluruhdeparture = hasildeparture + hasilmenitdeparture;
+                    
+            var estimate = hasilseluruh - hasilseluruhdeparture;
+            if(estimate < 1){
+                estimate = estimate * -1;
+            }
+                    
+            service_transit.getDistanceMatrix(
+                {
+                    origins: [origin],
+                    destinations: [destination],
+                    travelMode: "TRANSIT",
+                    avoidHighways: false,
+                    avoidTolls: false
+                }, 
+                callback_transit
+            );
+
+            function callback_transit(response, status) 
+            {
+                var dist = document.getElementById("dist"),
+                transit = document.getElementById("transit");
+                
+                if(status=="OK") 
+                {
+                    var origins = response.originAddresses;
+                    var destinations = response.destinationAddresses;
+                          
+                    for (var i = 0; i < origins.length; i++) 
+                    {
+                        var results = response.rows[i].elements;
+                        for (var j = 0; j < results.length; j++) 
+                        {
+                            var element = results[j];
+                            var duration = element.duration.text;
+                            var comparation = element.duration.value;
+                            if(comparation > estimate){
+                                document.getElementById('radio').style.visibility = 'hidden';
+                                transit.value = "tidak dapat digunakan";
+                            }
+                            else if (comparation < estimate){
+                                document.getElementById('radio').style.visibility = 'visible';
+                                transit.value=duration;
+                            }
+                                    
+                        }
+                    }
+                } 
+                else 
+                {
+                    alert("Error: " + status);
+                }
+            } // end of callback
+    
+            service_walking.getDistanceMatrix(
+                {
+                    origins: [origin],
+                    destinations: [destination],
+                    travelMode: "WALKING",
+                    avoidHighways: false,
+                    avoidTolls: false
+                }, 
+                callback_walking
+            );
+
+            function callback_walking(response, status) 
+            { 
+                var  dist = document.getElementById("dist"),
+                walking = document.getElementById("walking");
+
+                if(status=="OK") 
+                {
+                    var origins = response.originAddresses;
+                    var destinations = response.destinationAddresses;
+                    for (var i = 0; i < origins.length; i++) 
+                    {
+                        var results = response.rows[i].elements;
+                        for (var j = 0; j < results.length; j++) 
+                        {
+                            var element = results[j];
+                            var duration = element.duration.text;
+                            var comparation = element.duration.value;
+                            if(comparation > estimate){
+                                walking.value = "tidak dapat digunakan";
+                                document.getElementById('radio1').style.visibility = 'hidden';
+                            }
+                            else if(comparation<estimate){
+                                document.getElementById('radio1').style.visibility = 'visible';
+                                walking.value=duration;
+                            }
+                        }
+                    }
+                } 
+                else 
+                {
+                    alert("Error: " + status);
+                }
+            } // end of callback
+              
+            service_Driving.getDistanceMatrix(
+                {
+                    origins: [origin],
+                    destinations: [destination],
+                    travelMode: "DRIVING",
+                    avoidHighways: false,
+                    avoidTolls: false
+                }, 
+                callback_driving
+            );
+
+            function callback_driving(response, status) 
+            {
+                var dist = document.getElementById("dist"),
+                driving = document.getElementById("driving");
+
+                if(status=="OK") 
+                {
+                    var origins = response.originAddresses;
+                    var destinations = response.destinationAddresses;
+                          
+                    for (var i = 0; i < origins.length; i++) 
+                    {
+                        var results = response.rows[i].elements;
+                        for (var j = 0; j < results.length; j++) 
+                        {
+                            var element = results[j];
+                            var duration = element.duration.text;
+                            var comparation = element.duration.value;
+                                  
+                            if(comparation > estimate){
+                                document.getElementById('radio2').style.visibility = 'hidden';
+                                driving.value = "tidak dapat digunakan";
+                            }
+                            else if(comparation<estimate){
+                                document.getElementById('radio2').style.visibility = 'visible';
+                                driving.value=duration;
+                            }
+                        }
+                    }
+                } 
+                else 
+                {
+                    alert("Error: " + status);
+                }
+            } // end of callaback        
+                    
+            service_bicycling.getDistanceMatrix(
+                {
+                    origins: [origin],
+                    destinations: [destination],
+                    travelMode: "BICYCLING",
+                    avoidHighways: false,
+                    avoidTolls: false
+                }, 
+                callback_bicycling
+            );
+
+            function callback_bicycling(response, status) 
+            {            
+                var dist = document.getElementById("dist"),
+                bicycling = document.getElementById("bicycling");
+
+                if(status=="OK") 
+                {
+                    var origins = response.originAddresses;
+                    var destinations = response.destinationAddresses;
+                           
+                    for (var i = 0; i < origins.length; i++) 
+                    {
+                        var results = response.rows[i].elements;
+                        for (var j = 0; j < results.length; j++) 
+                        {
+                            var element = results[j];
+                            var duration = element.duration.text;
+                            var comparation = element.duration.value;
+                            if(comparation < 1){
+                                document.getElementById('radio3').style.visibility = 'hidden';
+                                bicycling.value = "tidak tersedia";
+                            }
+                            else if(comparation > estimate){
+                                document.getElementById('radio3').style.visibility = 'hidden';
+                                bicycling.value = "tidak dapat digunakan";
+                            }
+                            else if(comparation<estimate){
+                                document.getElementById('radio3').style.visibility = 'visible';
+                                bicycling.value=duration;
+                            }
+                        }
+                    }
+                } 
+                else 
+                {
+                    alert("Error: " + status);
+                }
+            }
+        });
         
+        // tombol view more
         $("#tableEvent").on('click', '.v-more', function()
         {
             var currentRow = $(this).closest("tr");
-            
+            var rowIndex = $(this).parent().index();
+            // mendapatkan data2 
             var eventId = currentRow.find("td:eq(0)").html();
             var eventTitle = currentRow.find("td:eq(1)").html();
             var eventStart = currentRow.find("td:eq(2)").html();
             var eventMode = currentRow.find("td:eq(3)").html();
             var eventDepature = currentRow.find("td:eq(4)").html();
-            var eventAddress = currentRow.find("td:eq(5)").html();
-            
+            var eventAddress = currentRow.find("td:eq(5)").html();;
+            // set ke tampilan baru
             $('#moreTitle').val(eventTitle);
             $('#moreStart').val(eventStart);
             $('#moreMode').val(eventMode);
             $('#moreDepature').val(eventDepature);
             $('#moreAddress').val(eventAddress);
-            
+            // buka tab
             openCity(event, 'MoreEvent');
+            // pindahkan peta
+            $('#map').appendTo('#moreLeft');
+            // hapus polylines
+            mapObj.removePolylines();
+            // tambahkan rute
+            if(rowIndex > 1)
+            {
+                mapObj.drawRoute({
+                    origin: [path[rowIndex-1].lat, path[rowIndex-1].lng],
+                    destination: [path[rowIndex].lat, path[rowIndex].lng],
+                    travelMode: eventMode,
+                    strokeColor: '#131540',
+                    strokeOpacity: 0.6,
+                    strokeWeight: 6
+                });
+                mapObj.setCenter(path[rowIndex].lat, path[rowIndex].lng);
+            }
         });
         
         GMaps.geolocate({
@@ -556,6 +560,7 @@
                 $("#tableEvent").on('click', '.v-del', function() {                
                     var currentRow = $(this).closest("tr");
                     var col1 = currentRow.find("td:eq(0)").html();
+                    var rowIndex = $(this).parent().index();
                     var idEvent = col1;
                     $.ajax({
                             type: "POST", // method post
@@ -572,7 +577,10 @@
                                     alert(successMessage);
                                 }
                                 if(submsg == "Sukses")
+                                {
                                     currentRow.remove();
+                                    delete path[rowIndex];
+                                }
                             },
                             failure: function(errMsg) {
                                 alert(errMsg);
