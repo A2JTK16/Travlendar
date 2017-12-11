@@ -97,17 +97,32 @@
     <div class="induk2">
         <div class="container">
             <div id="London" class="tabcontent">
+            
                 <div class="main">
+                <div class="setting-from">    
+                <form class="register-form" id="regForm">
+                    <input id="input0" class="wajibdiisi" type="hidden" name="traveller_id" />
                     <div class="text-ev"> Fullname </div>
-                    <input class="ev" id="orig" type="text" placeholder="Ira Kusnindi">
-                    <div class="text-ev"> E-mail </div>
-                    <input class="ev" id="orig" type="text" placeholder="irakusnindi18@gmail.com">
+                    <input class="ev" id="input1" type="text" name="traveller_fullname" placeholder="Ira Kusnindi">
                     <div class="text-ev"> Username </div>
-                    <input class="ev" id="orig" type="text" placeholder="irakusnindi">
+                    <input class="ev" id="input2" type="text" name="traveller_name" placeholder="irakusnindi">
+                    <div class="text-ev"> E-mail </div>
+                    <input class="ev" id="input3" type="text" name="traveller_email" placeholder="irakusnindi18@gmail.com">
                     <div class="text-ev"> Password </div>
-                    <input class="ev" id="orig" type="password" placeholder="********">
-                </div>
+                    <input class="ev" id="input4" type="password" placeholder="********">
+                    <div class="text-ev"> Address </div>
+                    <input class="ev" type="text" name="traveller_address" placeholder="Your Home Address ..."/>
+                    
+                    
+                </form>
+                
+                    <button class="b-signup" id="tblSignup">Edit Profil</button>
+                    <a href="add_event.jsp"><button class="b-back">Back</button></a>
+                </div> <!--setting-from-->
+                </div>    
             </div>
+            
+            
             <div id="Paris" class="tabcontent">
                 <div class="main">
                     <div class="left">
@@ -141,5 +156,110 @@
     
         
         <%@include file="footer.jsp" %>
+        
+        <script src="js/jquery.min.js"></script>
+        <script>
+            $(document).ready( function()  // Ketika web udah siap
+            {   
+                
+                $.get("http://localhost:8084/Travlendar2A/index?action=findUser&fullname=Maryam", function(responseJson) 
+                    {          // Eksekusi URL Controller
+                        //alert(responseJson.traveller_fullname);
+                        $('#input0').val(responseJson.traveller_id);
+                        $('#input1').val(responseJson.traveller_fullname);
+                        $('#input2').val(responseJson.traveller_name);
+                        $('#input3').val(responseJson.traveller_email);
+                        $('#input4').val(responseJson.traveller_password);
+                    });       
+                
+                
+                function getFormData($form)
+                {
+                    var unindexedArray = $form.serializeArray();
+                    var indexedArray = {};
+                    $.map(unindexedArray, function(n,i)
+                    {
+                        indexedArray[n['name']] = n['value'];
+                    });
+                    return indexedArray;
+                }
+                //ubah jsonarray form hasil serialize jadi json obj
+                
+                $('#tblSignup').click(function(){
+                    // Serialize form to JSON Array
+                    var formData = getFormData($('#regForm'));
+                    var isValid = true; //diisi enggaknya
+  
+                    // cek kosong enggaknya
+                    $('.wajibdiisi').each(function()
+                    {
+                       var eldt = $(this);
+                       if(eldt.val() == "")
+                       {
+                           isValid = false;
+                       }                           
+                    });
+                    
+                    // jika diisi maka
+                    if(isValid)
+                    {
+                        $.ajax({
+                            type: "POST", // method post
+                            url: "http://localhost:8084/Travlendar2A/index",
+                            dataType:'JSON',
+                            data: {action: 'editUser', json: JSON.stringify(formData) },
+                            async: false, // dikirim ketika semua beres
+                            complete: function(msgStatus)
+                            {
+                                var successMessage = JSON.stringify(msgStatus.responseText);
+                                if(successMessage)
+                                {
+                                    alert(successMessage);
+                                }
+                            },
+                            failure: function(errMsg) {
+                                alert(errMsg);
+                            }
+                        });
+                    }
+                    else
+                        alert("Mohon fullname, username, email, password Wajib Diisi!");
+                });
+            
+                $('#deleteAkun').click(function(){
+                    
+                    var isValid = false; 
+  
+                    // cek kosong enggaknya
+                    if($('#input0').val() != "")
+                        isValid = true;
+                    alert('Anda Yakin Menghapus Akun? \n Semua Data Event Anda Akan Terhapus\nTidak Dapat Kembali')
+                    // jika diisi maka
+                    if(isValid)
+                    {
+                        $.ajax({
+                            type: "POST", // method post
+                            url: "http://localhost:8084/Travlendar2A/index",
+                            dataType:'JSON',
+                            data: {action: 'deleteUser', traveller_id: $('#input0').val() },
+                            async: false, // dikirim ketika semua beres
+                            complete: function(msgStatus)
+                            {
+                                var successMessage = JSON.stringify(msgStatus.responseText);
+                                if(successMessage)
+                                {
+                                    alert(successMessage);
+                                }
+                            },
+                            failure: function(errMsg) {
+                                alert(errMsg);
+                            }
+                        });
+                    }
+                    else
+                        alert("Gagal Delete Akun!!");
+                });
+            });
+        </script>
     </body>
 </html>

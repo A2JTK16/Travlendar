@@ -6,6 +6,7 @@
 package id.ac.polban.jtk.project3.travlendar2A.Models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
@@ -27,6 +28,10 @@ public class Event
     private Timestamp start_event;
     @JsonProperty(value = "end")
     private Timestamp end_event;
+    @JsonProperty(value = "transportation")
+    private String transportation;
+    @JsonProperty(value = "departure_time")
+    private Timestamp departure_time;
     private String note;
 
     /**
@@ -125,6 +130,34 @@ public class Event
      */
     public void setNote(String note) {
         this.note = note;
+    }
+
+    /**
+     * @return the transportation
+     */
+    public String getTransportation() {
+        return transportation;
+    }
+
+    /**
+     * @param transportation the transportation to set
+     */
+    public void setTransportation(String transportation) {
+        this.transportation = transportation;
+    }
+
+    /**
+     * @return the departure_time
+     */
+    public Timestamp getDeparture_time() {
+        return departure_time;
+    }
+
+    /**
+     * @param departure_time the departure_time to set
+     */
+    public void setDeparture_time(Timestamp departure_time) {
+        this.departure_time = departure_time;
     }
 
     
