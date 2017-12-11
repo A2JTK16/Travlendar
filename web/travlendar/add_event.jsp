@@ -87,6 +87,7 @@
     <div class="jarak-atas">
 
     </div> <!--jarak-atas-->
+    <a href="add_event.jsp"></a>
 
     <div class="menu-atas">
 	<div class="header">
@@ -254,6 +255,7 @@
                                         <table id="tableEvent">
 						<thead>
 						<tr>
+                                                    <th style="display:none"></th>
 						    <th>Event Name</th>
                                                     <th>Date & Time</th>
                                                     <th>Use</th>
