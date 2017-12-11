@@ -281,10 +281,13 @@ public class TravlendarController extends HttpServlet
                 
                 affectedRow = this.eventDao.delete("event_id", id);
                 
-                if(idPK > 0)
+                if(affectedRow > 0){
                     this.responseStr(response, "Sukses Menghapus Event");
-                else
-                    this.responseStr(response, "Gagal Menghapus Event");  
+                }   
+                else{
+                    this.responseStr(response, "Gagal Menghapus Event");
+                }
+                      
                 
                 break;
                 
