@@ -7,7 +7,9 @@
 		
 
 
-                function openCity(evt, cityName) 
+                /* global moment, google, GMaps */
+
+function openCity(evt, cityName) 
                 {
 			var i, tabcontent, tablinks;
 			tabcontent = document.getElementsByClassName("tabcontent");
@@ -61,11 +63,11 @@
                                         + '</td><td>'+ moment(item.start).format("ddd DD-MM-YYYY hh:mm a") 
                                         + '</td><td>'+ item.transportation 
                                         + '</td><td>'+ moment(item.departure_time).format("ddd DD-MM-YYYY hh:mm a")
-                                        + '</td><td>'+ item.latitude +'</td><td> \n\
+                                        + '</td><td></td><td> \n\
                                     <button class="v-more"> View More </button> <button class="v-del"> Delete </button></td></tr>';
                                     $('#tableEvent > tbody').append(row);
                                 
-                                path.push([item.latitude, item.longitude]);
+                                //path.push([item.latitude, item.longitude]);
                                 
                                 return event;
                             })
@@ -177,23 +179,23 @@
             } // tutup fungsi e ketika klik
         }); // tutup instansiasi gmaps    
         
-        mapObj.drawPolyline({
-            path: path,
-            strokeColor: '#0000FF', //warna line
-            strokeOpacity: 1, //transparansi
-            strokeWeight: 10 //lebar line
-        });
+       // mapObj.drawPolyline({
+       //     path: path,
+       //     strokeColor: '#0000FF', //warna line
+       //     strokeOpacity: 1, //transparansi
+       //     strokeWeight: 10 //lebar line
+       // });
         
         $('#getList').click(function()
         {
             mapObj.cleanRoute();
             
-            mapObj.drawPolyline({
-                path: path,
-                strokeColor: '#0000FF', //warna line
-                strokeOpacity: 1, //transparansi
-                strokeWeight: 10 //lebar line
-            });
+         //   mapObj.drawPolyline({
+           //     path: path,
+           //     strokeColor: '#0000FF', //warna line
+          //      strokeOpacity: 1, //transparansi
+          //      strokeWeight: 10 //lebar line
+        //    });
         
             $('#map').appendTo('#mainBottom');
             
