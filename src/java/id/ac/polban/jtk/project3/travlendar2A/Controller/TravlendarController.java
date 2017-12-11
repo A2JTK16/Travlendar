@@ -14,6 +14,7 @@ import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import id.ac.polban.jtk.project3.travlendar2A.Models.EventDesc;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Location;
+import id.ac.polban.jtk.project3.travlendar2A.Models.ViewEvent;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -37,6 +38,7 @@ public class TravlendarController extends HttpServlet
     IDao<Traveller> travellerDao;
     IDao<Admin> adminDao;
     IDao<Location> locationDao;
+    IDao<ViewEvent> vEventDao;
     /**
      * JSON Object Mapper
      */
@@ -66,6 +68,7 @@ public class TravlendarController extends HttpServlet
         this.travellerDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Traveller.class);
         this.adminDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Admin.class);
         this.locationDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Location.class);
+        this.vEventDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, ViewEvent.class);
         this.jsonMapper = new ObjectMapper();
     }
     
@@ -116,7 +119,7 @@ public class TravlendarController extends HttpServlet
                 /**
                  * Mendapatkan list event
                  */
-                List<Event> list = this.eventDao.getList();
+                List<ViewEvent> list = this.vEventDao.getList();
                 /**
                  * Mengubah ke bentuk json dan mengirimkan resonse json ke client
                  */

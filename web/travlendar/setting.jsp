@@ -100,21 +100,15 @@
             
                 <div class="main">
                 <div class="setting-from">    
-                <form class="register-form" id="regForm">
-                    <input id="input0" class="wajibdiisi" type="hidden" name="traveller_id" />
-                    <div class="text-ev"> Fullname </div>
-                    <input class="ev" id="input1" type="text" name="traveller_fullname" placeholder="Ira Kusnindi">
-                    <div class="text-ev"> Username </div>
-                    <input class="ev" id="input2" type="text" name="traveller_name" placeholder="irakusnindi">
-                    <div class="text-ev"> E-mail </div>
-                    <input class="ev" id="input3" type="text" name="traveller_email" placeholder="irakusnindi18@gmail.com">
-                    <div class="text-ev"> Password </div>
-                    <input class="ev" id="input4" type="password" placeholder="********">
-                    <div class="text-ev"> Address </div>
-                    <input class="ev" type="text" name="traveller_address" placeholder="Your Home Address ..."/>
-                    
-                    
-                </form>
+                    <form class="register-form" id="regForm">
+                        <input id="input0" class="wajibdiisi" type="hidden" name="traveller_id" />
+                        <input id="input1" class="wajibdiisi" type="text" name="traveller_fullname" placeholder="Fullname ..."/>
+			<input id="input2" class="wajibdiisi" type="text" name="traveller_name" placeholder="Username ..."/>
+                        <input id="input3" class="wajibdiisi" type="text" name="traveller_email" placeholder="Email ..."/>
+			<input id="input4" class="wajibdiisi" type="password" name="traveller_password" placeholder="Password ..."/>
+                        <input type="text" name="traveller_address" placeholder="Your Home Address ..."/>
+                        <br>	
+                    </form>
                 
                     <button class="b-signup" id="tblSignup">Edit Profil</button>
                     <a href="add_event.jsp"><button class="b-back">Back</button></a>
