@@ -214,23 +214,23 @@
                                                                   </div>
                                                                    <div class="k-transport">
                                                                        <div class="trans"> <img src="icon/train.png"></div>
-                                                                       <input type="radio" id="radio" name="transportation" value="TRANSIT">
+                                                                       <input type="radio" id="radio" name="transportation" class="transportation" value="TRANSIT">
                                                                       <input id="transit" type="text">
                                                                       <br>
                                                                   </div>
                                                                    <div class="k-transport">
                                                                       <div class="trans"> <img src="icon/car.png"> </div>
-                                                                      <input type="radio" id="radio2" name="transportation" value="DRIVING" >
+                                                                      <input type="radio" id="radio2" name="transportation" class="transportation" value="DRIVING" >
                                                                       <input id="driving" type="text">
                                                                   </div>
                                                                    <div class="k-transport">
                                                                       <div class="trans"> <img src="icon/motor3.png"> </div>
-                                                                      <input type="radio" id="radio3" name="transportation" value="BICYCLING" >
+                                                                      <input type="radio" id="radio3" name="transportation" class="transportation" value="BICYCLING" >
                                                                       <input id="bicycling" type="text">
                                                                   </div>
                                                                    <div class="k-transport">
                                                                       <div class="trans"> <img src="icon/walk.png"> </div>
-                                                                      <input type="radio" id="radio1" name="transportation" value="WALKING" >
+                                                                      <input type="radio" id="radio1" name="transportation" class="transportation" value="WALKING" >
                                                                       <input id="walking" type="text">
                                                                   </div>
                                                                   
