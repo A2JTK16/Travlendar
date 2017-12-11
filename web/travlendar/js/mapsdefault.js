@@ -485,6 +485,16 @@
                     
                     var eventTraveller = {};
                     var eventDesc = {};
+                    var value;
+                    var radios = document.getElementsByName('transportation');
+                    for (var i = 0, length = radios.length; i < length; i++)
+                    {
+                        if (radios[i].checked)
+                    {
+                        // do whatever you want with the checked radio
+                        value = radios[i].value;
+                    }
+                    }
                    
                     if(m2 !== null)
                     {
@@ -492,7 +502,7 @@
                         eventTraveller['start'] = new Date($('#origDate').val() +" "+$('#origTime').val());
                         eventTraveller['end'] = new Date($('#destDate').val() +" "+$('#destTime').val());
                         eventTraveller['note'] = $('#noteDesc').val();
-                        eventTraveller['transportation']= $('.transportation').val();
+                        eventTraveller['transportation']= value;
                         eventTraveller['departure_time']=new Date($('#departureDate').val() +" "+$('#departureTime').val());
                         eventTraveller['traveller_id'] = 1;
                     

@@ -176,18 +176,19 @@
 					<div class="text-ev"> From </div>
 					<input class="tgl-ev" id="origDate" type="date" value="2017-11-28">
 					<input class="time-ev" id="origTime" type="time" value="00:00"/>
-                                        <div class="text-ev"> Departure Time </div>
-                                        <input class="tgl-ev" id="departureDate" type="date" value="2017-11-28">
-                                        <input class="time-ev" id="departureTime" class="departure" type="time" value="00:00"/>
+                                        <div class="text-ev"> Until </div>
+					<input class="tgl-ev" id="destDate" type="date" value="2017-11-28">
+                                        <input class="time-ev" id="destTime" type="time" value="00:00"/>
+                                        
                                         
 				</div>
 				
 				
 				<div class="right">
 					<input class="ev" id="dest" type="text" placeholder="Previeous Location ...">
-					<div class="text-ev"> Until </div>
-					<input class="tgl-ev" id="destDate" type="date" value="2017-11-28">
-                                        <input class="time-ev" id="destTime" type="time" value="00:00"/>
+					<div class="text-ev"> Departure Time </div>
+                                        <input class="tgl-ev" id="departureDate" type="date" value="2017-11-28">
+                                        <input class="time-ev" id="departureTime" class="departure" type="time" value="00:00"/>
                                         
 				</div>
                                 
