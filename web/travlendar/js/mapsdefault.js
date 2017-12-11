@@ -492,7 +492,7 @@
                         eventTraveller['start'] = new Date($('#origDate').val() +" "+$('#origTime').val());
                         eventTraveller['end'] = new Date($('#destDate').val() +" "+$('#destTime').val());
                         eventTraveller['note'] = $('#noteDesc').val();
-                        eventTraveller['transportation']= $('#transportation').val();
+                        eventTraveller['transportation']= $('.transportation').val();
                         eventTraveller['departure_time']=new Date($('#departureDate').val() +" "+$('#departureTime').val());
                         eventTraveller['traveller_id'] = 1;
                     
