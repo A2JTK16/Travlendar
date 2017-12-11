@@ -427,7 +427,7 @@
         
         var pathLocs = [];
         
-            $.get("http://localhost:8084/Travlendar2A/index?action=getlistLocation", function(responseJson) 
+            $.get("http://localhost:8080/Travlendar2A/index?action=getlistLocation", function(responseJson) 
             {   // Eksekusi URL Controller
                 var locLatLng;
                 //alert(responseJson);
@@ -442,7 +442,7 @@
                 m1pos = m1.getPosition();
             }); 
             
-            $.get("http://localhost:8084/Travlendar2A/index?action=getlistEvent", function(responseJson) 
+            $.get("http://localhost:8080/Travlendar2A/index?action=getlistEvent", function(responseJson) 
             {   // Eksekusi URL Controller
                 var locId;
                 $.each(responseJson, function(index, event) 
@@ -450,7 +450,7 @@
                     locId = event.location_id - 1;
                     //var address = geocodeLatLng(path[locId]); 
                     var address = JSON.stringify(pathLocs[locId].lat);
-                    var row = '<tr><td>'+ event.title +'</td><td>'+ moment(event.start).format("ddd DD-MM-YYYY hh:mm a")
+                    var row = '<tr><td style="display:none">'+ event.id +'</td><td>'+ event.title +'</td><td>'+ moment(event.start).format("ddd DD-MM-YYYY hh:mm a")
                              +'</td><td>' + event.transportation + '</td><td>'+moment(event.departure_time).format("ddd DD-MM-YYYY hh:mm a")+ '</td><td></td>'+ address +'<td> \n\
                              <a href="view-more.jsp"><button class="v-more"> View More </button></a> <button class="v-del"> Delete </button></td></tr>';
                              $('#tableEvent > tbody').append(row);
@@ -503,7 +503,7 @@
                         
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8084/Travlendar2A/index",
+                            url: "http://localhost:8080/Travlendar2A/index",
                             dataType:'JSON',
                             //   data: {listjson: JSON.stringify(listJson)},
                             data: {action: 'addEvent', json: JSON.stringify(eventDesc)},
@@ -530,7 +530,7 @@
                         mapObj.removeMarker(m2);
                     mapObj.removePolylines();
                     
-                    $.get("http://localhost:8084/Travlendar2A/index?action=getlistLocation", function(responseJson) 
+                    $.get("http://localhost:8080/Travlendar2A/index?action=getlistLocation", function(responseJson) 
                     {          // Eksekusi URL Controller
                         $.each(responseJson, function(index, location) {    // Loop pakai Json
                             for(i=0; i<location.length; i++)
@@ -547,7 +547,7 @@
 				});
                             }
                         });
-
+                
                         var pl = mapObj.drawPolyline({
                             path: path,
                             strokeColor: '#0000FF', //warna line
@@ -556,8 +556,32 @@
                         });
                     }); 
                     
-                });
+                });                
                 
+                $("#tableEvent").on('click', '.v-del', function() {                
+                    var currentRow = $(this).closest("tr");
+                    var col1 = currentRow.find("td:eq(0)").html();
+                    var idEvent = col1;
+                    $.ajax({
+                            type: "POST", // method post
+                            url: "http://localhost:8080/Travlendar2A/index",
+                            dataType:'JSON',
+                            data: {action: 'deleteEvent', event_id: idEvent },
+                            async: false, // dikirim ketika semua beres
+                            complete: function(msgStatus)
+                            {
+                                var successMessage = JSON.stringify(msgStatus.responseText);
+                                if(successMessage)
+                                {
+                                    alert(successMessage);
+                                }
+                            },
+                            failure: function(errMsg) {
+                                alert(errMsg);
+                            }
+                        });
+                });
+        
                 // Get the modal
 				var modal = document.getElementById('myModal');
 
