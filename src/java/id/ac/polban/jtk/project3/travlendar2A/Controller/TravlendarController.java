@@ -119,7 +119,8 @@ public class TravlendarController extends HttpServlet
                 /**
                  * Mendapatkan list event
                  */
-                List<ViewEvent> list = this.vEventDao.getList();
+                Traveller travl = this.travellerDao.getObj("traveller_name", this.getUsername(request));
+                List<ViewEvent> list = this.vEventDao.getList("traveller_id", travl.getTraveller_id().toString());
                 /**
                  * Mengubah ke bentuk json dan mengirimkan resonse json ke client
                  */
@@ -134,47 +135,11 @@ public class TravlendarController extends HttpServlet
                 }
                 break;
                 
-            case "getlistLocation" :
-                /**
-                 * Mendapatkan list event
-                 */
-                List<Location> listLocation = this.locationDao.getList();
-                /**
-                 * Mengubah ke bentuk json dan mengirimkan resonse json ke client
-                 */
-                try
-                {
-                    jsonString = this.jsonMapper.writeValueAsString(listLocation);            
-                    this.responseJson(response, jsonString);
-                }
-                catch (JsonProcessingException ex)
-                {
-                    
-                }
-                break;
-                
-            case "getlistUser" :
-                // TULIS CODE DISINI !!!
-                List<Traveller> listTraveller = this.travellerDao.getList();
-                /**
-                 * Mengubah ke bentuk json dan mengirimkan resonse json ke client
-                 */
-                try
-                {
-                    jsonString = this.jsonMapper.writeValueAsString(listTraveller);            
-                    this.responseJson(response, jsonString);
-                }
-                catch (JsonProcessingException ex)
-                {
-                    
-                }
-                break;
-                
             case "findUser":
                 // TULIS CODE DISINI !!!
-                String fullname = request.getParameter("fullname");
-                
-                Traveller traveller = this.travellerDao.getObj("traveller_fullname", fullname);
+                //String username = request.getParameter("username");
+                String username = this.getUsername(request);
+                Traveller traveller = this.travellerDao.getObj("traveller_name", username);
                 
                 /**
                  * Mengubah ke bentuk json dan mengirimkan resonse json ke client
@@ -189,23 +154,7 @@ public class TravlendarController extends HttpServlet
                     
                 }
                 break;
-            
-            case "getlistAdmin" :
-                // TULIS CODE DISINI !!!
-                List<Admin> listAdmin = this.adminDao.getList();
-                /**
-                 * Mengubah ke bentuk json dan mengirimkan resonse json ke client
-                 */
-                try
-                {
-                    jsonString = this.jsonMapper.writeValueAsString(listAdmin);            
-                    this.responseJson(response, jsonString);
-                }
-                catch (JsonProcessingException ex)
-                {
-                    
-                }
-                break;
+
         } //end switch
     }
     
@@ -227,6 +176,7 @@ public class TravlendarController extends HttpServlet
         int idPK = 0;
         int affectedRow = 0;
         
+        //if(!this.isLogin(request))
         switch(param)
         {
             case "addEvent":
@@ -234,13 +184,14 @@ public class TravlendarController extends HttpServlet
                 try 
                 {
                     EventDesc eventdesc = jsonMapper.readValue(json, EventDesc.class);
+                    Traveller travl = this.travellerDao.getObj("traveller_name", this.getUsername(request));
                     Event objEvent = eventdesc.getEvent();
                     Location objLoc = eventdesc.getLocation();
                     
                     int locId = this.locationDao.create(objLoc);
                     
                     objEvent.setLocation_id(locId);
-                    
+                    objEvent.setTraveller_id(travl.getTraveller_id());
                     idPK = this.eventDao.create(objEvent);
                 } 
                 catch (IOException ex) 
@@ -398,11 +349,18 @@ public class TravlendarController extends HttpServlet
                 if(idPK > 0)
                     this.responseStr(response, "Sukses Menghapus Admin");
                 else
-                    this.responseStr(response, "Gagal Menghapus Admin");  
-                
+                    this.responseStr(response, "Gagal Menghapus Admin");                  
             
                 break;
-            
+                
+            case "login":
+                boolean isLogin = this.login(request);
+                if(isLogin)
+                    this.responseStr(response, "Sukses Login!\nSilakan Masuk");
+                else
+                    this.responseStr(response, "Gagal Login!\nUsername atau Password Salah!");
+                break;
+                
             default:
                 this.responseStr(response, "Tidak Ditemukan !!!");
                 break;
@@ -447,5 +405,55 @@ public class TravlendarController extends HttpServlet
             Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-           
+    
+    /**
+     * Mehtod untuk login (eksekusi fungsi login di DBMS)
+     * Mengembalikan boolean login tidaknya
+     * @param request
+     * @return 
+     */
+    private boolean login(HttpServletRequest request)
+    {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        
+        Integer num = this.travellerDao.executeFunction("isThereUser", Integer.class, username, password);
+        if(num > 0)
+        {
+            request.getSession(true).setAttribute("username", username);
+            return true;
+        }
+        else
+            return false;
+    }
+    
+    /**
+     * Method untuk cek ada tidaknya session
+     * @param request
+     * @return 
+     */
+    private boolean isLogin(HttpServletRequest request)
+    {
+        return request.getSession().getAttribute("username") != null;
+    }
+    
+    /**
+     * Method untuk logout
+     * @param request 
+     */
+    private void logout(HttpServletRequest request)
+    {
+        request.getSession().invalidate();
+    }
+    
+    /**
+     * Method untuk mendapatkan username dari 
+     * @param request
+     * @return 
+     */
+    private String getUsername(HttpServletRequest request)
+    {
+        String username = (String) request.getSession().getAttribute("username");
+        return username;
+    }
 }

@@ -13,11 +13,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Location {
     private Integer location_id;
-    @JsonProperty(value = "lat")
+    
     private Float latitude;
-    @JsonProperty(value = "lng")
+    
     private Float longitude;
-
+    private String address;
     /**
      * @return the location_id
      */
@@ -58,6 +58,20 @@ public class Location {
      */
     public void setLongitude(Float longitude) {
         this.longitude = longitude;
+    }
+
+    /**
+     * @return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
     }
     
 }

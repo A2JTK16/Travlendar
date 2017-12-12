@@ -66,8 +66,9 @@
                     </a>
                 </button>
                 <div class="dropdown-content">
+                  <a>Hi, <%= session.getAttribute("username") %> </a>
                   <a href="setting.jsp">Setting Account</a>
-                  <a href="index.jsp">Sign Out</a>
+                  <a href="../index.jsp">Sign Out</a>
                 </div>
             </div>
             
@@ -98,7 +99,7 @@
     <div class="wadah-gamb">
         <div class="slogan">
         <div class="sukses">
-        <h2> Make Your Plan Be Batter ! </h2>
+        <h2> Make Your Plan Be Better ! </h2>
         </div>
         </div>
     </div>

@@ -4,4 +4,10 @@
     Author     : mufidjamaluddin
 --%>
 
-<% response.sendRedirect("travlendar"); %>
+
+<% 
+    if(session.getAttribute("username") != null) 
+        response.sendRedirect("travlendar/add_event.jsp");
+    else
+        response.sendRedirect("travlendar");
+%>
