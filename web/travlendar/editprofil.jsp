@@ -67,7 +67,7 @@
             $(document).ready( function()  // Ketika web udah siap
             {   
                 
-                $.get("http://localhost:8080/Travlendar2A/index?action=findUser&fullname=Maryam", function(responseJson) 
+                $.get("http://localhost:8080/Travlendar2A/index?action=findUser", function(responseJson) 
                     {          // Eksekusi URL Controller
                         //alert(responseJson.traveller_fullname);
                         $('#input0').val(responseJson.traveller_id);

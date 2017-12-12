@@ -34,7 +34,7 @@ function openCity(evt, cityName)
         $.ajax({
             dataType : "json",
             contentType : "application/json",
-            url: "http://localhost:8084/Travlendar2A/index?action=getlistEvent",
+            url: "http://localhost:8080/Travlendar2A/index?action=getlistEvent",
             success: function(data)
                 {
                     var lastDate;
@@ -53,8 +53,8 @@ function openCity(evt, cityName)
                             {
                                 var event = new Object();
                                 event.title = item.title;
-                                event.start = moment(item.start).utc();
-                                event.end = moment(item.end).utc();
+                                event.start = moment(item.start).format();
+                                event.end = moment(item.end).format();
                                 event.id = item.id;
                                 lastDate = moment(item.start).format('YYYY-MM-DD');
         
@@ -63,7 +63,7 @@ function openCity(evt, cityName)
                                         + '</td><td>'+ moment(item.start).format("ddd DD-MM-YYYY hh:mm a") 
                                         + '</td><td>'+ item.transportation 
                                         + '</td><td>'+ moment(item.departure_time).format("ddd DD-MM-YYYY hh:mm a")
-                                        + '</td><td>'+ item.latitude + ',' + item.longitude +'</td><td> \n\
+                                        + '</td><td>'+ item.address +'</td><td> \n\
                                     <button class="v-more"> View More </button> <button class="v-del"> Delete </button></td></tr>';
                                     $('#tableEvent > tbody').append(row);
                                 
@@ -189,6 +189,8 @@ function openCity(evt, cityName)
                 strokeOpacity: 1, //transparansi
                 strokeWeight: 10 //lebar line
             });
+            
+            //mapObj.setCenter([pathi.length - 1][0], [pathi.length - 1][1]);
         
             $('#map').appendTo('#mainBottom');
             
@@ -522,6 +524,7 @@ function openCity(evt, cityName)
                 $('#TombolSave').click(function(){
                     
                     var eventTraveller = {};
+                    var eventLoc = {};
                     var eventDesc = {};
                     var value;
                     var radios = document.getElementsByName('transportation');
@@ -541,17 +544,21 @@ function openCity(evt, cityName)
                         eventTraveller['end'] = new Date($('#destDate').val() +" "+$('#destTime').val());
                         eventTraveller['note'] = $('#noteDesc').val();
                         eventTraveller['transportation']= value;
-                        eventTraveller['departure_time']=new Date($('#departureDate').val() +" "+$('#departureTime').val());
-                        eventTraveller['traveller_id'] = 1;
-                    
-                        eventDesc['event'] = eventTraveller;
-                        eventDesc['location'] = m2.getPosition();
+                        eventTraveller['departure_time']= new Date($('#departureDate').val() +" "+$('#departureTime').val());
+                        //eventTraveller['traveller_id'] = 1;
                         
-                       // alert(JSON.stringify(eventDesc));
+                        eventLoc['latitude'] = m2.getPosition().lat();
+                        eventLoc['longitude'] = m2.getPosition().lng();
+                        eventLoc['address'] = ($('#orig').val()).substring(0, 59);
+                        
+                        eventDesc['event'] = eventTraveller;
+                        eventDesc['location'] = eventLoc;
+                        
+                        alert(JSON.stringify(eventDesc));
                         
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8084/Travlendar2A/index",
+                            url: "http://localhost:8080/Travlendar2A/index",
                             dataType:'JSON',
                             //   data: {listjson: JSON.stringify(listJson)},
                             data: {action: 'addEvent', json: JSON.stringify(eventDesc)},
@@ -577,7 +584,7 @@ function openCity(evt, cityName)
                     var idEvent = col1;
                     $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8084/Travlendar2A/index",
+                            url: "http://localhost:8080/Travlendar2A/index",
                             dataType:'JSON',
                             data: {action: 'deleteEvent', event_id: idEvent },
                             async: false, // dikirim ketika semua beres
@@ -592,6 +599,7 @@ function openCity(evt, cityName)
                                 if(submsg == "Sukses")
                                 {
                                     currentRow.remove();
+                                    $('#calendar').fullCalendar( 'removeEvents', [col1] );
                                     delete pathi[rowIndex];
                                 }
                             },

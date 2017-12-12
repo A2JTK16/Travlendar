@@ -12,6 +12,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/home.css">
         <link rel="stylesheet" type="text/css" href="css/responsive.css">
+        <!-- JQuery Library -->
+        <!--<script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+        <script src="js/jquery.min.js"></script>
         <title>Header</title>
     </head>
     <body>
@@ -43,25 +46,27 @@
 				  <!-- Modal content -->
 				  <div class="modal-content">
 				    	
-							 <div class="form">
+					<div class="form">
 							  	<div class="modal-header">
 							      <span class="close">&times;</span>
                                                               <div class="plogo"><img src="images/logo-sign.png"></div>
 							    </div>
-							    <form class="register-form" action="add_event.jsp" method="POST">
-							      <input type="text" placeholder="Username"/>
-							      <input type="password" placeholder="Password"/>
-                                                              <br>
-							      <button class="b-signin">Sign In</button>
-							    </form>
-							  </div>
+					    <form class="register-form">
+					      <input type="text" id="username" placeholder="Username"/>
+					      <input type="password" id="password" placeholder="Password"/>
+                                              <br>
+					    </form>
+                                            <button class="b-signin" id="tombolLogin">Sign In</button>
+					</div>
 							
 				  </div> <!--modal content-->
 
 				</div>
         
                                 <script>
-			
+    
+    $(document).ready( function()  // Ketika web udah siap
+    {	
 				function show()
 				{
 					if(document.getElementById("hidden-mobile").style.display == 'none')
@@ -95,6 +100,35 @@
 				        modal.style.display = "none";
 				    }
 				}
+                                
+        $("#tombolLogin").on('click', function() 
+        {                
+                    $.ajax({
+                            type: "POST", // method post
+                            url: "http://localhost:8080/Travlendar2A/index",
+                            dataType:'JSON',
+                            data: {action: 'login', username: $('#username').val(), password: $('#password').val() },
+                            async: false, // dikirim ketika semua beres
+                            complete: function(msgStatus)
+                            {
+                                var successMessage = msgStatus.responseText;
+                                var submsg = successMessage.substring(0, 6); 
+                                if(successMessage)
+                                {
+                                    alert(successMessage);
+                                }
+                                if(submsg == "Sukses")
+                                {
+                                    $('#myModal').html('<a href="add_event.jsp"><button class="b-signin">Sukses Login, Silakan Masuk</button></a>');
+                                    //$('header').append('<meta http-equiv="refresh" content="0; url=http://localhost:8080/Travlendar2A/travlendar/add_event.jsp" />');
+                                }
+                            },
+                            failure: function(errMsg) {
+                                alert(errMsg);
+                            }
+                    });
+        });      
+    });
 			</script>	
 
                     </div>
@@ -105,7 +139,3 @@
      
 </div> <!--menu-atas-->
 
-
-
-    </body>
-</html>

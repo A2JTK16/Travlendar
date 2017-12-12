@@ -16,9 +16,12 @@ public interface IDao<T>
 {
     /**
      * Mendapatkan list dari database
+     * berdasarkan parameter
+     * @param paramName
+     * @param paramValue
      * @return 
      */
-    public List<T> getList();
+    public List<T> getList(String paramName, String paramValue);
     
     /**
      * Mendapatkan data dalam object dari database berdasarkan paramName
@@ -64,4 +67,16 @@ public interface IDao<T>
      * @return  
      */
     public int delete(String paramName, String paramValue);
+    
+    /**
+     *  Method untuk Mengeksekusi Fungsi PL SQL
+     *  SQL : SELECT funcName ( paramFunc )
+     * 
+     * @param <TR> sebagai tipe kembalian
+     * @param funcName nama fungsi
+     * @param typeReturn instant class
+     * @param paramFunc parameter fungsi
+     * @return 
+     */
+    public <TR> TR executeFunction(String funcName, Class<TR> typeReturn, String... paramFunc);
 }

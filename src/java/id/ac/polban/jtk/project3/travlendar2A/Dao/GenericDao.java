@@ -155,7 +155,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
      * @return 
      */
     @Override
-    public List<T> getList() 
+    public List<T> getList(String paramName, String paramValue) 
     {
         /**
          * Jika propertynya tdk diset
@@ -179,9 +179,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         
         listObj = new ArrayList<>();
         
-        //sql = String.format("SELECT * FROM %s", this.classModel.getSimpleName().toLowerCase());
         sql = String.join(" ", "SELECT", this.getFieldsStr(), "FROM", this.classModel.getSimpleName().toLowerCase());
-        //System.out.println(sql);
         /**
          * Koneksi ke Database
          */
@@ -199,14 +197,8 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
                 /**
                  * Setter object
                  */
-                //int i=0;
-                //for (Field attribute : this.classModel.getDeclaredFields()) 
                 for (PropertyDescriptor descriptor : propertyClass) 
                 {
-                    //i++;
-                    //attribute.setAccessible(true);
-                    //this.invokeSetter(objModel, attribute.getName(), attribute.getType(), rs.getObject(i));
-                    //attribute.set(objModel, attribute.getType().cast(rs.getObject(i)));
                     this.invokeSetter(descriptor, objModel, rs.getObject(descriptor.getName()));
                 }
                 
@@ -251,9 +243,8 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         ResultSet rs;
         PreparedStatement stmt;
         
-        //sql = String.format("SELECT * FROM %s WHERE %s = ? ", this.classModel.getSimpleName().toLowerCase(), paramName);
         sql = String.join(" ", "SELECT", this.getFieldsStr(), "FROM", this.classModel.getSimpleName().toLowerCase(),"WHERE", paramName, "= ?");
-        //System.out.println(sql);
+        
         super.connect();
         
         try 
@@ -264,13 +255,9 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
             while(rs.next())
             {
                 objModel = (T) classModel.newInstance();
-                //int i = 0;
-                //for (Field attribute : this.classModel.getDeclaredFields()){
+
                 for (PropertyDescriptor descriptor : propertyClass) 
                 {
-                    //i++;
-                    //attribute.setAccessible(true);
-                    //this.invokeSetter(objModel, attribute.getName(), attribute.getType(), rs.getObject(i));
                     this.invokeSetter(descriptor, objModel, rs.getObject(descriptor.getName()));
                 }            
             }
@@ -278,8 +265,8 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         } 
         catch (SQLException | InstantiationException | IllegalAccessException ex) 
         {
-            //Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
-            ex.printStackTrace();
+            Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
+            //ex.printStackTrace();
         }
         
         super.disconnect();
@@ -328,7 +315,6 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         
         mtSql.delete(mtSql.length()-1, mtSql.length()); // hapus koma
         mtSql.append(" ) ");
-        //System.out.println(mtSql.toString());
         /**
          * Buat Koneksi ke DBMS
          */
@@ -344,7 +330,6 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
             /**
              * Mendapatkan attribut dari objek objModel
              */
-            //for(Field field : this.classModel.getDeclaredFields())
             int count = 1;
             for(String attrName : keySet)
             {
@@ -427,8 +412,6 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         mtSql.append(" WHERE ");
         mtSql.append(paramName);
         mtSql.append(" = ? ");
-        
-        //System.out.println(mtSql.toString());
         
         super.connect();
         
@@ -550,5 +533,86 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
          * Mengembalikan Object Map
          */
         return fields;
+    }
+    
+    /**
+     *  Method untuk Mengeksekusi Fungsi PL SQL
+     * 
+     * @param <TR> sebagai tipe kembalian
+     * @param funcName nama fungsi
+     * @param typeReturn instant class
+     * @param paramFunc parameter fungsi
+     * @return 
+     */
+    @Override
+    public <TR> TR executeFunction(String funcName, Class<TR> typeReturn, String... paramFunc)
+    {
+        /**
+         * Jika tidak diset
+         */
+        if(typeReturn == null || paramFunc == null)
+            return null;
+        
+        TR result = null;
+        /**
+         * Untuk membuat string sql
+         */
+        StringBuilder mtSql = new StringBuilder();
+        /**
+         * Membuat SQL Sintaks
+         */
+        mtSql.append("SELECT ");
+        mtSql.append(funcName);
+        mtSql.append("( ");
+        
+        for(int i=0; i<paramFunc.length; i++)
+        {
+            mtSql.append(" ? ,");
+        }
+        mtSql.delete(mtSql.length()-1, mtSql.length()); // hapus koma 
+        mtSql.append(" ) ");
+        /**
+         * Buat Koneksi ke DBMS
+         */
+        super.connect();
+        /**
+         * Buat Statement
+         */
+        PreparedStatement stmt;
+        ResultSet rs;
+        try 
+        {
+            stmt = super.getJdbcConnection().prepareStatement(mtSql.toString());
+            
+            /**
+             * Mendapatkan parameter function
+             */
+            int count = 1;
+            for(String attrParam : paramFunc)
+            {
+                stmt.setString(count, attrParam);
+                count++;
+            }
+            /**
+             * Eksekusi query
+             */
+            rs = stmt.executeQuery();
+            if(rs.next())
+            {
+                result = (TR) rs.getObject(1, typeReturn);
+            }
+            /**
+             * Tutup Statement
+             */
+            stmt.close();
+
+        } 
+        catch (SQLException | IllegalArgumentException ex)
+        {
+            Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        super.disconnect();    
+        
+        return result;
     }
 }

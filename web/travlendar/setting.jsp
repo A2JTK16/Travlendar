@@ -100,6 +100,7 @@
             
                 <div class="main">
                 <div class="setting-from">    
+                <div class="wadah1">
                     <form class="register-form" id="regForm">
                         <input id="input0" class="wajibdiisi" type="hidden" name="traveller_id" />
                         <input id="input1" class="wajibdiisi" type="text" name="traveller_fullname" placeholder="Fullname ..."/>
@@ -109,9 +110,8 @@
                         <input type="text" name="traveller_address" placeholder="Your Home Address ..."/>
                         <br>	
                     </form>
-                
                     <button class="b-signup" id="tblSignup">Edit Profil</button>
-                    <a href="add_event.jsp"><button class="b-back">Back</button></a>
+                    <a href="index.jsp"><button class="b-back">Back</button></a>
                 </div> <!--setting-from-->
                 </div>    
             </div>
@@ -155,8 +155,7 @@
         <script>
             $(document).ready( function()  // Ketika web udah siap
             {   
-                
-                $.get("http://localhost:8084/Travlendar2A/index?action=findUser&fullname=Maryam", function(responseJson) 
+                $.get("http://localhost:8080/Travlendar2A/index?action=findUser&username=<%= session.getAttribute("username") %>", function(responseJson) 
                     {          // Eksekusi URL Controller
                         //alert(responseJson.traveller_fullname);
                         $('#input0').val(responseJson.traveller_id);

@@ -11,9 +11,7 @@ import id.ac.polban.jtk.project3.travlendar2A.Dao.GenericDao;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.IDao;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,7 +39,7 @@ public class TestCrudEvent
         /**
          * Mendapatkan list event
          */
-        list = dao.getList();
+        list = dao.getList("username", "maryam");
         /**
          * Menampilkan loop
          */
@@ -87,7 +85,7 @@ public class TestCrudEvent
          */ 
         int idPK = dao.create(objEvent);
         System.out.println("Insert " + idPK);
-        list = dao.getList();
+       list = dao.getList("username", "maryam");
         /**
          * Tampilkan dari Database
          */
@@ -138,7 +136,7 @@ public class TestCrudEvent
         int affectedRow = dao.edit(objEvent, "event_id", String.format("%s",idPK));
         System.out.println("Update " + idPK + " dan affectedRow : " + affectedRow);
         
-        list = dao.getList();
+        list = dao.getList("username", "maryam");
         
         list.forEach((event) -> {
             System.out.println(event.getEvent_id() + " | "+ event.getEvent_name() + " | " + event.getStart_event() + " | " + event.getEnd_event() + " | " + event.getNote());
@@ -151,7 +149,7 @@ public class TestCrudEvent
         System.out.println("Test Menghapus Event yang event_id=5");
         affectedRow = dao.delete("event_id", String.format("%s",idPK));
         System.out.println("Delete " + idPK + " dan affectedRow : " + affectedRow);
-        list = dao.getList();
+        list = dao.getList("username", "maryam");
         
         list.forEach((event) -> {
             System.out.println(event.getEvent_id() + " | "+ event.getEvent_name() + " | " + event.getStart_event() + " | " + event.getEnd_event() + " | " + event.getNote());
