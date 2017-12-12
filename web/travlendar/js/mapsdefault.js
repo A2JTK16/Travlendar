@@ -29,12 +29,12 @@ function openCity(evt, cityName)
         // JQuery
     $(document).ready( function()  // Ketika web udah siap
     {
-        var path = [];
+        var pathi = new Array();
         // Calendar Event
         $.ajax({
             dataType : "json",
             contentType : "application/json",
-            url: "http://localhost:8080/index?action=getlistEvent",
+            url: "http://localhost:8084/Travlendar2A/index?action=getlistEvent",
             success: function(data)
                 {
                     var lastDate;
@@ -63,11 +63,11 @@ function openCity(evt, cityName)
                                         + '</td><td>'+ moment(item.start).format("ddd DD-MM-YYYY hh:mm a") 
                                         + '</td><td>'+ item.transportation 
                                         + '</td><td>'+ moment(item.departure_time).format("ddd DD-MM-YYYY hh:mm a")
-                                        + '</td><td></td><td> \n\
+                                        + '</td><td>'+ item.latitude + ',' + item.longitude +'</td><td> \n\
                                     <button class="v-more"> View More </button> <button class="v-del"> Delete </button></td></tr>';
                                     $('#tableEvent > tbody').append(row);
                                 
-                                //path.push([item.latitude, item.longitude]);
+                                pathi.push([item.latitude, item.longitude]);
                                 
                                 return event;
                             })
@@ -104,10 +104,10 @@ function openCity(evt, cityName)
                     if ( m1 == null) 
                     {
                         var eLat, eLng;
-                        if(path.length > 0)
+                        if(pathi.length > 0)
                         {
-                            eLat = path[path.length - 1].lat;
-                            eLng = path[path.length - 1].lng;
+                            eLat = pathi[pathi.length - 1][0];
+                            eLng = pathi[pathi.length - 1][1];
                         }
                         else
                         {
@@ -179,23 +179,16 @@ function openCity(evt, cityName)
             } // tutup fungsi e ketika klik
         }); // tutup instansiasi gmaps    
         
-       // mapObj.drawPolyline({
-       //     path: path,
-       //     strokeColor: '#0000FF', //warna line
-       //     strokeOpacity: 1, //transparansi
-       //     strokeWeight: 10 //lebar line
-       // });
-        
         $('#getList').click(function()
         {
             mapObj.cleanRoute();
             
-         //   mapObj.drawPolyline({
-           //     path: path,
-           //     strokeColor: '#0000FF', //warna line
-          //      strokeOpacity: 1, //transparansi
-          //      strokeWeight: 10 //lebar line
-        //    });
+            mapObj.drawPolyline({
+                path: pathi,
+                strokeColor: '#0000FF', //warna line
+                strokeOpacity: 1, //transparansi
+                strokeWeight: 10 //lebar line
+            });
         
             $('#map').appendTo('#mainBottom');
             
@@ -449,7 +442,7 @@ function openCity(evt, cityName)
         $("#tableEvent").on('click', '.v-more', function()
         {
             var currentRow = $(this).closest("tr");
-            var rowIndex = $(this).parent().index();
+            var rowIndex = parseInt($(this).parent().index());
             // mendapatkan data2 
             var eventId = currentRow.find("td:eq(0)").html();
             var eventTitle = currentRow.find("td:eq(1)").html();
@@ -472,15 +465,33 @@ function openCity(evt, cityName)
             // tambahkan rute
             if(rowIndex > 1)
             {
-                mapObj.drawRoute({
-                    origin: [path[rowIndex-1].lat, path[rowIndex-1].lng],
-                    destination: [path[rowIndex].lat, path[rowIndex].lng],
-                    travelMode: eventMode,
-                    strokeColor: '#131540',
-                    strokeOpacity: 0.6,
-                    strokeWeight: 6
+                var latlngStr = eventAddress.split(',', 2);
+                var partpath = [];
+                partpath.push([-6.872034, 107.574794]);
+                partpath.push([latlngStr[0], latlngStr[1]]);
+                //mapObj.addMarker({
+                //    lat: parseFloat(latlngStr[0]),
+                //    lng: parseFloat(latlngStr[1]),
+                //    title: eventTitle
+                //  });
+                
+               // mapObj.drawRoute({
+               //     origin: new google.maps.LatLng(-6.872034, 107.574794),
+               //     destination: new google.maps.LatLng(parseFloat(latlngStr[0]), parseFloat(latlngStr[1])),
+               //     travelMode: String(eventMode),
+               //     strokeColor: '#131540',
+               //     strokeOpacity: 0.6,
+               //     strokeWeight: 6
+               // });
+               
+                mapObj.drawPolyline({
+                    path: partpath,
+                    strokeColor: '#0000FF', //warna line
+                    strokeOpacity: 1, //transparansi
+                    strokeWeight: 6 //lebar line
                 });
-                mapObj.setCenter(path[rowIndex].lat, path[rowIndex].lng);
+               
+                mapObj.setCenter(parseFloat(latlngStr[0]), parseFloat(latlngStr[1]));
             }
         });
         
@@ -540,7 +551,7 @@ function openCity(evt, cityName)
                         
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8080/Travlendar2A/index",
+                            url: "http://localhost:8084/Travlendar2A/index",
                             dataType:'JSON',
                             //   data: {listjson: JSON.stringify(listJson)},
                             data: {action: 'addEvent', json: JSON.stringify(eventDesc)},
@@ -566,7 +577,7 @@ function openCity(evt, cityName)
                     var idEvent = col1;
                     $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8080/Travlendar2A/index",
+                            url: "http://localhost:8084/Travlendar2A/index",
                             dataType:'JSON',
                             data: {action: 'deleteEvent', event_id: idEvent },
                             async: false, // dikirim ketika semua beres
@@ -581,7 +592,7 @@ function openCity(evt, cityName)
                                 if(submsg == "Sukses")
                                 {
                                     currentRow.remove();
-                                    delete path[rowIndex];
+                                    delete pathi[rowIndex];
                                 }
                             },
                             failure: function(errMsg) {
