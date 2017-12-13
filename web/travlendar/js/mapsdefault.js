@@ -2,92 +2,406 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ *  
+ * Materi OOP di Javascript 
+ * http://codelikethis.com/lessons/javascript/object_oriented_javascript
+ * 
+*/
+
+/**
+ * Objek ListEvent
+ * @param {type} list harus array
+ * @returns {ListEvent}
  */
-			
-		
+var ListEvent = function listEvent(list)
+{
+    /**
+     * Setter List
+     * @param {type} listTravellerEvent
+     * @returns {undefined}
+     */
+    this.setList = function(listTravellerEvent)
+    {
+        list = listTravellerEvent;
+    };
+    
+    /**
+     * Method untuk menambahkan row ke list
+     * @param {type} rowEvent
+     * @returns {undefined}
+     */   
+    this.addEvent = function(rowEvent)
+    {
+        list.push(rowEvent);
+    };
+    
+    /**
+     * Getter List
+     * @returns {type|@var;listTravellerEvent}
+     */
+    this.getList = function()
+    {
+        return list;
+    };
+    
+    /**
+     * Method untuk mendapatkan event terkhir
+     * @returns {ListEvent.list|@var;listTravellerEvent|type}
+     */
+    this.getLastEvent = function()
+    {
+        return list[list.length-1];
+    };
+    
+    /**
+     * Method untuk mendapatkan objek event yg tersimpan di event sebelumnya
+     * @param {type} curIndexRow
+     * @returns {ListEvent.list|@var;listTravellerEvent|type}
+     */
+    this.getLastEvent = function(curIndexRow)
+    {
+        var singleEvent;
+        
+        if(curIndexRow > 0)
+        {
+            singleEvent = list[curIndexRow-1];
+        }
+        else
+        {
+            singleEvent = {};
+        }
+        return singleEvent;
+    };
+    
+    /**
+     * Method untuk mengembalikan tanggal event terakhir
+     * format YYYY-MM-DD
+     * wajib pakai momentjs library
+     * @returns {unresolved} karena momentjs belum include disini
+     */
+    this.getLastEventDate = function()
+    {
+        var singleEvent;
+        var lastdt;
+        
+        if(list.length > 0)
+        {
+            singleEvent = list[list.length-1];
+        }
+        else
+        {
+            singleEvent = {};
+            singleEvent.start = "2017-12-12";
+        }
+        
+        lastdt = moment(singleEvent.start).format("YYYY-MM-DD");
+        return lastdt;
+    };
+    
+};
 
+var TabView = function tabView(objMap)
+{
+    this.viewMore = function(event){
+        // set ke tampilan baru
+            $('#moreTitle').val(event.title);
+            $('#moreStart').val(event.start);
+            $('#moreMode').val(event.transportation);
+            $('#moreDepature').val(event.depature_time);
+            $('#moreAddress').val(event.address);
+            // buka tab
+            openCity(event, 'MoreEvent');
+            // pindahkan peta
+        /*    $('#map').appendTo('#moreLeft'); */
+            // hapus polylines
+       /*     objMap.removePolylines();
+            // tambahkan rute
+            
+            
+                var partpath = [];
+                partpath.push([-6.872034, 107.574794]);
+                partpath.push([event.latitude, event.longitude]);
+                
+                objMap.addMarker({
+                    lat: event.latitude,
+                    lng: event.longitude,
+                    title: event.title
+                });
+               
+                objMap.drawPolyline({
+                    path: partpath,
+                    strokeColor: '#0000FF', //warna line
+                    strokeOpacity: 1, //transparansi
+                    strokeWeight: 6 //lebar line
+                });
 
-                /* global moment, google, GMaps */
+                objMap.setCenter(event.latitude, event.longitude);  */
+    };
+
+};
+/* global moment, google, GMaps */
 
 function openCity(evt, cityName) 
-                {
-			var i, tabcontent, tablinks;
-			tabcontent = document.getElementsByClassName("tabcontent");
-			for (i = 0; i < tabcontent.length; i++) {
-				tabcontent[i].style.display = "none";
-			}
-			tablinks = document.getElementsByClassName("tablinks");
-			for (i = 0; i < tablinks.length; i++) {
-				tablinks[i].className = tablinks[i].className.replace("active", "");
-			}
-			document.getElementById(cityName).style.display = "block";
-			evt.currentTarget.className += " active";
-		}
+{
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+	tablinks[i].className = tablinks[i].className.replace("active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+}
 
-
-
-        // JQuery
-    $(document).ready( function()  // Ketika web udah siap
+// JQuery
+$(document).ready( function()  // Ketika web udah siap
+{
+    /**
+     * Untuk Akses Controller
+     * @param {type} urlController
+     * @returns {mapsdefaultL#119.ControllerAccesser}
+     */
+    var ControllerAccesser = function controllerAccesser(urlController)
     {
-        var pathi = new Array();
-        // Calendar Event
-        $.ajax({
-            dataType : "json",
-            contentType : "application/json",
-            url: "http://localhost:8080/Travlendar2A/index?action=getlistEvent",
-            success: function(data)
+        /**
+         * Method untuk mendapatkan list json
+         * @param {type} successFunc
+         * @returns {undefined}          
+         */
+        this.getJson = function(successFunc)
+        {
+            $.ajax({
+                type: "GET",
+                dataType : 'JSON',
+                data: {action: 'getlistEvent'},
+                contentType : "application/json",
+                url: urlController,
+                success: successFunc,
+                error: function(xmlhttprequest, textstatus, message)
                 {
-                    var lastDate;
+                    alert(textstatus + message);
+                }
+            });
+        };
+        
+        /**
+         * Method untuk mengirimkan event json ke controller
+         * @param {type} dataJson
+         * @returns {undefined}
+         */
+        this.sendEvent = function(dataJson){
+            $.ajax({
+                type: "POST", // method post
+                url: urlController,
+                dataType:'JSON',
+                data: {action: 'addEvent', json: JSON.stringify(dataJson)},
+                async: false, // dikirim ketika semua beres
+                success: function(msgStatus)
+                {
+                    alert(msgStatus);
+                },
+                error: function(xmlhttprequest, textstatus, message)
+                {
+                    alert(textstatus + message);
+                }
+            });  
+        };
+        
+        /**
+         * Method untuk delete data
+         * @param {type} idEvent
+         * @param {type} currentRow
+         * @param {type} rowIndex
+         * @param {type} objCal
+         * @returns {undefined}
+         */
+        this.deleteEvent = function(idEvent, currentRow, rowIndex, objCal)
+        {
+            $.ajax({
+                type: "POST", // method post
+                url: urlController,
+                dataType:'JSON',
+                data: {action: 'deleteEvent', event_id: idEvent },
+                async: false, // dikirim ketika semua beres
+                success: function(msgStatus)
+                {
+                    var successMessage = msgStatus.responseText;
+                    var submsg = successMessage.substring(0, 6); 
+                    if(successMessage)
+                    {
+                        alert(successMessage);
+                    }
+                    if(submsg == "Sukses")
+                    {
+                        currentRow.remove();
+                        objCal.deleteEvent(idEvent);
+                        delete pathi[rowIndex];
+                    }
+                },
+                error: function(xmlhttprequest, textstatus, message)
+                {
+                    alert(textstatus + message);
+                }
+            });
+        }
+    };
+    
+    /**
+     * Table Event
+     * @param {type} cssIdTable
+     * @returns {mapsdefaultL#119.TableEvent}
+     */
+    var TableEvent = function tableEvent(cssIdTable)
+    {  
+        /**
+         * Method untuk menambahkan isi body tabel
+         * @param {type} item
+         * @returns {undefined}
+         */
+        this.writeRow = function(item)
+        {
+            var row =  '<tr><td style="display:none">'+ item.id +'</td>\n\
+                            <td>'+ item.title + '</td>\n\
+                            <td>'+ moment(item.start).format("ddd DD-MM-YYYY hh:mm a") + '</td>\n\
+                            <td>'+ item.transportation + '</td>\n\
+                            <td>'+ moment(item.departure_time).format("ddd DD-MM-YYYY hh:mm a") + '</td>\n\
+                            <td>'+ item.address +'</td>\n\
+                            <td><button class="v-more"> View More </button> <button class="v-del"> Delete </button></td>\n\
+                        </tr>';
+            $( cssIdTable +' > tbody').append(row);
+        };
+        
+        /**
+         * Menentukan aksi thd id
+         * @param {type} action misal 'click'
+         * @param {type} cssId misal 'btn-del'
+         * @param {type} actionFunc isi fungsi aksinya dg parameter currentRow dan rowIndex
+         * @returns {undefined}
+         */
+        this.actionListener = function(action, cssId, actionFunc)
+        {
+            $(cssIdTable).on(action, cssId, function() 
+            {
+                var currentRow = $(this).closest("tr");
+                var rowIndex = $(this).parent().index();
+                actionFunc(currentRow, rowIndex);
+            });
+        };
+        
+        /**
+         * Mendapatkan ID CSS Table
+         * @returns {type}
+         */
+        this.getCssId = function()
+        {
+            return cssIdTable;
+        };
+    };
+    
+    /**
+     * Kalender
+     * @param {type} cssIdCalendar
+     * @returns {mapsdefaultL#119.FullCalendar}
+     */
+    var FullCalendar = function fullCalendar(cssIdCalendar)
+    {
+        /**
+         * 
+         * @param {type} list
+         * @param {type} funcClick
+         * @returns {undefined}
+         */
+        this.writeCal = function(list, funcClick)
+        {
+            $(cssIdCalendar).fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay,listWeek'
+                },
+                navLinks: false, 
+                editable: false,
+                eventLimit: true, // allow "more" link when too many events
+                events: list,
+                eventClick: funcClick
+            });
+        };
+        
+        /**
+         * Method untuk mengarahkan kalender ke tanggal tertentu
+         * @param {type} gdate
+         * @returns {undefined}
+         */
+        this.gotoDate = function(gdate)
+        {
+            $(cssIdCalendar).fullCalendar('gotoDate', gdate);
+        };
+        
+        /**
+         * Method untuk menghapus event di kalender dengan ID
+         * @param {type} idEvent
+         * @returns {undefined}
+         */
+        this.deleteEvent = function(idEvent)
+        {
+            $(cssIdCalendar).fullCalendar( 'removeEvents', [idEvent] );
+        };
+    };
+    
+    // yg bertugas kurirnya controller
+    var objAccess = new ControllerAccesser("http://localhost:8080/Travlendar2A/index");
+    
+    // array path untuk polylines
+    var pathi = new Array();
+    
+    // array obj event
+    var objListEvent = new ListEvent(new Array());
+    
+    // table event
+    var objTableEvent = new TableEvent("#tableEvent");
+    
+    // calendar
+    var objCalendar = new FullCalendar("#calendar");
+    
+    // view tab
+    var tabView = new TabView({});
+    
+    // mendapatkan json dari controller
+    objAccess.getJson(function(data){
+        // loop list
+        $.map(data, function(item,i)
+            {
+                item.start = moment(item.start).format();
+                item.end = moment(item.end).format();
+                item.depature_time = moment(item.departure_time).format("ddd DD-MM-YYYY hh:mm a");
+                // memasukkan kedalam list json
+                objListEvent.addEvent(item);
+                // memasukkan dan menampilkan dalam tabel
+                objTableEvent.writeRow(item);
+                // array lat lng
+                pathi.push([item.latitude, item.longitude]);
+            });
+            
+            // memasukkan data kedalam kalendar
+            objCalendar.writeCal(objListEvent.getList(),function(calEvent, jsEvent, view){
+                tabView.viewMore(calEvent);
+            });
 
-                    $('#calendar').fullCalendar({
-                        header: {
-                            left: 'prev,next today',
-                            center: 'title',
-                            right: 'month,agendaWeek,agendaDay,listWeek'
-                        },
-                        defaultDate: '2017-09-22',
-                        navLinks: true, // can click day/week names to navigate views
-                        editable: true,
-                        eventLimit: true, // allow "more" link when too many events
-                        events: $.map(data, function(item,i)
-                            {
-                                var event = new Object();
-                                event.title = item.title;
-                                event.start = moment(item.start).format();
-                                event.end = moment(item.end).format();
-                                event.id = item.id;
-                                lastDate = moment(item.start).format('YYYY-MM-DD');
+            // set ke event terakhir
+            objCalendar.gotoDate(objListEvent.getLastEventDate());
+    });
+                     
+    var destination, service;
+    var m1 = null, m2 = null;
+    var m1pos, m2pos;
+    var geocoder = new google.maps.Geocoder;
         
-                                var row = '<tr><td style="display:none">'+ item.id 
-                                        + '</td><td>'+ item.title 
-                                        + '</td><td>'+ moment(item.start).format("ddd DD-MM-YYYY hh:mm a") 
-                                        + '</td><td>'+ item.transportation 
-                                        + '</td><td>'+ moment(item.departure_time).format("ddd DD-MM-YYYY hh:mm a")
-                                        + '</td><td>'+ item.address +'</td><td> \n\
-                                    <button class="v-more"> View More </button> <button class="v-del"> Delete </button></td></tr>';
-                                    $('#tableEvent > tbody').append(row);
-                                
-                                pathi.push([item.latitude, item.longitude]);
-                                
-                                return event;
-                            })
-                        });
-
-                    $('#calendar').fullCalendar('gotoDate', lastDate);
-                }   
-        });
-        
-        // Google Maps
-        var lastPosition = {};
-             
-        var destination, service;
-	var m1 = null, m2 = null;
-	var m1pos, m2pos;
-        var geocoder = new google.maps.Geocoder;
-        
-        document.getElementById("defaultOpen").click();
+    document.getElementById("defaultOpen").click();
                    
-	var mapObj = new GMaps({
+    var mapObj = new GMaps({
             el: '#map',
             lat: -6.914744,
             lng: 107.609810,
@@ -451,50 +765,9 @@ function openCity(evt, cityName)
             var eventStart = currentRow.find("td:eq(2)").html();
             var eventMode = currentRow.find("td:eq(3)").html();
             var eventDepature = currentRow.find("td:eq(4)").html();
-            var eventAddress = currentRow.find("td:eq(5)").html();;
-            // set ke tampilan baru
-            $('#moreTitle').val(eventTitle);
-            $('#moreStart').val(eventStart);
-            $('#moreMode').val(eventMode);
-            $('#moreDepature').val(eventDepature);
-            $('#moreAddress').val(eventAddress);
-            // buka tab
-            openCity(event, 'MoreEvent');
-            // pindahkan peta
-            $('#map').appendTo('#moreLeft');
-            // hapus polylines
-            mapObj.removePolylines();
-            // tambahkan rute
-            if(rowIndex > 1)
-            {
-                var latlngStr = eventAddress.split(',', 2);
-                var partpath = [];
-                partpath.push([-6.872034, 107.574794]);
-                partpath.push([latlngStr[0], latlngStr[1]]);
-                //mapObj.addMarker({
-                //    lat: parseFloat(latlngStr[0]),
-                //    lng: parseFloat(latlngStr[1]),
-                //    title: eventTitle
-                //  });
-                
-               // mapObj.drawRoute({
-               //     origin: new google.maps.LatLng(-6.872034, 107.574794),
-               //     destination: new google.maps.LatLng(parseFloat(latlngStr[0]), parseFloat(latlngStr[1])),
-               //     travelMode: String(eventMode),
-               //     strokeColor: '#131540',
-               //     strokeOpacity: 0.6,
-               //     strokeWeight: 6
-               // });
-               
-                mapObj.drawPolyline({
-                    path: partpath,
-                    strokeColor: '#0000FF', //warna line
-                    strokeOpacity: 1, //transparansi
-                    strokeWeight: 6 //lebar line
-                });
-               
-                mapObj.setCenter(parseFloat(latlngStr[0]), parseFloat(latlngStr[1]));
-            }
+            var eventAddress = currentRow.find("td:eq(5)").html();
+
+            
         });
         
         GMaps.geolocate({
@@ -556,113 +829,53 @@ function openCity(evt, cityName)
                         
                         alert(JSON.stringify(eventDesc));
                         
-                        $.ajax({
-                            type: "POST", // method post
-                            url: "http://localhost:8080/Travlendar2A/index",
-                            dataType:'JSON',
-                            //   data: {listjson: JSON.stringify(listJson)},
-                            data: {action: 'addEvent', json: JSON.stringify(eventDesc)},
-                            async: false, // dikirim ketika semua beres
-                            complete: function(msgStatus)
-                            {
-                                alert(msgStatus.responseText);
-                            },
-                            failure: function(errMsg) {
-                                alert(errMsg);
-                            }
-                        });
+                        objAccess.sendEvent(eventDesc);
                     }
                     else
                         alert("Mohon klik tujuan anda!");
                 });
                 
-                                              
-                $("#tableEvent").on('click', '.v-del', function() {                
-                    var currentRow = $(this).closest("tr");
-                    var col1 = currentRow.find("td:eq(0)").html();
-                    var rowIndex = $(this).parent().index();
-                    var idEvent = col1;
-                    $.ajax({
-                            type: "POST", // method post
-                            url: "http://localhost:8080/Travlendar2A/index",
-                            dataType:'JSON',
-                            data: {action: 'deleteEvent', event_id: idEvent },
-                            async: false, // dikirim ketika semua beres
-                            complete: function(msgStatus)
-                            {
-                                var successMessage = msgStatus.responseText;
-                                var submsg = successMessage.substring(0, 6); 
-                                if(successMessage)
-                                {
-                                    alert(successMessage);
-                                }
-                                if(submsg == "Sukses")
-                                {
-                                    currentRow.remove();
-                                    $('#calendar').fullCalendar( 'removeEvents', [col1] );
-                                    delete pathi[rowIndex];
-                                }
-                            },
-                            failure: function(errMsg) {
-                                alert(errMsg);
-                            }
-                        });
-                });
+    objTableEvent.actionListener('click','.v-del', function(currentRow, rowIndex){
+        var idEvent = currentRow.find("td:eq(0)").html();
+        objAccess.deleteEvent(idEvent, currentRow, rowIndex, objCalendar);
+    });                                 
         
                 // Get the modal
-				var modal = document.getElementById('myModal');
-
-				// Get the button that opens the modal
-				//var btn = document.getElementById("myBtn");
-
-				// Get the <span> element that closes the modal
-				//var span = document.getElementsByClassName("close")[0];
-
-				// When the user clicks the button, open the modal 
-				//btn.onclick = function() {
-				   // modal.style.display = "block";
-				//}
+                var modal = document.getElementById('myModal');
                                 
-                                 $('#myBtn').click(function(){
-                                     modal.style.display = "block";
-                                 });
+                $('#myBtn').click(function(){
+                    modal.style.display = "block";
+                });
                                  
-                                 $('.close').click(function(){
-                                     modal.style.display = "none";
-                                 });
-				// When the user clicks on <span> (x), close the modal
-				//span.onclick = function() {
-				   // modal.style.display = "none";
-				//}
+                $('.close').click(function(){
+                    modal.style.display = "none";
+                });
 
-				// When the user clicks anywhere outside of the modal, close it
-				window.onclick = function(event) {
-				    if (event.target == modal) {
-				        modal.style.display = "none";
-				    }
-				}
+        	window.onclick = function(event) {
+		    if (event.target == modal) {
+		        modal.style.display = "none";
+		    }
+		}
 
                 
-        }); // tutup JQuery    
+}); // tutup JQuery    
             
             
             			
-				function show()
-				{
-					if(document.getElementById("hidden-mobile").style.display == 'none')
-						document.getElementById("hidden-mobile").style.display = 'block';
-					else
-						document.getElementById("hidden-mobile").style.display = 'none';
-				}
-				
-				
-                                
-                                function konfirmasi()
-                                                {
-                                                tanya = confirm("Anda Yakin Akan Menghapus Data ?");
-                                                if (tanya == true) return true;
-                                                else return false;
-                                                }
+function show()
+{
+    if(document.getElementById("hidden-mobile").style.display == 'none')
+	document.getElementById("hidden-mobile").style.display = 'block';
+    else
+	document.getElementById("hidden-mobile").style.display = 'none';
+}
+								                                
+function konfirmasi()
+{
+    tanya = confirm("Anda Yakin Akan Menghapus Data ?");
+    if (tanya == true) return true;
+    else return false;
+}
                                                 
                                                 
                                                 
