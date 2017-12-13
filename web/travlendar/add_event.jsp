@@ -129,34 +129,82 @@
                 
 
 		<div id="London" class="tabcontent">
-		  <input class="ev-name" id="eventName" type="text" placeholder="What Your Event ??.. "/>
+	           
+                        <input class="ev-name" id="eventName" type="text" placeholder="Event Name ??.. "/>
 
 			<div class="main">
 				<div class="left">
-					<input class="ev" id="orig" type="text" placeholder="Event Location ...">
-					<div class="text-ev"> From </div>
-					<input class="tgl-ev" id="origDate" type="date" value="2017-11-28">
-					<input class="time-ev" id="origTime" type="time" value="00:00"/>
-                                        <div class="text-ev"> Until </div>
-					<input class="tgl-ev" id="destDate" type="date" value="2017-11-28">
-                                        <input class="time-ev" id="destTime" type="time" value="00:00"/>
-                                        
-                                        
-				</div>
+                                    
+                                    <div clas="containernya">
+					<form action="/action_page.php">
+                                            <div class="row">
+                                              <div class="col-25">
+                                                <label for="fname">From</label>
+                                              </div>
+                                              <div class="col-75">
+                                                <input class="name" id="origDate" type="date" value="2017-11-28" style="width:150px">
+                                                <input class="name" id="origTime" type="time" value="00:00" style="width:100px"/>
+                                              </div>
+                                            </div>
+                                            <div class="row">
+                                              <div class="col-25">
+                                                <label for="lname">Event Location</label>
+                                              </div>
+                                              <div class="col-75">
+                                                <input class="name" type="text" id="orig" name="lastname" placeholder="Event Location..">
+                                              </div>
+                                            </div>
+                                            <div class="row">
+                                              <div class="col-25">
+                                                <label for="lname">Previous Location</label>
+                                              </div>
+                                              <div class="col-75">
+                                                <input class="name" type="text" id="dist" name="lastname" placeholder="Previous Location..">
+                                              </div>
+                                            </div>
+                                            <div class="row">
+                                              <div class="col-25">
+                                                <label for="country">Departure Time</label>
+                                              </div>
+                                              <div class="col-75">
+                                                <input class="name" id="departureDate" type="date" value="2017-11-28" style="width:150px">
+                                                <input class="name" id="departureTime" type="time" value="00:00" style="width:100px"/>
+                                              </div>
+                                            </div>
+                                            
+                                          </form>
+                                    </div>  <!--containernya-->   
+                                    
+				</div> <!--left-->
 				
 				
 				<div class="right">
-					<input class="ev" id="dest" type="text" placeholder="Previeous Location ...">
-					<div class="text-ev"> Departure Time </div>
-                                        <input class="tgl-ev" id="departureDate" type="date" value="2017-11-28">
-                                        <input class="time-ev" id="departureTime" class="departure" type="time" value="00:00"/>
-                                        
+					<div clas="containernya">
+					<form action="/action_page.php">
+                                            <div class="row">
+                                              <div class="col-25">
+                                                <label for="fname">Until</label>
+                                              </div>
+                                              <div class="col-75">
+                                                <input class="name" id="origDate" type="date" value="2017-11-28" style="width:150px">
+                                                <input class="name" id="origTime" type="time" value="00:00" style="width:100px"/>
+                                              </div>  
+                                              
+                                              <div class="col-95">
+                                                  <input class="name" type="text" id="fname" name="search" placeholder="Search..">
+                                              </div>
+                                              
+                                            </div>
+                                            <div id="map">Maps Event</div> <!-- MAP TIDAK MUNCUL HEEELLLPPP  !  -->
+                                            
+                                          </form>
+                                    </div>  <!--containernya-->
 				</div>
                                 
                                 <input class="ev-name" id="noteDesc" type="text" placeholder="Note .. " style="height:75px;"/>
                             
                                  <div class="i-save" >
-                <button class="submit" id="myBtn">Submit</button>
+                                    <button class="submit" id="myBtn">Choose Transportation Mode</button>
 				<!-- The Modal -->
 				<div id="myModal" class="modal">
 
@@ -275,9 +323,7 @@
         </div> <!--induk2-->
 
         <div class="container">
-            <div class="main" id="mainBottom">
-                <div id="map">Maps Event</div>
-            </div> <!--/ .main -->
+             
         </div> <!--container-->
 
 
