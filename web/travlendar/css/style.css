@@ -310,9 +310,11 @@ a:hover{
 
 /* Main */
 	.left{
+                float: left;
 		width: 510px;
 		border: 1px solid #dedede;
 		background: #f4f4f4;
+                overflow: hidden;
 		padding: 10px;
 		margin: 10px;
 		float: left;
@@ -335,11 +337,12 @@ a:hover{
 		}
 
 	.right{
+                float: left;
 		width: 510px;
 		border: 1px solid #dedede;
 		padding: 10px;
 		margin: 10px;
-		float: left;
+		overflow: hidden;
 	}
 
 
@@ -524,7 +527,7 @@ a:hover{
 }
 
 .i-save{
-	width: 200px;
+	width: 256px;
 	margin: 0 auto;
 }
 
@@ -863,4 +866,68 @@ table {
     overflow: hidden;
     border-top: 3px solid #ff9900;
     border-bottom: 3px solid #ff9900;
+}
+
+
+
+
+
+.name, select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+label {
+    padding: 14px 14px 14px 0;
+    display: inline-block;
+    font: 14px Arial;
+    font-weight: bold;
+    color: #757575;
+}
+
+.submit {
+    width: 250px;
+    background-color: #ff9900;
+    font: 14px Arial;
+    font-weight: bold;
+    color: #fafafa;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+.submitnya:hover {
+    background-color: #45a049;
+}
+
+.col-25 {
+    float: left;
+    width: 30%;
+    margin-top: 9px;
+}
+
+.col-75 {
+    float: left;
+    width: 70%;
+    margin-top: 12px;
+}
+
+
+.col-95 {
+    float: left;
+    width: 100%;
+    margin-top: 12px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
 }
