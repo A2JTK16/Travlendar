@@ -10,18 +10,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../css/style.css">
         <!-- Google Maps JS API -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>
+        <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>-->
         
         <!-- JQuery Library -->
-        <script src="http://code.jquery.com/jquery-latest.min.js"></script> 
+        <!--<script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
         
         <!-- GMaps Library -->
-        <script src="js/gmaps.js"></script>
+        <!--<script src="../js/gmaps.js"></script>-->
         
         <!-- GMaps Custom Setting for This Page -->
-        <script src="js/mapsdefault.js"></script>
+        <script src="../js/mapsdefault.js"></script>
     </head>
     <body>
         <div class="jarak-atas">
@@ -31,42 +31,42 @@
     <div class="menu-atas">
 	<div class="header">
              <div class="logonya">
-                <img src="images/travelendar2.png">
+                <img src="../images/travelendar2.png">
                 
             </div>
             <div class="logo">
-                <img src="images/logo.png">
+                <img src="../images/logo.png">
             </div> <!--logo-->
             
             <div class="dropdown" style="float:right;">
                 <button class="dropbtn">
                     <a class="icon-account">
-                            <img src="icon/akun1.png">
+                            <img src="../icon/akun1.png">
                     </a>
                 </button>
                 <div class="dropdown-content">
-                  <a href="#">My Account</a>
-                  <a href="#">Add Account</a>
-                  <a href="index.jsp">Sign Out</a>
+                  <a href="editprofil.jsp">My Account</a>
+                  <a href="signup.jsp">Add Account</a>
+                  <a href="../homepage.jsp">Sign Out</a>
                 </div>
             </div>
             
             <div class="dropdown" style="float:right;">
                 <button class="dropbtn">
                     <a class="icon-account">
-                            <img src="icon/notif2.png">
+                            <img src="../icon/notif2.png">
                     </a>
                 </button>
                 <div class="dropdown-content">
-                  <a href="#">Notif 1</a>
-                  <a href="#">Notif 2</a>
-                  <a href="#">Notif 3</a>
+                  <a href="#">Welcome to Travelendar ! by A2 JTK</a>
+                  <a href="#">Don't Forget to Make a Better Plan ! by A2 JTK</a>
+                  <a href="#">Our Plan Will Get Big Things! by A2 JTK</a>
                 </div>
             </div>
                   
             <div class="kotak-cari">
                 <div class="icon-cari">
-                    <img src="icon/search.png">
+                    <img src="../icon/search.png">
                 </div>
                 <input class="cari" type="text" placeholder="Find Event ..."/>
             </div> <!--kotak-cari-->
@@ -111,7 +111,7 @@
                         <br>	
                     </form>
                     <button class="b-signup" id="tblSignup">Edit Profil</button>
-                    <a href="index.jsp"><button class="b-back">Back</button></a>
+                    <a href="../index.jsp"><button class="b-back">Back</button></a>
                 </div> <!--setting-from-->
                 </div>    
             </div>
@@ -151,7 +151,7 @@
         
         <%@include file="footer.jsp" %>
         
-        <script src="js/jquery.min.js"></script>
+        <script src="../js/jquery.min.js"></script>
         <script>
             $(document).ready( function()  // Ketika web udah siap
             {   
@@ -232,7 +232,7 @@
                     {
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8084/Travlendar2A/index",
+                            url: "http://localhost:8080/Travlendar2A/index",
                             dataType:'JSON',
                             data: {action: 'deleteUser', traveller_id: $('#input0').val() },
                             async: false, // dikirim ketika semua beres

@@ -34,7 +34,7 @@
             </div> <!--logo-->
             
             <div class="tombol" style="float:right;">
-                            <a href="signup.jsp"><div class="sign-up">Create An Account</div></a>                   
+                            <a href="travlendar/signup.jsp"><div class="sign-up">Create An Account</div></a>                   
             </div>
             
             <div class="tombol" style="float:right;">
@@ -102,7 +102,7 @@
 				}
                                 
         $("#tombolLogin").on('click', function() 
-        {                
+        {    
                     $.ajax({
                             type: "POST", // method post
                             url: "http://localhost:8080/Travlendar2A/index",
@@ -113,13 +113,14 @@
                             {
                                 var successMessage = msgStatus.responseText;
                                 var submsg = successMessage.substring(0, 6); 
-                                if(successMessage)
+                               /* if(successMessage)
                                 {
                                     alert(successMessage);
-                                }
+                                }*/
                                 if(submsg == "Sukses")
                                 {
-                                    $('#myModal').html('<a href="add_event.jsp"><button class="b-signin">Sukses Login, Silakan Masuk</button></a>');
+                                    //toUserPanel();
+                                    $('#myModal').html('<a href="index.jsp"><button class="b-signin">Sukses Login, Silakan Masuk</button></a>');
                                     //$('header').append('<meta http-equiv="refresh" content="0; url=http://localhost:8080/Travlendar2A/travlendar/add_event.jsp" />');
                                 }
                             },

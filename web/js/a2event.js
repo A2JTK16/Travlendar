@@ -369,6 +369,7 @@ $(document).ready( function()  // Ketika web udah siap
     // view tab
     var tabView = new TabView({});
     
+    //var lastLat, lastLng;
     // mendapatkan json dari controller
     objAccess.getJson(function(data){
         // loop list
@@ -383,6 +384,9 @@ $(document).ready( function()  // Ketika web udah siap
                 objTableEvent.writeRow(item);
                 // array lat lng
                 pathi.push([item.latitude, item.longitude]);
+                
+               // lastLat = item.latitude;
+               // lastLng = item.longitude;
             });
             
             // memasukkan data kedalam kalendar
@@ -418,20 +422,20 @@ $(document).ready( function()  // Ketika web udah siap
                     if ( m1 == null) 
                     {
                         var eLat, eLng;
-                        if(pathi.length > 0)
+                      /*  if(pathi.length > 0)
                         {
                             eLat = pathi[pathi.length - 1][0];
                             eLng = pathi[pathi.length - 1][1];
                         }
                         else
-                        {
+                        { 
                             eLat = e.latLng.lat();
                             eLng = e.latLng.lng();
-                        }
+                       } */
                         
 			m1 = mapObj.addMarker({
-                            lat: eLat,
-                            lng: eLng//,
+                            lat: e.latLng.lat(),
+                            lng: e.latLng.lat()//,
 					//icon: sourceIcon
                         });
                         
@@ -471,7 +475,7 @@ $(document).ready( function()  // Ketika web udah siap
                     {
 
                         
-                        var dist = document.getElementById("dist"),
+                        var dist = document.getElementById("dest"),
                         transit = document.getElementById("transit");
 
                         if(status=="OK") 
@@ -493,6 +497,8 @@ $(document).ready( function()  // Ketika web udah siap
             } // tutup fungsi e ketika klik
         }); // tutup instansiasi gmaps    
         
+        //mapObj.setCenter(lastLat, lastLng);
+        
         $('#getList').click(function()
         {
             mapObj.cleanRoute();
@@ -509,6 +515,64 @@ $(document).ready( function()  // Ketika web udah siap
             $('#map').appendTo('#mainBottom');
             
             openCity(event, 'Paris');
+        });
+        
+        $('#defaultOpenNew').click(function()
+        {
+            mapObj.cleanRoute();
+            
+            GMaps.geolocate({
+                success: function(position) 
+                {
+                    mapObj.setCenter(position.coords.latitude, position.coords.longitude);
+                        m1 = mapObj.addMarker({
+                           lat: position.coords.latitude,
+                           lng: position.coords.longitude,
+                           title: 'Your current position'
+                    });
+                    m1pos = m1.getPosition();
+
+                },
+                error: function(error) 
+                {
+                    alert('Geolocation failed: ' + error.message);
+                },
+                not_supported: function() 
+                {
+                            alert("Your browser does not support geolocation");
+                }
+            });
+            
+            mapObj.drawPolyline({
+                path: pathi,
+                strokeColor: '#0000FF', //warna line
+                strokeOpacity: 1, //transparansi
+                strokeWeight: 10 //lebar line
+            });
+            
+            //mapObj.setCenter([pathi.length - 1][0], [pathi.length - 1][1]);
+        
+            $('#map').appendTo('#mapNewEvent');
+            
+            openCity(event, 'London');
+        });
+        
+        $('#defaultOpen').click(function()
+        {
+            mapObj.cleanRoute();
+            
+            mapObj.drawPolyline({
+                path: pathi,
+                strokeColor: '#0000FF', //warna line
+                strokeOpacity: 1, //transparansi
+                strokeWeight: 10 //lebar line
+            });
+            
+            //mapObj.setCenter([pathi.length - 1][0], [pathi.length - 1][1]);
+        
+            $('#map').appendTo('#mapsBottom');
+            
+            openCity(event, 'Tasik');
         });
         
         $('.submit').click(function()
@@ -768,31 +832,7 @@ $(document).ready( function()  // Ketika web udah siap
             var eventAddress = currentRow.find("td:eq(5)").html();
 
             
-        });
-        
-        GMaps.geolocate({
-            success: function(position) 
-            {
-                mapObj.setCenter(position.coords.latitude, position.coords.longitude);
-                    m1 = mapObj.addMarker({
-                       lat: position.coords.latitude,
-                       lng: position.coords.longitude,
-                       title: 'Your current position'
-                });
-                m1pos = m1.getPosition();
-                
-            },
-            error: function(error) 
-            {
-                alert('Geolocation failed: ' + error.message);
-            },
-            not_supported: function() 
-            {
-                        alert("Your browser does not support geolocation");
-            }
-        });
-        
-        
+        });       
                 
                 $('#TombolSave').click(function(){
                     
@@ -838,6 +878,7 @@ $(document).ready( function()  // Ketika web udah siap
     objTableEvent.actionListener('click','.v-del', function(currentRow, rowIndex){
         var idEvent = currentRow.find("td:eq(0)").html();
         objAccess.deleteEvent(idEvent, currentRow, rowIndex, objCalendar);
+        $('#map').appendTo('#moreLeft');
     });                                 
         
                 // Get the modal

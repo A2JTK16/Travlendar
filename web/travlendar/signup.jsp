@@ -9,7 +9,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="css/home.css">
+        <link rel="stylesheet" type="text/css" href="../css/home.css">
         <title>Travelendar</title>
     </head>
     <body>
@@ -17,11 +17,11 @@
         <div class="menu-atas">
             <div class="header">
                 <div class="logonya">
-                    <img src="images/travelendar2.png">
+                    <img src="../images/travelendar2.png">
 
                 </div>
                 <div class="logo">
-                    <img src="images/logo.png">
+                    <img src="../images/logo.png">
                 </div> <!--logo-->
 
 
@@ -52,14 +52,14 @@
                         <br>	
                     </form>
                     <button class="b-signup" id="tblSignup">Sign Up Now</button>
-                    <a href="index.jsp"><button class="b-back">Back</button></a>
+                    <a href="../index.jsp"><button class="b-back">Back</button></a>
                     <!--<a href="listuser.html"><button class="b-back">Show List User</button></a>-->
 		</div>			
             </div> <!--modal content-->
         </div>           
         <%@include file="footer.jsp" %>
         
-        <script src="js/jquery.min.js"></script>
+        <script src="../js/jquery.min.js"></script>
         <script>
             $(document).ready( function()  // Ketika web udah siap
             {   
@@ -104,16 +104,19 @@
                     {
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8084/Travlendar2A/index",
+                            url: "http://localhost:8080/Travlendar2A/index",
                             dataType:'JSON',
                             data: {action: 'registerUser', json: JSON.stringify(formData) },
                             async: false, // dikirim ketika semua beres
                             complete: function(msgStatus)
                             {
-                                var successMessage = JSON.stringify(msgStatus.responseText);
-                                if(successMessage)
+                                var successMessage = msgStatus.responseText;
+                                var submsg = successMessage.substring(0, 6); 
+
+                                if(submsg == "Sukses")
                                 {
                                     alert(successMessage);
+                                    $('.menu-atas').html('<a href="../index.jsp"><button class="b-signin">Sukses Daftar, Silakan Masuk</button></a>');
                                 }
                             },
                             failure: function(errMsg) {
