@@ -7,7 +7,7 @@
 
 <% 
     if(session.getAttribute("username") != null) 
-        response.sendRedirect("travlendar/add_event.jsp");
+        request.getRequestDispatcher("travlendar/add_event.jsp").forward(request, response);
     else
-        response.sendRedirect("travlendar");
+        request.getRequestDispatcher("travlendar/index.jsp").forward(request, response);
 %>

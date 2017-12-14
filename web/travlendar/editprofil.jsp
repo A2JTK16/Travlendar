@@ -9,7 +9,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="css/home.css">
+        <link rel="stylesheet" type="text/css" href="../css/home.css">
         <title>Travelendar</title>
     </head>
     <body>
@@ -17,17 +17,17 @@
         <div class="menu-atas">
             <div class="header">
                 <div class="logonya">
-                    <img src="images/travelendar2.png">
+                    <img src="../images/travelendar2.png">
 
                 </div>
                 <div class="logo">
-                    <img src="images/logo.png">
+                    <img src="../images/logo.png">
                 </div> <!--logo-->
 
 
                 <div class="tombol" style="float:right;">
                         <div class="sign-in">
-                            <button id="myBtn">Sign In</button>
+                            <a href="../homepage.jsp"><button id="myBtn">Sign Out</button></a>
                         </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
 		<div class="form">
                     
                     <div class="modal-header">
-                        <h1> Create Your Account </h1>
+                        <h1> Edit Your Account </h1>
                     </div>
                     
                     <form class="register-form" id="regForm">
@@ -110,7 +110,7 @@
                     {
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8084/Travlendar2A/index",
+                            url: "http://localhost:8080/Travlendar2A/index",
                             dataType:'JSON',
                             data: {action: 'editUser', json: JSON.stringify(formData) },
                             async: false, // dikirim ketika semua beres
@@ -144,7 +144,7 @@
                     {
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8084/Travlendar2A/index",
+                            url: "http://localhost:8080/Travlendar2A/index",
                             dataType:'JSON',
                             data: {action: 'deleteUser', traveller_id: $('#input0').val() },
                             async: false, // dikirim ketika semua beres

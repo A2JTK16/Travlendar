@@ -31,7 +31,7 @@
         <script src='calendar-event/fullcalendar.min.js'></script>
         
         <!-- GMaps and Javascript Custom Setting for This Page -->
-        <script src="js/mapsdefault.js"></script>
+        <script src="js/a2event.js"></script>
         <style>
 
                 #calendar {
@@ -47,7 +47,7 @@
     <div class="jarak-atas">
 
     </div> <!--jarak-atas-->
-    <a href="add_event.jsp"></a>
+    <a href="#"></a>
 
     <div class="menu-atas">
 	<div class="header">
@@ -67,8 +67,8 @@
                 </button>
                 <div class="dropdown-content">
                   <a>Hi, <%= session.getAttribute("username") %> </a>
-                  <a href="setting.jsp">Setting Account</a>
-                  <a href="../index.jsp">Sign Out</a>
+                  <a href="travlendar/setting.jsp">Setting Account</a>
+                  <a href="homepage.jsp">Sign Out</a>
                 </div>
             </div>
             
@@ -79,9 +79,9 @@
                     </a>
                 </button>
                 <div class="dropdown-content">
-                  <a href="#">Notif 1</a>
-                  <a href="#">Notif 2</a>
-                  <a href="#">Notif 3</a>
+                  <a href="#">Welcome to Travelendar ! by A2 JTK</a>
+                  <a href="#">Don't Forget to Make a Better Plan ! by A2 JTK</a>
+                  <a href="#">Our Plan Will Get Big Things! by A2 JTK</a>
                 </div>
             </div>
                   
@@ -108,9 +108,9 @@
 
 	<div class="container-t">
 	<div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'Tasik')" id="defaultOpen">Calendar</button>
+            <button class="tablinks" id="defaultOpen">Calendar</button>
 	    <button class="tablinks" id="getList">List Event</button>
-	    <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Add New Event</button>
+	    <button class="tablinks" id="defaultOpenNew">Add New Event</button>
             <!--<input class="search-ev" type="text" placeholder="Search Event ... "/>-->
 	</div>
 	</div> <!--container-t-->
@@ -136,7 +136,7 @@
 				<div class="left">
                                     
                                     <div clas="containernya">
-					<form action="/action_page.php">
+					<form>
                                             <div class="row">
                                               <div class="col-25">
                                                 <label for="fname">From</label>
@@ -159,7 +159,7 @@
                                                 <label for="lname">Previous Location</label>
                                               </div>
                                               <div class="col-75">
-                                                <input class="name" type="text" id="dist" name="lastname" placeholder="Previous Location..">
+                                                <input class="name" type="text" id="dest" name="lastname" placeholder="Previous Location..">
                                               </div>
                                             </div>
                                             <div class="row">
@@ -180,14 +180,14 @@
 				
 				<div class="right">
 					<div clas="containernya">
-					<form action="/action_page.php">
+					<form>
                                             <div class="row">
                                               <div class="col-25">
                                                 <label for="fname">Until</label>
                                               </div>
                                               <div class="col-75">
-                                                <input class="name" id="origDate" type="date" value="2017-11-28" style="width:150px">
-                                                <input class="name" id="origTime" type="time" value="00:00" style="width:100px"/>
+                                                <input class="name" id="destDate" type="date" value="2017-11-28" style="width:150px">
+                                                <input class="name" id="destTime" type="time" value="00:00" style="width:100px"/>
                                               </div>  
                                               
                                               <div class="col-95">
@@ -195,9 +195,9 @@
                                               </div>
                                               
                                             </div>
-                                            <div id="map">Maps Event</div> <!-- MAP TIDAK MUNCUL HEEELLLPPP  !  -->
                                             
                                           </form>
+                                            <div class="container" id="mapNewEvent"></div>
                                     </div>  <!--containernya-->
 				</div>
                                 
@@ -322,8 +322,8 @@
            	
         </div> <!--induk2-->
 
-        <div class="container">
-             
+        <div class="container" id="mapsBottom">
+             <div id="map">Maps Event</div>
         </div> <!--container-->
 
 
