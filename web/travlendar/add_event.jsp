@@ -13,6 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="css/responsivetable.css">
         <!-- Google Maps JS API -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>
         
@@ -142,7 +143,7 @@
                                               </div>
                                               <div class="col-75">
                                                 <input class="name" id="origDate" type="date" value="2017-11-28" style="width:150px">
-                                                <input class="name" id="origTime" type="time" value="00:00" style="width:90px"/>
+                                                <input class="name" id="origTime" type="time" value="00:00" style="width:120px"/>
                                               </div>
                                                 
                                               <div class="col-25">
@@ -150,7 +151,7 @@
                                               </div>
                                               <div class="col-75">
                                                 <input class="name" id="destDate" type="date" value="2017-11-28" style="width:150px">
-                                                <input class="name" id="destTime" type="time" value="00:00" style="width:90px"/>
+                                                <input class="name" id="destTime" type="time" value="00:00" style="width:120px"/>
                                               </div>  
 
                                             </div>
@@ -175,8 +176,8 @@
                                                 <label for="country">Departure Time</label>
                                               </div>
                                               <div class="col-75">
-                                                <input class="name" id="departureDate" type="date" value="2017-11-28" style="width:150px">
-                                                <input class="name" id="departureTime" type="time" value="00:00" style="width:90px"/>
+                                                <input class="name" id="departureDate" type="date" value="2017-11-28" style="width:150px; float:left;">
+                                                <input class="name" id="departureTime" type="time" value="00:00" style="width:120px"/>
                                               </div>
                                             </div>
                                             
@@ -212,10 +213,11 @@
                                                               
 							    </div>
                                                               <div class="k-popup">
-                                                                  <form action="#" method="POST">
+                                                                  <form class="k-popupna" action="#" method="POST">
                                                                   <div class="k-transport">
                                                                       <div class="trans"> <img src="icon/air2.png"> </div>
-                                                                      <br> ⭙
+                                                                      <div class="dontmode"> ⭙ </div>
+                                                                      
                                                                   </div>
                                                                    <div class="k-transport">
                                                                        <div class="trans"> <img src="icon/train.png"></div>
@@ -239,10 +241,13 @@
                                                                       <input id="walking" type="text">
                                                                   </div>
                                                                   
-                                                                      <div id="mapPopup"> Your Routes </div>
-                                                                      <div  id="mapInstuctions"></div>
-                                                                  <button id="TombolSave">Save</button>
+                                                                  
                                                                   </form>
+                                                                  <div class="containernya">
+                                                                      <div id="mapPopup"> Your Routes </div>
+                                                                  </div>
+                                                                      
+                                                                  <button id="TombolSave">Save</button>
                                                               </div>
 							    
 							  </div>
