@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 11 Des 2017 pada 11.51
--- Versi Server: 10.1.25-MariaDB
--- PHP Version: 7.1.7
+-- Generation Time: Dec 15, 2017 at 11:03 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -22,10 +22,28 @@ SET time_zone = "+00:00";
 -- Database: `a2travlendar`
 --
 
+DELIMITER $$
+--
+-- Functions
+--
+CREATE DEFINER=`root`@`localhost` FUNCTION `isThereUser` (`usrname` VARCHAR(30), `pass` VARCHAR(20)) RETURNS TINYINT(1) BEGIN
+
+   DECLARE result BOOLEAN;
+
+   SELECT COUNT(*) INTO @temp FROM traveller WHERE (traveller_name = usrname AND traveller_password = pass);
+   IF @temp = 1 THEN SET result = TRUE;
+   ELSEIF @temp = 0 THEN SET result = FALSE;
+   END IF;
+
+   RETURN(result);
+   END$$
+
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -38,7 +56,7 @@ CREATE TABLE `admin` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `event`
+-- Table structure for table `event`
 --
 
 CREATE TABLE `event` (
@@ -54,21 +72,18 @@ CREATE TABLE `event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `event`
+-- Dumping data for table `event`
 --
 
 INSERT INTO `event` (`EVENT_ID`, `LOCATION_ID`, `TRAVELLER_ID`, `EVENT_NAME`, `START_EVENT`, `END_EVENT`, `TRANSPORTATION`, `DEPARTURE_TIME`, `NOTE`) VALUES
-(1, 1, 1, 'Absensi dan Mengambil Surat Tugas', '2017-09-22 07:00:00', '2017-09-22 08:00:00', 'DRIVING', '2017-12-11 00:00:00', 'Jangan telat'),
-(2, 2, 1, 'Keberangkatan Menuju Jakarta', '2017-09-22 08:20:00', '2017-09-22 10:20:00', 'TRANSIT', '2017-12-11 00:00:00', 'Jangan lupa bawa berkas'),
-(3, 3, 1, 'Keberangkatan Menuju Tempat Rapat', '2017-09-22 11:20:00', '2017-09-22 11:50:00', 'DRIVING', '2017-12-11 00:00:00', 'Jangan telat'),
-(4, 4, 1, 'Rapat', '2017-09-22 13:00:11', '2017-09-22 16:00:11', 'DRIVING', '2017-12-11 00:00:00', 'Rapat Pleno'),
 (5, 5, 1, 'Mengunjungi Anak', '2017-09-22 17:00:11', '2017-09-22 20:00:11', 'TRANSIT', '2017-12-11 00:00:00', 'Silaturahim'),
-(6, 4, 1, 'Kembali Pulang ke Bangka', '2017-09-23 04:00:11', '2017-09-22 06:00:11', 'TRANSIT', '2017-12-11 00:00:00', 'Jangan lupa bawa oleh-oleh');
+(6, 4, 1, 'Kembali Pulang ke Bangka', '2017-09-23 04:00:11', '2017-09-22 06:00:11', 'TRANSIT', '2017-12-11 00:00:00', 'Jangan lupa bawa oleh-oleh'),
+(7, 14, 4, 'mmmmmmmmmmmmmmm', '2017-11-28 00:00:00', '2017-11-28 21:00:00', 'DRIVING', '2017-11-28 22:00:00', '');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `location`
+-- Table structure for table `location`
 --
 
 CREATE TABLE `location` (
@@ -79,21 +94,28 @@ CREATE TABLE `location` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `location`
+-- Dumping data for table `location`
 --
 
-INSERT INTO `location` (`location_id`, `latitude`, `longitude`, `address`) VALUES
-(1, -2.75104, 107.658, 'Jl. Pemuda Dalam, Lesung Batang, Tj. Pandan, Kabupaten Belitung, Kepulauan Bangka Belitung 33412,'),
-(2, -2.16044, 106.141, 'Jl. Dahlia, Dul, Pangkalan Baru, Kabupaten Bangka Tengah, Kepulauan Bangka Belitung 33684, Indonesia'),
-(3, -6.12535, 106.66,  'Jl. P2, Pajang, Benda, Kota Tangerang, Banten 15126, Indonesia'),
-(4, -6.18283, 106.829, 'Jl. Kebon Sirih No.18, Kb. Sirih, Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10110,'),
-(5, -6.20239, 106.653, 'Jl. Gajah Mada No.2, Cipete, Pinang, Kota Tangerang, Banten 15142, Indonesia');
-
+INSERT INTO `location` (`LOCATION_ID`, `LATITUDE`, `LONGITUDE`, `ADDRESS`) VALUES
+(1, -2.751040, 107.657997, 'Jl. Pemuda Dalam, Lesung Batang, Tj. Pandan, Kabupaten Belitung, Kepulauan Bangk'),
+(2, -2.160440, 106.140999, 'Jl. Dahlia, Dul, Pangkalan Baru, Kabupaten Bangka Tengah, Kepulauan Bangka Belit'),
+(3, -6.125350, 106.660004, 'Jl. P2, Pajang, Benda, Kota Tangerang, Banten 15126, Indonesia'),
+(4, -6.182830, 106.829002, 'Jl. Kebon Sirih No.18, Kb. Sirih, Gambir, Kota Jakarta Pusat, Daerah Khusus Ibuk'),
+(5, -6.202390, 106.653000, 'Jl. Gajah Mada No.2, Cipete, Pinang, Kota Tangerang, Banten 15142, Indonesia'),
+(7, -6.206087, 106.852791, 'Jl. Minangkabau No.2, Ps. Manggis, Setia Budi, Kota Jakarta'),
+(8, -6.209791, 106.849808, 'Jl. Minangkabau No.2, Ps. Manggis, Setia Budi, Kota Jakarta'),
+(9, -6.913810, 107.601723, 'Jl. Kebon Sirih No.15, Babakan Ciamis, Sumur Bandung, Kota '),
+(10, -6.913549, 107.602715, 'Jl. Kb. Sirih III, Babakan Ciamis, Sumur Bandung, Kota Band'),
+(11, -6.916586, 107.605888, 'Jl. Kebon Sirih No.8, Babakan Ciamis, Sumur Bandung, Kota B'),
+(12, -6.915346, 107.601250, 'Jl. Kb. Jukut No.3c, Babakan Ciamis, Sumur Bandung, Kota Ba'),
+(13, -6.912186, 107.604729, 'Jl. Kb. Jukut No.7, Babakan Ciamis, Sumur Bandung, Kota Ban'),
+(14, -6.917167, 107.605370, 'Jl. Stasiun Barat No.1, Kb. Jeruk, Andir, Kota Bandung, Jaw');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `traveller`
+-- Table structure for table `traveller`
 --
 
 CREATE TABLE `traveller` (
@@ -106,11 +128,43 @@ CREATE TABLE `traveller` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `traveller`
+-- Dumping data for table `traveller`
 --
 
 INSERT INTO `traveller` (`TRAVELLER_ID`, `TRAVELLER_NAME`, `TRAVELLER_EMAIL`, `TRAVELLER_PASSWORD`, `TRAVELLER_FULLNAME`, `TRAVELLER_ADDRESS`) VALUES
-(1, 'maryam', 'aa@aa.vo', 'Ibu Maryam', 'Maryam', 'Belitung');
+(1, 'maryam', 'aa@aa.vo', '123', 'Maryam M', 'Belitung, Indonesia'),
+(2, 'mufid', 'mm', '123', 'Mufid Jamaluddin', ''),
+(3, 'mufidmm', 'mm', 'mm', 'Mufid Jamaluddin', ''),
+(4, 'mmm', 'mmm', 'mmm', 'Mufid Jamaluddin', '');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `viewevent`
+-- (See below for the actual view)
+--
+CREATE TABLE `viewevent` (
+`traveller_id` bigint(20)
+,`event_id` bigint(20)
+,`event_name` varchar(35)
+,`start_event` datetime
+,`end_event` datetime
+,`transportation` varchar(20)
+,`departure_time` datetime
+,`note` text
+,`latitude` float(10,6)
+,`longitude` float(10,6)
+,`address` varchar(80)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `viewevent`
+--
+DROP TABLE IF EXISTS `viewevent`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewevent`  AS  select `e`.`TRAVELLER_ID` AS `traveller_id`,`e`.`EVENT_ID` AS `event_id`,`e`.`EVENT_NAME` AS `event_name`,`e`.`START_EVENT` AS `start_event`,`e`.`END_EVENT` AS `end_event`,`e`.`TRANSPORTATION` AS `transportation`,`e`.`DEPARTURE_TIME` AS `departure_time`,`e`.`NOTE` AS `note`,`l`.`LATITUDE` AS `latitude`,`l`.`LONGITUDE` AS `longitude`,`l`.`ADDRESS` AS `address` from (`event` `e` join `location` `l`) where (`l`.`LOCATION_ID` = `e`.`LOCATION_ID`) ;
 
 --
 -- Indexes for dumped tables
@@ -150,40 +204,30 @@ ALTER TABLE `traveller`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `EVENT_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `EVENT_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `LOCATION_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `LOCATION_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
 --
 -- AUTO_INCREMENT for table `traveller`
 --
 ALTER TABLE `traveller`
-  MODIFY `TRAVELLER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `TRAVELLER_ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `event`
+-- Constraints for table `event`
 --
 ALTER TABLE `event`
   ADD CONSTRAINT `FK_CREATE` FOREIGN KEY (`TRAVELLER_ID`) REFERENCES `traveller` (`TRAVELLER_ID`),
   ADD CONSTRAINT `FK_LOCATED` FOREIGN KEY (`LOCATION_ID`) REFERENCES `location` (`LOCATION_ID`);
-
-
-Create or replace view viewevent as
-SELECT
-E.traveller_id, E.event_id, E.event_name, E.start_event ,
-E.end_event , E.transportation,
-E.departure_time, E.note,
-L.latitude , L.longitude, L.address 
-FROM
-      event E, location L
-   WHERE
-      L.location_id = E.Location_id ;
-
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
