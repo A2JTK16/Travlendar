@@ -13,7 +13,7 @@
  * @param {type} list harus array
  * @returns {ListEvent}
  */
-var ListEvent = function listEvent(list)
+var ListEvent = function(list)
 {
     /**
      * Setter List
@@ -100,7 +100,7 @@ var ListEvent = function listEvent(list)
     
 };
 
-var TabView = function tabView(objMap)
+var TabView = function(objMap)
 {
     this.viewMore = function(event){
         // set ke tampilan baru
@@ -164,7 +164,7 @@ $(document).ready( function()  // Ketika web udah siap
      * @param {type} urlController
      * @returns {mapsdefaultL#119.ControllerAccesser}
      */
-    var ControllerAccesser = function controllerAccesser(urlController)
+    var ControllerAccesser = function(urlController)
     {
         /**
          * Method untuk mendapatkan list json
@@ -254,7 +254,7 @@ $(document).ready( function()  // Ketika web udah siap
      * @param {type} cssIdTable
      * @returns {mapsdefaultL#119.TableEvent}
      */
-    var TableEvent = function tableEvent(cssIdTable)
+    var TableEvent = function(cssIdTable)
     {  
         /**
          * Method untuk menambahkan isi body tabel
@@ -306,7 +306,7 @@ $(document).ready( function()  // Ketika web udah siap
      * @param {type} cssIdCalendar
      * @returns {mapsdefaultL#119.FullCalendar}
      */
-    var FullCalendar = function fullCalendar(cssIdCalendar)
+    var FullCalendar = function(cssIdCalendar)
     {
         /**
          * 
@@ -351,8 +351,92 @@ $(document).ready( function()  // Ketika web udah siap
         };
     };
     
+    /**
+     * Objek Maps
+     * @param {type} cssIdMap
+     * @param {type} clickFunc
+     * @returns {a2eventL#160.GmapsEvent}
+     */
+    var GmapsEvent = function(cssIdMap, clickFunc)
+    {
+        /**
+         * Atribut Public Maps Nya
+         */
+        this.objMaps = new GMaps({
+            el: cssIdMap,
+            click: clickFunc
+        });
+        
+        /**
+         * Untuk Menggambar Rute
+         * @param {type} arrLatLngOrigin
+         * @param {type} arrLatLngDest
+         * @param {type} mode
+         * @param {type} stepJsonFunc
+         * @returns {undefined}
+         */
+        this.drawRoutes = function(arrLatLngOrigin, arrLatLngDest, mode, stepJsonFunc)
+        {
+            this.objMaps.travelRoute({
+                origin: arrLatLngOrigin,
+                destination: arrLatLngDest,
+                travelMode: mode,
+                step: stepJsonFunc
+            });
+        };
+        
+        /**
+         * Untuk Menggambar Polylines
+         * @param {type} arrayObjLatLng
+         * @returns {undefined}
+         */
+        this.drawPolylines = function(arrayObjLatLng)
+        {
+            this.objMaps.drawPolyline({
+                path: arrayObjLatLng,
+                strokeColor: '#131540',
+                strokeOpacity: 0.6,
+                strokeWeight: 6
+            });
+        };
+        
+        /**
+         * Untuk Mengarahkan Geolocation
+         * @returns {undefined}
+         */
+        this.setGeolocate = function()
+        {
+            GMaps.geolocate({
+                success: function(position) {
+                  this.objMaps.setCenter(position.coords.latitude, position.coords.longitude);
+                },
+                error: function(error) {
+                  alert('Geolocation failed: '+error.message);
+                },
+                not_supported: function() {
+                  alert("Ga support euy");
+                },
+                always: function() {
+                  alert("Beres");
+                }
+            });
+        };
+        
+        /**
+         * Untuk Mengubah Orientasi Maps
+         * @param {type} latitude
+         * @param {type} longitude
+         * @returns {undefined}
+         */
+        this.setCenter = function(latitude, longitude)
+        {
+            this.objMaps.setCenter(latitude, longitude);
+        };
+        
+    };
+    
     // yg bertugas kurirnya controller
-    var objAccess = new ControllerAccesser("http://localhost:8084/Travlendar2A/index");
+    var objAccess = new ControllerAccesser("http://localhost:8080/Travlendar2A/index");
     
     // array path untuk polylines
     var pathi = new Array();
@@ -368,6 +452,9 @@ $(document).ready( function()  // Ketika web udah siap
     
     // view tab
     var tabView = new TabView({});
+    
+    // maps nya
+    //var mapObj = new GmapsEvent('#map');
     
     //var lastLat, lastLng;
     // mendapatkan json dari controller
@@ -418,21 +505,8 @@ $(document).ready( function()  // Ketika web udah siap
                         mapObj.removeMarker(m2);
                         mapObj.removePolylines();
                     }
-
                     if ( m1 == null) 
-                    {
-                        var eLat, eLng;
-                      /*  if(pathi.length > 0)
-                        {
-                            eLat = pathi[pathi.length - 1][0];
-                            eLng = pathi[pathi.length - 1][1];
-                        }
-                        else
-                        { 
-                            eLat = e.latLng.lat();
-                            eLng = e.latLng.lng();
-                       } */
-                        
+                    {   
 			m1 = mapObj.addMarker({
                             lat: e.latLng.lat(),
                             lng: e.latLng.lat()//,
@@ -464,7 +538,7 @@ $(document).ready( function()  // Ketika web udah siap
                         {
                             origins: [origin],
                             destinations: [destination],
-                            travelMode: "TRANSIT",
+                            travelMode: 'transit',
                             avoidHighways: false,
                             avoidTolls: false
                         }, 
@@ -557,6 +631,11 @@ $(document).ready( function()  // Ketika web udah siap
             openCity(event, 'London');
         });
         
+        function showInstructions(stepsJson)
+        {
+           // $('#mapInstuctions').append(stepsJson.html_instructions);
+        }
+        
         $('#defaultOpen').click(function()
         {
             mapObj.cleanRoute();
@@ -632,14 +711,14 @@ $(document).ready( function()  // Ketika web udah siap
                 {
                     origins: [origin],
                     destinations: [destination],
-                    travelMode: "TRANSIT",
+                    travelMode: 'transit',
                     avoidHighways: false,
                     avoidTolls: false
                 }, 
                 callback_transit
             );
 
-            function callback_transit(response, status) 
+            function callback_transit(response, status)  // JANGAN DIULANG2, JADIIN FUNGSI AJA
             {
                 var dist = document.getElementById("dist"),
                 transit = document.getElementById("transit");
@@ -657,7 +736,7 @@ $(document).ready( function()  // Ketika web udah siap
                             var element = results[j];
                             var duration = element.duration.text;
                             var comparation = element.duration.value;
-                            if(comparation > estimate){
+                            if(comparation > estimate){ // GAK SALAH IF DI LOOP ???
                                 document.getElementById('radio').style.visibility = 'hidden';
                                 transit.value = "can't be used";
                             }
@@ -665,7 +744,7 @@ $(document).ready( function()  // Ketika web udah siap
                                 document.getElementById('radio').style.visibility = 'visible';
                                 transit.value=duration;
                             }
-                                    
+                            showInstructions(element,'transit');        
                         }
                     }
                 } 
@@ -711,6 +790,7 @@ $(document).ready( function()  // Ketika web udah siap
                                 document.getElementById('radio1').style.visibility = 'visible';
                                 walking.value=duration;
                             }
+                            showInstructions(element, 'walking');  
                         }
                     }
                 } 
@@ -758,6 +838,7 @@ $(document).ready( function()  // Ketika web udah siap
                                 document.getElementById('radio2').style.visibility = 'visible';
                                 driving.value=duration;
                             }
+                            showInstructions(element, 'driving');   
                         }
                     }
                 } 
@@ -808,6 +889,7 @@ $(document).ready( function()  // Ketika web udah siap
                                 document.getElementById('radio3').style.visibility = 'visible';
                                 bicycling.value=duration;
                             }
+                            showInstructions(element, 'bicycling');  
                         }
                     }
                 } 

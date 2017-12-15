@@ -7,5 +7,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     request.getSession().invalidate();
-    request.getRequestDispatcher("travlendar/index.jsp").forward(request, response);
+    request.getRequestDispatcher("/").forward(request, response);
 %>

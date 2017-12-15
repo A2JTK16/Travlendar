@@ -18,6 +18,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_xPlThgH2bZG3ZV8_8farC_Z06etDbW4&callback=initMap"></script>
     
     <!-- GMaps Library -->
+    
     <script src="gmaps.js"></script>
 
     <script>
@@ -26,7 +27,7 @@
       var mapObj = new GMaps({
         el: '#map',
         lat: 48.857,
-        lng: 2.295,
+        lng: 2.295//,
 
 
         /***********************  UI EVENT  ***********************/
@@ -34,7 +35,7 @@
         /*  seperti event dari mouse atau keyboard                */
         /**********************************************************/
         
-            click: function(e) {
+      /*      click: function(e) {
                 alert('click');
             },
             dragend: function(e) {
@@ -49,7 +50,7 @@
             rightclick: function (e) {
                 alert('right click');
             }
-
+*/
         /***********************************************************/    
 
 
@@ -112,6 +113,11 @@
       /************************************************************/
  
     });
+    
+   // if(typeof google != "undefined")
+     //       {
+                google.maps.event.addListener(mapObj,'click',function(){alert("sukses");});
+       //     };
 
     </script>
   </body>
