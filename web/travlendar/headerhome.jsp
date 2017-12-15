@@ -105,10 +105,11 @@
         {    
                     $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8084/Travlendar2A/index",
+                            url: "http://localhost:8080/Travlendar2A/index",
                             dataType:'JSON',
                             data: {action: 'login', username: $('#username').val(), password: $('#password').val() },
                             async: false, // dikirim ketika semua beres
+                            timeout: 6000, // set timeout jadi 6 detik
                             complete: function(msgStatus)
                             {
                                 var successMessage = msgStatus.responseText;
@@ -119,8 +120,9 @@
                                 };
                                 if(submsg == "Sukses")
                                 {
+                                    location.reload();
                                     //toUserPanel();
-                                    $('#myModal').html('<a href="index.jsp"><button class="b-signin">Sukses Login, Silakan Masuk</button></a>');
+                                    //$('#myModal').html('<a href="index.jsp"><button class="b-signin">Sukses Login, Silakan Masuk</button></a>');
                                     //$('header').append('<meta http-equiv="refresh" content="0; url=http://localhost:8080/Travlendar2A/travlendar/add_event.jsp" />');
                                 }
                             },

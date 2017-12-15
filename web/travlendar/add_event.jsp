@@ -240,7 +240,7 @@
                                                                   </div>
                                                                   
                                                                       <div id="mapPopup"> Your Routes </div>
-                                                                 
+                                                                      <div  id="mapInstuctions"></div>
                                                                   <button id="TombolSave">Save</button>
                                                                   </form>
                                                               </div>
