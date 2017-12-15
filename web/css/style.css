@@ -490,7 +490,7 @@ a:hover{
 	padding: 10px;
 	margin: 10px;
 	border: 1px solid #b4b4b4;
-	font: 20px Arial;
+	font: 16px Arial;
 	font-weight: bold;
 	color: #1A237E;
 	text-align: center;
@@ -722,7 +722,7 @@ div.tab button.active {
 
 .k-transport{
        	float: left;
-        width: 18%;
+        width: 140px;
         margin-right: 5px;
         margin-left: 5px;
 	background: none;
@@ -737,12 +737,24 @@ div.tab button.active {
         overflow: hidden;
         padding: 10px;
     }
+    
+    .k-popupna{
+        float: none;
+        padding: 2px;
+        margin: 2px;
+        overflow: hidden;
+    }
 
     .trans{
-        float: left;
         padding: 5px;
         margin: 5px;
     }
+    
+    .dontmode{
+        margin-top: 10px;
+    }
+    
+    
     .trans img{
         width: 95px;
         height: 95px;
@@ -886,8 +898,7 @@ table {
 }
 
 label {
-    padding: 5px;
-    margin: 5px;
+    margin-top: 16px;
     display: inline-block;
     font: 14px Arial;
     font-weight: bold;
@@ -913,14 +924,14 @@ label {
 
 .col-25 {
     float: left;
-    width: 30%;
+    width: 26%;
     padding: 2px;
     margin: 2px;
 }
 
 .col-75 {
     float: left;
-    width: 60%;
+    width: 70%;
     padding: 2px;
     margin: 2px;
 }
@@ -936,4 +947,18 @@ label {
     content: "";
     display: table;
     clear: both;
+}
+
+
+.containernya{
+    background: #f4f4f4;
+    overflow: hidden;
+}
+
+#mapPopup{
+    padding: 3px;
+    margin: 3px;
+    font: 14px Arial;
+    font-weight: bold;
+    color: #757575;
 }
