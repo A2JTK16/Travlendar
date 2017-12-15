@@ -312,6 +312,7 @@ a:hover{
 	.left{
                 float: left;
 		width: 510px;
+                height: auto;
 		border: 1px solid #dedede;
 		background: #f4f4f4;
                 overflow: hidden;
@@ -339,6 +340,7 @@ a:hover{
 	.right{
                 float: left;
 		width: 510px;
+                height: auto;
 		border: 1px solid #dedede;
 		padding: 10px;
 		margin: 10px;
@@ -720,6 +722,7 @@ div.tab button.active {
 
 .k-transport{
        	float: left;
+        width: 18%;
         margin-right: 5px;
         margin-left: 5px;
 	background: none;
@@ -874,7 +877,8 @@ table {
 
 .name, select, textarea{
     width: 100%;
-    padding: 12px;
+    padding: 10px;
+    margin: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
@@ -882,7 +886,8 @@ table {
 }
 
 label {
-    padding: 14px 14px 14px 0;
+    padding: 5px;
+    margin: 5px;
     display: inline-block;
     font: 14px Arial;
     font-weight: bold;
@@ -909,20 +914,21 @@ label {
 .col-25 {
     float: left;
     width: 30%;
-    margin-top: 9px;
+    padding: 2px;
+    margin: 2px;
 }
 
 .col-75 {
     float: left;
-    width: 70%;
-    margin-top: 12px;
+    width: 60%;
+    padding: 2px;
+    margin: 2px;
 }
 
 
 .col-95 {
-    float: left;
     width: 100%;
-    margin-top: 12px;
+    height: 42px;
 }
 
 /* Clear floats after the columns */

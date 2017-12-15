@@ -135,7 +135,6 @@
 			<div class="main">
 				<div class="left">
                                     
-                                    <div clas="containernya">
 					<form>
                                             <div class="row">
                                               <div class="col-25">
@@ -143,8 +142,17 @@
                                               </div>
                                               <div class="col-75">
                                                 <input class="name" id="origDate" type="date" value="2017-11-28" style="width:150px">
-                                                <input class="name" id="origTime" type="time" value="00:00" style="width:100px"/>
+                                                <input class="name" id="origTime" type="time" value="00:00" style="width:90px"/>
                                               </div>
+                                                
+                                              <div class="col-25">
+                                                <label for="fname">Until</label>
+                                              </div>
+                                              <div class="col-75">
+                                                <input class="name" id="destDate" type="date" value="2017-11-28" style="width:150px">
+                                                <input class="name" id="destTime" type="time" value="00:00" style="width:90px"/>
+                                              </div>  
+
                                             </div>
                                             <div class="row">
                                               <div class="col-25">
@@ -168,37 +176,23 @@
                                               </div>
                                               <div class="col-75">
                                                 <input class="name" id="departureDate" type="date" value="2017-11-28" style="width:150px">
-                                                <input class="name" id="departureTime" type="time" value="00:00" style="width:100px"/>
+                                                <input class="name" id="departureTime" type="time" value="00:00" style="width:90px"/>
                                               </div>
                                             </div>
                                             
                                           </form>
-                                    </div>  <!--containernya-->   
+                                    
                                     
 				</div> <!--left-->
 				
 				
 				<div class="right">
-					<div clas="containernya">
-					<form>
-                                            <div class="row">
-                                              <div class="col-25">
-                                                <label for="fname">Until</label>
-                                              </div>
-                                              <div class="col-75">
-                                                <input class="name" id="destDate" type="date" value="2017-11-28" style="width:150px">
-                                                <input class="name" id="destTime" type="time" value="00:00" style="width:100px"/>
-                                              </div>  
+                                                                                            
                                               
-                                              <div class="col-95">
-                                                  <input class="name" type="text" id="fname" name="search" placeholder="Search..">
-                                              </div>
+                                                  <input class="col-95" type="text" id="fname" name="search" placeholder="Search..">
                                               
-                                            </div>
-                                            
-                                          </form>
-                                            <div class="container" id="mapNewEvent"></div>
-                                    </div>  <!--containernya-->
+                                              <div id="mapNewEvent"></div>
+                                           
 				</div>
                                 
                                 <input class="ev-name" id="noteDesc" type="text" placeholder="Note .. " style="height:75px;"/>
@@ -245,6 +239,8 @@
                                                                       <input id="walking" type="text">
                                                                   </div>
                                                                   
+                                                                      <div id="mapPopup"> Your Routes </div>
+                                                                 
                                                                   <button id="TombolSave">Save</button>
                                                                   </form>
                                                               </div>

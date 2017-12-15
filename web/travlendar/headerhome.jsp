@@ -105,7 +105,7 @@
         {    
                     $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8080/Travlendar2A/index",
+                            url: "http://localhost:8084/Travlendar2A/index",
                             dataType:'JSON',
                             data: {action: 'login', username: $('#username').val(), password: $('#password').val() },
                             async: false, // dikirim ketika semua beres
@@ -113,10 +113,10 @@
                             {
                                 var successMessage = msgStatus.responseText;
                                 var submsg = successMessage.substring(0, 6); 
-                               /* if(successMessage)
+                                if(successMessage)
                                 {
                                     alert(successMessage);
-                                }*/
+                                };
                                 if(submsg == "Sukses")
                                 {
                                     //toUserPanel();

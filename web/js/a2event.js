@@ -352,7 +352,7 @@ $(document).ready( function()  // Ketika web udah siap
     };
     
     // yg bertugas kurirnya controller
-    var objAccess = new ControllerAccesser("http://localhost:8080/Travlendar2A/index");
+    var objAccess = new ControllerAccesser("http://localhost:8084/Travlendar2A/index");
     
     // array path untuk polylines
     var pathi = new Array();
@@ -659,7 +659,7 @@ $(document).ready( function()  // Ketika web udah siap
                             var comparation = element.duration.value;
                             if(comparation > estimate){
                                 document.getElementById('radio').style.visibility = 'hidden';
-                                transit.value = "tidak dapat digunakan";
+                                transit.value = "can't be used";
                             }
                             else if (comparation < estimate){
                                 document.getElementById('radio').style.visibility = 'visible';
@@ -704,7 +704,7 @@ $(document).ready( function()  // Ketika web udah siap
                             var duration = element.duration.text;
                             var comparation = element.duration.value;
                             if(comparation > estimate){
-                                walking.value = "tidak dapat digunakan";
+                                walking.value = "can't be used";
                                 document.getElementById('radio1').style.visibility = 'hidden';
                             }
                             else if(comparation<estimate){
@@ -752,7 +752,7 @@ $(document).ready( function()  // Ketika web udah siap
                                   
                             if(comparation > estimate){
                                 document.getElementById('radio2').style.visibility = 'hidden';
-                                driving.value = "tidak dapat digunakan";
+                                driving.value = "can't be used";
                             }
                             else if(comparation<estimate){
                                 document.getElementById('radio2').style.visibility = 'visible';
@@ -802,7 +802,7 @@ $(document).ready( function()  // Ketika web udah siap
                             }
                             else if(comparation > estimate){
                                 document.getElementById('radio3').style.visibility = 'hidden';
-                                bicycling.value = "tidak dapat digunakan";
+                                bicycling.value = "can't be used";
                             }
                             else if(comparation<estimate){
                                 document.getElementById('radio3').style.visibility = 'visible';
@@ -885,10 +885,12 @@ $(document).ready( function()  // Ketika web udah siap
                 var modal = document.getElementById('myModal');
                                 
                 $('#myBtn').click(function(){
+                    $('#map').appendTo('#mapPopup');
                     modal.style.display = "block";
                 });
                                  
                 $('.close').click(function(){
+                    $('#map').appendTo('#mapNewEvent');
                     modal.style.display = "none";
                 });
 
