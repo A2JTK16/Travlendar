@@ -15,8 +15,8 @@
         <link rel="stylesheet" href="css/responsive.css">
         <link rel="stylesheet" href="css/responsivetable.css">
         <!-- Google Maps JS API -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>
-        
+        <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>-->
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>
         <!-- JQuery Library -->
         <!--<script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
         <script src="js/jquery.min.js"></script>
@@ -245,6 +245,7 @@
                                                                   </form>
                                                                   <div class="containernya">
                                                                       <div id="mapPopup"> Your Routes </div>
+                                                                      <div id="mapInstruction"></div>
                                                                   </div>
                                                                       
                                                                   <button id="TombolSave">Save</button>
@@ -311,7 +312,8 @@
                                 <input class="ev-name" id="moreNote" type="text" style="height:75px;"/>
 
                                 <div class="i-save" >
-                                    <button class="save-ev" id="moreSave"> Edit </button>            
+                                    <button class="save-ev" id="moreSave"> Edit </button> 
+                                    <button class="more-ev" id="moreBack"> Back </button>
                                 </div> <!--i-save-->
                             </form>
 				
