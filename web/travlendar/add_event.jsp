@@ -15,8 +15,7 @@
         <link rel="stylesheet" href="css/responsive.css">
         <link rel="stylesheet" href="css/responsivetable.css">
         <!-- Google Maps JS API -->
-        <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>-->
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>
         <!-- JQuery Library -->
         <!--<script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
         <script src="js/jquery.min.js"></script>
@@ -160,7 +159,7 @@
                                                 <label for="lname">Event Location</label>
                                               </div>
                                               <div class="col-75">
-                                                <input class="name" type="text" id="orig" name="lastname" placeholder="Event Location..">
+                                                <input class="name" type="text" id="orig" name="lastname" value="Ciwaruga Polban" placeholder="Event Location..">
                                               </div>
                                             </div>
                                             <div class="row">
@@ -168,7 +167,7 @@
                                                 <label for="lname">Previous Location</label>
                                               </div>
                                               <div class="col-75">
-                                                <input class="name" type="text" id="dest" name="lastname" placeholder="Previous Location..">
+                                                <input class="name" type="text" id="dest" name="lastname" value="Trans Studio Mall Bandung" placeholder="Previous Location..">
                                               </div>
                                             </div>
                                             <div class="row">
@@ -313,7 +312,7 @@
 
                                 <div class="i-save" >
                                     <button class="save-ev" id="moreSave"> Edit </button> 
-                                    <button class="more-ev" id="moreBack"> Back </button>
+                                    <button id="moreBack"> Back </button>
                                 </div> <!--i-save-->
                             </form>
 				
