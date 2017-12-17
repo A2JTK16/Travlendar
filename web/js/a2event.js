@@ -722,8 +722,22 @@ $(document).ready( function()  // Ketika web udah siap
         
         // draw polyline event2
         mapObj.drawPolylines(pathi);
-        
+        // zoom
         mapObj.objMaps.zoomIn(4);
+        
+        // set aksi view more
+        $("#tableEvent").on('click', '.v-more', function()
+        {
+            var currentRow = $(this).closest("tr");
+            // mendapatkan data2 
+            var event = {};
+            event.id = currentRow.find("td:eq(0)").html();
+            
+            event = objCalendar.getEvent(event.id)[0];
+            // tampilkan tab baru
+            tabView.viewMore(event, mapObj);
+        });
+        
     });
         
     /**
@@ -751,6 +765,33 @@ $(document).ready( function()  // Ketika web udah siap
         //openCity(event, 'Paris');
         tabView.openTab('#Paris','#getList');
     });
+    
+           // search
+        $('#findEvent').on("keyup", function() {
+            var value = $(this).val();
+            $('#findResult').html('<button class="findClose">Close</button>');
+            
+            $("#tableEvent tr").each(function(index) {
+                if (index != 0) {
+                    
+                    $row = $(this);
+
+                    var id = $row.find("td:eq(1)").text().toLowerCase();
+
+                    if (id.indexOf(value.toString().toLowerCase()) != 0) {
+                       // $('#findResult').html($(this));
+                    }
+                    else {
+                        $('#findResult').append($row.clone());
+                    }
+                }
+            });
+            
+            $('.findClose').click(function(){
+                $('#findResult').html('');
+            });
+
+        });
     
     /**
      * Klik menu add new event
@@ -1194,25 +1235,7 @@ $(document).ready( function()  // Ketika web udah siap
     /**
      * Klik Tombol view more
      */
-    $("#tableEvent").on('click', '.v-more', function()
-    {
-        var currentRow = $(this).closest("tr");
-        //var rowIndex = parseInt($(this).parent().index());
-        // mendapatkan data2 
-        var event = {};
-        event.id = currentRow.find("td:eq(0)").html();
-        event.title = currentRow.find("td:eq(1)").html(); // lebih lambat
-        event.transportation = currentRow.find("td:eq(2)").html();
-        event.mode = currentRow.find("td:eq(3)").html();
-        event.depature_time = currentRow.find("td:eq(4)").html();
-        event.address = currentRow.find("td:eq(5)").html();
-       
-       //alert(eventId);
-        //var selectedEvent = objCalendar.getEvent([eventId]);
-        //alert(selectedEvent.id);
-        // tampilkan tab baru
-        tabView.viewMore(event, mapObj);
-    });       
+           
     
     /**
      * Klik tombol save
