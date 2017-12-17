@@ -8,154 +8,62 @@
  * 
 */
 
-/**
- * Objek ListEvent
- * @param {type} list harus array
- * @returns {ListEvent}
- */
-var ListEvent = function(list)
-{
-    /**
-     * Setter List
-     * @param {type} listTravellerEvent
-     * @returns {undefined}
-     */
-    this.setList = function(listTravellerEvent)
-    {
-        list = listTravellerEvent;
-    };
-    
-    /**
-     * Method untuk menambahkan row ke list
-     * @param {type} rowEvent
-     * @returns {undefined}
-     */   
-    this.addEvent = function(rowEvent)
-    {
-        list.push(rowEvent);
-    };
-    
-    /**
-     * Getter List
-     * @returns {type|@var;listTravellerEvent}
-     */
-    this.getList = function()
-    {
-        return list;
-    };
-    
-    /**
-     * Method untuk mendapatkan event terkhir
-     * @returns {ListEvent.list|@var;listTravellerEvent|type}
-     */
-    this.getLastEvent = function()
-    {
-        return list[list.length-1];
-    };
-    
-    /**
-     * Method untuk mendapatkan objek event yg tersimpan di event sebelumnya
-     * @param {type} curIndexRow
-     * @returns {ListEvent.list|@var;listTravellerEvent|type}
-     */
-    this.getLastEvent = function(curIndexRow)
-    {
-        var singleEvent;
-        
-        if(curIndexRow > 0)
-        {
-            singleEvent = list[curIndexRow-1];
-        }
-        else
-        {
-            singleEvent = {};
-        }
-        return singleEvent;
-    };
-    
-    /**
-     * Method untuk mengembalikan tanggal event terakhir
-     * format YYYY-MM-DD
-     * wajib pakai momentjs library
-     * @returns {unresolved} karena momentjs belum include disini
-     */
-    this.getLastEventDate = function()
-    {
-        var singleEvent;
-        var lastdt;
-        
-        if(list.length > 0)
-        {
-            singleEvent = list[list.length-1];
-        }
-        else
-        {
-            singleEvent = {};
-            singleEvent.start = "2017-12-12";
-        }
-        
-        lastdt = moment(singleEvent.start).format("YYYY-MM-DD");
-        return lastdt;
-    };
-    
-};
-
-/**
- * 
- */
-var TabView = function(objMap)
-{
-    /**
-     * 
-     */
-    this.openTab = function(cssIdTabContent, cssIdTab)
-    {
-        $('.tabcontent').hide();
-        $('.tablinks').removeClass('.active');
-        $(cssIdTabContent).show();
-        $(cssIdTab).addClass('.active');
-    };
-    
-    /**
-     * 
-     */
-    this.viewMore = function(event){
-        // set ke tampilan baru
-        $('#moreTitle').val(event.title);
-        $('#moreStart').val(event.start);
-        $('#moreMode').val(event.transportation);
-        $('#moreDepature').val(event.depature_time);
-        $('#moreAddress').val(event.address);
-        // buka tab
-        this.openTab('#MoreEvent','#MoreEvent');
-        // pindahkan peta
-        $('#map').appendTo('#moreLeft');
-        $('#mapInstruction').appendTo('#moreLeft');
-        // hapus polylines
-          
-    };
-    
-};
-/* 
-
-function openCity(evt, cityName) 
-{
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-	tablinks[i].className = tablinks[i].className.replace("active", "");
-    }
-    document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
-}
-*/
 // JQuery
 $(document).ready( function()  // Ketika web udah siap
 {
+    /**
+     * Objek untuk Tab baru
+     * @param {type} objMap
+     * @returns {TabView}
+     */
+    var TabView = function(objMap)
+    {
+       /**
+        * Method untuk membuka tab
+        * @param {type} cssIdTabContent css id konten tabnya
+        * @param {type} cssIdTab css id tabnya
+        * @returns {undefined}
+        */
+        this.openTab = function(cssIdTabContent, cssIdTab)
+        {
+           $('.tabcontent').hide();
+           $('.tablinks').removeClass('.active');
+           $(cssIdTabContent).show();
+           $(cssIdTab).addClass('.active');
+        };
+
+       /**
+        * Method untuk menampilkan tampilan view more
+        * @param {type} event
+        * @param {type} mapEvent
+        * @returns {undefined}
+        */
+        this.viewMore = function(event, mapEvent){
+           // set ke tampilan baru
+           $('#moreTitle').val(event.title);
+           $('#moreStart').val(event.start); 
+           $('#moreMode').val(event.transportation);
+           $('#moreDepature').val(event.depature_time);
+           $('#moreAddress').val(event.address);
+           $('#moreNote').val(event.note);
+           // buka tab
+           this.openTab('#MoreEvent','#MoreEvent');
+           // pindahkan peta
+           $('#map').appendTo('#moreLeft');
+           $('#mapInstruction').appendTo('#moreLeft');
+           // setting maps ke tengah lokasi event
+           if( typeof event.latitude !== 'undefined' || typeof event.longitude !== 'undefined')
+           {
+                mapEvent.objMaps.setCenter(event.latitude, event.longitude);
+                // tambah marker
+                mapEvent.addMarker(event.latitude, event.longitude, event.title, event.start, function(){
+                   alert(event.title);
+                });
+           }
+       };
+
+    };
+    
     /**
      * Untuk Akses Controller
      * @param {type} urlController
@@ -183,7 +91,7 @@ $(document).ready( function()  // Ketika web udah siap
                 }
             });
         };
-        
+           
         /**
          * Method untuk mengirimkan event json ke controller
          * @param {type} dataJson
@@ -346,24 +254,178 @@ $(document).ready( function()  // Ketika web udah siap
         {
             $(cssIdCalendar).fullCalendar( 'removeEvents', [idEvent] );
         };
+        
+        /**
+         * Mendapatkan event berdasarkan id atau fungsi filter
+         * @param {type} idOrFilter
+         * @returns {unresolved}
+         */
+        this.getEvent = function(idOrFilter)
+        {
+            var sEvent;
+            sEvent = $(cssIdCalendar).fullCalendar('clientEvents', idOrFilter);
+            return sEvent;
+        };
+        
+        /**
+         * Mengubah tampilan calendar
+         * @param {type} viewName berupa 
+         * month, basicWeek, basicDay, agendaWeek, agendaDay, 
+         * listYear, listMonth, listWeek, atau listDay
+         * @returns {undefined}
+         */
+        this.changeCalView =  function(viewName)
+        {
+            $(cssIdCalendar).fullCalendar('changeView', viewName);
+        };
     };
+
+    /**
+     * apakah bisa ditambah marker atau tidak
+     * @type Boolean
+     */
+    var isAddableMarker = false;
     
     /**
-     * Google Maps nya
+     * Posisi Dua Marker 
+     * simple singleton
+     * @type type
+     *
+    var objectPosition = {
+        // isi marker 1 atau marker 2
+        isMarker1 : true,
+        
+        **
+         * Mendapatkan object marker 
+         * @returns {unresolved} markerP
+         *
+        getMarker : function()
+        {
+            var markerP;
+            // mendapatkan posisi marker 1 atau marker 2
+            if(this.isMarker1)
+            {
+                markerP = this.m1.getPosition();
+            }
+            else
+            {
+                markerP = this.m2.getPosition();
+            }
+            return markerP;
+        },
+        
+        **
+         * Setter Marker
+         * @param {type} markerMap
+         * @returns {undefined}
+         *
+        setMarker : function(markerMap)
+        {
+            if(this.isMarker1)
+                this.m1 = markerMap;
+            else
+                this.m2 = markerMap;
+            
+            this.isMarker1 = !this.isMarker1;
+        }
+
+    };
+    *
+    var delegateClickMap = function(e)
+    {
+        var lastMarker = objectPosition.getMarker();
+        objMap.removeMarker(lastMarker);
+        objMap.removePolylines();
+        
+        var markerAdd = objMap.addMarker({
+            lat: e.latLng.lat
+        });
+    };
+    */
+           /**
+         * 
+         * @type markerP
+         */
+        var marker1, marker2, isOrigin=true;
+    /**
+     *  Google Maps nya
      * @param {type} cssIdMap
-     * @param {type} clickFunc
+     * @param {type} defaultLat
+     * @param {type} defaultLng
      * @returns {a2eventL#140.A2Gmaps}
      */
-    var A2Gmaps = function(cssIdMap, clickFunc)
-    {
+    var A2Gmaps = function(cssIdMap, defaultLat, defaultLng)
+    {            
         /**
          * Atribut Public Maps Nya
+         * Konstruktor
          */
         this.objMaps = new GMaps({
             el: cssIdMap,
-            // JTK POLBAN
-            lat: -6.870603,
-            lng: 107.572050
+            lat: defaultLat,
+            lng: defaultLng,
+            //click: delegateClickMap
+            click:  function(e) 
+                    {
+                        if(isAddableMarker)
+                        {
+                            var addressStr;
+                            var cssIdForm;
+                            var markerP;
+                            
+                            if(isOrigin)
+                            {
+                                addressStr = "Origin";
+                                cssIdForm = "#orig";
+                            }
+                            else
+                            {    
+                                addressStr = "Destination";
+                                cssIdForm = "#dest";
+                            }
+
+                            markerP = mapObj.addMarker(e.latLng.lat(), e.latLng.lng(), addressStr, addressStr, function(){
+                                alert(addressStr);
+                            });
+                            
+                            if(isOrigin)
+                            {
+                                if(typeof marker1 !== 'undefined') // jika marker1 belum ada
+                                {
+                                    alert(marker1.getPosition().lat);
+                                    mapObj.removeMarker(marker1);
+                                }
+                                marker1 = markerP;
+                            }
+                            else
+                            {
+                               if(typeof marker2 !== 'undefined')
+                               {
+                                    alert(marker2.getPosition().lat);
+                                    mapObj.removeMarker(marker2);
+                               }
+                                marker2 = markerP;
+                            }
+                            isOrigin = !isOrigin;
+                            // buat polylines
+                            if(typeof marker1 !== 'undefined' || typeof marker2 !== 'undefined')
+                            {
+                                mapObj.objMaps.removePolylines();
+                                //posisi marker 1 dan 2
+                                var pathMark1Mark2 = [
+                                    [marker1.getPosition().lat(), marker1.getPosition().lng()],
+                                    [marker2.getPosition().lat(), marker2.getPosition().lng()]
+                                ];
+                                
+                                mapObj.drawPolylines(pathMark1Mark2);
+                            }
+                            
+                            // buat geocode
+                            addressStr = mapObj.reverseGeocode({lat: e.latLng.lat(), lng: e.latLng.lng()});
+
+                            $(cssIdForm).val(addressStr);
+                        }
+                    }
         });
         
         /**
@@ -467,7 +529,7 @@ $(document).ready( function()  // Ketika web udah siap
          */
         this.clearListeners = function(eventAction)
         {
-            if(typeof google != "undefined")
+            if(typeof google !== 'undefined')
             {
                 // objMaps.map pada libray gmaps.js mengembalikan nilai google.maps.Map
                 google.maps.event.clearListeners(this.objMaps.map, eventAction);
@@ -482,7 +544,7 @@ $(document).ready( function()  // Ketika web udah siap
          */
         this.distanceMatrix = function(objSetting, callbackFunc)
         {
-            if(typeof google != "undefined")
+            if(typeof google !== 'undefined')
             {
                 var service = new google.maps.DistanceMatrixService();
                 service.getDistanceMatrix(objSetting, callbackFunc);
@@ -560,6 +622,7 @@ $(document).ready( function()  // Ketika web udah siap
                 travelMode, 
                 function(e){
                     // tampilkan instruksi
+                    $('#mapInstruction').html('<h1>' + travelMode + '</h1>');
                     $('#mapInstruction').append('<li>' + e.instructions + '</li>');
                     // animasi polyline
                     $('#mapInstruction li:eq(' + e.step_number + ')').delay(450 * e.step_number).fadeIn(
@@ -577,86 +640,6 @@ $(document).ready( function()  // Ketika web udah siap
         };
     };
     
-    // yg bertugas kurirnya controller aka singleton
-    var objAccess = new ControllerAccesser("index");
-    
-    // array path untuk polylines
-    var pathi = new Array();
-    
-    // list event aka singleton
-    var objListEvent = new ListEvent([]);
-    
-    // table event
-    var objTableEvent = new TableEvent("#tableEvent");
-    
-    // calendar
-    var objCalendar = new FullCalendar("#calendar");
-    
-    // view tab
-    var tabView = new TabView({});
-    
-    // maps nya
-    var mapObj = new A2Gmaps('#map');
-    
-    tabView.openTab('#Tasik','#defaultOpen');
-    
-    //klik tombol back
-    $('#moreBack').click(function(){
-        var view = $('#calendar').fullCalendar('getView');
-        
-        tabView.openTab('#Tasik','#defaultOpen');
-        
-        $('#calendar').fullCalendar('changeView', view.name, {
-            start: view.start,
-            end: view.end
-        });
-    }); 
-    
-    // mendapatkan json dari controller
-    objAccess.getJson(function(data){
-        var lastLat, lastLng;
-        
-        // memasukkan data kedalam kalendar
-        objCalendar.writeCal(data,function(calEvent, jsEvent, view){
-            tabView.viewMore(calEvent);
-            mapObj.setCenter(calEvent.latitude, calEvent.longitude);
-            mapObj.addMarker(calEvent.latitude, calEvent.longitude, calEvent.title, calEvent.start, function(){
-               alert(calEvent.title);
-            });
-        });
-        
-        // loop list
-        $.map(data, function(item,i)
-        {
-            item.start = moment(item.start).format();
-            item.end = moment(item.end).format();
-            item.depature_time = moment(item.departure_time).format("ddd DD-MM-YYYY hh:mm a");
-            // memasukkan kedalam list json
-            objListEvent.addEvent(item);
-            // memasukkan dan menampilkan dalam tabel
-            objTableEvent.writeRow(item);
-            // array lat lng
-            pathi.push([item.latitude, item.longitude]);
-                
-            lastLat = item.latitude;
-            lastLng = item.longitude;
-            
-            mapObj.addMarker(lastLat, lastLng, item.title, item.start, function(){
-               alert('Title :'+ item.title +'\nDepature Time : ' + item.departure_time + '\n Start Event : '+ item.start);
-            });
-            
-        });
-        
-        // set ke event terakhir
-        objCalendar.gotoDate(objListEvent.getLastEventDate());
-        // set map center ke event terakhir
-        mapObj.objMaps.setCenter(lastLat, lastLng);
-        // draw polyline event2
-        mapObj.drawPolylines(pathi);
-        
-        mapObj.objMaps.zoomIn(5);
-    });
-    
    /**
     * Mencari selisih dua Date dalam format seconds
     * dengan cara Date 2 - Date 1 tanpa absolut (dapat negatif)
@@ -673,12 +656,83 @@ $(document).ready( function()  // Ketika web udah siap
         // kembalikan
         return second;
     };
+      
+    // yg bertugas kurirnya controller
+    var objAccess = new ControllerAccesser("index");
     
+    // array path untuk polylines
+    var pathi = [];
+    
+    // table event
+    var objTableEvent = new TableEvent("#tableEvent");
+    
+    // calendar
+    var objCalendar = new FullCalendar("#calendar");
+    
+    // view tab
+    var tabView = new TabView({});
+    
+    // maps nya
+    var mapObj; /// = new A2Gmaps('#map',-6.870603,107.572050);
+    
+    tabView.openTab('#Tasik','#defaultOpen');
+    
+    //klik tombol back
+    $('#moreBack').click(function(){
+        isAddableMarker = false;
+        
+        var view = $('#calendar').fullCalendar('getView');
+        
+        tabView.openTab('#Tasik','#defaultOpen');
+        
+        $('#calendar').fullCalendar('changeView', view.name, {
+            start: view.start,
+            end: view.end
+        });
+    }); 
+    
+    // mendapatkan json dari controller
+    objAccess.getJson(function(data){
+        var lastEventObj = data[data.length - 1];
+        
+        mapObj = new A2Gmaps('#map', lastEventObj.latitude, lastEventObj.longitude);
+        
+        // memasukkan data kedalam kalendar
+        objCalendar.writeCal(data,function(calEvent, jsEvent, view){
+            // ketika event kalender di klik buka tab view more
+            tabView.viewMore(calEvent, mapObj);
+        });
+        
+        // loop list
+        $.map(data, function(item,i)
+        {
+            item.start = moment(item.start).format();
+            item.end = moment(item.end).format();
+            item.depature_time = moment(item.departure_time).format("ddd DD-MM-YYYY hh:mm a");
+            // memasukkan dan menampilkan dalam tabel
+            objTableEvent.writeRow(item);
+            // array lat lng
+            pathi.push([item.latitude, item.longitude]);
+            
+            mapObj.addMarker(item.latitude, item.longitude, item.title, item.start, function(){
+               alert('Title :'+ item.title +'\nDepature Time : ' + item.departure_time + '\n Start Event : '+ item.start);
+            });
+            
+        });
+        
+        // draw polyline event2
+        mapObj.drawPolylines(pathi);
+        
+        mapObj.objMaps.zoomIn(4);
+    });
+        
     /**
      * Klik menu tab List
      */
     $('#getList').click(function()
     {
+        isAddableMarker = false;
+        
         mapObj.clearListeners('click');
         //mapObj.objMaps.cleanRoute();
             
@@ -711,61 +765,49 @@ $(document).ready( function()  // Ketika web udah siap
         // Geolokasi
         mapObj.setGeolocate();
         // tambahkan listener
-        mapObj.addListener('click',function(e) 
+        isAddableMarker = true;
+        /*mapObj.addListener('click', function(e) // dipindah keatas
         {
-            var addressStr;
-            var cssIdForm;
-            //alert(e);
-            if (m2 != null) 
+            if(isAddableMarker)
             {
-                mapObj.removeMarker(m2);
-                mapObj.removePolylines();
-            }
-            if ( m1 == null) 
-            {   
-                m1 = mapObj.objMaps.addMarker({
-                    lat: e.latLng.lat(),
-                    lng: e.latLng.lat()//,
-                    //icon: sourceIcon
-                });
-                
-                //if(m1 !== null)
-               // {
-                    currPos = m1.getPosition();
+                var addressStr;
+                var cssIdForm;
+                var markerP;
+                //alert(e);
+                var isOrigin = objectPosition.isMarker1;
 
-                    addressStr = mapObj.reverseGeocode(currPos);
+                if(isOrigin)
+                {
+                    addressStr = 'Origin';
                     cssIdForm = '#orig';
-                //}
-            } 
-            else 
-            {
-                m2 = mapObj.objMaps.addMarker({
-                    lat: e.latLng.lat(),
-                    lng: e.latLng.lng()//,
-                    //icon: destinationIcon
-                });
-                
-               // if(m2 !== null)
-                //{
-                    currPos = m2.getPosition(); 
-
-                    addressStr = mapObj.reverseGeocode(currPos);
+                }
+                else
+                {    
+                    addressStr = 'Destination';
                     cssIdForm = '#dest';
-                //}
-            }
+                }
 
-            $(cssIdForm).val(addressStr);
+                markerP = mapObj.addMarker(e.latLng.lat(), e.latLng.lng(), addressStr, addressStr, function(){
+                    alert(addressStr);
+                });
+
+                objectPosition.setMarker(markerP);
+
+                addressStr = mapObj.reverseGeocode(markerP.getPosition());
+
+                $(cssIdForm).val(addressStr);
+            }
         });
-        
-       // AUTOCOMPLETE BELUMBERES
-       if(typeof google != "undefined")
+        */
+       /* AUTOCOMPLETE BELUMBERES
+       if(typeof google != 'undefined')
        {
             google.maps.event.addDomListener(window, 'load', function(){
                 var input = document.getElementById('fname');
                 var autocomplete = new google.maps.places.Autocomplete(input);
             });
        };
-        
+        */
         $('#map').appendTo('#mapNewEvent');
         $('#mapInstruction').appendTo('#mapNewEvent');
             
@@ -779,7 +821,9 @@ $(document).ready( function()  // Ketika web udah siap
     $('#defaultOpen').click(function()
     {
         //mapObj.objMaps.cleanRoute();
-            
+        
+        isAddableMarker = false;
+        
         mapObj.objMaps.drawPolyline({
             path: pathi,
             strokeColor: '#0000FF', //warna line
@@ -797,17 +841,29 @@ $(document).ready( function()  // Ketika web udah siap
     /**
      * Klik tobol delete
      */
-    objTableEvent.actionListener('click','.v-del', function(currentRow, rowIndex){
+   /* objTableEvent.actionListener('click','.v-del', function(currentRow, rowIndex){
         var idEvent = currentRow.find("td:eq(0)").html();
         objAccess.deleteEvent(idEvent, currentRow, rowIndex, objCalendar);
         $('#map').appendTo('#moreLeft');
         $('#mapInstruction').appendTo('#moreLeft');
     });
-    
+    */
+   
+    $(objTableEvent.getCssId()).on('click','.v-del', function(currentRow, rowIndex){
+        var titleEvent = currentRow.find("td:eq(1)").html();  
+        var isdelete = confirm('Delete '+ titleEvent +' ?');
+        if(isdelete)
+        {
+            var idEvent = currentRow.find("td:eq(0)").html();
+            objAccess.deleteEvent(idEvent, currentRow, rowIndex, objCalendar);
+            $('#map').appendTo('#moreLeft');
+            $('#mapInstruction').appendTo('#moreLeft');
+        }
+    });
     var m1 = null, m2 = null;
     
     /**
-     * Objek untuk memilih transportation mode dari marker m1 dan m2
+     * untuk memilih transportation mode dari marker m1 dan m2
      * m1 dan m2 tidk boleh null
      * @param {type} tmdifference selisih waktu
      * @param {type} travelMode mode nya transit, bicycling, travel, dll
@@ -817,67 +873,60 @@ $(document).ready( function()  // Ketika web udah siap
      */
     var chooseTransportAct = function(tmdifference, travelMode, cssIdRadio, cssIdMsg)
     {
-        if(m1 != null || m2 != null)
+        //if(m1 != null || m2 != null)
+        var origin = $('#orig').val().toString();
+        var dest = $('#dest').val().toString();
+        //alert(travelMode.toString().toUpperCase());
+        
+        if(origin !== "" || dest !== "")
         mapObj.distanceMatrix(
             {
-                origins: [m1.getPosition()],
-                destinations: [m2.getPosition()],
-                travelMode: travelMode,
+                origins: [origin],
+                destinations: [dest],
+                travelMode: travelMode.toString().toUpperCase(),
                 avoidHighways: false,
                 avoidTolls: false
             },
             function(response,status)
             {
-                if(status !== 'OK')
+                if(status != 'OK')
                 {
                     alert('Error Mendapatkan Data');
                 }
                 else
                 {
-                    var origins = response.originAddresses;
+                    origin = response.originAddresses[0];
+                    dest = response.destinationAddresses[0];
+                    
                     var traveltime = 0;
-                    //var destinations = response.destinationAddresses;
-                          
-                    for (var i = 0; i < origins.length; i++) 
+                    // alert(JSON.stringify(response));
+                    for (var i = 0; i < response.rows.length; i++) 
                     {
-                        var results = response.rows[i].elements;
-                        for (var j = 0; j < results.length; j++) 
+                        var elementsArr = response.rows[i].elements;
+                        for (var j = 0; j < elementsArr.length; j++) 
                         {
-                            traveltime = traveltime + results[j].duration.value;
-                        /*      var element = results[j];
-                            var duration = element.duration.text;
-                            var comparation = element.duration.value;
-                            if(comparation > estimate){ // GAK SALAH IF DI LOOP ???
-                                document.getElementById('radio').style.visibility = 'hidden';
-                                transit.value = "can't be used";
-                            }
-                            else if (comparation < estimate){
-                                document.getElementById('radio').style.visibility = 'visible';
-                                transit.value=duration;
-                            }
-                            showInstructions(element,'transit'); 
-                            */
+                            if(elementsArr[j].status === 'OK')
+                                traveltime += elementsArr[j].duration.value;
                         }
                     }
                     
                     if(traveltime > tmdifference)
                     {
                         $(cssIdRadio).hide();
-                        $(cssIdMsg).val(travelMode + "can't be used");
-                        // jika radionya diklik
-                        $(cssIdRadio).click(function()
-                        {
-                            // gambar animasi rute
-                            mapObj.drawRoutesAnimated(travelMode, [m1.getPosition().toString()], [m2.getPosition().toString()]);
-                        });
+                        $(cssIdMsg).val(travelMode + " can't be used");
                     }
                     else
                     {
-                        $(cssIdRadio).show();
-                        $(cssIdMsg).val(moment(traveltime + '000').format('hh hours mm mins'));
+                        $(cssIdRadio).show().click(function(){
+                            mapObj.drawRoutesAnimated(travelMode, [-6.872034, 107.574794], [-6.926131, 107.636561]);
+                        });
+                        
+                        $(cssIdMsg).val(((tmdifference - traveltime) / 60) + ' mins');     
                     }
                 }
         });
+        else
+            alert('Mohon isi lokasi Anda!...');
     };
     
     /**
@@ -890,7 +939,7 @@ $(document).ready( function()  // Ketika web udah siap
         var dateTimeDest = new Date($('#destDate').val() +" "+$('#destTime').val());
         // dateTimeOrigin dikurangi dateTimeDest bentuk second
         var tmdifference = timeDiff(dateTimeOrigin, dateTimeDest);
-        
+
         chooseTransportAct(tmdifference, 'transit', '#radio', '#transit');
         chooseTransportAct(tmdifference, 'walking', '#radio1', '#walking');
         chooseTransportAct(tmdifference, 'driving', '#radio2', '#driving');
@@ -1148,14 +1197,21 @@ $(document).ready( function()  // Ketika web udah siap
     $("#tableEvent").on('click', '.v-more', function()
     {
         var currentRow = $(this).closest("tr");
-        var rowIndex = parseInt($(this).parent().index());
+        //var rowIndex = parseInt($(this).parent().index());
         // mendapatkan data2 
-        var eventId = currentRow.find("td:eq(0)").html();
-        var eventTitle = currentRow.find("td:eq(1)").html();
-        var eventStart = currentRow.find("td:eq(2)").html();
-        var eventMode = currentRow.find("td:eq(3)").html();
-        var eventDepature = currentRow.find("td:eq(4)").html();
-        var eventAddress = currentRow.find("td:eq(5)").html();     
+        var event = {};
+        event.id = currentRow.find("td:eq(0)").html();
+        event.title = currentRow.find("td:eq(1)").html(); // lebih lambat
+        event.transportation = currentRow.find("td:eq(2)").html();
+        event.mode = currentRow.find("td:eq(3)").html();
+        event.depature_time = currentRow.find("td:eq(4)").html();
+        event.address = currentRow.find("td:eq(5)").html();
+       
+       //alert(eventId);
+        //var selectedEvent = objCalendar.getEvent([eventId]);
+        //alert(selectedEvent.id);
+        // tampilkan tab baru
+        tabView.viewMore(event, mapObj);
     });       
     
     /**
@@ -1177,8 +1233,8 @@ $(document).ready( function()  // Ketika web udah siap
                         }
                     }
                    
-                    if(m2 !== null)
-                    {
+                    //if(m2 !== null)
+                    //{
                         eventTraveller['title'] = $('#eventName').val();
                         eventTraveller['start'] = new Date($('#origDate').val() +" "+$('#origTime').val());
                         eventTraveller['end'] = new Date($('#destDate').val() +" "+$('#destTime').val());
@@ -1197,9 +1253,9 @@ $(document).ready( function()  // Ketika web udah siap
                         alert(JSON.stringify(eventDesc));
                         
                         objAccess.sendEvent(eventDesc);
-                    }
-                    else
-                        alert("Mohon klik tujuan anda!");
+                   // }
+                    //else
+                      //  alert("Mohon klik tujuan anda!");
                 });
 
                 // Get the modal
@@ -1226,8 +1282,7 @@ $(document).ready( function()  // Ketika web udah siap
                 
 }); // tutup JQuery    
             
-            
-            			
+/*                        			
 function show()
 {
     if(document.getElementById("hidden-mobile").style.display == 'none')
@@ -1242,7 +1297,4 @@ function konfirmasi()
     if (tanya == true) return true;
     else return false;
 }
-                                                
-                                                
-                                                
-                                             
+*/                                              
