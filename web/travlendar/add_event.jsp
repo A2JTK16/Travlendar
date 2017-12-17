@@ -89,7 +89,8 @@
                 <div class="icon-cari">
                     <img src="icon/search.png">
                 </div>
-                <input class="cari" type="text" placeholder="Find Event ..."/>
+                <input class="cari" id="findEvent" type="text" placeholder="Find Event ..."/>
+                <div id="findResult"></div>
             </div> <!--kotak-cari-->
           
 	</div> <!--header-->
