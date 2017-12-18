@@ -933,8 +933,10 @@ $(document).ready( function()  // Ketika web udah siap
         
         if(hours !== "00")
             return hours+' hours '+ minutes +' mins';
-        else
+        else if(minutes !== "00") // jika pembulatan hasil bagi tidak samadengan 00
             return minutes +' mins';
+        else // pembulatan keatas
+            return " 1 mins";
     }
 
     /**
@@ -1319,7 +1321,7 @@ $(document).ready( function()  // Ketika web udah siap
             eventDesc.endLocation = eventLoc;
             
             //eventDesc = jQuery.parseJSON(JSON.stringify(eventDesc));
-
+            alert(JSON.stringify(eventDesc));
             $.ajax({
                 type: 'POST', // method post
                 url: 'index',
@@ -1337,6 +1339,7 @@ $(document).ready( function()  // Ketika web udah siap
             
             event.address = eventLoc.address;
             event.depature_time = eventTravel.departure_time;
+            event.transportation = eventTravel.transportation;
             
             objTableEvent.writeRow(event);
             $('#calendar').fullCalendar( 'renderEvent', event);
