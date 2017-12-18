@@ -408,9 +408,6 @@ $(document).ready( function()  // Ketika web udah siap
                 },
                 not_supported: function() {
                   alert("Ga support euy");
-                },
-                always: function() {
-                  alert("Beres");
                 }
             });
         };
@@ -573,7 +570,7 @@ $(document).ready( function()  // Ketika web udah siap
     
    /**
     * Mencari selisih dua Date dalam format seconds
-    * dengan cara Date 2 - Date 1 tanpa absolut (dapat negatif)
+    * dengan cara Date 1 - Date 2 tanpa absolut (dapat negatif)
     * @param {type} datetime1
     * @param {type} datetime2
     * @returns {Number}
@@ -581,7 +578,7 @@ $(document).ready( function()  // Ketika web udah siap
     var timeDiff = function(datetime1, datetime2)
     {
         // selisih milisecond
-        var timed = (datetime2.getTime() - datetime1.getTime());
+        var timed = (datetime1.getTime() - datetime2.getTime());
         // convert ke second
         var second = (timed / 1000);
         // kembalikan
@@ -639,7 +636,7 @@ $(document).ready( function()  // Ketika web udah siap
 
             click: function(e) 
             {
-                alert(isAddableMarker);
+                //alert(isAddableMarker);
                 if(isAddableMarker)
                 {
                     if (domarker1) 
@@ -789,7 +786,7 @@ $(document).ready( function()  // Ketika web udah siap
         // jika lebih dari dua
         if(value.length > 2)
         {
-            $('#findResult').html('<table id="tableEvent"><tbody>'); // tambahkan tabel
+            $('#findResult').html('<table id="tableEvent2"><tbody>'); // tambahkan tabel
             $("#tableEvent tr").each(function(index) {
                 if (index >= 0) {
 
@@ -804,7 +801,7 @@ $(document).ready( function()  // Ketika web udah siap
                 }
             });
             $('#findResult').append('</tbody></table>');
-                        
+                    
         }
         else
             $('#findResult').html('');
@@ -921,6 +918,26 @@ $(document).ready( function()  // Ketika web udah siap
     var m1 = null, m2 = null;
     
     /**
+     * Mengubah second to hh hours mm mins 
+     * @param {type} sec
+     * @returns {String}
+     */
+    function secToHHMM(sec) 
+    {
+        var sec_num = parseInt(sec, 10); 
+        var hours   = Math.floor(sec_num / 3600);
+        var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+
+        if (hours   < 10) {hours   = "0"+hours;}
+        if (minutes < 10) {minutes = "0"+minutes;}
+        
+        if(hours !== "00")
+            return hours+' hours '+ minutes +' mins';
+        else
+            return minutes +' mins';
+    }
+
+    /**
      * untuk memilih transportation mode dari marker m1 dan m2
      * m1 dan m2 tidk boleh null
      * @param {type} tmdifference selisih waktu
@@ -947,7 +964,7 @@ $(document).ready( function()  // Ketika web udah siap
             },
             function(response,status)
             {
-                if(status != 'OK')
+                if(status !== 'OK')
                 {
                     alert('Error Mendapatkan Data');
                 }
@@ -967,7 +984,7 @@ $(document).ready( function()  // Ketika web udah siap
                                 traveltime += elementsArr[j].duration.value;
                         }
                     }
-                    
+                    //alert(tmdifference + ' | ' + traveltime);
                     if(traveltime > tmdifference)
                     {
                         $(cssIdRadio).hide();
@@ -979,7 +996,7 @@ $(document).ready( function()  // Ketika web udah siap
                             mapObj.drawRoutesAnimated(travelMode, [m1pos.lat(), m1pos.lng()], [m2pos.lat(), m2pos.lng()]);
                         });
                         
-                        $(cssIdMsg).val(((tmdifference - traveltime) / 60) + ' mins');     
+                        $(cssIdMsg).val( secToHHMM(traveltime) );     
                     }
                 }
         });
@@ -994,10 +1011,12 @@ $(document).ready( function()  // Ketika web udah siap
     {
         // parse date dari form input
         var dateTimeOrigin = new Date($('#origDate').val() +" "+$('#origTime').val());
-        var dateTimeDest = new Date($('#destDate').val() +" "+$('#destTime').val());
+        var dateTimeDepature = new Date($('#departureDate').val() +" "+$('#departureTime').val());
+        //alert(dateTimeOrigin.toString());
+        //alert(dateTimeDest.toString());
         // dateTimeOrigin dikurangi dateTimeDest bentuk second
-        var tmdifference = timeDiff(dateTimeOrigin, dateTimeDest);
-        
+        var tmdifference = timeDiff(dateTimeOrigin, dateTimeDepature);
+        //alert(tmdifference);
         chooseTransportAct(tmdifference, 'transit', '#radio', '#transit');
         chooseTransportAct(tmdifference, 'walking', '#radio1', '#walking');
         chooseTransportAct(tmdifference, 'driving', '#radio2', '#driving');
@@ -1253,15 +1272,17 @@ $(document).ready( function()  // Ketika web udah siap
      * Klik Tombol view more
      */
            
-    
+    var eventDesc = {};
     /**
      * Klik tombol save
      */
     $('#TombolSave').click(function(){
                     
-                    var eventTraveller = {};
+                    var event = {};
                     var eventLoc = {};
-                    var eventDesc = {};
+                    var eventTravel = {};
+                    
+                    var eventStartLoc = {};
                     var value;
                     var radios = document.getElementsByName('transportation');
                     for (var i = 0, length = radios.length; i < length; i++)
@@ -1269,56 +1290,58 @@ $(document).ready( function()  // Ketika web udah siap
                         if (radios[i].checked)
                         {
                         // do whatever you want with the checked radio
-                            value = radios[i].value;
+                            value = radios[i].value.toString().toLowerCase();
                         }
                     }
                    
                     //if(m2 !== null)
                     //{
-                        eventTraveller['title'] = $('#eventName').val();
-                        eventTraveller['start'] = new Date($('#origDate').val() +" "+$('#origTime').val());
-                        eventTraveller['end'] = new Date($('#destDate').val() +" "+$('#destTime').val());
-                        eventTraveller['note'] = $('#noteDesc').val();
-                        eventTraveller['transportation']= value;
-                        eventTraveller['departure_time']= new Date($('#departureDate').val() +" "+$('#departureTime').val());
+                        event['title'] = $('#eventName').val();
+                        event['start'] = new Date($('#origDate').val() +" "+$('#origTime').val());
+                        event['end'] = new Date($('#destDate').val() +" "+$('#destTime').val());
+                        event['note'] = $('#noteDesc').val();
+                        
+                        eventTravel['transportation']= value;
+                        eventTravel['departure_time']= new Date($('#departureDate').val() +" "+$('#departureTime').val());
                         //eventTraveller['traveller_id'] = 1;
                         
                         eventLoc['latitude'] = m2.getPosition().lat();
                         eventLoc['longitude'] = m2.getPosition().lng();
                         eventLoc['address'] = ($('#orig').val()).substring(0, 59);
                         
-                        eventDesc['event'] = eventTraveller;
-                        eventDesc['location'] = eventLoc;
+                        eventStartLoc['latitude'] = m2.getPosition().lat();
+                        eventStartLoc['longitude'] = m2.getPosition().lng();
+                        eventStartLoc['address'] = ($('#dest').val()).substring(0, 59);
                         
-                        alert(JSON.stringify(eventDesc));
+                        eventDesc.event = event;
+                        eventDesc.travel = eventTravel;
+                        eventDesc.startLocation =  eventStartLoc;
+                        eventDesc.endLocation = eventLoc;
                         
                         objAccess.sendEvent(eventDesc);
                    // }
-                    //else
+                   //else
                       //  alert("Mohon klik tujuan anda!");
                 });
-
-                // Get the modal
-                var modal = document.getElementById('myModal');
                                 
                 $('#myBtn').click(function(){
                     $('#map').appendTo('#mapPopup');
                     $('#mapInstruction').appendTo('#mapPopup');
-                    modal.style.display = "block";
+                    $('#myModal').show();
                 });
                                  
                 $('.close').click(function(){
                     $('#map').appendTo('#mapNewEvent');
                     $('#mapInstruction').appendTo('#mapNewEvent');
-                    modal.style.display = "none";
+                    $('#myModal').hide();
                 });
 
-        	window.onclick = function(event) {
+        	/*window.onclick = function(event) {
 		    if (event.target == modal) {
 		        modal.style.display = "none";
 		    }
 		}
-
+                    */
                 
 }); // tutup JQuery    
             
