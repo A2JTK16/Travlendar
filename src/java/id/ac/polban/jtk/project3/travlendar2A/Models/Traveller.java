@@ -10,40 +10,11 @@ package id.ac.polban.jtk.project3.travlendar2A.Models;
  * @author Auliya Aqma Dinillah
  */
 public class Traveller {
-    private Long traveller_id;
-    private String traveller_name;
+    private String traveller_username;
     private String traveller_email;
     private String traveller_password;
     private String traveller_fullname;
     private String traveller_address;
-
-    /**
-     * @return the traveller_id
-     */
-    public Long getTraveller_id() {
-        return traveller_id;
-    }
-
-    /**
-     * @param traveller_id the traveller_id to set
-     */
-    public void setTraveller_id(Long traveller_id) {
-        this.traveller_id = traveller_id;
-    }
-
-    /**
-     * @return the traveller_name
-     */
-    public String getTraveller_name() {
-        return traveller_name;
-    }
-
-    /**
-     * @param traveller_name the traveller_name to set
-     */
-    public void setTraveller_name(String traveller_name) {
-        this.traveller_name = traveller_name;
-    }
 
     /**
      * @return the traveller_email
@@ -99,5 +70,19 @@ public class Traveller {
      */
     public void setTraveller_address(String traveller_address) {
         this.traveller_address = traveller_address;
+    }
+
+    /**
+     * @return the traveller_username
+     */
+    public String getTraveller_username() {
+        return traveller_username;
+    }
+
+    /**
+     * @param traveller_username the traveller_username to set
+     */
+    public void setTraveller_username(String traveller_username) {
+        this.traveller_username = traveller_username;
     }
 }

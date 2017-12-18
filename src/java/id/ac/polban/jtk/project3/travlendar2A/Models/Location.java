@@ -17,7 +17,7 @@ public class Location {
     private Float latitude;
     
     private Float longitude;
-    private String address;
+    private String location_name;
     /**
      * @return the location_id
      */
@@ -61,17 +61,17 @@ public class Location {
     }
 
     /**
-     * @return the address
+     * @return the location_name
      */
-    public String getAddress() {
-        return address;
+    public String getLocation_name() {
+        return location_name;
     }
 
     /**
-     * @param address the address to set
+     * @param location_name the location_name to set
      */
-    public void setAddress(String address) {
-        this.address = address;
+    public void setLocation_name(String location_name) {
+        this.location_name = location_name;
     }
     
 }

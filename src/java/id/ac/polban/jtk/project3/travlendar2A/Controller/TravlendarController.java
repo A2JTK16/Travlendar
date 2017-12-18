@@ -9,7 +9,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.GenericDao;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.IDao;
-import id.ac.polban.jtk.project3.travlendar2A.Models.Admin;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import id.ac.polban.jtk.project3.travlendar2A.Models.EventDesc;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
@@ -19,7 +18,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +35,7 @@ public class TravlendarController extends HttpServlet
      */
     IDao<Event> eventDao;
     IDao<Traveller> travellerDao;
-    IDao<Admin> adminDao;
+    //IDao<Admin> adminDao;
     IDao<Location> locationDao;
     IDao<ViewEvent> vEventDao;
     /**
@@ -67,7 +65,7 @@ public class TravlendarController extends HttpServlet
         
         this.eventDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Event.class);
         this.travellerDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Traveller.class);
-        this.adminDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Admin.class);
+      //  this.adminDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Admin.class);
         this.locationDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Location.class);
         this.vEventDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, ViewEvent.class);
         this.jsonMapper = new ObjectMapper();
@@ -121,7 +119,7 @@ public class TravlendarController extends HttpServlet
                  * Mendapatkan list event
                  */
                 Traveller travl = this.travellerDao.getObj("traveller_name", this.getUsername(request));
-                List<ViewEvent> list = this.vEventDao.getList("traveller_id", travl.getTraveller_id().toString());
+                List<ViewEvent> list = this.vEventDao.getList("traveller_username", travl.getTraveller_username());
                 /**
                  * Mengubah ke bentuk json dan mengirimkan resonse json ke client
                  */
@@ -191,8 +189,8 @@ public class TravlendarController extends HttpServlet
                     
                     int locId = this.locationDao.create(objLoc);
                     
-                    objEvent.setLocation_id(locId);
-                    objEvent.setTraveller_id(travl.getTraveller_id());
+                    objEvent.setEnd_location_id(locId); //tadinya set location id
+                    objEvent.setTraveller_username(travl.getTraveller_username());
                     idPK = this.eventDao.create(objEvent);
                 } 
                 catch (IOException ex) 
@@ -214,7 +212,7 @@ public class TravlendarController extends HttpServlet
                     Event objEvent = eventdesc.getEvent();
                     Location objLoc = eventdesc.getLocation();
                     
-                    this.locationDao.edit(objLoc, "location_id", objEvent.getLocation_id().toString());
+                    this.locationDao.edit(objLoc, "location_id", objEvent.getEnd_location_id().toString());//tadinya get location id
                     
                     affectedRow = this.eventDao.edit(objEvent, "event_id", objEvent.getEvent_id().toString());
                 } 
@@ -267,10 +265,10 @@ public class TravlendarController extends HttpServlet
                 
             case "deleteUser":
                 // TULIS CODE DISINI !!!
-                String traveller_id = request.getParameter("traveller_id");
+                String traveller_username = request.getParameter("traveller_username");
                 
-                int affectedRowEvent = this.eventDao.delete("traveller_id", traveller_id);
-                affectedRow = this.travellerDao.delete("traveller_id", traveller_id);
+                int affectedRowEvent = this.eventDao.delete("traveller_username", traveller_username);
+                affectedRow = this.travellerDao.delete("traveller_username", traveller_username);
                 
                 if(affectedRow > 0)
                     this.responseStr(response, "Sukses Menghapus User");
@@ -289,7 +287,7 @@ public class TravlendarController extends HttpServlet
                 {
                     Traveller traveller = jsonMapper.readValue(json, Traveller.class);
                     
-                    idPK = this.travellerDao.edit(traveller, "traveller_id", traveller.getTraveller_id().toString());
+                    idPK = this.travellerDao.edit(traveller, "traveller_username", traveller.getTraveller_username());
                 } 
                 catch (IOException ex) 
                 {
@@ -303,7 +301,7 @@ public class TravlendarController extends HttpServlet
                 
                 break;
                 
-            case "addAdmin":
+/*            case "addAdmin":
                 try 
                 {
                     Admin admin = jsonMapper.readValue(json, Admin.class);
@@ -321,7 +319,7 @@ public class TravlendarController extends HttpServlet
                     this.responseStr(response, "Gagal Menambahkan Admin\nGunakan Username Lain!!!");
                 
                 break;
-                
+              
             case "editAdmin":
                 try 
                 {
@@ -353,7 +351,7 @@ public class TravlendarController extends HttpServlet
                     this.responseStr(response, "Gagal Menghapus Admin");                  
             
                 break;
-                
+  */                
             case "login":
                 boolean isLogin = this.login(request);
                 if(isLogin)
