@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2017 at 08:58 AM
+-- Generation Time: Dec 18, 2017 at 10:04 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -65,7 +65,7 @@ INSERT INTO `event` (`traveller_username`, `start_location_id`, `end_location_id
 ('maryam', 1, 2, 1, 'Absensi dan Mengambil Surat Tugas', '2017-12-22 07:00:00', '2017-12-22 08:00:00', 'Jangan telat'),
 ('maryam', 2, 3, 2, 'Keberangkatan Menuju Jakarta', '2017-12-22 08:20:00', '2017-12-22 10:20:00', 'Jangan lupa bawa berkas'),
 ('maryam', 3, 4, 3, 'Keberangkatan Menuju Tempat Rapat', '2017-12-22 11:20:00', '2017-12-22 11:50:00', 'Jangan telat'),
-('maryam', 4, 5, 4, 'Rapat', '2009-09-22 13:00:11', '2017-12-22 16:00:11', 'Rapat Pleno'),
+('maryam', 4, 5, 4, 'Rapat', '2017-12-22 13:00:11', '2017-12-22 16:00:11', 'Rapat Pleno'),
 ('maryam', 5, 4, 5, 'Mengunjungi Anak', '2017-12-22 17:00:11', '2017-12-22 20:00:11', 'Silaturahim');
 
 -- --------------------------------------------------------
@@ -86,7 +86,7 @@ CREATE TABLE `location` (
 --
 
 INSERT INTO `location` (`location_id`, `latitude`, `longitude`, `location_name`) VALUES
-(1, -2.75104, 107.658, '\r\nJl. Pemuda Dalam, Lesung Batang, Tj. Pandan, Kabupaten Belitung, Kepulauan Bangka Belitung 33412, '),
+(1, -2.75104, 107.658, 'Jl. Pemuda Dalam, Lesung Batang, Tj. Pandan, Kabupaten Belitung, Kepulauan Bangka Belitung 33412,'),
 (2, -2.16044, 106.141, 'Jl. Dahlia, Dul, Pangkalan Baru, Kabupaten Bangka Tengah, Kepulauan Bangka Belitung 33684, Indonesia'),
 (3, -6.12535, 106.66, '\r\nJl. P2, Pajang, Benda, Kota Tangerang, Banten 15126, Indonesia'),
 (4, -6.18283, 106.829, '\r\nJl. Kebon Sirih No.18, Kb. Sirih, Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10110,'),
@@ -142,10 +142,10 @@ INSERT INTO `traveller` (`traveller_username`, `traveller_email`, `traveller_pas
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `view_event`
+-- Stand-in structure for view `viewevent`
 -- (See below for the actual view)
 --
-CREATE TABLE `view_event` (
+CREATE TABLE `viewevent` (
 `traveller_username` varchar(30)
 ,`event_id` bigint(20)
 ,`event_name` varchar(35)
@@ -165,11 +165,11 @@ CREATE TABLE `view_event` (
 -- --------------------------------------------------------
 
 --
--- Structure for view `view_event`
+-- Structure for view `viewevent`
 --
-DROP TABLE IF EXISTS `view_event`;
+DROP TABLE IF EXISTS `viewevent`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_event`  AS  select distinct `e`.`traveller_username` AS `traveller_username`,`e`.`event_id` AS `event_id`,`e`.`event_name` AS `event_name`,`e`.`start_event` AS `start_event`,`e`.`end_event` AS `end_event`,`e`.`note` AS `note`,`l1`.`location_name` AS `start_location_name`,`l1`.`latitude` AS `strt_loc_lat`,`l1`.`longitude` AS `strt_loc_long`,`l2`.`location_name` AS `end_location_name`,`l2`.`latitude` AS `end_loc_lat`,`l2`.`longitude` AS `end_loc_long`,`t`.`transportation_mode` AS `transportation_mode`,`t`.`depature_time` AS `depature_time` from ((((`traveller` `tl` join `event` `e`) join `location` `l1`) join `location` `l2`) join `travel` `t`) where ((`e`.`event_id` = `t`.`event_id`) and (`l1`.`location_id` = `e`.`start_location_id`) and (`l2`.`location_id` = `e`.`end_location_id`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `viewevent`  AS  select distinct `e`.`traveller_username` AS `traveller_username`,`e`.`event_id` AS `event_id`,`e`.`event_name` AS `event_name`,`e`.`start_event` AS `start_event`,`e`.`end_event` AS `end_event`,`e`.`note` AS `note`,`l1`.`location_name` AS `start_location_name`,`l1`.`latitude` AS `strt_loc_lat`,`l1`.`longitude` AS `strt_loc_long`,`l2`.`location_name` AS `end_location_name`,`l2`.`latitude` AS `end_loc_lat`,`l2`.`longitude` AS `end_loc_long`,`t`.`transportation_mode` AS `transportation_mode`,`t`.`depature_time` AS `depature_time` from ((((`traveller` `tl` join `event` `e`) join `location` `l1`) join `location` `l2`) join `travel` `t`) where ((`e`.`event_id` = `t`.`event_id`) and (`l1`.`location_id` = `e`.`start_location_id`) and (`l2`.`location_id` = `e`.`end_location_id`)) ;
 
 --
 -- Indexes for dumped tables

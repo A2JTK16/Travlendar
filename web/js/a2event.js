@@ -639,6 +639,7 @@ $(document).ready( function()  // Ketika web udah siap
 
             click: function(e) 
             {
+                alert(isAddableMarker);
                 if(isAddableMarker)
                 {
                     if (domarker1) 
@@ -647,7 +648,7 @@ $(document).ready( function()  // Ketika web udah siap
                         mapObj.removePolylines();
                     }
                     if (domarker2) {
-			m1 = mapObj.addMarker({	lat: e.latLng.lat(),
+			m1 = objMapP.addMarker({	lat: e.latLng.lat(),
 						lng: e.latLng.lng()//,
 						//icon: sourceIcon
                         });
@@ -655,7 +656,7 @@ $(document).ready( function()  // Ketika web udah siap
 			m1pos = m1.getPosition();
                     } 
                     else {
-			m2 = mapObj.addMarker({
+			m2 = objMapP.addMarker({
 				lat: e.latLng.lat(),
 				lng: e.latLng.lng()//,
 				//icon: destinationIcon
@@ -665,7 +666,7 @@ $(document).ready( function()  // Ketika web udah siap
                     // If two markers have been placed
                     if (m1 !== null && m2 !== null) {
 			domarker1 = true;
-			mapObj.drawRoute({
+			objMapP.drawRoute({
 					origin: [m1pos.lat(), m1pos.lng()],
 					destination: [m2pos.lat(), m2pos.lng()],
                                         travelMode: 'driving',
@@ -695,13 +696,9 @@ $(document).ready( function()  // Ketika web udah siap
 
                         function callback(response, status) 
                         {
-                            var orig = $("orig"),
-                            dest = $("dest");
-                           //         dist = $("dist");
-
                             if(status=="OK") {
-                                dest.value = response.destinationAddresses[0];
-                                orig.value = response.originAddresses[0];
+                                $('#dest').val(response.destinationAddresses[0]);
+                                $('#orig').val(response.originAddresses[0]);
                          //               dist.value = response.rows[0].elements[0].distance.text;
                             } 
                             else {
@@ -979,7 +976,7 @@ $(document).ready( function()  // Ketika web udah siap
                     else
                     {
                         $(cssIdRadio).show().click(function(){
-                            mapObj.drawRoutesAnimated(travelMode, [-6.872034, 107.574794], [-6.926131, 107.636561]);
+                            mapObj.drawRoutesAnimated(travelMode, [m1pos.lat(), m1pos.lng()], [m2pos.lat(), m2pos.lng()]);
                         });
                         
                         $(cssIdMsg).val(((tmdifference - traveltime) / 60) + ' mins');     
@@ -1000,7 +997,7 @@ $(document).ready( function()  // Ketika web udah siap
         var dateTimeDest = new Date($('#destDate').val() +" "+$('#destTime').val());
         // dateTimeOrigin dikurangi dateTimeDest bentuk second
         var tmdifference = timeDiff(dateTimeOrigin, dateTimeDest);
-
+        
         chooseTransportAct(tmdifference, 'transit', '#radio', '#transit');
         chooseTransportAct(tmdifference, 'walking', '#radio1', '#walking');
         chooseTransportAct(tmdifference, 'driving', '#radio2', '#driving');
