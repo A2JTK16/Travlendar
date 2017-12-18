@@ -346,86 +346,18 @@ $(document).ready( function()  // Ketika web udah siap
          * 
          * @type markerP
          */
-    var marker1, marker2, isOrigin=true;
     /**
-     *  Google Maps nya
-     * @param {type} cssIdMap
-     * @param {type} defaultLat
-     * @param {type} defaultLng
-     * @returns {a2eventL#140.A2Gmaps}
+     * Google Maps
+     * @param {type} newObjMap
+     * @returns {a2eventL#12.A2Gmaps}
      */
-    var A2Gmaps = function(cssIdMap, defaultLat, defaultLng)
+    var A2Gmaps = function(newObjMap)
     {            
         /**
          * Atribut Public Maps Nya
          * Konstruktor
          */
-        this.objMaps = new GMaps({
-            el: cssIdMap,
-            lat: defaultLat,
-            lng: defaultLng,
-            //click: delegateClickMap
-            click:  function(e) 
-                    {
-                        if(isAddableMarker)
-                        {
-                        var addressStr;
-                        var cssIdForm;
-                            var markerP;
-                            
-                            if(isOrigin)
-                            {
-                                addressStr = "Origin";
-                                cssIdForm = "#orig";
-                            }
-                            else
-                                {
-                                addressStr = "Destination";
-                                cssIdForm = "#dest";
-                                }
-                                
-                            markerP = mapObj.addMarker(e.latLng.lat(), e.latLng.lng(), addressStr, addressStr, function(){
-                                    alert(addressStr);
-                                });
-                                
-                            if(isOrigin)
-                            {
-                                if(typeof marker1 !== 'undefined') // jika marker1 belum ada
-                                {
-                                    alert(marker1.getPosition().lat);
-                                    mapObj.removeMarker(marker1);
-                            }
-                            else
-                            {
-                                if(typeof marker2 !== 'undefined')
-                                {
-                                    alert(marker2.getPosition().lat);
-                                    mapObj.removeMarker(marker2);
-                                }
-                                marker2 = markerP;
-                            }
-                            isOrigin = !isOrigin;
-                            // buat polylines
-                            if(typeof marker1 !== 'undefined' || typeof marker2 !== 'undefined')
-                            {
-                                mapObj.objMaps.removePolylines();
-                                //posisi marker 1 dan 2
-                                var pathMark1Mark2 = [
-                                    [marker1.getPosition().lat(), marker1.getPosition().lng()],
-                                    [marker2.getPosition().lat(), marker2.getPosition().lng()]
-                                ];
-                                
-                                mapObj.drawPolylines(pathMark1Mark2);
-                            }
-       
-                            // buat geocode
-                            addressStr = mapObj.reverseGeocode({lat: e.latLng.lat(), lng: e.latLng.lng()});
-
-                            $(cssIdForm).val(addressStr);
-                        }
-                    }
-                }
-        });
+        this.objMaps = newObjMap;
         
         /**
          * Untuk Menggambar Rute
@@ -672,7 +604,7 @@ $(document).ready( function()  // Ketika web udah siap
     var tabView = new TabView({});
     
     // maps nya
-    var mapObj; /// = new A2Gmaps('#map',-6.870603,107.572050);
+    var mapObj; 
     
     tabView.openTab('#Tasik','#defaultOpen');
     
@@ -690,11 +622,99 @@ $(document).ready( function()  // Ketika web udah siap
         });
     }); 
     
+    // marker 1,2
+    var m1 = null, m2 = null;
+    var m1pos, m2pos; // posisi
+    var domarker1 = false, domarker2 = true;
+    
     // mendapatkan json dari controller
     objAccess.getJson(function(data){
         var lastEventObj = data[data.length - 1];
         
-        mapObj = new A2Gmaps('#map', lastEventObj.latitude, lastEventObj.longitude);
+        var objMapP = new GMaps({
+            el: '#map',
+            lat: lastEventObj.latitude,
+            lng: lastEventObj.longitude,
+            zoom: 14,
+
+            click: function(e) 
+            {
+                if(isAddableMarker)
+                {
+                    if (domarker1) 
+                    {
+                        mapObj.removeMarker((domarker1) ? m1 : m2);
+                        mapObj.removePolylines();
+                    }
+                    if (domarker2) {
+			m1 = mapObj.addMarker({	lat: e.latLng.lat(),
+						lng: e.latLng.lng()//,
+						//icon: sourceIcon
+                        });
+
+			m1pos = m1.getPosition();
+                    } 
+                    else {
+			m2 = mapObj.addMarker({
+				lat: e.latLng.lat(),
+				lng: e.latLng.lng()//,
+				//icon: destinationIcon
+			});
+			m2pos = m2.getPosition();
+                    }           
+                    // If two markers have been placed
+                    if (m1 !== null && m2 !== null) {
+			domarker1 = true;
+			mapObj.drawRoute({
+					origin: [m1pos.lat(), m1pos.lng()],
+					destination: [m2pos.lat(), m2pos.lng()],
+                                        travelMode: 'driving',
+					strokeColor: '#131540',
+					strokeOpacity: 0.6,
+                                        strokeWeight: 6
+					});
+                    }
+                    domarker2 = !domarker2;
+                    
+                    if(typeof google !== 'undefined')
+                    {
+                        var origin = new google.maps.LatLng(m1pos.lat(),m1pos.lng());
+                        var destination = new google.maps.LatLng(m2pos.lat(),m2pos.lng());
+                        var service = new google.maps.DistanceMatrixService();
+
+                        service.getDistanceMatrix(
+                                    {
+                                        origins: [origin],
+                                        destinations: [destination],
+                                        travelMode: google.maps.TravelMode.DRIVING,
+                                        avoidHighways: false,
+                                        avoidTolls: false
+                                    }, 
+                                    callback
+                                );
+
+                        function callback(response, status) 
+                        {
+                            var orig = $("orig"),
+                            dest = $("dest");
+                           //         dist = $("dist");
+
+                            if(status=="OK") {
+                                dest.value = response.destinationAddresses[0];
+                                orig.value = response.originAddresses[0];
+                         //               dist.value = response.rows[0].elements[0].distance.text;
+                            } 
+                            else {
+                                        alert("Error: " + status);
+                            }
+                        }
+                    } // tutup fungsi e ketika klik
+                }
+            }
+        }); // tutup instansiasi gmaps         
+
+        
+        mapObj = new A2Gmaps(objMapP);
         
         // memasukkan data kedalam kalendar
         objCalendar.writeCal(data,function(calEvent, jsEvent, view){

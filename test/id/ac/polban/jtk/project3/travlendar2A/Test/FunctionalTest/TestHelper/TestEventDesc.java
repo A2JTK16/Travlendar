@@ -50,7 +50,7 @@ public class TestEventDesc
         
         event = evd.getEvent();
         loc = evd.getLocation();
-        event.setLocation_id(loc.getLocation_id());
+        event.setEnd_location_id(loc.getLocation_id());
         
         System.out.println(event.getEvent_id() + " | "+ event.getEvent_name() + " | " + event.getStart_event() + " | " + event.getEnd_event() + " | " + event.getNote());
         System.out.println(loc.getLocation_id() + " | "  + loc.getLatitude() + " | " + loc.getLongitude());

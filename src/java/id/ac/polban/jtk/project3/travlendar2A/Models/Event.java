@@ -19,19 +19,21 @@ public class Event
 {
     @JsonProperty(value = "id")
     private Long event_id;
-    
-    private Integer location_id;
-    private Long traveller_id;
+        
+    private Integer start_location_id;
+    private Integer end_location_id;
+    @JsonProperty(value = "username")
+    private String traveller_username;   
     @JsonProperty(value = "title")
     private String event_name;
     @JsonProperty(value = "start")
     private Timestamp start_event;
     @JsonProperty(value = "end")
     private Timestamp end_event;
-    @JsonProperty(value = "transportation")
-    private String transportation;
-    @JsonProperty(value = "departure_time")
-    private Timestamp departure_time;
+    //@JsonProperty(value = "transportation")
+    //private String transportation;
+//    @JsonProperty(value = "departure_time")
+  //  private Timestamp departure_time;
     private String note;
 
     /**
@@ -46,34 +48,6 @@ public class Event
      */
     public void setEvent_id(Long event_id) {
         this.event_id = event_id;
-    }
-
-    /**
-     * @return the location_id
-     */
-    public Integer getLocation_id() {
-        return location_id;
-    }
-
-    /**
-     * @param location_id the location_id to set
-     */
-    public void setLocation_id(Integer location_id) {
-        this.location_id = location_id;
-    }
-
-    /**
-     * @return the traveller_id
-     */
-    public Long getTraveller_id() {
-        return traveller_id;
-    }
-
-    /**
-     * @param traveller_id the traveller_id to set
-     */
-    public void setTraveller_id(Long traveller_id) {
-        this.traveller_id = traveller_id;
     }
 
     /**
@@ -133,33 +107,45 @@ public class Event
     }
 
     /**
-     * @return the transportation
+     * @return the traveller_username
      */
-    public String getTransportation() {
-        return transportation;
+    public String getTraveller_username() {
+        return traveller_username;
     }
 
     /**
-     * @param transportation the transportation to set
+     * @param traveller_username the traveller_username to set
      */
-    public void setTransportation(String transportation) {
-        this.transportation = transportation;
+    public void setTraveller_username(String traveller_username) {
+        this.traveller_username = traveller_username;
     }
 
     /**
-     * @return the departure_time
+     * @return the start_location_id
      */
-    public Timestamp getDeparture_time() {
-        return departure_time;
+    public Integer getStart_location_id() {
+        return start_location_id;
     }
 
     /**
-     * @param departure_time the departure_time to set
+     * @param start_location_id the start_location_id to set
      */
-    public void setDeparture_time(Timestamp departure_time) {
-        this.departure_time = departure_time;
+    public void setStart_location_id(Integer start_location_id) {
+        this.start_location_id = start_location_id;
     }
 
-    
-  
+    /**
+     * @return the end_location_id
+     */
+    public Integer getEnd_location_id() {
+        return end_location_id;
+    }
+
+    /**
+     * @param end_location_id the end_location_id to set
+     */
+    public void setEnd_location_id(Integer end_location_id) {
+        this.end_location_id = end_location_id;
+    }
+
 }

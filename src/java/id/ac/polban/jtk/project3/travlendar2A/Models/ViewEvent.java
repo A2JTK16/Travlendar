@@ -14,8 +14,8 @@ import java.sql.Timestamp;
  */
 public class ViewEvent 
 {
-    @JsonProperty(value = "id")
-    private Long event_id;
+    //@JsonProperty(value = "id")
+    //private Long event_id;
     
     @JsonProperty(value = "title")
     private String event_name;
@@ -27,34 +27,24 @@ public class ViewEvent
     private Timestamp end_event;
     
     @JsonProperty(value = "transportation")
-    private String transportation;
+    private String transportation_mode;
     
     @JsonProperty(value = "departure_time")
     private Timestamp departure_time;
     
-    private String note;
+    private String event_note;
+    private String start_location_name;
+    private float strt_loc_lat;
+    private float strt_loc_long;
+    private float end_loc_lat;
+    private float end_loc_long;
     
-    //@JsonProperty(value = "lat")
-    private Float latitude;
+    private String event_location_name;
     
-    //@JsonProperty(value = "lng")
-    private Float longitude;
+    private String username;
+    private String fullname;
+    private String home_address;
     
-    private String address;
-    /**
-     * @return the event_id
-     */
-    public Long getEvent_id() {
-        return event_id;
-    }
-
-    /**
-     * @param event_id the event_id to set
-     */
-    public void setEvent_id(Long event_id) {
-        this.event_id = event_id;
-    }
-
     /**
      * @return the event_name
      */
@@ -96,21 +86,6 @@ public class ViewEvent
     public void setEnd_event(Timestamp end_event) {
         this.end_event = end_event;
     }
-
-    /**
-     * @return the transportation
-     */
-    public String getTransportation() {
-        return transportation;
-    }
-
-    /**
-     * @param transportation the transportation to set
-     */
-    public void setTransportation(String transportation) {
-        this.transportation = transportation;
-    }
-
     /**
      * @return the departure_time
      */
@@ -126,58 +101,156 @@ public class ViewEvent
     }
 
     /**
-     * @return the note
+     * @return the transportation_mode
      */
-    public String getNote() {
-        return note;
+    public String getTransportation_mode() {
+        return transportation_mode;
     }
 
     /**
-     * @param note the note to set
+     * @param transportation_mode the transportation_mode to set
      */
-    public void setNote(String note) {
-        this.note = note;
+    public void setTransportation_mode(String transportation_mode) {
+        this.transportation_mode = transportation_mode;
     }
 
     /**
-     * @return the latitude
+     * @return the event_note
      */
-    public Float getLatitude() {
-        return latitude;
+    public String getEvent_note() {
+        return event_note;
     }
 
     /**
-     * @param latitude the latitude to set
+     * @param event_note the event_note to set
      */
-    public void setLatitude(Float latitude) {
-        this.latitude = latitude;
+    public void setEvent_note(String event_note) {
+        this.event_note = event_note;
     }
 
     /**
-     * @return the longitude
+     * @return the start_location_name
      */
-    public Float getLongitude() {
-        return longitude;
+    public String getStart_location_name() {
+        return start_location_name;
     }
 
     /**
-     * @param longitude the longitude to set
+     * @param start_location_name the start_location_name to set
      */
-    public void setLongitude(Float longitude) {
-        this.longitude = longitude;
+    public void setStart_location_name(String start_location_name) {
+        this.start_location_name = start_location_name;
     }
 
     /**
-     * @return the address
+     * @return the strt_loc_lat
      */
-    public String getAddress() {
-        return address;
+    public float getStrt_loc_lat() {
+        return strt_loc_lat;
     }
 
     /**
-     * @param address the address to set
+     * @param strt_loc_lat the strt_loc_lat to set
      */
-    public void setAddress(String address) {
-        this.address = address;
+    public void setStrt_loc_lat(float strt_loc_lat) {
+        this.strt_loc_lat = strt_loc_lat;
+    }
+
+    /**
+     * @return the strt_loc_long
+     */
+    public float getStrt_loc_long() {
+        return strt_loc_long;
+    }
+
+    /**
+     * @param strt_loc_long the strt_loc_long to set
+     */
+    public void setStrt_loc_long(float strt_loc_long) {
+        this.strt_loc_long = strt_loc_long;
+    }
+
+    /**
+     * @return the end_loc_lat
+     */
+    public float getEnd_loc_lat() {
+        return end_loc_lat;
+    }
+
+    /**
+     * @param end_loc_lat the end_loc_lat to set
+     */
+    public void setEnd_loc_lat(float end_loc_lat) {
+        this.end_loc_lat = end_loc_lat;
+    }
+
+    /**
+     * @return the end_loc_long
+     */
+    public float getEnd_loc_long() {
+        return end_loc_long;
+    }
+
+    /**
+     * @param end_loc_long the end_loc_long to set
+     */
+    public void setEnd_loc_long(float end_loc_long) {
+        this.end_loc_long = end_loc_long;
+    }
+
+    /**
+     * @return the event_location_name
+     */
+    public String getEvent_location_name() {
+        return event_location_name;
+    }
+
+    /**
+     * @param event_location_name the event_location_name to set
+     */
+    public void setEvent_location_name(String event_location_name) {
+        this.event_location_name = event_location_name;
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * @return the fullname
+     */
+    public String getFullname() {
+        return fullname;
+    }
+
+    /**
+     * @param fullname the fullname to set
+     */
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    /**
+     * @return the home_address
+     */
+    public String getHome_address() {
+        return home_address;
+    }
+
+    /**
+     * @param home_address the home_address to set
+     */
+    public void setHome_address(String home_address) {
+        this.home_address = home_address;
     }
 }
