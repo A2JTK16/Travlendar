@@ -918,6 +918,26 @@ $(document).ready( function()  // Ketika web udah siap
     var m1 = null, m2 = null;
     
     /**
+     * Mengubah second to hh hours mm mins 
+     * @param {type} sec
+     * @returns {String}
+     */
+    function secToHHMM(sec) 
+    {
+        var sec_num = parseInt(sec, 10); 
+        var hours   = Math.floor(sec_num / 3600);
+        var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+
+        if (hours   < 10) {hours   = "0"+hours;}
+        if (minutes < 10) {minutes = "0"+minutes;}
+        
+        if(hours !== "00")
+            return hours+' hours '+ minutes +' mins';
+        else
+            return minutes +' mins';
+    }
+
+    /**
      * untuk memilih transportation mode dari marker m1 dan m2
      * m1 dan m2 tidk boleh null
      * @param {type} tmdifference selisih waktu
@@ -976,7 +996,7 @@ $(document).ready( function()  // Ketika web udah siap
                             mapObj.drawRoutesAnimated(travelMode, [m1pos.lat(), m1pos.lng()], [m2pos.lat(), m2pos.lng()]);
                         });
                         
-                        $(cssIdMsg).val(parseInt((tmdifference - traveltime) / 60) + ' mins');     
+                        $(cssIdMsg).val( secToHHMM(traveltime) );     
                     }
                 }
         });
@@ -1252,16 +1272,16 @@ $(document).ready( function()  // Ketika web udah siap
      * Klik Tombol view more
      */
            
-    
+    var eventDesc = {};
     /**
      * Klik tombol save
      */
     $('#TombolSave').click(function(){
                     
-                    var eventTraveller = {};
+                    var event = {};
                     var eventLoc = {};
                     var eventTravel = {};
-                    var eventDesc = {};
+                    
                     var eventStartLoc = {};
                     var value;
                     var radios = document.getElementsByName('transportation');
@@ -1276,10 +1296,10 @@ $(document).ready( function()  // Ketika web udah siap
                    
                     //if(m2 !== null)
                     //{
-                        eventTraveller['title'] = $('#eventName').val();
-                        eventTraveller['start'] = new Date($('#origDate').val() +" "+$('#origTime').val());
-                        eventTraveller['end'] = new Date($('#destDate').val() +" "+$('#destTime').val());
-                        eventTraveller['note'] = $('#noteDesc').val();
+                        event['title'] = $('#eventName').val();
+                        event['start'] = new Date($('#origDate').val() +" "+$('#origTime').val());
+                        event['end'] = new Date($('#destDate').val() +" "+$('#destTime').val());
+                        event['note'] = $('#noteDesc').val();
                         
                         eventTravel['transportation']= value;
                         eventTravel['departure_time']= new Date($('#departureDate').val() +" "+$('#departureTime').val());
@@ -1293,16 +1313,14 @@ $(document).ready( function()  // Ketika web udah siap
                         eventStartLoc['longitude'] = m2.getPosition().lng();
                         eventStartLoc['address'] = ($('#dest').val()).substring(0, 59);
                         
-                        eventDesc['event'] = eventTraveller;
-                        eventDesc['startLocation'] = eventStartLoc;
-                        eventDesc['endLocation'] = eventLoc;
-                        eventDesc['travel'] = eventTravel;
-                        
-                        //alert(JSON.stringify(eventDesc));
+                        eventDesc.event = event;
+                        eventDesc.travel = eventTravel;
+                        eventDesc.startLocation =  eventStartLoc;
+                        eventDesc.endLocation = eventLoc;
                         
                         objAccess.sendEvent(eventDesc);
                    // }
-                    //else
+                   //else
                       //  alert("Mohon klik tujuan anda!");
                 });
                                 
