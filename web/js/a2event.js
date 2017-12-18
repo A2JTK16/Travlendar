@@ -346,7 +346,7 @@ $(document).ready( function()  // Ketika web udah siap
          * 
          * @type markerP
          */
-        var marker1, marker2, isOrigin=true;
+    var marker1, marker2, isOrigin=true;
     /**
      *  Google Maps nya
      * @param {type} cssIdMap
@@ -369,8 +369,8 @@ $(document).ready( function()  // Ketika web udah siap
                     {
                         if(isAddableMarker)
                         {
-                            var addressStr;
-                            var cssIdForm;
+                        var addressStr;
+                        var cssIdForm;
                             var markerP;
                             
                             if(isOrigin)
@@ -379,31 +379,29 @@ $(document).ready( function()  // Ketika web udah siap
                                 cssIdForm = "#orig";
                             }
                             else
-                            {    
+                                {
                                 addressStr = "Destination";
                                 cssIdForm = "#dest";
-                            }
-
+                                }
+                                
                             markerP = mapObj.addMarker(e.latLng.lat(), e.latLng.lng(), addressStr, addressStr, function(){
-                                alert(addressStr);
-                            });
-                            
+                                    alert(addressStr);
+                                });
+                                
                             if(isOrigin)
                             {
                                 if(typeof marker1 !== 'undefined') // jika marker1 belum ada
                                 {
                                     alert(marker1.getPosition().lat);
                                     mapObj.removeMarker(marker1);
-                                }
-                                marker1 = markerP;
                             }
                             else
                             {
-                               if(typeof marker2 !== 'undefined')
-                               {
+                                if(typeof marker2 !== 'undefined')
+                                {
                                     alert(marker2.getPosition().lat);
                                     mapObj.removeMarker(marker2);
-                               }
+                                }
                                 marker2 = markerP;
                             }
                             isOrigin = !isOrigin;
@@ -419,13 +417,14 @@ $(document).ready( function()  // Ketika web udah siap
                                 
                                 mapObj.drawPolylines(pathMark1Mark2);
                             }
-                            
+       
                             // buat geocode
                             addressStr = mapObj.reverseGeocode({lat: e.latLng.lat(), lng: e.latLng.lng()});
 
                             $(cssIdForm).val(addressStr);
                         }
                     }
+                }
         });
         
         /**
@@ -766,32 +765,33 @@ $(document).ready( function()  // Ketika web udah siap
         tabView.openTab('#Paris','#getList');
     });
     
-           // search
-        $('#findEvent').on("keyup", function() {
-            var value = $(this).val();
-            $('#findResult').html('<button class="findClose">Close</button>');
-            
+    // search
+    $('#findEvent').on("keyup", function() {
+        // mendapatkan string inputan 
+        var value = $(this).val();
+        // jika lebih dari dua
+        if(value.length > 2)
+        {
+            $('#findResult').html('<table id="tableEvent"><tbody>'); // tambahkan tabel
             $("#tableEvent tr").each(function(index) {
-                if (index != 0) {
-                    
+                if (index >= 0) {
+
                     $row = $(this);
 
-                    var id = $row.find("td:eq(1)").text().toLowerCase();
-
-                    if (id.indexOf(value.toString().toLowerCase()) != 0) {
-                       // $('#findResult').html($(this));
+                    var titleEvent = $row.find("td:eq(1)").text().toLowerCase();
+                    var indexStr = titleEvent.indexOf(value.toString().toLowerCase());
+                    if (indexStr !== 0 && indexStr < 0){                     
                     }
-                    else {
+                    else
                         $('#findResult').append($row.clone());
-                    }
                 }
             });
-            
-            $('.findClose').click(function(){
-                $('#findResult').html('');
-            });
-
-        });
+            $('#findResult').append('</tbody></table>');
+                        
+        }
+        else
+            $('#findResult').html('');
+    });
     
     /**
      * Klik menu add new event

@@ -67,7 +67,7 @@
             $(document).ready( function()  // Ketika web udah siap
             {   
                 
-                $.get("http://localhost:8080/Travlendar2A/index?action=findUser", function(responseJson) 
+                $.get("../index?action=findUser", function(responseJson) 
                     {          // Eksekusi URL Controller
                         //alert(responseJson.traveller_fullname);
                         $('#input0').val(responseJson.traveller_id);
@@ -110,7 +110,7 @@
                     {
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8080/Travlendar2A/index",
+                            url: "../index",
                             dataType:'JSON',
                             data: {action: 'editUser', json: JSON.stringify(formData) },
                             async: false, // dikirim ketika semua beres
@@ -144,7 +144,7 @@
                     {
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8080/Travlendar2A/index",
+                            url: "../index",
                             dataType:'JSON',
                             data: {action: 'deleteUser', traveller_id: $('#input0').val() },
                             async: false, // dikirim ketika semua beres
