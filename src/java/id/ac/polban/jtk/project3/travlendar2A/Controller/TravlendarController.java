@@ -55,7 +55,7 @@ public class TravlendarController extends HttpServlet
         String jdbcUsername = getServletContext().getInitParameter("jdbcUsername");
         String jdbcPassword = getServletContext().getInitParameter("jdbcPassword");       
         */
-        String jdbcURL = "jdbc:mysql://localhost:3306/a2travlendar";
+        String jdbcURL = "jdbc:mysql://localhost:3306/travlendardb";
         String jdbcUsername = "root";
         String jdbcPassword = "";
         
@@ -119,18 +119,20 @@ public class TravlendarController extends HttpServlet
                  * Mendapatkan list event
                  */
                 List<ViewEvent> list = this.vEventDao.getList("traveller_username", this.getUsername(request));
-                /**
-                 * Mengubah ke bentuk json dan mengirimkan resonse json ke client
-                 */
-                try
+        
+                try 
                 {
-                    jsonString = this.jsonMapper.writeValueAsString(list);            
+                    /**
+                     * Mengubah ke bentuk json dan mengirimkan resonse json ke client
+                     */
+                    jsonString = this.jsonMapper.writeValueAsString(list);
                     this.responseJson(response, jsonString);
-                }
-                catch (JsonProcessingException ex)
+                } 
+                catch (JsonProcessingException ex) 
                 {
-                    
+                    Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
                 break;
                 
             case "findUser":
