@@ -14,8 +14,8 @@ import java.sql.Timestamp;
  */
 public class ViewEvent 
 {
-    //@JsonProperty(value = "id")
-    //private Long event_id;
+    @JsonProperty(value = "id")
+    private Long event_id;
     
     @JsonProperty(value = "title")
     private String event_name;
@@ -29,22 +29,40 @@ public class ViewEvent
     @JsonProperty(value = "transportation")
     private String transportation_mode;
     
-    @JsonProperty(value = "departure_time")
-    private Timestamp departure_time;
+    @JsonProperty(value = "depature_time")
+    private Timestamp depature_time;
     
-    private String event_note;
+    @JsonProperty(value = "latitude")
+    private Float strt_loc_lat;
+    
+    @JsonProperty(value = "longitude")
+    private Float strt_loc_long;
+    
+   // private Float end_loc_lat;
+    //private Float end_loc_long;
+    
+    @JsonProperty(value = "address")
     private String start_location_name;
-    private float strt_loc_lat;
-    private float strt_loc_long;
-    private float end_loc_lat;
-    private float end_loc_long;
     
-    private String event_location_name;
-    
-    private String username;
-    private String fullname;
-    private String home_address;
-    
+    private String note;
+  //  private String username;
+   // private String fullname;
+  //  private String home_address;
+
+    /**
+     * @return the event_id
+     */
+    public Long getEvent_id() {
+        return event_id;
+    }
+
+    /**
+     * @param event_id the event_id to set
+     */
+    public void setEvent_id(Long event_id) {
+        this.event_id = event_id;
+    }
+
     /**
      * @return the event_name
      */
@@ -86,19 +104,6 @@ public class ViewEvent
     public void setEnd_event(Timestamp end_event) {
         this.end_event = end_event;
     }
-    /**
-     * @return the departure_time
-     */
-    public Timestamp getDeparture_time() {
-        return departure_time;
-    }
-
-    /**
-     * @param departure_time the departure_time to set
-     */
-    public void setDeparture_time(Timestamp departure_time) {
-        this.departure_time = departure_time;
-    }
 
     /**
      * @return the transportation_mode
@@ -115,17 +120,45 @@ public class ViewEvent
     }
 
     /**
-     * @return the event_note
+     * @return the departure_time
      */
-    public String getEvent_note() {
-        return event_note;
+    public Timestamp getDepature_time() {
+        return depature_time;
     }
 
     /**
-     * @param event_note the event_note to set
+     * @param departure_time the departure_time to set
      */
-    public void setEvent_note(String event_note) {
-        this.event_note = event_note;
+    public void setDepature_time(Timestamp departure_time) {
+        this.depature_time = departure_time;
+    }
+
+    /**
+     * @return the strt_loc_lat
+     */
+    public Float getStrt_loc_lat() {
+        return strt_loc_lat;
+    }
+
+    /**
+     * @param strt_loc_lat the strt_loc_lat to set
+     */
+    public void setStrt_loc_lat(Float strt_loc_lat) {
+        this.strt_loc_lat = strt_loc_lat;
+    }
+
+    /**
+     * @return the strt_loc_long
+     */
+    public Float getStrt_loc_long() {
+        return strt_loc_long;
+    }
+
+    /**
+     * @param strt_loc_long the strt_loc_long to set
+     */
+    public void setStrt_loc_long(Float strt_loc_long) {
+        this.strt_loc_long = strt_loc_long;
     }
 
     /**
@@ -143,114 +176,18 @@ public class ViewEvent
     }
 
     /**
-     * @return the strt_loc_lat
+     * @return the note
      */
-    public float getStrt_loc_lat() {
-        return strt_loc_lat;
+    public String getNote() {
+        return note;
     }
 
     /**
-     * @param strt_loc_lat the strt_loc_lat to set
+     * @param note the note to set
      */
-    public void setStrt_loc_lat(float strt_loc_lat) {
-        this.strt_loc_lat = strt_loc_lat;
+    public void setNote(String note) {
+        this.note = note;
     }
-
-    /**
-     * @return the strt_loc_long
-     */
-    public float getStrt_loc_long() {
-        return strt_loc_long;
-    }
-
-    /**
-     * @param strt_loc_long the strt_loc_long to set
-     */
-    public void setStrt_loc_long(float strt_loc_long) {
-        this.strt_loc_long = strt_loc_long;
-    }
-
-    /**
-     * @return the end_loc_lat
-     */
-    public float getEnd_loc_lat() {
-        return end_loc_lat;
-    }
-
-    /**
-     * @param end_loc_lat the end_loc_lat to set
-     */
-    public void setEnd_loc_lat(float end_loc_lat) {
-        this.end_loc_lat = end_loc_lat;
-    }
-
-    /**
-     * @return the end_loc_long
-     */
-    public float getEnd_loc_long() {
-        return end_loc_long;
-    }
-
-    /**
-     * @param end_loc_long the end_loc_long to set
-     */
-    public void setEnd_loc_long(float end_loc_long) {
-        this.end_loc_long = end_loc_long;
-    }
-
-    /**
-     * @return the event_location_name
-     */
-    public String getEvent_location_name() {
-        return event_location_name;
-    }
-
-    /**
-     * @param event_location_name the event_location_name to set
-     */
-    public void setEvent_location_name(String event_location_name) {
-        this.event_location_name = event_location_name;
-    }
-
-    /**
-     * @return the username
-     */
-    public String getUsername() {
-        return username;
-    }
-
-    /**
-     * @param username the username to set
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    /**
-     * @return the fullname
-     */
-    public String getFullname() {
-        return fullname;
-    }
-
-    /**
-     * @param fullname the fullname to set
-     */
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
-    }
-
-    /**
-     * @return the home_address
-     */
-    public String getHome_address() {
-        return home_address;
-    }
-
-    /**
-     * @param home_address the home_address to set
-     */
-    public void setHome_address(String home_address) {
-        this.home_address = home_address;
-    }
+    
+   
 }

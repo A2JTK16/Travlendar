@@ -17,8 +17,8 @@ public class Travel {
     private Timestamp departure_time;
     @JsonProperty(value = "username")
     private String traveller_username;
-    private int start_location_id;
-    private int end_location_id;
+    private Integer start_location_id;
+    private Integer end_location_id;
     @JsonProperty(value = "transportation")
     private String transportation_mode;
 
@@ -67,14 +67,14 @@ public class Travel {
     /**
      * @return the start_location_id
      */
-    public int getStart_location_id() {
+    public Integer getStart_location_id() {
         return start_location_id;
     }
 
     /**
      * @param start_location_id the start_location_id to set
      */
-    public void setStart_location_id(int start_location_id) {
+    public void setStart_location_id(Integer start_location_id) {
         this.start_location_id = start_location_id;
     }
 
@@ -88,7 +88,7 @@ public class Travel {
     /**
      * @param end_location_id the end_location_id to set
      */
-    public void setEnd_location_id(int end_location_id) {
+    public void setEnd_location_id(Integer end_location_id) {
         this.end_location_id = end_location_id;
     }
 

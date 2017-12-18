@@ -199,7 +199,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
                  */
                 for (PropertyDescriptor descriptor : propertyClass) 
                 {
-                    this.invokeSetter(descriptor, objModel, rs.getObject(descriptor.getName()));
+                    this.invokeSetter(descriptor, objModel, rs.getObject(descriptor.getName(), descriptor.getPropertyType()));
                 }
                 
                 listObj.add(objModel);
@@ -208,7 +208,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         } 
         catch (SQLException | InstantiationException | IllegalAccessException | SecurityException | IllegalArgumentException ex) 
         {
-            // ex.printStackTrace();
+             ex.printStackTrace();
         }
         
         super.disconnect();
