@@ -118,8 +118,7 @@ public class TravlendarController extends HttpServlet
                 /**
                  * Mendapatkan list event
                  */
-                Traveller travl = this.travellerDao.getObj("traveller_name", this.getUsername(request));
-                List<ViewEvent> list = this.vEventDao.getList("traveller_username", travl.getTraveller_username());
+                List<ViewEvent> list = this.vEventDao.getList("traveller_username", this.getUsername(request));
                 /**
                  * Mengubah ke bentuk json dan mengirimkan resonse json ke client
                  */
@@ -138,7 +137,7 @@ public class TravlendarController extends HttpServlet
                 // TULIS CODE DISINI !!!
                 //String username = request.getParameter("username");
                 String username = this.getUsername(request);
-                Traveller traveller = this.travellerDao.getObj("traveller_name", username);
+                Traveller traveller = this.travellerDao.getObj("traveller_username", username);
                 
                 /**
                  * Mengubah ke bentuk json dan mengirimkan resonse json ke client
@@ -183,7 +182,7 @@ public class TravlendarController extends HttpServlet
                 try 
                 {
                     EventDesc eventdesc = jsonMapper.readValue(json, EventDesc.class);
-                    Traveller travl = this.travellerDao.getObj("traveller_name", this.getUsername(request));
+                    Traveller travl = this.travellerDao.getObj("traveller_username", this.getUsername(request));
                     Event objEvent = eventdesc.getEvent();
                     Location objLoc = eventdesc.getLocation();
                     
