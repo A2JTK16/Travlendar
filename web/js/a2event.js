@@ -99,7 +99,7 @@ $(document).ready( function()  // Ketika web udah siap
          */
         this.sendEvent = function(dataJson){
             $.ajax({
-                type: "POST", // method post
+                type: 'POST', // method post
                 url: urlController,
                 dataType:'JSON',
                 data: {action: 'addEvent', json: JSON.stringify(dataJson)},
@@ -1278,51 +1278,116 @@ $(document).ready( function()  // Ketika web udah siap
      */
     $('#TombolSave').click(function(){
                     
-                    var event = {};
-                    var eventLoc = {};
-                    var eventTravel = {};
+        var event = {};
+        var eventLoc = {};
+        var eventTravel = {};
                     
-                    var eventStartLoc = {};
-                    var value;
-                    var radios = document.getElementsByName('transportation');
-                    for (var i = 0, length = radios.length; i < length; i++)
-                    {
-                        if (radios[i].checked)
-                        {
-                        // do whatever you want with the checked radio
-                            value = radios[i].value.toString().toLowerCase();
-                        }
-                    }
+        var eventStartLoc = {};
+        var value;
+        var radios = document.getElementsByName('transportation');
+        for (var i = 0, length = radios.length; i < length; i++)
+        {
+            if (radios[i].checked)
+            {
+            // do whatever you want with the checked radio
+            value = radios[i].value.toString().toLowerCase();
+            }
+        }
                    
-                    //if(m2 !== null)
-                    //{
-                        event['title'] = $('#eventName').val();
-                        event['start'] = new Date($('#origDate').val() +" "+$('#origTime').val());
-                        event['end'] = new Date($('#destDate').val() +" "+$('#destTime').val());
-                        event['note'] = $('#noteDesc').val();
+        //if(m2 !== null)
+        //{
+            event['title'] = $('#eventName').val();
+            event['start'] = new Date($('#origDate').val() +" "+$('#origTime').val());
+            event['end'] = new Date($('#destDate').val() +" "+$('#destTime').val());
+            event['note'] = $('#noteDesc').val();
+                       
+            eventTravel['transportation']= value;
+            eventTravel['departure_time']= new Date($('#departureDate').val() +" "+$('#departureTime').val());
+            //eventTraveller['traveller_id'] = 1;
                         
-                        eventTravel['transportation']= value;
-                        eventTravel['departure_time']= new Date($('#departureDate').val() +" "+$('#departureTime').val());
-                        //eventTraveller['traveller_id'] = 1;
+            eventLoc['latitude'] = m2.getPosition().lat();
+            eventLoc['longitude'] = m2.getPosition().lng();
+            eventLoc['address'] = ($('#orig').val()).substring(0, 59);
                         
-                        eventLoc['latitude'] = m2.getPosition().lat();
-                        eventLoc['longitude'] = m2.getPosition().lng();
-                        eventLoc['address'] = ($('#orig').val()).substring(0, 59);
+            eventStartLoc['latitude'] = m2.getPosition().lat();
+            eventStartLoc['longitude'] = m2.getPosition().lng();
+            eventStartLoc['address'] = ($('#dest').val()).substring(0, 59);
                         
-                        eventStartLoc['latitude'] = m2.getPosition().lat();
-                        eventStartLoc['longitude'] = m2.getPosition().lng();
-                        eventStartLoc['address'] = ($('#dest').val()).substring(0, 59);
-                        
-                        eventDesc.event = event;
-                        eventDesc.travel = eventTravel;
-                        eventDesc.startLocation =  eventStartLoc;
-                        eventDesc.endLocation = eventLoc;
-                        
-                        objAccess.sendEvent(eventDesc);
+            eventDesc.event = event;
+            eventDesc.travel = eventTravel;
+            eventDesc.startLocation =  eventStartLoc;
+            eventDesc.endLocation = eventLoc;
+            
+            //eventDesc = jQuery.parseJSON(JSON.stringify(eventDesc));
+
+            $.ajax({
+                type: 'POST', // method post
+                url: 'index',
+                data: {action: 'addEvent', json: JSON.stringify(eventDesc)},
+                async: false, // dikirim ketika semua beres
+                success: function(msgStatus)
+                    {
+                            alert(msgStatus);
+                        },
+                        error: function(xmlhttprequest, textstatus, message)
+                        {
+                            alert(textstatus + message);
+                        }
+                    });
+            
+            event.address = eventLoc.address;
+            event.depature_time = eventTravel.departure_time;
+            
+            objTableEvent.writeRow(event);
+            $('#calendar').fullCalendar( 'renderEvent', event);
                    // }
                    //else
                       //  alert("Mohon klik tujuan anda!");
-                });
+    });
+    
+    
+    /**
+     * Klik tombol save
+     */
+    $('#MoreEdit').click(function(){
+                    
+        var event = {};
+        var eventLoc = {};
+        var eventTravel = {};
+                    
+        var eventStartLoc = {};
+       
+        //if(m2 !== null)
+        //{
+            event['title'] = $('#moreTitle').val();
+            event['start'] = new Date($('#moreStart').val());
+            event['note'] = $('#noteDesc').val();
+                       
+            eventTravel['transportation']= value;
+            eventTravel['departure_time']= new Date($('#departureDate').val() +" "+$('#departureTime').val());
+            //eventTraveller['traveller_id'] = 1;
+                   
+            eventDesc.event = event;
+            eventDesc.travel = eventTravel;
+            
+            $.ajax({
+                type: 'POST', // method post
+                url: 'index',
+                data: {action: 'addEvent', json: JSON.stringify(eventDesc)},
+                async: false, // dikirim ketika semua beres
+                success: function(msgStatus)
+                    {
+                            alert(msgStatus);
+                        },
+                        error: function(xmlhttprequest, textstatus, message)
+                        {
+                            alert(textstatus + message);
+                        }
+                    });
+                   // }
+                   //else
+                      //  alert("Mohon klik tujuan anda!");
+    });
                                 
                 $('#myBtn').click(function(){
                     $('#map').appendTo('#mapPopup');
