@@ -302,18 +302,18 @@
 					<div class="text-ev"> Event Locations </div>
                                             <input class="ev" id="moreAddress" type="text" placeholder="Ke ..."/>
                                         <div class="text-ev"> Use </div>
-                                        <div class="icon-more">
+                                        
                                             <input class="ev" id="moreMode" type="text" placeholder="Ke ..."/>
-                                        </div>
+                                        
                                         <div class="text-ev"> At </div>
-                                            <input class="time-ev" id="moreDepature" />
+                                            <input class="ev" id="moreDepature" />
 				</div>
                                  
                                 <input class="ev-name" id="moreNote" type="text" style="height:75px;"/>
 
-                                <div class="i-save" >
+                                <div class="i-save2">
+                                    <button class="save-ev2" id="moreBack"> Back </button>
                                     <button class="save-ev" id="moreSave"> Edit </button> 
-                                    <button id="moreBack"> Back </button>
                                 </div> <!--i-save-->
                             </form>
 				

@@ -432,7 +432,7 @@ a:hover{
 }
 
 .active {
-  background-color: #4CAF50;
+  background-color: #ff9900;
   color: white;
 }
 
@@ -521,6 +521,16 @@ a:hover{
 	font: 14px Arial;
 }
 
+
+.time-ev2{
+	width: 456px;
+	padding: 10px;
+	margin: 10px;
+	border: 1px solid #b4b4b4;
+	font: 14px Arial;
+}
+
+
 .text-ev{
 	margin-left: 10px;
 	font: 14px Arial;
@@ -533,6 +543,12 @@ a:hover{
 	margin: 0 auto;
 }
 
+.i-save2{
+	width: 450px;
+	margin: 0 auto;
+        overflow: hidden;
+}
+
 .save-ev{
 	width: 200px;
 	padding: 10px;
@@ -541,6 +557,18 @@ a:hover{
 	font-weight: bold;
 	color: #f4f4f4;
 	background: #ff9900;
+	border: none;
+	border-radius: 0.3em;
+}
+
+.save-ev2{
+	width: 200px;
+	padding: 10px;
+	margin: 10px;
+	font: 16px Arial;
+	font-weight: bold;
+	color: #f4f4f4;
+	background: #1abc9c;
 	border: none;
 	border-radius: 0.3em;
 }
@@ -569,7 +597,7 @@ a:hover{
 div.tab {
     overflow: hidden;
     border: none;
-	border-radius: 0.2em;
+    border-radius: 0.2em;
     background-color: #fafafa;
 }
 
@@ -594,8 +622,15 @@ div.tab button:hover {
 /* Create an active/current tablink class */
 div.tab button.active {
     background-color: #1abc9c;
-	border: none;
+    border: none;
 }
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+
 
 /* Style the tab content */
 .tabcontent {
