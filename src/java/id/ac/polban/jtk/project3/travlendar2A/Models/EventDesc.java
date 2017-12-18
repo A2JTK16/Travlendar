@@ -12,8 +12,10 @@ package id.ac.polban.jtk.project3.travlendar2A.Models;
 public class EventDesc 
 {
     private Event event;
-    private Location location;
-
+    private Location startLocation;
+    private Location endLocation;
+    private Travel travel;
+    
     /**
      * @return the event
      */
@@ -29,16 +31,44 @@ public class EventDesc
     }
 
     /**
-     * @return the location
+     * @return the startLocation
      */
-    public Location getLocation() {
-        return location;
+    public Location getStartLocation() {
+        return startLocation;
     }
 
     /**
-     * @param location the location to set
+     * @param startLocation the startLocation to set
      */
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setStartLocation(Location startLocation) {
+        this.startLocation = startLocation;
+    }
+
+    /**
+     * @return the endLocation
+     */
+    public Location getEndLocation() {
+        return endLocation;
+    }
+
+    /**
+     * @param endLocation the endLocation to set
+     */
+    public void setEndLocation(Location endLocation) {
+        this.endLocation = endLocation;
+    }
+
+    /**
+     * @return the travel
+     */
+    public Travel getTravel() {
+        return travel;
+    }
+
+    /**
+     * @param travel the travel to set
+     */
+    public void setTravel(Travel travel) {
+        this.travel = travel;
     }
 }

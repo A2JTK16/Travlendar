@@ -13,6 +13,7 @@ import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import id.ac.polban.jtk.project3.travlendar2A.Models.EventDesc;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Location;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Travel;
 import id.ac.polban.jtk.project3.travlendar2A.Models.ViewEvent;
 import java.io.IOException;
 import java.util.List;
@@ -35,7 +36,7 @@ public class TravlendarController extends HttpServlet
      */
     IDao<Event> eventDao;
     IDao<Traveller> travellerDao;
-    //IDao<Admin> adminDao;
+    IDao<Travel> travelDao;
     IDao<Location> locationDao;
     IDao<ViewEvent> vEventDao;
     /**
@@ -65,7 +66,7 @@ public class TravlendarController extends HttpServlet
         
         this.eventDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Event.class);
         this.travellerDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Traveller.class);
-      //  this.adminDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Admin.class);
+        this.travelDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Travel.class);
         this.locationDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Location.class);
         this.vEventDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, ViewEvent.class);
         this.jsonMapper = new ObjectMapper();
@@ -184,15 +185,27 @@ public class TravlendarController extends HttpServlet
                 try 
                 {
                     EventDesc eventdesc = jsonMapper.readValue(json, EventDesc.class);
-                    Traveller travl = this.travellerDao.getObj("traveller_username", this.getUsername(request));
+                    // masukin lokasi
+                    Location eventLoc = eventdesc.getStartLocation();
+                    idPK = this.locationDao.create(eventLoc);
+                    
+                    eventLoc = eventdesc.getEndLocation();
+                    affectedRow = this.locationDao.create(eventLoc);
+                    
+                    // masukin event
                     Event objEvent = eventdesc.getEvent();
-                    Location objLoc = eventdesc.getLocation();
+                    objEvent.setTraveller_username(this.getUsername(request));
+                    this.eventDao.create(objEvent);
                     
-                    int locId = this.locationDao.create(objLoc);
+                    // masukkin travel
+                    Travel travelEvent = eventdesc.getTravel();
+                    travelEvent.setTraveller_username(this.getUsername(request));
+                    travelEvent.setStart_location_id(idPK);
+                    travelEvent.setEnd_location_id(affectedRow);
+                    travelEvent.setTraveller_username(this.getUsername(request));
                     
-                    objEvent.setEnd_location_id(locId); //tadinya set location id
-                    objEvent.setTraveller_username(travl.getTraveller_username());
-                    idPK = this.eventDao.create(objEvent);
+                    this.travelDao.create(travelEvent);
+                    idPK = 1;
                 } 
                 catch (IOException ex) 
                 {
@@ -210,12 +223,19 @@ public class TravlendarController extends HttpServlet
                 try 
                 {
                     EventDesc eventdesc = jsonMapper.readValue(json, EventDesc.class);
+                    // masukin lokasi
+                    Location eventLoc = eventdesc.getStartLocation();
+                    idPK = this.locationDao.edit(eventLoc, "location_id", eventLoc.getLocation_id().toString());
+                    
+                    eventLoc = eventdesc.getEndLocation();
+                    affectedRow = this.locationDao.edit(eventLoc, "location_id", eventLoc.getLocation_id().toString());
+                   
+                    // masukin event
                     Event objEvent = eventdesc.getEvent();
-                    Location objLoc = eventdesc.getLocation();
-                    
-                    this.locationDao.edit(objLoc, "location_id", objEvent.getEnd_location_id().toString());//tadinya get location id
-                    
-                    affectedRow = this.eventDao.edit(objEvent, "event_id", objEvent.getEvent_id().toString());
+                    objEvent.setTraveller_username(this.getUsername(request));
+                    this.eventDao.edit(objEvent, "event_id", objEvent.getEvent_id().toString());
+   
+                    idPK = 1;         
                 } 
                 catch (IOException ex) 
                 {
