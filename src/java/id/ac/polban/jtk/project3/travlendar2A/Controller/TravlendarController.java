@@ -224,18 +224,19 @@ public class TravlendarController extends HttpServlet
                 {
                     EventDesc eventdesc = jsonMapper.readValue(json, EventDesc.class);
                     // masukin lokasi
-                    Location eventLoc = eventdesc.getStartLocation();
-                    idPK = this.locationDao.edit(eventLoc, "location_id", eventLoc.getLocation_id().toString());
+                    //Location eventLoc = eventdesc.getStartLocation();
+                    //idPK = this.locationDao.edit(eventLoc, "location_id", eventLoc.getLocation_id().toString());
                     
-                    eventLoc = eventdesc.getEndLocation();
-                    affectedRow = this.locationDao.edit(eventLoc, "location_id", eventLoc.getLocation_id().toString());
+                    //eventLoc = eventdesc.getEndLocation();
+                    //affectedRow = this.locationDao.edit(eventLoc, "location_id", eventLoc.getLocation_id().toString());
                    
                     // masukin event
-                    Event objEvent = eventdesc.getEvent();
-                    objEvent.setTraveller_username(this.getUsername(request));
-                    this.eventDao.edit(objEvent, "event_id", objEvent.getEvent_id().toString());
+                   // Event objEvent = eventdesc.getEvent();
+                   // objEvent.setTraveller_username(this.getUsername(request));
+                    //this.eventDao.edit(objEvent, "event_id", objEvent.getEvent_id().toString());
    
-                    idPK = 1;         
+                   // Travel trvl = eventdesc.getTravel();
+                   // this.travelDao.edit(objEvent, "event_id", param)
                 } 
                 catch (IOException ex) 
                 {
