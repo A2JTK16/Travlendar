@@ -194,6 +194,8 @@ public class TravlendarController extends HttpServlet
                     
                     // masukin event
                     Event objEvent = eventdesc.getEvent();
+                    objEvent.setStart_location_id(idPK);
+                    objEvent.setEnd_location_id(affectedRow);
                     objEvent.setTraveller_username(this.getUsername(request));
                     this.eventDao.create(objEvent);
                     
