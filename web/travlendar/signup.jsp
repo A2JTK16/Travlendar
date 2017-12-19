@@ -27,7 +27,7 @@
 
                 <div class="tombol" style="float:right;">
                         <div class="sign-in">
-                            <button id="myBtn">Sign In</button>
+                            <a href="../index.jsp">Sign In</a>
                         </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
         <div class="wadah1">
         <!-- Modal content -->
             <div class="modal-content">			    	
-		<div class="form">
+		<div class="form2">
                     
                     <div class="modal-header">
                         <h1> Create Your Account </h1>
@@ -51,7 +51,7 @@
                         <input type="text" name="traveller_address" placeholder="Your Home Address ..."/>
                         <br>	
                     </form>
-                    <button class="b-signup" id="tblSignup">Sign Up Now</button>
+                    <button class="b-signup" id="tblSignup">Sign Up</button>
                     <a href="../index.jsp"><button class="b-back">Back</button></a>
                     <!--<a href="listuser.html"><button class="b-back">Show List User</button></a>-->
 		</div>			
