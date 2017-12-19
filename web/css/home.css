@@ -28,24 +28,24 @@ and open the template in the editor.
 body{
 	background: #f4f4f4;
 	font-family: 'Helvetica', arial, sans-serif;
-
 	font-size: 15px;
+        overflow:hidden; 
 }
 
 .wadah{
 	max-width: 100%;
 	margin: auto;
 	background: none;
-	overflow: hidden;
+	overflow-x: hidden;
         padding: 10px;
 }
 
 
 .kotak-deskripsi{
-   width: 200px;
+   width: 470px;
    background: #1abc9c;
-   opacity: 0.9;
-   padding: 30px;
+   opacity: 0.7;
+   padding: 15px;
     border-radius:50px;
     margin-left:50px;
     margin-top:110px;
@@ -71,25 +71,23 @@ body{
 
 .wadah3{
         width: 100%;
-        height: auto;
+        height: 300px;;
 	margin: auto;
-	background: url("../images/mobil.jpg");
-	overflow: hidden;
+	background: #f4f4f4;
         padding: 10px;
-        height:600px;
         posisition:absolute;
-        -webkit-background-size: cover;
+/*        -webkit-background-size: cover;
         -moz-background-size:  cover;
         -o-background-size: cover;
          background-size: cover;
          -webkit-animation: fade-in-move-down 1s;
-        animation: fade-in-move-down 1s;
+        animation: fade-in-move-down 1s;*/
 }
 
 /* as seen on https://webkit.org/blog */
 @-webkit-keyframes fade-in-move-down {
         0% {opacity: 0;}
-        100% {opacity: 0.9;}
+        100% {opacity: 0.7;}
 }
 
 
@@ -109,6 +107,19 @@ body{
     opacity: 0;
     -webkit-transform: translateY(-3rem);
     transform: translateY(-3rem);
+  }
+  100% {
+    opacity: 0.9;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes fade-in-move-up{
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(3rem);
+    transform: translateY(3rem);
   }
   100% {
     opacity: 0.9;
@@ -287,7 +298,7 @@ a:hover{
 .menu-atas{
   float: left;
   width: 100%;
-  height: 61px;
+  height: 59px;
   background:#00897b;
   position: fixed;
   border-top: 3px solid #1976D2;
@@ -309,7 +320,7 @@ a:hover{
 
 .logonya img{
     float: left;
-    width: 33px;
+    width: 29px;
     height: 49px;
 }
 
@@ -531,6 +542,23 @@ a:hover{
             padding: 0 auto;
             width: 30px;
             height: 30px;
+        }
+
+        .imagekeren{
+            margin: auto;
+  
+        }
+        
+        .imagekeren img{
+            margin: 35px auto;
+            width:55%;
+            display: block;
+            position: relative;
+            animation: fade-in-move-down 0.5s;
+        }
+        
+        .huh{
+            margin: auto;
         }
         
         
@@ -812,14 +840,14 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
 		margin: 0px;
 		font: 16px Arial;
 		font-weight: bold;
-		color: #f4f4f4;
+		color: #ffffff;
 		border: none;
                 background:transparent;
 		
 	}
      
         #myBtn:hover{
-            color:#1abc9c;
+            color:#f9f9f9;
         }
         .modal {
     display: none; /* Hidden by default */
@@ -894,29 +922,90 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
     to {opacity: 1}
 }
 
+.magkok{
+    height: auto;
+    overflow-y: hidden;
+}
 
 .form {
   position: relative;
   z-index: 1;
-  background: #FFFFFF;
+  background: #ffffff;
   max-width: 360px;
-  margin: 0 auto 100px;
-  padding: 25px;
+  margin: -15px auto 100px;
+  padding: 20px;
+  margin-top:70px;
   text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
   overflow: hidden;
+  animation: fade-in-move-up 1s;
+  border-radius: 15px;
 }
 
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
-  background: #f2f2f2;
+  background: #f1f1f1;
   width: 100%;
   border: 0;
   margin: 0 0 15px;
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
+   border-radius: 8px;
+}
+
+.form input:focus{
+    border-color: #1abc9c;
+    box-shadow: 0 0 8px 0 #00897b;
+}
+
+.form2 {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  max-width: 360px;
+  margin: -15px auto 100px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+  overflow: hidden;
+  animation: fade-in-move-up 1s;
+  border-radius: 15px;
+}
+
+.form2 input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f1f1f1;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+   border-radius: 8px;
+}
+
+.form2 input:focus{
+    border-color: #1abc9c;
+    box-shadow: 0 0 8px 0 #00897b;
+}
+
+.create{
+    font-family: "Roboto", sans-serif;
+}
+
+.create h2{
+    color: #bbb;
+    font-family: "Roboto", sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    margin:5px;
+}
+
+.create h2 a{
+    color: #00897b;
 }
 
 .b-signin{  
@@ -932,6 +1021,8 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
+  border-radius: 25px;
+  font-weight: bold;
 }
 
 .b-signup,.b-back{
@@ -959,8 +1050,7 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
 
 
 .plogo img{
-    margin-left:55px;
-    margin-top:5px;
+    width:75%;
 }
 
 .sulogo{
@@ -971,4 +1061,133 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
 .sulogo img{
     margin-left:-10px;
     margin-bottom:20px;
+}
+
+.baloon{
+        position: relative;
+	width: 10%;
+	top: 350px;
+	left: 0px;
+	animation-name: drive;
+	animation-duration: 100s;
+	animation-fill-mode: both;
+	animation-delay: 0s;
+	animation-iteration-count: infinite;
+        opacity: 0.8;
+}
+
+.baloon2{
+	width: 5%;
+	top: 150px;
+	left: 0px;
+	animation-name: drive;
+	animation-duration: 150s;
+	animation-fill-mode: both;
+	animation-delay: 7s;
+	animation-iteration-count: infinite;
+        opacity: 0.5;
+        position: absolute;
+}
+
+.cloud{
+    width: 300px;
+    top:50px;
+    opacity: 0.4;
+    animation-name: wind;
+    animation-duration: 150s;
+    animation-fill-mode: both;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+    position: absolute;
+}
+
+.cloud2{
+    width: -100px;
+    top:40px;
+    opacity: 0.3;
+    animation-name: wind2;
+    animation-duration: 100s;
+    animation-fill-mode: both;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    position:absolute;
+}
+
+.mangkok{
+    width: 100%;
+}
+
+.cloud3{
+    width: 150px;
+    top:170px;
+    opacity: 0.4;
+    animation-name: wind;
+    animation-duration: 130s;
+    animation-fill-mode: both;
+    animation-delay: 0.5s;
+    animation-iteration-count: infinite;
+    position: absolute;
+}
+
+.cloud4{
+    width: 200px;
+    top:210px;
+    opacity: 0.4;
+    animation-name: wind5;
+    animation-duration: 160s;
+    animation-fill-mode: both;
+    animation-delay: 20s;
+    animation-iteration-count: infinite;
+    position: absolute;
+}
+
+.cloud5{
+    width: 350px;
+    top:50px;
+    opacity: 0.4;
+    animation-name: wind4;
+    animation-duration: 50s;
+    animation-fill-mode: both;
+    animation-delay: 0.5s;
+    position: absolute;
+}
+
+.cloud6{
+    width: 150px;
+    top:270px;
+    opacity: 0.4;
+    animation-name: wind3;
+    animation-duration: 70s;
+    animation-fill-mode: both;
+    animation-delay: 0.5s;
+    position: absolute;
+}
+
+@keyframes drive{
+	from{ transform: translateX(-150px)}
+	to{ transform: translateX(1400px)}
+}
+@keyframes wind{
+    	from{ transform: translateX(1450px)}
+	to{ transform: translateX(-250px)}
+}
+
+@keyframes wind2{
+    	from{ transform: translateX(1500px)}
+	to{ transform: translateX(-1200px)}
+}
+
+@keyframes wind3{
+    	from{ transform: translateX(500px)}
+	to{ transform: translateX(-500px)}
+}
+
+@keyframes wind4{
+    	from{ transform: translateX(700px)}
+	to{ transform: translateX(-500px)}
+}
+
+@keyframes wind5{
+    	from{ transform: translateX(1450px)}
+	to{ transform: translateX(-450px)}
 }

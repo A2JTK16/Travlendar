@@ -16,14 +16,27 @@
     <body>
         
         <%@include file="headerhome.jsp" %>
-        
-           <div class="wadah3">
-               <div class="kotak-deskripsi">
-               <div class="deskripsi">Make Your Plan be Better.</div>
+       
+         <div class="mangkok">
+        <img class="cloud3" src="images/cloud.png">
+        <img class="cloud4" src="images/cloud.png">
+        <img class="baloon2" src="images/baloon.png">
+        <img class="baloon" src="images/baloon.png">
+        <img class="cloud2" src="images/cloud.png">
+        <img class="cloud" src="images/cloud.png">
+        <img class="cloud5" src="images/cloud.png">
+        <img class="cloud6" src="images/cloud.png">
+
+
+            <div class="kotak-deskripsi">
+               <div class="deskripsi">Make a Better Plan.</div>
 
                </div>
-           </div>           
-        <%@include file="footer.jsp" %>
+            </div>
+        <%--//SIGN IN--%>
+        <%--DESKRIPSI--%>
+      <%--//DESKRIPSI--%>
+              
     </body>
 </html>
 
