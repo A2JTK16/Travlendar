@@ -119,7 +119,8 @@ public class TravlendarController extends HttpServlet
                 /**
                  * Mendapatkan list event
                  */
-                List<ViewEvent> list = this.vEventDao.getList("traveller_username", this.getUsername(request));
+                String username = this.getUsername(request);
+                List<ViewEvent> list = this.vEventDao.getList("traveller_username", username);
         
                 try 
                 {
@@ -136,25 +137,7 @@ public class TravlendarController extends HttpServlet
 
                 break;
                 
-            case "findUser":
-                // TULIS CODE DISINI !!!
-                //String username = request.getParameter("username");
-                String username = this.getUsername(request);
-                Traveller traveller = this.travellerDao.getObj("traveller_username", username);
-                
-                /**
-                 * Mengubah ke bentuk json dan mengirimkan resonse json ke client
-                 */
-                try
-                {
-                    jsonString = this.jsonMapper.writeValueAsString(traveller);            
-                    this.responseJson(response, jsonString);
-                }
-                catch (JsonProcessingException ex)
-                {
-                    
-                }
-                break;
+
 
         } //end switch
     }
@@ -233,12 +216,12 @@ public class TravlendarController extends HttpServlet
                     //affectedRow = this.locationDao.edit(eventLoc, "location_id", eventLoc.getLocation_id().toString());
                    
                     // masukin event
-                   // Event objEvent = eventdesc.getEvent();
-                   // objEvent.setTraveller_username(this.getUsername(request));
-                    //this.eventDao.edit(objEvent, "event_id", objEvent.getEvent_id().toString());
+                    Event objEvent = eventdesc.getEvent();
+                    objEvent.setTraveller_username(this.getUsername(request));
+                    this.eventDao.edit(objEvent, "event_id", objEvent.getEvent_id().toString());
    
-                   // Travel trvl = eventdesc.getTravel();
-                   // this.travelDao.edit(objEvent, "event_id", param)
+                    Travel trvl = eventdesc.getTravel();
+                    this.travelDao.edit(objEvent, "event_id", objEvent.getEvent_id().toString());
                 } 
                 catch (IOException ex) 
                 {
@@ -273,14 +256,14 @@ public class TravlendarController extends HttpServlet
                 {
                     Traveller traveller = jsonMapper.readValue(json, Traveller.class);
                     
-                    idPK = this.travellerDao.create(traveller);
+                    affectedRow = this.travellerDao.create(traveller);
                 } 
                 catch (IOException ex) 
                 {
                     Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
-                if(idPK > 0)
+                if(affectedRow > 0)
                     this.responseStr(response, "Sukses Registrasi User");
                 else
                     this.responseStr(response, "Gagal Registrasi User");
@@ -325,57 +308,47 @@ public class TravlendarController extends HttpServlet
                 
                 break;
                 
-/*            case "addAdmin":
+            case "getlistEvent" :
+                /**
+                 * Mendapatkan list event
+                 */
+                List<ViewEvent> list = this.vEventDao.getList("traveller_username", this.getUsername(request));
+        
                 try 
                 {
-                    Admin admin = jsonMapper.readValue(json, Admin.class);
-                    
-                    affectedRow = this.adminDao.create(admin);
+                    /**
+                     * Mengubah ke bentuk json dan mengirimkan resonse json ke client
+                     */
+                    json = this.jsonMapper.writeValueAsString(list);
+                    this.responseJson(response, json);
                 } 
-                catch (IOException ex) 
+                catch (JsonProcessingException ex) 
                 {
                     Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-                if(affectedRow > 0)
-                    this.responseStr(response, "Sukses Menambahkan Admin");
-                else
-                    this.responseStr(response, "Gagal Menambahkan Admin\nGunakan Username Lain!!!");
-                
-                break;
-              
-            case "editAdmin":
-                try 
-                {
-                    Admin admin = jsonMapper.readValue(json, Admin.class);
-                    
-                    affectedRow = this.adminDao.edit(admin, "username", admin.getUsername());
-                } 
-                catch (IOException ex) 
-                {
-                    Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                if(affectedRow > 0)
-                    this.responseStr(response, "Sukses Edit Data");
-                else
-                    this.responseStr(response, "Gagal Edit Data");
-                
+
                 break;
                 
-            case "deleteAdmin":
+            case "findUser":
                 // TULIS CODE DISINI !!!
-                String username = request.getParameter("username");
+                //String username = request.getParameter("username");
+                String username = this.getUsername(request);
+                Traveller traveller = this.travellerDao.getObj("traveller_username", username);
                 
-                idPK = this.adminDao.delete("username", username);
-                
-                if(idPK > 0)
-                    this.responseStr(response, "Sukses Menghapus Admin");
-                else
-                    this.responseStr(response, "Gagal Menghapus Admin");                  
-            
+                /**
+                 * Mengubah ke bentuk json dan mengirimkan resonse json ke client
+                 */
+                try
+                {
+                    json = this.jsonMapper.writeValueAsString(traveller);            
+                    this.responseJson(response, json);
+                }
+                catch (JsonProcessingException ex)
+                {
+                    
+                }
                 break;
-  */                
+                
             case "login":
                 boolean isLogin = this.login(request);
                 if(isLogin)

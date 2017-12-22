@@ -67,8 +67,8 @@
                 </button>
                 <div class="dropdown-content">
                   <a>Hi, <%= session.getAttribute("username") %> </a>
-                  <a href="travlendar/setting.jsp">Setting Account</a>
-                  <a href="homepage.jsp">Sign Out</a>
+                  <a href="setting">Setting Account</a>
+                  <a id="signout">Sign Out</a>
                 </div>
             </div>
             
@@ -96,14 +96,6 @@
 	</div> <!--header-->
      
     </div> <!--menu-atas-->
-
-    <div class="wadah-gamb">
-        <div class="slogan">
-        <div class="sukses">
-        <h2> Make Your Plan Be Better ! </h2>
-        </div>
-        </div>
-    </div>
     
     <div class="induk1">
 

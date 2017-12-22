@@ -21,10 +21,10 @@ public class ViewEvent
     private String event_name;
     
     @JsonProperty(value = "start")
-    private Timestamp start_event;
+    private String start_event;
     
     @JsonProperty(value = "end")
-    private Timestamp end_event;
+    private String end_event;
     
     @JsonProperty(value = "transportation")
     private String transportation_mode;
@@ -38,16 +38,10 @@ public class ViewEvent
     @JsonProperty(value = "longitude")
     private Float strt_loc_long;
     
-   // private Float end_loc_lat;
-    //private Float end_loc_long;
-    
     @JsonProperty(value = "address")
     private String start_location_name;
     
     private String note;
-  //  private String username;
-   // private String fullname;
-  //  private String home_address;
 
     /**
      * @return the event_id
@@ -77,33 +71,7 @@ public class ViewEvent
         this.event_name = event_name;
     }
 
-    /**
-     * @return the start_event
-     */
-    public Timestamp getStart_event() {
-        return start_event;
-    }
-
-    /**
-     * @param start_event the start_event to set
-     */
-    public void setStart_event(Timestamp start_event) {
-        this.start_event = start_event;
-    }
-
-    /**
-     * @return the end_event
-     */
-    public Timestamp getEnd_event() {
-        return end_event;
-    }
-
-    /**
-     * @param end_event the end_event to set
-     */
-    public void setEnd_event(Timestamp end_event) {
-        this.end_event = end_event;
-    }
+  
 
     /**
      * @return the transportation_mode
@@ -120,17 +88,17 @@ public class ViewEvent
     }
 
     /**
-     * @return the departure_time
+     * @return the depature_time
      */
     public Timestamp getDepature_time() {
         return depature_time;
     }
 
     /**
-     * @param departure_time the departure_time to set
+     * @param depature_time the depature_time to set
      */
-    public void setDepature_time(Timestamp departure_time) {
-        this.depature_time = departure_time;
+    public void setDepature_time(Timestamp depature_time) {
+        this.depature_time = depature_time;
     }
 
     /**
@@ -188,6 +156,34 @@ public class ViewEvent
     public void setNote(String note) {
         this.note = note;
     }
-    
+
+    /**
+     * @return the start_event
+     */
+    public String getStart_event() {
+        return start_event;
+    }
+
+    /**
+     * @param start_event the start_event to set
+     */
+    public void setStart_event(String start_event) {
+        this.start_event = start_event;
+    }
+
+    /**
+     * @return the end_event
+     */
+    public String getEnd_event() {
+        return end_event;
+    }
+
+    /**
+     * @param end_event the end_event to set
+     */
+    public void setEnd_event(String end_event) {
+        this.end_event = end_event;
+    }
+
    
 }
