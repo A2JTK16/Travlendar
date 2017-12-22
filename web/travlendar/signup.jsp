@@ -105,7 +105,6 @@
                         $.ajax({
                             type: "POST", // method post
                             url: "../index",
-                            dataType:'JSON',
                             data: {action: 'registerUser', json: JSON.stringify(formData) },
                             async: false, // dikirim ketika semua beres
                             timeout: 5000,
@@ -114,7 +113,7 @@
                                 var successMessage = msgStatus.responseText;
                                 var submsg = successMessage.substring(0, 6); 
 
-                                if(submsg == "Sukses")
+                                if(submsg === "Sukses")
                                 {
                                     $('.menu-atas').html('<a href="../index.jsp"><button class="b-signin">Sukses Daftar, Silakan Masuk</button></a>');
                                 }
