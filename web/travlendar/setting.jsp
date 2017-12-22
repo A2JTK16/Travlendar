@@ -20,8 +20,6 @@
         <!-- GMaps Library -->
         <!--<script src="../js/gmaps.js"></script>-->
         
-        <!-- GMaps Custom Setting for This Page -->
-        <script src="../js/mapsdefault.js"></script>
     </head>
     <body>
         <div class="jarak-atas">
@@ -45,9 +43,8 @@
                     </a>
                 </button>
                 <div class="dropdown-content">
-                  <a href="editprofil.jsp">My Account</a>
-                  <a href="signup.jsp">Add Account</a>
-                  <a href="../homepage.jsp">Sign Out</a>
+                    <a href="../">My Plan</a>
+                  <a id="signout">Sign Out</a>
                 </div>
             </div>
             
@@ -88,40 +85,34 @@
         
         <div class="container-t">
             <div class="tab">
-                <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Account</button>
-                <button class="tablinks" onclick="openCity(event, 'Paris')">General</button>
+                <button class="tablinks" id="Account">Account</button>
+                <button class="tablinks" id="General">General</button>
             </div>
         </div>
     </div> <!--induk1-->
     
     <div class="induk2">
-        <div class="container">
-            <div id="London" class="tabcontent">
-            
+         <div class="container">
+     
+             <div id="London" class="tabcontent">
                 <div class="main">
-                <div class="setting-from">    
-                <div class="wadah1">
-                    <form class="register-form" id="regForm">
-                        <input id="input0" class="wajibdiisi" type="hidden" name="traveller_id" />
-                        <input id="input1" class="wajibdiisi" type="text" name="traveller_fullname" placeholder="Fullname ..."/>
-			<input id="input2" class="wajibdiisi" type="text" name="traveller_name" placeholder="Username ..."/>
-                        <input id="input3" class="wajibdiisi" type="text" name="traveller_email" placeholder="Email ..."/>
-			<input id="input4" class="wajibdiisi" type="password" name="traveller_password" placeholder="Password ..."/>
-                        <input type="text" name="traveller_address" placeholder="Your Home Address ..."/>
-                        <br>	
-                    </form>
-                    <button class="b-signup" id="tblSignup">Edit Profil</button>
-                    <a href="../index.jsp"><button class="b-back">Back</button></a>
-                </div> <!--setting-from-->
-                </div>    
-            </div>
-            
-            
+                    <input class="ev" type="hidden" id="input0" name="traveller_id">
+                    <div class="text-ev"> Fullname </div>
+                     <input class="ev" type="text" id="input1" name="traveller_fullname">
+                     <div class="text-ev"> E-mail </div>
+                     <input class="ev" type="text" id="input2" name="traveller_email">
+                     <div class="text-ev"> Username </div>
+                     <input class="ev" type="text" id="input3" name="traveller_username">
+                     <div class="text-ev"> Password </div>
+                     <input class="ev" type="password" id="input4" name="traveller_password">
+                 </div>
+             </div>
+ 
             <div id="Paris" class="tabcontent">
-                <div class="main">
-                    <div class="left">
-                        <div class="text-ev"> Date format </div>
-                        <select class="time-ev" type="text">
+                 <div class="main">
+                     <div class="left">
+                         <div class="text-ev"> Date format </div>
+                         <select class="time-ev" type="text">
                             <option>dd/mm/yyyy</option>
                             <option>mm/dd/yyyy</option>
                             <option>yyyy/mm/dd</option>
@@ -130,38 +121,38 @@
                         <select class="time-ev" type="text">
                             <option>24-Hour</option>
                             <option>12-Hour</option>
-                        </select>
-                        <div class="text-ev">  Notification </div>
-                        <select class="time-ev" type="text">
-                            <option>1 day</option>
-                            <option>3 days</option>
-                            <option>1 week</option>
-                        </select>
-                    </div>
-                    <div class="right">
-                        <button class="save-ev" id="myBtn">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </div>
+                         </select>
+                         <div class="text-ev">  Notification </div>
+                         <select class="time-ev" type="text">
+                             <option>1 day</option>
+                             <option>3 days</option>
+                             <option>1 week</option>
+                         </select>
+                     </div>
+                     <div class="right">
+                         <button class="save-ev" id="myBtn">Save changes</button>
+                     </div>
+                 </div>
+             </div>
+          </div>
+          
+     </div>
     
     
         
-        <%@include file="footer.jsp" %>
+        <%@include file="../travlendar/footer.jsp" %>
         
         <script src="../js/jquery.min.js"></script>
         <script>
             $(document).ready( function()  // Ketika web udah siap
             {   
-                $.get("http://localhost:8080/Travlendar2A/index?action=findUser&username=<%= session.getAttribute("username") %>", function(responseJson) 
+                $.post("../index?action=findUser", function(responseJson) 
                     {          // Eksekusi URL Controller
                         //alert(responseJson.traveller_fullname);
                         $('#input0').val(responseJson.traveller_id);
                         $('#input1').val(responseJson.traveller_fullname);
-                        $('#input2').val(responseJson.traveller_name);
-                        $('#input3').val(responseJson.traveller_email);
+                        $('#input2').val(responseJson.traveller_email);
+                        $('#input3').val(responseJson.traveller_username);
                         $('#input4').val(responseJson.traveller_password);
                     });       
                 
@@ -198,7 +189,7 @@
                     {
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8084/Travlendar2A/index",
+                            url: "../index",
                             dataType:'JSON',
                             data: {action: 'editUser', json: JSON.stringify(formData) },
                             async: false, // dikirim ketika semua beres
@@ -232,7 +223,7 @@
                     {
                         $.ajax({
                             type: "POST", // method post
-                            url: "http://localhost:8080/Travlendar2A/index",
+                            url: "../index",
                             dataType:'JSON',
                             data: {action: 'deleteUser', traveller_id: $('#input0').val() },
                             async: false, // dikirim ketika semua beres
@@ -252,6 +243,42 @@
                     else
                         alert("Gagal Delete Akun!!");
                 });
+                
+                function openTab(cssIdTabContent, cssIdTab)
+                {
+                    $('.tabcontent').hide();
+                    $('.tablinks').removeClass('.active');
+                    $(cssIdTabContent).show();
+                    $(cssIdTab).addClass('.active');
+                }
+                
+                openTab('#London', '#London');
+                
+                $('#Account').click(function(){
+                    openTab('#London', '#London');
+                });
+                
+                $('#General').click(function(){
+                    openTab('#Paris', '#Paris');
+                });
+                
+                $('#signout').click(function(){
+                       $.ajax({
+                            type: 'GET', // method post
+                            url: '../index',
+                            data: {action: 'logout'},
+                            async: false, // dikirim ketika semua beres
+                            success: function(msgStatus)
+                            {
+                                location.reload(true)
+                            },
+                            error: function(xmlhttprequest, textstatus, message)
+                            {
+                                alert(textstatus + message);
+                            }
+                        });  
+                   });
+                   
             });
         </script>
     </body>

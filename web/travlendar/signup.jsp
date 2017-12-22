@@ -27,7 +27,7 @@
 
                 <div class="tombol" style="float:right;">
                         <div class="sign-in">
-                            <a href="../index.jsp">Sign In</a>
+                            <a href="../">Sign In</a>
                         </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
         <div class="wadah1">
         <!-- Modal content -->
             <div class="modal-content">			    	
-		<div class="form2">
+		<div class="form2" id="regForm">
                     
                     <div class="modal-header">
                         <h1> Create Your Account </h1>
@@ -45,7 +45,7 @@
                     
                     <form class="register-form" id="regForm">
                         <input class="wajibdiisi" type="text" name="traveller_fullname" placeholder="Fullname ..."/>
-			<input class="wajibdiisi" type="text" name="traveller_name" placeholder="Username ..."/>
+			<input class="wajibdiisi" type="text" name="traveller_username" placeholder="Username ..."/>
                         <input class="wajibdiisi" type="text" name="traveller_email" placeholder="Email ..."/>
 			<input class="wajibdiisi" type="password" name="traveller_password" placeholder="Password ..."/>
                         <input type="text" name="traveller_address" placeholder="Your Home Address ..."/>
@@ -108,6 +108,7 @@
                             dataType:'JSON',
                             data: {action: 'registerUser', json: JSON.stringify(formData) },
                             async: false, // dikirim ketika semua beres
+                            timeout: 5000,
                             complete: function(msgStatus)
                             {
                                 var successMessage = msgStatus.responseText;
@@ -115,17 +116,20 @@
 
                                 if(submsg == "Sukses")
                                 {
-                                    alert(successMessage);
                                     $('.menu-atas').html('<a href="../index.jsp"><button class="b-signin">Sukses Daftar, Silakan Masuk</button></a>');
+                                }
+                                else if(submsg === "Gagal ")
+                                {
+                                    confirm(msgStatus);
                                 }
                             },
                             failure: function(errMsg) {
-                                alert(errMsg);
+                                confirm(errMsg);
                             }
                         });
                     }
                     else
-                        alert("Mohon fullname, username, email, password Wajib Diisi!");
+                        confirm("Mohon fullname, username, email, password Wajib Diisi!");
                 });
             });
             

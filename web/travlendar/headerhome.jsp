@@ -34,7 +34,7 @@
             </div> <!--logo-->
             
             <div class="tombol" style="float:right;">
-                            <a href="travlendar/signup.jsp"><div class="sign-up">Create An Account</div></a>                   
+                            <a href="signup"><div class="sign-up">Create An Account</div></a>                   
             </div>
             
             <div class="tombol" style="float:right;">
@@ -113,16 +113,20 @@
                             {
                                 var successMessage = msgStatus.responseText;
                                 var submsg = successMessage.substring(0, 6); 
-                                if(successMessage)
+                               /* if(successMessage)
                                 {
                                     alert(successMessage);
-                                };
+                                }; */
                                 if(submsg == "Sukses")
                                 {
                                     location.reload();
                                     //toUserPanel();
                                     //$('#myModal').html('<a href="index.jsp"><button class="b-signin">Sukses Login, Silakan Masuk</button></a>');
                                     //$('header').append('<meta http-equiv="refresh" content="0; url=http://localhost:8080/Travlendar2A/travlendar/add_event.jsp" />');
+                                }
+                                else if(submsg == "Gagal ")
+                                {
+                                    confirm(successMessage);
                                 }
                             },
                             failure: function(errMsg) {

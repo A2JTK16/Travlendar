@@ -91,7 +91,8 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         }
         catch (IntrospectionException e)
         {
-            e.printStackTrace();
+            Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, e);
+            //e.printStackTrace();
         }
 
         /**
@@ -120,7 +121,8 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         }
         catch (IllegalAccessException | InvocationTargetException ex) 
         {
-             ex.printStackTrace();
+            // ex.printStackTrace();
+            Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -145,7 +147,8 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         } 
         catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) 
         {
-            e.printStackTrace();
+            Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, e);
+            //e.printStackTrace();
             return false;
         }
     }
@@ -171,7 +174,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
          */
         String sql;
         ResultSet rs;
-        Statement stmt;
+        PreparedStatement stmt;
         /**
          * Objek yang akan ditambahkan ke list
          */
@@ -179,7 +182,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         
         listObj = new ArrayList<>();
         
-        sql = String.join(" ", "SELECT", this.getFieldsStr(), "FROM", this.classModel.getSimpleName().toLowerCase());
+        sql = String.join(" ", "SELECT", this.getFieldsStr(), "FROM", this.classModel.getSimpleName().toLowerCase(), "WHERE", paramName, " = ?");
         /**
          * Koneksi ke Database
          */
@@ -187,8 +190,9 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         
         try 
         {
-            stmt = super.getJdbcConnection().createStatement();
-            rs = stmt.executeQuery(sql);
+            stmt = super.getJdbcConnection().prepareStatement(sql);
+            stmt.setString(1, paramValue);
+            rs = stmt.executeQuery();
                     
             while(rs.next())
             {
@@ -258,7 +262,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
 
                 for (PropertyDescriptor descriptor : propertyClass) 
                 {
-                    this.invokeSetter(descriptor, objModel, rs.getObject(descriptor.getName()));
+                    this.invokeSetter(descriptor, objModel, rs.getObject(descriptor.getName(), descriptor.getPropertyType()));
                 }            
             }
             stmt.close();            

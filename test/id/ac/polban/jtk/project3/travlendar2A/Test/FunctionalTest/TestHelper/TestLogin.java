@@ -8,6 +8,8 @@ package id.ac.polban.jtk.project3.travlendar2A.Test.FunctionalTest.TestHelper;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.GenericDao;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.IDao;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
+import id.ac.polban.jtk.project3.travlendar2A.Models.ViewEvent;
+import java.util.List;
 
 /**
  *
