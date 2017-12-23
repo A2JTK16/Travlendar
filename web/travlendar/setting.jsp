@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>My Profile</title>
         <link rel="stylesheet" href="../css/style.css">
         <!-- Google Maps JS API -->
         <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>-->
@@ -43,8 +43,9 @@
                     </a>
                 </button>
                 <div class="dropdown-content">
+					<a>Hi, <%= session.getAttribute("username") %> </a>
                     <a href="../">My Plan</a>
-                  <a id="signout">Sign Out</a>
+					<a id="signout">Sign Out</a>
                 </div>
             </div>
             

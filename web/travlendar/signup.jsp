@@ -10,7 +10,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../css/home.css">
-        <title>Travelendar</title>
+        <title>Create Your Account</title>
     </head>
     <body>
         
@@ -37,7 +37,7 @@
         <div class="wadah1">
         <!-- Modal content -->
             <div class="modal-content">			    	
-		<div class="form2" id="regForm">
+		<div class="form2">
                     
                     <div class="modal-header">
                         <h1> Create Your Account </h1>
@@ -52,7 +52,7 @@
                         <br>	
                     </form>
                     <button class="b-signup" id="tblSignup">Sign Up</button>
-                    <a href="../index.jsp"><button class="b-back">Back</button></a>
+                    <a href="../"><button class="b-back">Back</button></a>
                     <!--<a href="listuser.html"><button class="b-back">Show List User</button></a>-->
 		</div>			
             </div> <!--modal content-->
@@ -108,14 +108,15 @@
                             data: {action: 'registerUser', json: JSON.stringify(formData) },
                             async: false, // dikirim ketika semua beres
                             timeout: 5000,
-                            complete: function(msgStatus)
+                            success: function(msgStatus)
                             {
-                                var successMessage = msgStatus.responseText;
-                                var submsg = successMessage.substring(0, 6); 
+                               // var successMessage = msgStatus.responseText;
+                                var submsg = msgStatus.substring(0, 6); 
 
                                 if(submsg === "Sukses")
                                 {
-                                    $('.menu-atas').html('<a href="../index.jsp"><button class="b-signin">Sukses Daftar, Silakan Masuk</button></a>');
+									confirm(msgStatus);
+                                    $('.modal-content').html('<a href="../"><button class="b-signin">Sukses Daftar, Silakan Masuk</button></a>');
                                 }
                                 else if(submsg === "Gagal ")
                                 {
