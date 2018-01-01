@@ -14,6 +14,9 @@
 	<link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
         <link rel="stylesheet" href="css/responsivetable.css">
+        <!-- Autocomplete -->
+         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAj08gQaSyQnNiFV7UWNpmSfCj9TR4DUtg&libraries=places&callback=initAutocomplete"
+         async defer></script>
         <!-- Google Maps JS API -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>
         <!-- JQuery Library -->
@@ -23,7 +26,7 @@
         <script src="js/moment.min.js"></script>
         <!-- GMaps Library -->
         <script src="js/gmaps.js"></script>
-    
+        
         <link href='calendar-event/fullcalendar.min.css' rel='stylesheet' />
         <link href='calendar-event/fullcalendar.print.min.css' rel='stylesheet' media='print' />
         <script src='calendar-event/lib/moment.min.js'></script>
@@ -181,9 +184,10 @@
 				
 				<div class="right">
                                                                                             
-                                              
-                                                  <input class="col-95" type="text" id="fname" name="search" placeholder="Search..">
-                                              
+                                                
+                                                 <!-- <input class="col-95" type="text" id="pac-input" name="search" placeholder="Search..">
+                                              -->
+                                              <input id="searchmap" type="text" placeholder="Enter a location">
                                               <div id="mapNewEvent"></div>
                                            
 				</div>
