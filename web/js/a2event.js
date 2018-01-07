@@ -1342,13 +1342,13 @@ $(document).ready( function()  // Ketika web udah siap
     
                 $('#signout').click(function(){
                        $.ajax({
-                            type: 'GET', // method post
+                            type: 'POST', // method post
                             url: 'index',
                             data: {action: 'logout'},
                             async: false, // dikirim ketika semua beres
                             success: function(msgStatus)
                             {
-                                location.reload(true)
+                                location.reload(true);
                             },
                             error: function(xmlhttprequest, textstatus, message)
                             {

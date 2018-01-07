@@ -356,6 +356,11 @@ public class TravlendarController extends HttpServlet
                 else
                     this.responseStr(response, "Gagal Login!\nUsername atau Password Salah!");
                 break;
+ 
+            case "logout":
+                request.getSession().setAttribute("username", null);
+                request.getSession().invalidate();    
+                break;
                 
             default:
                 this.responseStr(response, "Tidak Ditemukan !!!");
@@ -431,16 +436,7 @@ public class TravlendarController extends HttpServlet
     private boolean isLogin(HttpServletRequest request)
     {
         return request.getSession().getAttribute("username") != null;
-    }
-    
-    /**
-     * Method untuk logout
-     * @param request 
-     */
-    private void logout(HttpServletRequest request)
-    {
-        request.getSession().invalidate();
-    }
+    }    
     
     /**
      * Method untuk mendapatkan username dari 
