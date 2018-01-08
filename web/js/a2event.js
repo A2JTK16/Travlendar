@@ -18,12 +18,18 @@ $(document).ready( function()  // Ketika web udah siap
      */
     var TabView = function(objMap)
     {
-       /**
-        * Method untuk membuka tab
-        * @param {type} cssIdTabContent css id konten tabnya
-        * @param {type} cssIdTab css id tabnya
-        * @returns {undefined}
-        */
+        /**
+         * Marker GMaps
+         * @type type
+         */
+        var markerView1, markerView2;
+        
+        /**
+         * Method untuk membuka tab
+         * @param {type} cssIdTabContent css id konten tabnya
+         * @param {type} cssIdTab css id tabnya
+         * @returns {undefined}
+         */
         this.openTab = function(cssIdTabContent, cssIdTab)
         {
            $('.tabcontent').hide();
@@ -34,42 +40,60 @@ $(document).ready( function()  // Ketika web udah siap
 
        /**
         * Method untuk menampilkan tampilan view more
-        * @param {type} event
+        * @param {type} eventE
         * @param {type} mapEvent
         * @returns {undefined}
         */
-        this.viewMore = function(event, mapEvent){
+        this.viewMore = function(eventE, mapEvent){
            // set ke tampilan baru
-           $('#moreTitle').val(event.title.toString());
-           $('#moreStart').val(event.start); 
-           $('#moreMode').val(event.transportation);
-           $('#moreDepature').val(moment(event.depature_time).format());
-           $('#moreAddress').val(event.address);
-           $('#moreNote').val(event.note);
+           $('#moreTitle').val(eventE.title.toString());
+           $('#moreStart').val(eventE.start); 
+           $('#moreMode').val(eventE.transportation);
+           $('#moreDepature').val(moment(eventE.depature_time).format());
+           $('#moreAddress').val(eventE.address);
+           $('#moreNote').val(eventE.note);
            // buka tab
            this.openTab('#MoreEvent','#MoreEvent');
            // pindahkan peta
            $('#map').appendTo('#moreLeft');
            $('#mapInstruction').appendTo('#moreLeft');
            // setting maps ke tengah lokasi event
-           if( typeof event.latitude !== 'undefined' || typeof event.longitude !== 'undefined')
+           if( typeof eventE.latitude !== 'undefined' || typeof eventE.longitude !== 'undefined')
            {
                // clean routes
                 mapEvent.cleanRoutes();
                 
-                mapEvent.objMaps.setCenter(event.latitude, event.longitude);
-                // tambah marker
-                mapEvent.addMarker(event.latitude, event.longitude, event.title, event.start, function(){
-                   alert(event.title);
+                mapEvent.objMaps.drawRoute({
+                    origin: [eventE.latitude, eventE.longitude],
+                    destination: [eventE.end_latitude, eventE.end_longitude],
+                    travelMode: eventE.transportation.toString(),
+                    strokeColor: '#131540',
+                    strokeOpacity: 0.7,
+                    trokeWeight: 6
                 });
                 
-                mapEvent.objMaps.drawRoute({
-                    origin: [event.origin_address],
-                    destination: [event.address],
-                    travelMode: event.transportation.toString().toLowerCase(),
-                    strokeColor: '#131540',
-                    strokeOpacity: 0.6,
-                    strokeWeight: 6
+                mapEvent.objMaps.setCenter(eventE.latitude, eventE.longitude);
+                
+                // hilangkan marker
+                if( this.markerView1 !== 'undefined' )
+                    mapEvent.objMaps.removeMarker(this.markerView1);
+                
+                if( this.markerView2 !== 'undefined' )
+                    mapEvent.objMaps.removeMarker(this.markerView2);
+                
+                // tambah marker
+                this.markerView1 = mapEvent.objMaps.addMarker({
+                    lat: eventE.latitude,
+                    lng: eventE.longitude,
+                    title : 'event location',
+                    icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                });
+                
+                this.markerView2 = mapEvent.objMaps.addMarker({
+                    lat: eventE.end_latitude,
+                    lng: eventE.end_longitude,                          
+                    icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                    title: 'previous location'
                 });
            }
        };
@@ -750,6 +774,7 @@ $(document).ready( function()  // Ketika web udah siap
         });
         
         // loop list
+        var count = 0;
         $.map(data, function(item,i)
         {
             item.start = moment(item.start).format();
@@ -760,8 +785,19 @@ $(document).ready( function()  // Ketika web udah siap
             // array lat lng
             pathi.push([item.latitude, item.longitude]);
             
-            mapObj.addMarker(item.latitude, item.longitude, item.title, item.start, function(){
+            /*mapObj.addMarker(item.latitude, item.longitude, item.title, item.start, function(){
                confirm('Title :'+ item.title +'\nDepature Time : ' + item.departure_time + '\n Start Event : '+ item.start);
+            });
+            */
+            count++;
+            mapObj.objMaps.addMarker({
+                lat: item.latitude,
+                lng: item.longitude,
+                title: item.title,
+                infoWindow: {
+                    content: '<p>'+ count + '. ' + item.title +'</p>'
+                }
+                //label: i+1
             });
             
         });
@@ -813,6 +849,9 @@ $(document).ready( function()  // Ketika web udah siap
         //openCity(event, 'Paris');
         tabView.openTab('#Paris','#getList');
     });
+    
+    // 
+    mapObj.drawPolylines(pathi);
     
     /**
      * Menampilkan View More
@@ -1320,8 +1359,8 @@ $(document).ready( function()  // Ketika web udah siap
             }
         }
                    
-        //if(m2 !== null)
-        //{
+        if(m1pos !== 'undefined' || m2pos !== 'undefined')
+        {
             event['title'] = $('#eventName').val();
             event['start'] = new Date($('#origDate').val() +" "+$('#origTime').val());
             event['end'] = new Date($('#destDate').val() +" "+$('#destTime').val());
@@ -1361,15 +1400,15 @@ $(document).ready( function()  // Ketika web udah siap
                                 event.address = eventLoc.address;
                                 event.depature_time = eventTravel.departure_time;
                                 event.transportation = eventTravel.transportation;
-
+                                // tulis ke table
                                 objTableEvent.writeRow(event);
+                                // tambah event
                                 $('#calendar').fullCalendar( 'renderEvent', event);
-                                
-                                
-                                location.reload();
+ 
+                                //location.reload();
                                 tabView.openTab('#Tasik','#defaultOpen');
                                 // draw polyline event baru
-                                //pathi.push([eventLoc.latitude, eventLoc.longitude]);
+                                pathi.push([eventLoc.latitude, eventLoc.longitude]);
                                 //mapObj.drawPolylines(pathi);
                             }
                             else if(submsg === "Gagal ")
@@ -1383,9 +1422,9 @@ $(document).ready( function()  // Ketika web udah siap
                         }
                     });
             
-                   // }
-                   //else
-                      //  alert("Mohon klik tujuan anda!");
+        }
+        else
+            confirm("Mohon klik tujuan anda!");
     });
     
     $('#signout').click(function(){
