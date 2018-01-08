@@ -40,7 +40,7 @@ $(document).ready( function()  // Ketika web udah siap
         */
         this.viewMore = function(event, mapEvent){
            // set ke tampilan baru
-           $('#moreTitle').val(event.title);
+           $('#moreTitle').val(event.title.toString());
            $('#moreStart').val(event.start); 
            $('#moreMode').val(event.transportation);
            $('#moreDepature').val(moment(event.depature_time).format());
@@ -55,7 +55,7 @@ $(document).ready( function()  // Ketika web udah siap
            if( typeof event.latitude !== 'undefined' || typeof event.longitude !== 'undefined')
            {
                // clean routes
-                mapEvent.objMaps.objMaps.cleanRoute();
+                mapEvent.cleanRoutes();
                 
                 mapEvent.objMaps.setCenter(event.latitude, event.longitude);
                 // tambah marker
@@ -63,7 +63,7 @@ $(document).ready( function()  // Ketika web udah siap
                    alert(event.title);
                 });
                 
-                mapEvent.drawRoute({
+                mapEvent.objMaps.drawRoute({
                     origin: [event.origin_address],
                     destination: [event.address],
                     travelMode: event.transportation.toString().toLowerCase(),
@@ -574,6 +574,15 @@ $(document).ready( function()  // Ketika web udah siap
                     });
                 });  
         };
+        
+        /**
+         * Menghapus rute
+         * @returns {undefined}
+         */
+        this.cleanRoutes = function()
+        {
+            this.objMaps.removePolylines();
+        };
     };
     
    /**
@@ -656,31 +665,39 @@ $(document).ready( function()  // Ketika web udah siap
                         lat: e.latLng.lat(),
 			lng: e.latLng.lng(),
                         title : 'event location',
-			icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+			icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
                     });
-                    m1pos = m1.getPosition();
+                    m1pos = {lat: e.latLng.lat(), lng: e.latLng.lng()};
                 } 
 		else 
                 {
                     m2 = objMapP.addMarker({
 			lat: e.latLng.lat(),
-			lng: e.latLng.lng(),
-                                             
+			lng: e.latLng.lng(),                          
 			icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
                         title: 'previous location'
                     });
-                    m2pos = m2.getPosition();
+                    m2pos = {lat: e.latLng.lat(), lng: e.latLng.lng()};
 		}
                                 
                 if (m1 !== null && m2 !== null) 
-                {
-                    domarker1 = true;
-		}
+                    {
+                        domarker1 = true;
+                        
+                        objMapP.drawRoute({
+                            origin: [m1pos.lat, m1pos.lng],
+                            destination: [m2pos.lat, m2pos.lng],
+                            travelMode: 'driving',
+                            strokeColor: '#131540',
+                            strokeOpacity: 0.6,
+                            strokeWeight: 6
+                        });
+                    }
                                 
                 domarker2 = !domarker2;
-                                
-                var origin = new google.maps.LatLng(m1pos.lat(),m1pos.lng()),
-                destination = new google.maps.LatLng(m2pos.lat(),m2pos.lng());
+                
+                var origin = new google.maps.LatLng(m1pos.lat, m1pos.lng),
+                destination = new google.maps.LatLng(m2pos.lat, m2pos.lng);
                 /* tidak jalan jika diawal draw polylines dg gmaps.js
                 service = new google.maps.DistanceMatrixService();    
                     
@@ -713,14 +730,6 @@ $(document).ready( function()  // Ketika web udah siap
                     }
                 } // end of callback
                 */
-                objMapP.drawRoute({
-                    origin: [origin],
-                    destination: [destination],
-                    travelMode: 'driving',
-                    strokeColor: '#131540',
-                    strokeOpacity: 0.6,
-                    strokeWeight: 6
-                });
                
             }//tutup isaddablemarker
         } // tutup e click
@@ -757,8 +766,6 @@ $(document).ready( function()  // Ketika web udah siap
             
         });
         
-        // draw polyline event2
-        mapObj.drawPolylines(pathi);
         // zoom
         mapObj.objMaps.zoomIn(4);
         
@@ -787,16 +794,18 @@ $(document).ready( function()  // Ketika web udah siap
         isAddableMarker = false;
         
         //mapObj.clearListeners('click');
-        mapObj.objMaps.cleanRoute();
+        mapObj.cleanRoutes();
             
-        mapObj.drawPolylines({
+       /* mapObj.drawPolylines({
             path: pathi,
             strokeColor: '#0000FF', //warna line
             strokeOpacity: 1, //transparansi
             strokeWeight: 10 //lebar line
         });
-            
-        mapObj.objMaps.setCenter([pathi.length - 1][0], [pathi.length - 1][1]);
+            */
+        // draw polyline event2
+        mapObj.drawPolylines(pathi);
+        //mapObj.objMaps.setCenter([pathi.length - 1][0], [pathi.length - 1][1]);
         
         $('#map').appendTo('#mainBottom');
         $('#mapInstruction').appendTo('#mainBottom');
@@ -805,32 +814,55 @@ $(document).ready( function()  // Ketika web udah siap
         tabView.openTab('#Paris','#getList');
     });
     
+    /**
+     * Menampilkan View More
+     * @param {type} event
+     * @returns {undefined}
+     */
+    function viewMoreFind(event)
+    {
+        //$('#findEvent').val('');
+        // mendapatkan data2 
+        event = objCalendar.getEvent(event.id)[0];
+        // tampilkan tab baru
+        tabView.viewMore(event, mapObj);
+    }
+    
     // search
-    $('#findEvent').on("keyup", function() {
+    $('#findEvent').on("keyup", function() 
+    {
         // mendapatkan string inputan 
         var value = $(this).val();
         // jika lebih dari dua
         if(value.length > 2)
         {
-            $('#findResult').html('<table id="tableEvent2"><tbody>'); // tambahkan tabel
-            $("#tableEvent tr").each(function(index) {
-                if (index >= 0) {
+            $('#findResult').html('<ul>'); // tambahkan tabel
+            $("#tableEvent tr").each(function(index) 
+            {
+                if (index >= 0) 
+                {
 
                     $row = $(this);
 
                     var titleEvent = $row.find("td:eq(1)").text().toLowerCase();
+                    var idEvent = parseInt($row.find("td:eq(0)").text());
                     var indexStr = titleEvent.indexOf(value.toString().toLowerCase());
                     if (indexStr !== 0 && indexStr < 0){                     
                     }
                     else
-                        $('#findResult').append($row.clone());
+                    {
+                        $('#findResult').append('<li class="findResultMore"><button>'+ titleEvent +'</button></li>');
+                       // $('#moreTitle').val(titleEvent);
+                        $('.findResultMore').click({id: idEvent}, viewMoreFind);
+                    }  
                 }
             });
-            $('#findResult').append('</tbody></table>');
+            $('#findResult').append('</ul>');
                     
         }
         else
             $('#findResult').html('');
+        
     });
     
     /**
@@ -840,20 +872,17 @@ $(document).ready( function()  // Ketika web udah siap
     {
         var currPos;
         // Bersihkan map dari rute
-        mapObj.objMaps.cleanRoute();
+        mapObj.cleanRoutes();
         // brsihkan listener
         //mapObj.clearListeners('click');
         // Geolokasi
         mapObj.setGeolocate();
         // tambahkan listener
         isAddableMarker = true;
-    
-     
-          
+        
         $('#map').appendTo('#mapNewEvent');
         $('#mapInstruction').appendTo('#mapNewEvent');
      
-        
         //openCity(event, 'London');
         tabView.openTab('#London','#defaultOpenNew');
         
@@ -864,10 +893,11 @@ $(document).ready( function()  // Ketika web udah siap
      */
     $('#defaultOpen').click(function()
     {
-        //mapObj.objMaps.cleanRoute();
+        mapObj.cleanRoutes();
         
         isAddableMarker = false;
         
+        mapObj.drawPolylines(pathi);    
        /* mapObj.objMaps.drawPolyline({
             path: pathi,
             strokeColor: '#0000FF', //warna line
@@ -938,9 +968,10 @@ $(document).ready( function()  // Ketika web udah siap
      * @param {type} travelMode mode nya transit, bicycling, travel, dll
      * @param {type} cssIdRadio
      * @param {type} cssIdMsg
+     * @param {type} avoidHT
      * @returns {undefined}
      */
-    var chooseTransportAct = function(tmdifference, travelMode, cssIdRadio, cssIdMsg)
+    var chooseTransportAct = function(tmdifference, travelMode, cssIdRadio, cssIdMsg, avoidHT)
     {
         //if(m1 != null || m2 != null)
         var origin = $('#orig').val().toString();
@@ -953,8 +984,8 @@ $(document).ready( function()  // Ketika web udah siap
                 origins: [origin],
                 destinations: [dest],
                 travelMode: travelMode.toString().toUpperCase(),
-                avoidHighways: false,
-                avoidTolls: false
+                avoidHighways: avoidHT,
+                avoidTolls: avoidHT
             },
             function(response,status)
             {
@@ -987,7 +1018,7 @@ $(document).ready( function()  // Ketika web udah siap
                     else if(tmdifference !== 0)
                     {
                         $(cssIdRadio).show().click(function(){
-                            mapObj.objMaps.cleanRoute;
+                            mapObj.cleanRoutes;
                             mapObj.drawRoutesAnimated(travelMode, [m1pos.lat(), m1pos.lng()], [m2pos.lat(), m2pos.lng()]);
                         });
                         
@@ -1012,10 +1043,10 @@ $(document).ready( function()  // Ketika web udah siap
         // dateTimeOrigin dikurangi dateTimeDest bentuk second
         var tmdifference = timeDiff(dateTimeOrigin, dateTimeDepature);
         //alert(tmdifference);
-        chooseTransportAct(tmdifference, 'transit', '#radio', '#transit');
-        chooseTransportAct(tmdifference, 'walking', '#radio1', '#walking');
-        chooseTransportAct(tmdifference, 'driving', '#radio2', '#driving');
-        chooseTransportAct(tmdifference, 'bicycling', '#radio3', '#bicycling');
+        chooseTransportAct(tmdifference, 'transit', '#radio', '#transit', false);
+        chooseTransportAct(tmdifference, 'walking', '#radio1', '#walking', false);
+        chooseTransportAct(tmdifference, 'driving', '#radio2', '#driving', false);
+        chooseTransportAct(tmdifference, 'driving', '#radio3', '#bicycling', true);
    
     });
        /*    // If two markers have been placed
@@ -1495,7 +1526,7 @@ $(document).ready( function()  // Ketika web udah siap
                                 title : 'event location',
                                 icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
                             });
-                            m1pos = m1.getPosition();
+                            m1pos = {lat: latitude, lng: longitude};
                             
                             $('#orig').val(address);
                     } 
@@ -1507,7 +1538,7 @@ $(document).ready( function()  // Ketika web udah siap
                                 icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
                                 title: 'previous location'
                             });
-                            m2pos = m2.getPosition();
+                            m2pos = {lat: latitude, lng: longitude};
                             
                             $('#dest').val(address);
                     }
@@ -1515,17 +1546,30 @@ $(document).ready( function()  // Ketika web udah siap
                     if (m1 !== null && m2 !== null) 
                     {
                         domarker1 = true;
+                        
+                        objMapP.drawRoute({
+                            origin: [m1pos.lat, m1pos.lng],
+                            destination: [m2pos.lat, m2pos.lng],
+                            travelMode: 'driving',
+                            strokeColor: '#131540',
+                            strokeOpacity: 0.6,
+                            strokeWeight: 6
+                        });
                     }
 
                     domarker2 = !domarker2;
                     
                     objMapP.setCenter(latitude,longitude);
+                    
+                    
+                    
                 });
             });
 
         };
     };
     
+    // PANGGIL
     initializeAutocomplete();
 }); // tutup JQuery    
 
