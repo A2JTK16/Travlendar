@@ -41,6 +41,9 @@ public class ViewEvent
     @JsonProperty(value = "address")
     private String start_location_name;
     
+    @JsonProperty(value = "origin_address")
+    private String end_location_name;
+    
     private String note;
 
     /**
@@ -183,6 +186,20 @@ public class ViewEvent
      */
     public void setEnd_event(String end_event) {
         this.end_event = end_event;
+    }
+
+    /**
+     * @return the end_location_name
+     */
+    public String getEnd_location_name() {
+        return end_location_name;
+    }
+
+    /**
+     * @param end_location_name the end_location_name to set
+     */
+    public void setEnd_location_name(String end_location_name) {
+        this.end_location_name = end_location_name;
     }
 
    

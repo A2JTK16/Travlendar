@@ -54,10 +54,22 @@ $(document).ready( function()  // Ketika web udah siap
            // setting maps ke tengah lokasi event
            if( typeof event.latitude !== 'undefined' || typeof event.longitude !== 'undefined')
            {
+               // clean routes
+                mapEvent.objMaps.objMaps.cleanRoute();
+                
                 mapEvent.objMaps.setCenter(event.latitude, event.longitude);
                 // tambah marker
                 mapEvent.addMarker(event.latitude, event.longitude, event.title, event.start, function(){
                    alert(event.title);
+                });
+                
+                mapEvent.drawRoute({
+                    origin: [event.origin_address],
+                    destination: [event.address],
+                    travelMode: event.transportation.toString().toLowerCase(),
+                    strokeColor: '#131540',
+                    strokeOpacity: 0.6,
+                    strokeWeight: 6
                 });
            }
        };
@@ -775,16 +787,16 @@ $(document).ready( function()  // Ketika web udah siap
         isAddableMarker = false;
         
         //mapObj.clearListeners('click');
-        //mapObj.objMaps.cleanRoute();
+        mapObj.objMaps.cleanRoute();
             
-        /*mapObj.drawPolylines({
+        mapObj.drawPolylines({
             path: pathi,
             strokeColor: '#0000FF', //warna line
             strokeOpacity: 1, //transparansi
             strokeWeight: 10 //lebar line
         });
-          */  
-        //mapObj.setCenter([pathi.length - 1][0], [pathi.length - 1][1]);
+            
+        mapObj.objMaps.setCenter([pathi.length - 1][0], [pathi.length - 1][1]);
         
         $('#map').appendTo('#mainBottom');
         $('#mapInstruction').appendTo('#mainBottom');
@@ -828,7 +840,7 @@ $(document).ready( function()  // Ketika web udah siap
     {
         var currPos;
         // Bersihkan map dari rute
-        //mapObj.objMaps.cleanRoute();
+        mapObj.objMaps.cleanRoute();
         // brsihkan listener
         //mapObj.clearListeners('click');
         // Geolokasi
@@ -1506,6 +1518,8 @@ $(document).ready( function()  // Ketika web udah siap
                     }
 
                     domarker2 = !domarker2;
+                    
+                    objMapP.setCenter(latitude,longitude);
                 });
             });
 
