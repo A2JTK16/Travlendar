@@ -14,25 +14,25 @@ import javax.xml.bind.DatatypeConverter;
 
 /**
  * 
- * Kelas Hash SHA - 2 tipe SHA - 256
- * 64 karakter (256 bytes)
+ * Kelas Hash SHA - 1
+ * 40 karakter 
  * 
  * @author mufidjamaluddin
  */
-public class HashSHA256 
+public class HashSHA1 
 {
     /**
      * Instan dari class ini, Singleton
      */
-    private static final HashSHA256 SHA256_INSTANCE = new HashSHA256();
+    private static final HashSHA1 SHA1_INSTANCE = new HashSHA1();
     
     /**
      * Mendapatkan Instan
      * @return 
      */
-    public static HashSHA256 getInstance()
+    public static HashSHA1 getInstance()
     {
-        return SHA256_INSTANCE;
+        return SHA1_INSTANCE;
     }
     
     /**
@@ -43,19 +43,19 @@ public class HashSHA256
     /**
      * Konstruktor
      */
-    public HashSHA256()
+    public HashSHA1()
     {
         try 
         {
             /**
              * Mendapatkan object untuk hash
              */
-            this.crypt = MessageDigest.getInstance("SHA-256");
+            this.crypt = MessageDigest.getInstance("SHA-1");
         } 
         catch (NoSuchAlgorithmException ex) 
         {
             this.crypt = null;
-            Logger.getLogger(HashSHA256.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HashSHA1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -94,15 +94,15 @@ public class HashSHA256
     /**
      * Contoh Penggunaan
      * @param args
-     */
+     *
     public static void main(String[] args)
     {
-        /**
+        **
          * Dapatkan Instans
-         */
-        HashSHA256 objHash = HashSHA256.getInstance();
+         *
+        HashSHA1 objHash = HashSHA1.getInstance();
         
-        String password = "Rajin 123";
+        String password = "123";
         
         String hashpwd = objHash.hash(password);
         
@@ -110,6 +110,7 @@ public class HashSHA256
         
         System.out.println("Hasil Hash : " + hashpwd);
         
-        System.out.println("Cek Panjang Hash (64 bukan) : " + hashpwd.length());
+        System.out.println("Cek Panjang Hash (40 bukan) : " + hashpwd.length());
     }
+    * */
 }

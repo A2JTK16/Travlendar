@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.GenericDao;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.IDao;
+import id.ac.polban.jtk.project3.travlendar2A.Helpers.HashSHA1;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import id.ac.polban.jtk.project3.travlendar2A.Models.EventDesc;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
@@ -255,6 +256,9 @@ public class TravlendarController extends HttpServlet
                 try 
                 {
                     Traveller traveller = jsonMapper.readValue(json, Traveller.class);
+                    // hash password sebelum masukin ke database via dao
+                    String hashpwd = HashSHA1.getInstance().hash(traveller.getTraveller_password());
+                    traveller.setTraveller_password(hashpwd);
                     
                     affectedRow = this.travellerDao.create(traveller);
                 } 
@@ -266,7 +270,7 @@ public class TravlendarController extends HttpServlet
                 if(affectedRow > 0)
                     this.responseStr(response, "Sukses Registrasi User");
                 else
-                    this.responseStr(response, "Gagal Registrasi User");
+                    this.responseStr(response, "Gagal Registrasi User! Username dan Email harus unik!");
                 
                 break;
                 
@@ -294,7 +298,7 @@ public class TravlendarController extends HttpServlet
                 {
                     Traveller traveller = jsonMapper.readValue(json, Traveller.class);
                     
-                    idPK = this.travellerDao.edit(traveller, "traveller_username", traveller.getTraveller_username());
+                    idPK = this.travellerDao.edit(traveller, "traveller_username", this.getUsername(request));
                 } 
                 catch (IOException ex) 
                 {
@@ -417,8 +421,13 @@ public class TravlendarController extends HttpServlet
     {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        
-        Integer num = this.travellerDao.executeFunction("isThereUser", Integer.class, username, password);
+        String hashpwd = HashSHA1.getInstance().hash(password);
+        // cari dengam hash password
+        Integer num = this.travellerDao.executeFunction("isThereUser", Integer.class, username, hashpwd);
+        // jika di database belum di hash
+        if(num < 1)
+            num = this.travellerDao.executeFunction("isThereUser", Integer.class, username, password);
+            
         if(num > 0)
         {
             request.getSession(true).setAttribute("username", username);

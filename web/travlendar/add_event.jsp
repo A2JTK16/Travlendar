@@ -14,11 +14,8 @@
 	<link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
         <link rel="stylesheet" href="css/responsivetable.css">
-        <!-- Autocomplete -->
-         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAj08gQaSyQnNiFV7UWNpmSfCj9TR4DUtg&libraries=places&callback=initAutocomplete"
-         async defer></script>
-        <!-- Google Maps JS API -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>
+        <!-- Google Maps JS API // cukup satu --> 
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s&libraries=places"></script>
         <!-- JQuery Library -->
         <!--<script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
         <script src="js/jquery.min.js"></script>
@@ -187,8 +184,8 @@
                                                 
                                                  <!-- <input class="col-95" type="text" id="pac-input" name="search" placeholder="Search..">
                                               -->
-                                              <input id="searchmap" type="text" placeholder="Enter a location">
-                                              <div id="mapNewEvent"></div>
+                                    <input class="col-95" id="searchmap" type="text" placeholder="Enter a location">
+                                    <div id="mapNewEvent"></div>
                                            
 				</div>
                                 

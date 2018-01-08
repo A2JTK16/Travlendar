@@ -624,90 +624,95 @@ $(document).ready( function()  // Ketika web udah siap
     var domarker1 = false, domarker2 = true;
     
     var objMapP = new GMaps({
-            el: '#map',
-            lat: -6.872034,
-            lng: 107.574794,
-            zoom: 14,
-           
-            
-            click: function(e) 
-            {
-              if(isAddableMarker){
-              if (domarker1) 
+        el: '#map',
+        lat: -6.872034,
+        lng: 107.574794,
+        zoom: 14,
+               
+        click: function(e) 
+        {
+            if(isAddableMarker){
+                if (domarker1) 
                 {
                     objMapP.removeMarker((domarker2) ? m1 : m2);
                     objMapP.removePolylines();
-				}
+		}
 
-				if (domarker2) {
-					m1 = objMapP.addMarker({
-						lat: e.latLng.lat(),
-						lng: e.latLng.lng(),
-                                                title : 'event location',
-						icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
-					});
-					m1pos = m1.getPosition();
-				} 
-				else {
-					m2 = objMapP.addMarker({
-						lat: e.latLng.lat(),
-						lng: e.latLng.lng(),
-                                                
-						icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-                                                title: 'previous location'
-					});
-					m2pos = m2.getPosition();
-				}
+		if (domarker2) 
+                {
+                    m1 = objMapP.addMarker({
+                        lat: e.latLng.lat(),
+			lng: e.latLng.lng(),
+                        title : 'event location',
+			icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+                    });
+                    m1pos = m1.getPosition();
+                } 
+		else 
+                {
+                    m2 = objMapP.addMarker({
+			lat: e.latLng.lat(),
+			lng: e.latLng.lng(),
+                                             
+			icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                        title: 'previous location'
+                    });
+                    m2pos = m2.getPosition();
+		}
                                 
-                                if (m1 !== null && m2 !== null) {
-					domarker1 = true;
-				}
+                if (m1 !== null && m2 !== null) 
+                {
+                    domarker1 = true;
+		}
                                 
-                                domarker2 = !domarker2;
+                domarker2 = !domarker2;
                                 
-                    var origin = new google.maps.LatLng(m1pos.lat(),m1pos.lng()),
-                    destination = new google.maps.LatLng(m2pos.lat(),m2pos.lng()),        
-                    orig = document.getElementById("orig"),
-                    dest = document.getElementById("dest"),
-            
-            
-                     service = new google.maps.DistanceMatrixService();
+                var origin = new google.maps.LatLng(m1pos.lat(),m1pos.lng()),
+                destination = new google.maps.LatLng(m2pos.lat(),m2pos.lng());
+                /* tidak jalan jika diawal draw polylines dg gmaps.js
+                service = new google.maps.DistanceMatrixService();    
                     
-                    
-                    service.getDistanceMatrix(
-                        {
-                            origins: [origin],
-                            destinations: [destination],
-                            travelMode: "DRIVING",
-                            avoidHighways: false,
-                            avoidTolls: false
-                        }, 
-                        callback
-                    );
-
-                    function callback(response, status) 
+                service.getDistanceMatrix(
                     {
+                        origins: [origin],
+                        destinations: [destination],
+                        travelMode: "DRIVING",
+                        avoidHighways: false,
+                        avoidTolls: false
+                    }, 
+                    callback
+                );
 
-                        
-                        var dist = document.getElementById("dist"),
-                        transit = document.getElementById("transit");
+                function callback(response, status) 
+                {    
+                    var dist = document.getElementById("dist"),
+                    transit = document.getElementById("transit");
 
-                        if(status=="OK") 
-                        {
-                            var origins = response.originAddresses;
-                            var destinations = response.destinationAddresses;
-                            orig.value=origins;
-                            dest.value=destinations;
-                           
-                        } 
-                        else 
-                        {
-                            alert("Error: " + status);
-                        }
-                    } // end of callback
-                }//tutup isaddablemarker
-            } // tutup e click
-        }); // tutup instansiasi gmaps 
+                    if(status=="OK") 
+                    {
+                        var origins = response.originAddresses;
+                        var destinations = response.destinationAddresses;
+                        orig.value=origins;
+                        dest.value=destinations;       
+                    } 
+                    else 
+                    {
+                        alert("Error: " + status);
+                    }
+                } // end of callback
+                */
+                objMapP.drawRoute({
+                    origin: [origin],
+                    destination: [destination],
+                    travelMode: 'driving',
+                    strokeColor: '#131540',
+                    strokeOpacity: 0.6,
+                    strokeWeight: 6
+                });
+               
+            }//tutup isaddablemarker
+        } // tutup e click
+    }); // tutup instansiasi gmaps 
     
     mapObj = new A2Gmaps(objMapP);
     
@@ -734,16 +739,16 @@ $(document).ready( function()  // Ketika web udah siap
             // array lat lng
             pathi.push([item.latitude, item.longitude]);
             
-            /*mapObj.addMarker(item.latitude, item.longitude, item.title, item.start, function(){
+            mapObj.addMarker(item.latitude, item.longitude, item.title, item.start, function(){
                confirm('Title :'+ item.title +'\nDepature Time : ' + item.departure_time + '\n Start Event : '+ item.start);
             });
-            */
+            
         });
         
         // draw polyline event2
-        //mapObj.drawPolylines(pathi);
+        mapObj.drawPolylines(pathi);
         // zoom
-        //mapObj.objMaps.zoomIn(4);
+        mapObj.objMaps.zoomIn(4);
         
         // set aksi view more
         $("#tableEvent").on('click', '.v-more', function()
@@ -1340,22 +1345,22 @@ $(document).ready( function()  // Ketika web udah siap
                       //  alert("Mohon klik tujuan anda!");
     });
     
-                $('#signout').click(function(){
-                       $.ajax({
-                            type: 'POST', // method post
-                            url: 'index',
-                            data: {action: 'logout'},
-                            async: false, // dikirim ketika semua beres
-                            success: function(msgStatus)
-                            {
-                                location.reload(true);
-                            },
-                            error: function(xmlhttprequest, textstatus, message)
-                            {
-                                alert(textstatus + message);
-                            }
-                        });  
-                   });
+    $('#signout').click(function(){
+        $.ajax({
+            type: 'POST', // method post
+            url: 'index',
+            data: {action: 'logout'},
+            async: false, // dikirim ketika semua beres
+                success: function(msgStatus)
+                {
+                    location.reload(true);
+                },
+                error: function(xmlhttprequest, textstatus, message)
+                {
+                    alert(textstatus + message);
+                }
+            });  
+    });
     /**
      * Klik tombol save
      */
@@ -1399,27 +1404,27 @@ $(document).ready( function()  // Ketika web udah siap
                       //  alert("Mohon klik tujuan anda!");
     });
                                 
-                $('#myBtn').click(function(){
-                    $('#mapInstruction').appendTo('#mapPopup');
-                    $('#map').appendTo('#mapPopup');
-                    $('#myModal').show();
-                });
+    $('#myBtn').click(function(){
+        $('#mapInstruction').appendTo('#mapPopup');
+        $('#map').appendTo('#mapPopup');
+        $('#myModal').show();
+    });
                                  
-                $('.close').click(function(){
-                    $('#map').appendTo('#mapNewEvent');
-                    $('#mapInstruction').appendTo('#mapNewEvent');
-                    $('#myModal').hide();
-                    $('#mapInstruction').html('');
-                });
+    $('.close').click(function(){
+        $('#map').appendTo('#mapNewEvent');
+        $('#mapInstruction').appendTo('#mapNewEvent');
+        $('#myModal').hide();
+        $('#mapInstruction').html('');
+    });
 
-        	/*window.onclick = function(event) {
-		    if (event.target == modal) {
-		        modal.style.display = "none";
-		    }
-		}
-                    */
+    /*window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    */
                    
-                   
+    /*               
     function initAutocomplete() {
     var map = objMapP;
 
@@ -1449,9 +1454,67 @@ $(document).ready( function()  // Ketika web udah siap
     });
     
 }
-                
+    */
+    function initializeAutocomplete()
+    {
+        if(google !== 'undefined')
+        {
+            google.maps.event.addDomListener(window, 'load', function () 
+            {
+                var places = new google.maps.places.Autocomplete($('#searchmap')[0]);
+
+                google.maps.event.addListener(places, 'place_changed', function () {
+                    var place = places.getPlace();
+                    var address = place.formatted_address;
+                    var latitude = place.geometry.location.lat();
+                    var longitude = place.geometry.location.lng();
+
+                    if (domarker1) 
+                    {
+                        objMapP.removeMarker((domarker2) ? m1 : m2);
+                        objMapP.removePolylines();
+                    }
+
+                    if (domarker2) 
+                    {
+                            m1 = objMapP.addMarker({
+                                lat: latitude,
+                                lng: longitude,
+                                title : 'event location',
+                                icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                            });
+                            m1pos = m1.getPosition();
+                            
+                            $('#orig').val(address);
+                    } 
+                    else 
+                    {
+                            m2 = objMapP.addMarker({
+                               lat: latitude,
+                                lng: longitude,                                    
+                                icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                                title: 'previous location'
+                            });
+                            m2pos = m2.getPosition();
+                            
+                            $('#dest').val(address);
+                    }
+
+                    if (m1 !== null && m2 !== null) 
+                    {
+                        domarker1 = true;
+                    }
+
+                    domarker2 = !domarker2;
+                });
+            });
+
+        };
+    };
+    
+    initializeAutocomplete();
 }); // tutup JQuery    
-            
+
 /*                        			
 function show()
 {

@@ -26,7 +26,7 @@ DELIMITER $$
 --
 -- Functions
 --
-CREATE DEFINER=`root`@`localhost` FUNCTION `isThereUser` (`usrname` VARCHAR(30), `pass` VARCHAR(25)) RETURNS TINYINT(1) BEGIN
+CREATE DEFINER=`root`@`localhost` FUNCTION `isThereUser` (`usrname` VARCHAR(30), `pass` VARCHAR(40)) RETURNS TINYINT(1) BEGIN
 
    DECLARE result BOOLEAN;
 
@@ -137,7 +137,7 @@ CREATE TABLE `traveller` (
 --
 
 INSERT INTO `traveller` (`traveller_username`, `traveller_email`, `traveller_password`, `traveller_fullname`, `traveller_address`) VALUES
-('maryam', 'maryam@yahoo.co', '123', 'Maryam', 'Belitung');
+('maryam', 'maryam@yahoo.co', '40BD001563085FC35165329EA1FF5C5ECBDBBEEF', 'Maryam', 'Belitung');
 
 -- --------------------------------------------------------
 
