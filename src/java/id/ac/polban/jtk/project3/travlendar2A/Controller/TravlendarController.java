@@ -14,6 +14,7 @@ import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import id.ac.polban.jtk.project3.travlendar2A.Models.EventDesc;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Location;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Message;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Travel;
 import id.ac.polban.jtk.project3.travlendar2A.Models.ViewEvent;
 import java.io.IOException;
@@ -165,33 +166,37 @@ public class TravlendarController extends HttpServlet
         switch(param)
         {
             case "addEvent":
-                
+                // pesan
+                Message message;
+                message = new Message();
+                int idLoc;
+                        
                 try 
                 {
                     EventDesc eventdesc = jsonMapper.readValue(json, EventDesc.class);
                     // masukin lokasi
                     Location eventLoc = eventdesc.getStartLocation();
-                    idPK = this.locationDao.create(eventLoc);
+                    idLoc = this.locationDao.create(eventLoc);
                     
                     eventLoc = eventdesc.getEndLocation();
                     affectedRow = this.locationDao.create(eventLoc);
                     
                     // masukin event
                     Event objEvent = eventdesc.getEvent();
-                    objEvent.setStart_location_id(idPK);
+                    objEvent.setStart_location_id(idLoc);
                     objEvent.setEnd_location_id(affectedRow);
                     objEvent.setTraveller_username(this.getUsername(request));
-                    this.eventDao.create(objEvent);
+                    idPK = this.eventDao.create(objEvent);
                     
                     // masukkin travel
                     Travel travelEvent = eventdesc.getTravel();
                     travelEvent.setTraveller_username(this.getUsername(request));
-                    travelEvent.setStart_location_id(idPK);
+                    travelEvent.setStart_location_id(idLoc);
                     travelEvent.setEnd_location_id(affectedRow);
                     travelEvent.setTraveller_username(this.getUsername(request));
                     
                     this.travelDao.create(travelEvent);
-                    idPK = 1;
+                    //idPK = 1;
                 } 
                 catch (IOException ex) 
                 {
@@ -199,10 +204,27 @@ public class TravlendarController extends HttpServlet
                 }
                 
                 if(idPK > 0)
-                    this.responseStr(response, "Sukses Menambahkan Event Baru");
+                {
+                    message.setStatus("OK");
+                    message.setTitle("Success Add Event");
+                    message.setGeneratedKey(idPK);
+                }
                 else
-                    this.responseStr(response, "Gagal Menambahkan Event");  
-        
+                {
+                    message.setStatus("ERROR");
+                    message.setTitle("Failed Add Event");
+                }
+                
+                try 
+                {
+                    json = jsonMapper.writeValueAsString(message);
+                    this.responseJson(response, json);
+                } 
+                catch (JsonProcessingException ex) 
+                {
+                    Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
                 break;
                 
             case "editEvent":
@@ -270,7 +292,7 @@ public class TravlendarController extends HttpServlet
                 if(affectedRow > 0)
                     this.responseStr(response, "Sukses Registrasi User");
                 else
-                    this.responseStr(response, "Gagal Registrasi User! Username dan Email harus unik!");
+                    this.responseStr(response, "Gagal Registrasi User!\nUsername atau Email Terdaftar!\nJika Anda telah memiliki akun, Mohon login!");
                 
                 break;
                 

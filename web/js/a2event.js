@@ -64,8 +64,8 @@ $(document).ready( function()  // Ketika web udah siap
                 mapEvent.cleanRoutes();
                 
                 mapEvent.objMaps.drawRoute({
-                    origin: [eventE.latitude, eventE.longitude],
-                    destination: [eventE.end_latitude, eventE.end_longitude],
+                    origin: [eventE.start_latitude, eventE.start_longitude],
+                    destination: [eventE.latitude, eventE.longitude],
                     travelMode: eventE.transportation.toString(),
                     strokeColor: '#131540',
                     strokeOpacity: 0.7,
@@ -90,8 +90,8 @@ $(document).ready( function()  // Ketika web udah siap
                 });
                 
                 this.markerView2 = mapEvent.objMaps.addMarker({
-                    lat: eventE.end_latitude,
-                    lng: eventE.end_longitude,                          
+                    lat: eventE.start_latitude,
+                    lng: eventE.start_longitude,                          
                     icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
                     title: 'previous location'
                 });
@@ -760,6 +760,7 @@ $(document).ready( function()  // Ketika web udah siap
     }); // tutup instansiasi gmaps 
     
     mapObj = new A2Gmaps(objMapP);
+    var isNotCal = true;
     
     // mendapatkan json dari controller
     objAccess.getJson(function(data){
@@ -772,7 +773,7 @@ $(document).ready( function()  // Ketika web udah siap
             // ketika event kalender di klik buka tab view more
             tabView.viewMore(calEvent, mapObj);
         });
-        
+        isNotCal = false;
         // loop list
         var count = 0;
         $.map(data, function(item,i)
@@ -796,11 +797,13 @@ $(document).ready( function()  // Ketika web udah siap
                 title: item.title,
                 infoWindow: {
                     content: '<p>'+ count + '. ' + item.title +'</p>'
-                }
-                //label: i+1
+                },
+                label: count.toString()
             });
             
         });
+        
+        mapObj.drawPolylines(pathi);
         
         // zoom
         mapObj.objMaps.zoomIn(4);
@@ -821,6 +824,7 @@ $(document).ready( function()  // Ketika web udah siap
     });
     
     
+    mapObj.drawPolylines(pathi);
         
     /**
      * Klik menu tab List
@@ -1058,7 +1062,7 @@ $(document).ready( function()  // Ketika web udah siap
                     {
                         $(cssIdRadio).show().click(function(){
                             mapObj.cleanRoutes;
-                            mapObj.drawRoutesAnimated(travelMode, [m1pos.lat(), m1pos.lng()], [m2pos.lat(), m2pos.lng()]);
+                            mapObj.drawRoutesAnimated(travelMode, [m1pos.lat, m1pos.lng], [m2pos.lat, m2pos.lng]);
                         });
                         
                         $(cssIdMsg).val( secToHHMM(traveltime) );     
@@ -1392,28 +1396,31 @@ $(document).ready( function()  // Ketika web udah siap
                 async: false, // dikirim ketika semua beres
                 timeout: 6000,
                 success: function(msgStatus)
-                        {
-                            var submsg = msgStatus.substring(0, 6); 
-                   
-                            if(submsg == "Sukses")
+                        {                   
+                            if(msgStatus.status == "OK")
                             {
+                                event.id = msgStatus.generatedKey;
                                 event.address = eventLoc.address;
                                 event.depature_time = eventTravel.departure_time;
                                 event.transportation = eventTravel.transportation;
+                                event.latitude = eventLoc.latitude;
+                                event.longitude = eventLoc.longitude;
+                                event.start_latitude = eventStartLoc.latitude;
+                                event.start_longitude = eventStartLoc.longitude;
                                 // tulis ke table
                                 objTableEvent.writeRow(event);
                                 // tambah event
                                 $('#calendar').fullCalendar( 'renderEvent', event);
- 
+                                    
                                 //location.reload();
                                 tabView.openTab('#Tasik','#defaultOpen');
                                 // draw polyline event baru
                                 pathi.push([eventLoc.latitude, eventLoc.longitude]);
-                                //mapObj.drawPolylines(pathi);
+                                mapObj.drawPolylines(pathi);
                             }
-                            else if(submsg === "Gagal ")
+                            else
                             {
-                                confirm(msgStatus);
+                                confirm(msgStatus.title + '\n' + msgStatus.message);
                             }
                         },
                         error: function(xmlhttprequest, textstatus, message)
@@ -1421,7 +1428,10 @@ $(document).ready( function()  // Ketika web udah siap
                             confirm(textstatus + message);
                         }
                     });
-            
+                    
+            if(isNotCal)
+                location.reload(true);
+                               
         }
         else
             confirm("Mohon klik tujuan anda!");

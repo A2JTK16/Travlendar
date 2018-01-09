@@ -45,6 +45,7 @@
                 <div class="dropdown-content">
 					<a>Hi, <%= session.getAttribute("username") %> </a>
                     <a href="../">My Plan</a>
+                    <a href="https://goo.gl/forms/pfpqxLwGItxB30eX2"> Feedback </a>
 					<a id="signout">Sign Out</a>
                 </div>
             </div>

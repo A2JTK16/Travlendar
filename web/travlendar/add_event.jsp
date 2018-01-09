@@ -67,6 +67,7 @@
                 </button>
                 <div class="dropdown-content">
                   <a>Hi, <%= session.getAttribute("username") %> </a>
+                  <a href="https://goo.gl/forms/pfpqxLwGItxB30eX2"> Feedback </a>
                   <a href="setting">Setting Account</a>
                   <a id="signout">Sign Out</a>
                 </div>

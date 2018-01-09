@@ -33,19 +33,19 @@ public class ViewEvent
     private Timestamp depature_time;
     
     @JsonProperty(value = "latitude")
-    private Float strt_loc_lat;
+    private Float end_loc_lat;
     
     @JsonProperty(value = "longitude")
-    private Float strt_loc_long;
+    private Float end_loc_long;
     
     @JsonProperty(value = "address")
     private String start_location_name;
     
-    @JsonProperty(value = "end_latitude")
-    private String end_loc_lat;
+    @JsonProperty(value = "start_latitude")
+    private Float strt_loc_lat;
     
-    @JsonProperty(value = "end_longitude")
-    private String end_loc_long;
+    @JsonProperty(value = "start_longitude")
+    private Float strt_loc_long;
     
     private String note;
 
@@ -194,30 +194,15 @@ public class ViewEvent
     /**
      * @return the end_loc_lat
      */
-    public String getEnd_loc_lat() {
+    public Float getEnd_loc_lat() {
         return end_loc_lat;
     }
 
     /**
      * @param end_loc_lat the end_loc_lat to set
      */
-    public void setEnd_loc_lat(String end_loc_lat) {
+    public void setEnd_loc_lat(Float end_loc_lat) {
         this.end_loc_lat = end_loc_lat;
     }
-
-    /**
-     * @return the end_loc_long
-     */
-    public String getEnd_loc_long() {
-        return end_loc_long;
-    }
-
-    /**
-     * @param end_loc_long the end_loc_long to set
-     */
-    public void setEnd_loc_long(String end_loc_long) {
-        this.end_loc_long = end_loc_long;
-    }
-
    
 }
