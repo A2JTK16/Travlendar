@@ -147,7 +147,7 @@ public class TestCrudEvent
          * Test Hapus Event
          */
         System.out.println("Test Menghapus Event yang event_id=5");
-        affectedRow = dao.delete("event_id", String.format("%s",idPK));
+  //      affectedRow = dao.delete("event_id", String.format("%s",idPK));
         System.out.println("Delete " + idPK + " dan affectedRow : " + affectedRow);
         list = dao.getList("username", "maryam");
         
