@@ -44,9 +44,14 @@ MEDIA QUERIES
 		width: 100%;
 	}
 	.left {
-		width: 25%;
-		background: #fff000;
+                clear: both;
+		padding: 2px;
+                margin: 2px;
+		width: auto;
+		float: none;
+		background: #eee;
 	}
+        
 	.middle {
 		width: 68%;
 		float: right;
@@ -54,10 +59,15 @@ MEDIA QUERIES
 	
 	.right {
 		clear: both;
-		padding: 1% 4%;
+		padding: 2px;
+                margin: 2px;
 		width: auto;
 		float: none;
 	}
+        
+        .ev-name{
+	width: 97%;
+        }
 }
 
 
@@ -160,23 +170,22 @@ MEDIA QUERIES
         }
         
         .kotak-deskripsi{
-   width: 200px;
-   background: #1abc9c;
-   opacity: 0.7;
-   padding: 15px;
-    border-radius:50px;
-    margin-left:50px;
-    margin-top:90px;
-    -webkit-animation: fade-in-move-down 0.7s;
-  animation: fade-in-move-down 0.7s;
+            width: 200px;
+            background: #1abc9c;
+            opacity: 0.7;
+            padding: 15px;
+            border-radius:50px;
+            margin-left:50px;
+            margin-top:90px;
+            -webkit-animation: fade-in-move-down 0.7s;
+            animation: fade-in-move-down 0.7s;
+        }
+        
+        .ev-name{
+	width: 96%;
+        }
+             
 }
-       
-       
-}
-
-
-
-
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media (max-width: 600px) {

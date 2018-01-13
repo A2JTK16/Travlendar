@@ -46,6 +46,7 @@ a{
 	text-decoration: none;
 	color: #333;
 }
+
 a:hover{
 	color: #666;
 }
@@ -56,7 +57,6 @@ a:hover{
 	background: #fff;
 	border-top: 3px solid #ff9900;
 }
-
 
 .container{
 	max-width: 1080px;
@@ -115,7 +115,6 @@ a:hover{
 	height: 35px;
 }
 
-
 .search{
 	float: left;
 	padding: 5px;
@@ -126,7 +125,6 @@ a:hover{
 	border: none;
 	border-radius: 50px;
 }
-
 
 .icon-setting{
 	float: left;
@@ -209,15 +207,13 @@ a:hover{
 }
 
 .sign-up a{
-    color:#f4f4f4;
-       
+    color:#f4f4f4;     
 }
 
 
 .sign-up a:hover{
     color:#f4f4f4;    
 }
-
 
 .sign-in{
     float:left;
@@ -342,6 +338,7 @@ a:hover{
 		width: 510px;
                 height: auto;
 		border: 1px solid #dedede;
+                background: #f4f4f4;
 		padding: 10px;
 		margin: 10px;
 		overflow: hidden;
@@ -496,10 +493,14 @@ a:hover{
 	text-align: center;
 }
 
+.name-ev{
+    width: 100%;
+    padding: 10px 20px;
+}
+
 .ev{
-	width: 465px;
-	padding: 10px;
-	margin: 10px;
+	width: 100%;
+	padding: 12px 10px;
 	border: 1px solid #b4b4b4;
 	font: 14px Arial;
 }
@@ -532,7 +533,8 @@ a:hover{
 
 
 .text-ev{
-	margin-left: 10px;
+	padding: 4px;
+        margin: 4px;
 	font: 14px Arial;
 	font-weight: bold;
 	color: #757575;
@@ -544,13 +546,13 @@ a:hover{
 }
 
 .i-save2{
-	width: 450px;
+	width: 400px;
 	margin: 0 auto;
         overflow: hidden;
 }
 
 .save-ev{
-	width: 200px;
+	width: 170px;
 	padding: 10px;
 	margin: 10px;
 	font: 16px Arial;
@@ -562,7 +564,7 @@ a:hover{
 }
 
 .save-ev2{
-	width: 200px;
+	width: 170px;
 	padding: 10px;
 	margin: 10px;
 	font: 16px Arial;
@@ -631,14 +633,11 @@ div.tab button:hover {
 }
 
 
-
 /* Style the tab content */
 .tabcontent {
     display: none;
 	overflow: hidden;
 }
-
-
 
 .modal {
     display: none; /* Hidden by default */
@@ -659,9 +658,9 @@ div.tab button:hover {
 
 /* Modal Content */
 .modal-content {
-	padding: 10px;
-	padding-top: 80px;
-   	margin: 10px auto;
+    padding: 10px;
+    padding-top: 80px;
+    margin: 10px auto;
     bottom: 0;
     background-color: transparent;
     width: auto;
@@ -756,108 +755,78 @@ div.tab button:hover {
 
 
 .k-transport{
-       	float: left;
-        width: 140px;
-        margin-right: 5px;
-        margin-left: 5px;
-	background: none;
-	overflow: hidden;
-        padding: 10px;
-    }
+    float: left;
+    width: 140px;
+    margin-right: 5px;
+    margin-left: 5px;
+    background: none;
+    overflow: hidden;
+    padding: 10px;
+}
 
-    .k-popup{
-       	max-height: 100%;
-    	margin: auto;
-    	background: none;
-        overflow: hidden;
-        padding: 10px;
-    }
-    
-    .k-popupna{
-        float: none;
-        padding: 2px;
-        margin: 2px;
-        overflow: hidden;
-    }
+.k-popup{
+    max-height: 100%;
+    margin: auto;
+    background: none;
+    overflow: hidden;
+    padding: 10px;
+}
 
-    .trans{
-        padding: 5px;
-        margin: 5px;
-    }
-    
-    .dontmode{
-        margin-top: 10px;
-    }
-    
-    
-    .trans img{
-        width: 95px;
-        height: 95px;
-    }
+.k-popupna{
+    float: none;
+    padding: 2px;
+    margin: 2px;
+    overflow: hidden;
+}
 
-    
-    
-table { 
-			width: 100%; 
-			border-collapse: collapse;
-		}
-		/* Zebra striping */
-		tr:nth-of-type(odd) { 
-			background: #eee; 
-		}
-		
-		td, th{ 
-			padding: 7px;
-                        margin: 7px;
-			border: 1px solid #ccc; 
-			text-align: left;
-                        font: 14px Arial;
-                        font-weight: bold;
-                        color: #757575;
-		}
-                
-                th { 
-			background: #9E9E9E;
-                        font: 15px Arial;
-			font-weight: bold; 
-                        color: #fff;
-		}
-                
-                
-                .v-more, .v-del, #viewList{
-                    float: left;
-                    padding: 5px;
-                    margin: 5px;
-                    font-family: "Roboto", sans-serif;
-                    background: #1abc9c;
-                    width: 80px;
-                    border: 0;
-                    color: #FFFFFF;
-                    font-size: 13px;
-                    transition: all 0.3 ease;
-                    cursor: pointer
-                }
-                
-                .v-del{
-                    background:#E53935;
-                }
-                
-                #viewList{
-                    background: #ff9900;
-                }
-                
-                .icon-more{
-                    padding: 2px;
-                    margin: 2px;
-                    overflow: hidden;
-                    background: none;
-                }
-                
-                .icon-more img{
-                    width: 50px;
-                    height: 50px;
-                }
-                
+.trans{
+    padding: 5px;
+    margin: 5px;
+}
+
+.dontmode{
+    margin-top: 10px;
+}
+
+
+.trans img{
+    width: 95px;
+    height: 95px;
+}
+
+.v-more, .v-del, #viewList{
+    float: left;
+    padding: 5px;
+    margin: 5px;
+    font-family: "Roboto", sans-serif;
+    background: #1abc9c;
+    width: 80px;
+    border: 0;
+    color: #FFFFFF;
+    font-size: 13px;
+    transition: all 0.3 ease;
+    cursor: pointer
+}
+
+.v-del{
+    background:#E53935;
+}
+
+#viewList{
+    background: #ff9900;
+}
+
+.icon-more{
+    padding: 2px;
+    margin: 2px;
+    overflow: hidden;
+    background: none;
+}
+
+.icon-more img{
+    width: 50px;
+    height: 50px;
+}
 
 .form input {
   font-family: "Roboto", sans-serif;
@@ -906,7 +875,6 @@ table {
     background:#1976D2;
 }
 
-
 .form button:hover{color:#f4f4f4;}
 
 .setting-from{
@@ -919,15 +887,11 @@ table {
 }
 
 
-
-
-
 .name, select, textarea{
     width: 100%;
     padding: 10px;
     margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #b4b4b4;
     box-sizing: border-box;
     resize: vertical;
 }
@@ -974,7 +938,10 @@ label {
 
 .col-95 {
     width: 100%;
-    height: 42px;
+    padding: 12px 10px;
+    font: 14px Arial;
+    color: #757575;
+    border: 1px solid #b4b4b4;
 }
 
 /* Clear floats after the columns */
@@ -997,3 +964,30 @@ label {
     font-weight: bold;
     color: #757575;
 }
+
+
+table { 
+    width: 100%; 
+    border-collapse: collapse;
+    }
+    /* Zebra striping */
+    table tr:nth-of-type(odd) { 
+    background: #f4f4f4; 
+    }
+
+    table td, table th{ 
+    padding: 7px;
+    margin: 7px;
+    border: 1px solid #ccc; 
+    text-align: left;
+    font: 14px Arial;
+    font-weight: bold;
+    color: #757575;
+    }
+
+    table th { 
+    background: #9E9E9E;
+    font: 15px Arial;
+    font-weight: bold; 
+    color: #fff;
+    }

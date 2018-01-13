@@ -12,22 +12,22 @@ and open the template in the editor.
 	(min-device-width: 768px) and (max-device-width: 1024px)  {
 	
 		/* Force table to not be like tables anymore */
-		table, thead, tbody, th, td, tr { 
+		#tableEvent, #tableEvent thead, #tableEvent tbody, #tableEvent th, #tableEvent td, #tableEvent tr { 
 			display: block;
                         width: auto;
                         overflow: hidden;
 		}
 		
 		/* Hide table headers (but not display: none;, for accessibility) */
-		thead tr { 
+		#tableEvent thead tr { 
 			position: absolute;
 			top: -9999px;
 			left: -9999px;
 		}
 		
-		tr { border: 1px solid #ccc; }
+		#tableEvent tr { border: 1px solid #ccc; }
 		
-		td { 
+		#tableEvent td { 
 			/* Behave  like a "row" */
 			border: none;
 			border-bottom: 1px solid #eee; 
@@ -35,7 +35,7 @@ and open the template in the editor.
 			padding-left: 50%; 
 		}
 		
-		td:before { 
+		#tableEvent td:before { 
 			/* Now like a table header */
 			position: absolute;
 			/* Top/left values mimic padding */
@@ -49,12 +49,12 @@ and open the template in the editor.
 		/*
 		Label the data
 		*/
-		td:nth-of-type(2):before { content: "Event Name"; }
-		td:nth-of-type(3):before { content: "Date & Time"; }
-		td:nth-of-type(4):before { content: "Use"; }
-		td:nth-of-type(5):before { content: "At"; }
-		td:nth-of-type(6):before { content: "Location"; }
-                td:nth-of-type(7):before { content: "Action"; }
+		#tableEvent td:nth-of-type(2):before { content: "Event Name"; }
+		#tableEvent td:nth-of-type(3):before { content: "Date & Time"; }
+		#tableEvent td:nth-of-type(4):before { content: "Use"; }
+		#tableEvent td:nth-of-type(5):before { content: "At"; }
+		#tableEvent td:nth-of-type(6):before { content: "Location"; }
+                #tableEvent td:nth-of-type(7):before { content: "Action"; }
 	}
 
         

@@ -120,8 +120,6 @@
                  
 		</div>
                 
-                
-
 		<div id="London" class="tabcontent">
 	           
                         <input class="ev-name" id="eventName" type="text" placeholder="Event Name ??.. "/>
@@ -181,83 +179,75 @@
 				
 				
 				<div class="right">
-                                                                                            
-                                                
-                                                 <!-- <input class="col-95" type="text" id="pac-input" name="search" placeholder="Search..">
-                                              -->
                                     <input class="col-95" id="searchmap" type="text" placeholder="Enter a location">
                                     <div id="mapNewEvent"></div>
-                                           
 				</div>
                                 
                                 <input class="ev-name" id="noteDesc" type="text" placeholder="Note .. " style="height:75px;"/>
                             
-                                 <div class="i-save" >
+                                <div class="i-save" >
                                     <button class="submit" id="myBtn">Choose Transportation Mode</button>
 				<!-- The Modal -->
 				<div id="myModal" class="modal">
 
 				  <!-- Modal content -->
 				  <div class="modal-content">
-				    	
-							  <div class="form">
-							    <div class="modal-header">
-							      <span class="close">&times;</span>
-							      <h4>Select Your Transportation Mode</h4>
-                                                              
-							    </div>
-                                                              <div class="k-popup">
-                                                                  <form class="k-popupna" action="#" method="POST">
-                                                                  <div class="k-transport">
-                                                                      <div class="trans"> <img src="icon/air2.png"> </div>
-                                                                      <div class="dontmode"> ⭙ </div>
-                                                                      
-                                                                  </div>
-                                                                   <div class="k-transport">
-                                                                       <div class="trans"> <img src="icon/train.png"></div>
-                                                                       <input type="radio" id="radio" name="transportation" class="transportation" value="TRANSIT">
-                                                                      <input id="transit" type="text">
-                                                                      <br>
-                                                                  </div>
-                                                                   <div class="k-transport">
-                                                                      <div class="trans"> <img src="icon/car.png"> </div>
-                                                                      <input type="radio" id="radio2" name="transportation" class="transportation" value="DRIVING" >
-                                                                      <input id="driving" type="text">
-                                                                  </div>
-                                                                   <div class="k-transport">
-                                                                      <div class="trans"> <img src="icon/motor3.png"> </div>
-                                                                      <input type="radio" id="radio3" name="transportation" class="transportation" value="BICYCLING" >
-                                                                      <input id="bicycling" type="text">
-                                                                  </div>
-                                                                   <div class="k-transport">
-                                                                      <div class="trans"> <img src="icon/walk.png"> </div>
-                                                                      <input type="radio" id="radio1" name="transportation" class="transportation" value="WALKING" >
-                                                                      <input id="walking" type="text">
-                                                                  </div>
-                                                                  
-                                                                  
-                                                                  </form>
-                                                                  <div class="containernya">
-                                                                      <div id="mapPopup"> Your Routes </div>
-                                                                      <div id="mapInstruction"></div>
-                                                                  </div>
-                                                                      
-                                                                  <button id="TombolSave">Save</button>
-                                                              </div>
-							    
-							  </div>
-							
-				  </div> <!--modal content-->
-				</div>
-                                
-            </div> <!--i-save-->
+                                      <div class="form">
+                                        <div class="modal-header">
+                                          <span class="close">&times;</span>
+                                          <h4>Select Your Transportation Mode</h4>
 
-				
+                                        </div>
+                                          <div class="k-popup">
+                                              <form class="k-popupna" action="#" method="POST">
+                                              <div class="k-transport">
+                                                  <div class="trans"> <img src="icon/air2.png"> </div>
+                                                  <div class="dontmode"> ⭙ </div>
+
+                                              </div>
+                                               <div class="k-transport">
+                                                   <div class="trans"> <img src="icon/train.png"></div>
+                                                   <input type="radio" id="radio" name="transportation" class="transportation" value="TRANSIT">
+                                                  <input id="transit" type="text">
+                                                  <br>
+                                              </div>
+                                               <div class="k-transport">
+                                                  <div class="trans"> <img src="icon/car.png"> </div>
+                                                  <input type="radio" id="radio2" name="transportation" class="transportation" value="DRIVING" >
+                                                  <input id="driving" type="text">
+                                              </div>
+                                               <div class="k-transport">
+                                                  <div class="trans"> <img src="icon/motor3.png"> </div>
+                                                  <input type="radio" id="radio3" name="transportation" class="transportation" value="BICYCLING" >
+                                                  <input id="bicycling" type="text">
+                                              </div>
+                                               <div class="k-transport">
+                                                  <div class="trans"> <img src="icon/walk.png"> </div>
+                                                  <input type="radio" id="radio1" name="transportation" class="transportation" value="WALKING" >
+                                                  <input id="walking" type="text">
+                                              </div>
+
+
+                                              </form>
+                                              <div class="containernya">
+                                                  <div id="mapPopup"> Your Routes </div>
+                                                  <div id="mapInstruction"></div>
+                                              </div>
+
+                                              <button id="TombolSave">Save</button>
+                                          </div>
+
+                                      </div>
+							
+                                        </div> <!--modal content-->
+                                    </div>
+                                
+                                </div> <!--i-save-->
+	
 			</div> <!--/ .main -->
-		</div>
+		</div>  <!--london-->
                 
 		<div id="Paris" class="tabcontent">
-                    <!--<button id="viewList">View</button>-->
                     <table id="tableEvent">
 			<thead>
                             <tr>
@@ -283,13 +273,7 @@
 			<div class="main">
                             <form>
 				<div class="left" id="moreLeft">
-                                    <div class="text-ev">
-                                        <input class="ev" id="moreTitle" type="text"/>
-                                    </div>
-                                    <div>
-                                        
-                                    </div>
-                                    
+                                        <input class="name-ev" id="moreTitle" type="text"/>
 				</div>
 				
 				
