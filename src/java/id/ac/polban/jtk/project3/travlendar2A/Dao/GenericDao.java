@@ -454,17 +454,41 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
      * @return 
      */
     @Override
-    public int delete(String paramName, String paramValue) 
+    public int delete(Object object) 
     {
         if(this.propertyClass.isEmpty())
             return 0;
-        
+        /*
         if(paramName == null || paramValue == null)
             return 0;
+        */
+       
+        /**
+         * Untuk membuat string sql
+         */
+        StringBuilder mtSql = new StringBuilder();
+        /**
+         * Mendapatkan Map Fields
+         */
+        Map<String, Object> fieldsMap = this.getFieldsMap(object);
+        Object[] params = fieldsMap.keySet().toArray();
+        /**
+         * Membat SQL Sintaks
+         */
+        mtSql.append("DELETE FROM ");
+        mtSql.append(this.classModel.getSimpleName().toLowerCase());
+        mtSql.append("WHERE ");        
+        //mtSql.append(String.join(",", keySet));
+        
+        for(int i=0; i<fieldsMap.size(); i++)
+        {
+            mtSql.append(params[i]);
+            mtSql.append(" = ? AND");
+        }
+                
+        mtSql.delete(mtSql.length()-3, mtSql.length()); // hapus AND
         
         int affectedRow = 0;
-        String sql;
-        sql = String.format("DELETE FROM %s WHERE ( %s = ? )",this.classModel.getSimpleName().toLowerCase(), paramName);
         /**
          * Buat Koneksi ke DBMS
          */
@@ -475,9 +499,18 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         PreparedStatement stmt;
         try 
         {
-            stmt = super.getJdbcConnection().prepareStatement(sql);
-            
-            stmt.setString(1, paramValue);
+            stmt = super.getJdbcConnection().prepareStatement(mtSql.toString());
+           
+            /**
+             * Mendapatkan attribut dari objek objModel
+             */
+            int count = 1;
+            for(Object attrName : params)
+            {
+                stmt.setObject(count, fieldsMap.get(attrName));
+                count++;
+            }
+         //   stmt.setString(1, paramValue);
              
             affectedRow = stmt.executeUpdate();
             

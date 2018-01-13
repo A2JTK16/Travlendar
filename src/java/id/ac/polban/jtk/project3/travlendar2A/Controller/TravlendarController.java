@@ -259,10 +259,15 @@ public class TravlendarController extends HttpServlet
                 break;
                     
             case "deleteEvent":
-                
+                               
                 String id = request.getParameter("event_id");
-                
-                affectedRow = this.eventDao.delete("event_id", id);
+                String username = this.getUsername(request);
+                    
+                Event event = new Event();
+                event.setEvent_id(Long.parseLong(id));
+                event.setTraveller_username(username); 
+                    
+                affectedRow = this.eventDao.delete(event);
                 
                 if(affectedRow > 0){
                     this.responseStr(response, "Sukses Menghapus Event");
@@ -270,8 +275,7 @@ public class TravlendarController extends HttpServlet
                 else{
                     this.responseStr(response, "Gagal Menghapus Event");
                 }
-                      
-                
+
                 break;
                 
             case "registerUser":
@@ -296,9 +300,9 @@ public class TravlendarController extends HttpServlet
                 
                 break;
                 
-            case "deleteUser":
+           /* case "deleteUser":
                 // TULIS CODE DISINI !!!
-                String traveller_username = request.getParameter("traveller_username");
+              String traveller_username = request.getParameter("traveller_username");
                 
                 int affectedRowEvent = this.eventDao.delete("traveller_username", traveller_username);
                 affectedRow = this.travellerDao.delete("traveller_username", traveller_username);
@@ -314,7 +318,7 @@ public class TravlendarController extends HttpServlet
                 }
                 
                 break;
-                
+               */ 
             case "editUser":
                 try 
                 {
@@ -358,7 +362,7 @@ public class TravlendarController extends HttpServlet
             case "findUser":
                 // TULIS CODE DISINI !!!
                 //String username = request.getParameter("username");
-                String username = this.getUsername(request);
+                username = this.getUsername(request);
                 Traveller traveller = this.travellerDao.getObj("traveller_username", username);
                 
                 /**
