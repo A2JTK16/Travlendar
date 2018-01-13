@@ -1019,9 +1019,11 @@ $(document).ready( function()  // Ketika web udah siap
         //if(m1 != null || m2 != null)
         var origin = $('#orig').val().toString();
         var dest = $('#dest').val().toString();
+        var eventName = $('#eventName').val().toString();
+        
         //alert(travelMode.toString().toUpperCase());
         
-        if(origin !== "" || dest !== "")
+        if(origin !== "" && dest !== "" && eventName !== "")
         mapObj.distanceMatrix(
             {
                 origins: [origin],
@@ -1070,7 +1072,8 @@ $(document).ready( function()  // Ketika web udah siap
                 }
         });
         else
-            confirm('Mohon isi lokasi Anda!...');
+           
+            confirm('Mohon isi lokasi dan Event Anda!...');
     };
     
     /**
