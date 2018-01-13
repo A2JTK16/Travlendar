@@ -35,7 +35,7 @@
         <style>
 
                 #calendar {
-                        max-width: 900px;
+                        max-width: 100%;
                         margin: 0 auto;
                 }
 
@@ -43,11 +43,6 @@
 
     </head>
 <body>
-	
-    <div class="jarak-atas">
-
-    </div> <!--jarak-atas-->
-    <a href="#"></a>
 
     <div class="menu-atas">
 	<div class="header">
@@ -98,6 +93,17 @@
      
     </div> <!--menu-atas-->
     
+    <div class="wadah-atas">
+	<img src="images/bg1.jpg" alt="">
+        <div class="slogan">
+            <div class="logoku">
+                <img src="images/travelendar2.png">
+            </div>
+            <h1 style="text-align:center">Welcome Travlendar</h1>
+            <p style="text-align:center"> Make Your Plan Better ! </p>
+        </div>
+    </div> <!--wadah--atas-->
+
     <div class="induk1">
 
 	<div class="container-t">

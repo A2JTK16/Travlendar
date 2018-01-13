@@ -201,12 +201,12 @@ $(document).ready( function()  // Ketika web udah siap
         this.writeRow = function(item)
         {
             var row =  '<tr><td style="display:none">'+ item.id +'</td>\n\
-                            <td data-label="Event Name">'+ item.title + '</td>\n\
-                            <td data-label="Date & Time">'+ moment(item.start).format("ddd DD-MM-YYYY hh:mm a") + '</td>\n\
-                            <td data-label="Use">'+ item.transportation + '</td>\n\
-                            <td data-label="At">'+ moment(item.departure_time).format("ddd DD-MM-YYYY hh:mm a") + '</td>\n\
-                            <td data-label="Location">'+ item.address +'</td>\n\
-                            <td data-label="Action"><button class="v-more"> View More </button> <button class="v-del"> Delete </button></td>\n\
+                            <td>'+ item.title + '</td>\n\
+                            <td>'+ moment(item.start).format("ddd DD-MM-YYYY hh:mm a") + '</td>\n\
+                            <td>'+ item.transportation + '</td>\n\
+                            <td>'+ moment(item.departure_time).format("ddd DD-MM-YYYY hh:mm a") + '</td>\n\
+                            <td>'+ item.address +'</td>\n\
+                            <td><button class="v-more"> View More </button> <button class="v-del"> Delete </button></td>\n\
                         </tr>';
             $( cssIdTable +' > tbody').append(row);
         };

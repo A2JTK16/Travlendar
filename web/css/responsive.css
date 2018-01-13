@@ -184,6 +184,38 @@ MEDIA QUERIES
         .ev-name{
 	width: 96%;
         }
+        
+        .i-save2{
+            width: 300px;
+        }
+        
+        .save-ev{
+            width: 120px;
+        }
+        
+        .save-ev2{
+            width: 120px;
+        }
+        
+        .logoku{
+            width: 35px;
+            margin: 0 auto;
+        }
+
+        .logoku img{
+            width: 30px;
+            height: 20px;
+        }
+        
+        .wadah-atas{
+            height: auto;
+        }
+        
+        .wadah-atas img{
+            width: 100%;
+            height: auto;
+        }
+       
              
 }
 
