@@ -66,7 +66,7 @@ public interface IDao<T>
      * @param paramValue
      * @return  
      */
-    public int delete(String paramName, String paramValue);
+    public int delete(Object object);
     
     /**
      *  Method untuk Mengeksekusi Fungsi PL SQL
