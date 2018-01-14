@@ -701,7 +701,7 @@ $(document).ready( function()  // Ketika web udah siap
                     m1 = objMapP.addMarker({
                         lat: e.latLng.lat(),
 			lng: e.latLng.lng(),
-                        title : 'event location',
+                        title: 'event location',
 			icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
                     });
                     m1pos = {lat: e.latLng.lat(), lng: e.latLng.lng()};
@@ -778,21 +778,23 @@ $(document).ready( function()  // Ketika web udah siap
     var isNotCal = true;
     
     // mendapatkan json dari controller
-    objAccess.getJson(function(content){
-        var lastEventObj = content.listEvent[content.listEvent.length - 1];
-        
-        mapObj.objMaps.setCenter(lastEventObj.latitude, lastEventObj.longitude);
-        
-        // memasukkan data kedalam kalendar
+    objAccess.getJson(function(content){        
+        //// memasukkan data kedalam kalendar
         objCalendar.writeCal(content.listEvent,function(calEvent, jsEvent, view){
             // ketika event kalender di klik buka tab view more
             tabView.viewMore(calEvent, mapObj);
         });
+        // Set Center ke akhir
+        var lastEventObj = content.listEvent[content.listEvent.length - 1];
+        mapObj.objMaps.setCenter(lastEventObj.latitude, lastEventObj.longitude);
+        
         isNotCal = false;
         
         // masukkan html ke table
         objTableEvent.appendRow(content.htmlTable);
+        $('#jv-notif').append(content.notif);
         delete content.htmlTable;
+        delete content.notif;
         
         // loop list
         var count = 0;

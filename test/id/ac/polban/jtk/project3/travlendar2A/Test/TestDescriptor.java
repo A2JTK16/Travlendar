@@ -5,6 +5,7 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Test;
 
+import id.ac.polban.jtk.project3.travlendar2A.Helpers.PdfHelper;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
 import java.beans.IntrospectionException;
@@ -35,7 +36,7 @@ public class TestDescriptor {
             if(!property.getName().equals("class"))
             System.out.println(property.getName() + " | " + property.getReadMethod().getName() + " | " + property.getWriteMethod().getName() + " | " + property.getDisplayName());
         }
-      
+        
     }
 }
 

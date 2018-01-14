@@ -75,7 +75,7 @@
                             <img src="icon/notif2.png">
                     </a>
                 </button>
-                <div class="dropdown-content">
+                <div class="dropdown-content" id="jv-notif">
                   <a href="#">Welcome to Travelendar ! by A2 JTK</a>
                   <a href="#">Don't Forget to Make a Better Plan ! by A2 JTK</a>
                   <a href="#">Our Plan Will Get Big Things! by A2 JTK</a>
