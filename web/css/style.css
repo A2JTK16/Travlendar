@@ -304,6 +304,9 @@ a:hover{
     height: 30px;
 }
 
+#findResultMore button{
+    background: #ff99900;
+}
 
 /* Main */
 	.left{
@@ -438,24 +441,6 @@ a:hover{
   display: none;
 }
 
-
-.wadah-gamb{
-    width: 100%;
-    height: 320px;
-    background: url("../images/carfix.jpg") no-repeat;
-}
-
-.slogan{
-    position: absolute;
-    width: 375px;
-    height: 321px;
-    font: 30px Arial;
-    font-weight: bold;
-    font-style: italic;
-    color: #fafafa;
-    background: #1abc9c;
-    opacity: 0.7;
-}
 
 .sukses{
     padding: 30px;
@@ -1020,6 +1005,10 @@ table {
     color: #f1f1f1;
     width: 100%;
     padding: 20px;
+    font: 30px Arial;
+    font-weight: bold;
+    font-style: italic;
+    color: #fafafa;
 }
 
 .logoku{
@@ -1032,3 +1021,5 @@ table {
     width: 80px;
     height: 120px;
 }
+
+

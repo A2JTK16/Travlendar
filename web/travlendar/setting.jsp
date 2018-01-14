@@ -11,20 +11,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>My Profile</title>
         <link rel="stylesheet" href="../css/style.css">
-        <!-- Google Maps JS API -->
-        <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s"></script>-->
-        
+        <link rel="stylesheet" href="../css/responsive.css">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s&libraries=places"></script>
         <!-- JQuery Library -->
         <!--<script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
-        
+        <script src="../js/jquery.min.js"></script>
+        <!-- untuk parse tanggal -->
+        <script src="../js/moment.min.js"></script>
         <!-- GMaps Library -->
-        <!--<script src="../js/gmaps.js"></script>-->
+        <script src="../js/gmaps.js"></script>
         
     </head>
     <body>
-        <div class="jarak-atas">
-
-    </div> <!--jarak-atas-->
 
     <div class="menu-atas">
 	<div class="header">
@@ -67,7 +65,8 @@
                 <div class="icon-cari">
                     <img src="../icon/search.png">
                 </div>
-                <input class="cari" type="text" placeholder="Find Event ..."/>
+                <input class="cari" id="findEvent" type="text" placeholder="Find Event ..."/>
+                <div id="findResult" style="list-style:none"></div>
             </div> <!--kotak-cari-->
           
 	</div> <!--header-->
@@ -75,13 +74,18 @@
     </div> <!--menu-atas-->
         
     
-    <div class="wadah-gamb">
+    <div class="wadah-atas">
+	<img src="../images/bg1.jpg" alt="">
         <div class="slogan">
-        <div class="sukses">
-        <h2> Make Your Plan Be Batter ! </h2>
+            <div class="logoku">
+                <img src="../images/travelendar2.png">
+            </div>
+            <h1 style="text-align:center">Welcome Travlendar</h1>
+            <p style="text-align:center"> Make Your Plan Better ! </p>
         </div>
-        </div>
-    </div>
+        
+    </div> <!--wadah--atas-->
+    
     
     <div class="induk1">
         

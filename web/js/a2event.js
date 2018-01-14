@@ -907,7 +907,7 @@ $(document).ready( function()  // Ketika web udah siap
                     }
                     else
                     {
-                        $('#findResult').append('<li class="findResultMore"><button>'+ titleEvent +'</button></li>');
+                        $('#findResult').append('<li class="findResultMore"><button style="padding: 6px 37px; border: none;background:none;font: 14px Arial;font-weight:bold;color:#757575;">'+ titleEvent +'</button></li>');
                        // $('#moreTitle').val(titleEvent);
                         $('.findResultMore').click({id: idEvent}, viewMoreFind);
                     }  
