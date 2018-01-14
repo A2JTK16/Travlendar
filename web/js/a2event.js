@@ -62,6 +62,7 @@ $(document).ready( function()  // Ketika web udah siap
            {
                // clean routes
                 mapEvent.cleanRoutes();
+                
                 mapEvent.objMaps.setCenter(eventE.latitude, eventE.longitude);
                 
                 
@@ -687,7 +688,7 @@ $(document).ready( function()  // Ketika web udah siap
         lng: 107.574794,
         zoom: 14,
                
-        click: function(e) 
+        /*click: function(e) 
         {
             if(isAddableMarker){
                 if (domarker1) 
@@ -768,10 +769,11 @@ $(document).ready( function()  // Ketika web udah siap
                             alert("Error: " + status);
                         }
                     } // end of callback
-                    /**/
+                    
                 }
             }//tutup isaddablemarker
         } // tutup e click
+        */
     }); // tutup instansiasi gmaps 
     
     mapObj = new A2Gmaps(objMapP);
@@ -1083,8 +1085,19 @@ $(document).ready( function()  // Ketika web udah siap
                     else if(tmdifference !== 0)
                     {
                         $(cssIdRadio).show().click(function(){
-                            mapObj.cleanRoutes;
-                            mapObj.drawRoutesAnimated(travelMode, [m1pos.lat, m1pos.lng], [m2pos.lat, m2pos.lng]);
+                          
+                            
+                            //objMapP.drawRoutesAnimated(travelMode, [m1pos.lat, m1pos.lng], [m2pos.lat, m2pos.lng]);
+                           objMapP.drawRoute({
+                                        origin: [m2poslat,m2poslng],
+                                        destination: [m1poslat,m1poslng],
+                                        travelMode: travelMode,
+                                        strokeColor: '#131540',
+                                        strokeOpacity: 0.7,
+                                        trokeWeight: 6
+                                        });
+                                        
+                                        mapObj.cleanRoutes();
                         });
                         
                         $(cssIdMsg).val( secToHHMM(traveltime) );     
@@ -1397,12 +1410,12 @@ $(document).ready( function()  // Ketika web udah siap
             eventTravel['departure_time']= new Date($('#departureDate').val() +" "+$('#departureTime').val());
             //eventTraveller['traveller_id'] = 1;
                         
-            eventLoc['latitude'] = m1pos.lat;
-            eventLoc['longitude'] = m1pos.lng;
+            eventLoc['latitude'] = m1poslat;
+            eventLoc['longitude'] = m1poslng;
             eventLoc['address'] = ($('#orig').val()).substring(0, 59);
                         
-            eventStartLoc['latitude'] = m2pos.lat;
-            eventStartLoc['longitude'] = m2pos.lng;
+            eventStartLoc['latitude'] = m2poslat;
+            eventStartLoc['longitude'] = m2poslng;
             eventStartLoc['address'] = ($('#dest').val()).substring(0, 59);
                         
             eventDesc.event = event;
@@ -1704,7 +1717,7 @@ $(document).ready( function()  // Ketika web udah siap
             
             function updateMarkerPosition1(latLng) {
                 
-                m2poslat = latLng.lat();
+                m2poslat =   latLng.lat();
                 m2poslng =   latLng.lng();
             }
             
@@ -1714,11 +1727,11 @@ $(document).ready( function()  // Ketika web udah siap
                 document.getElementById('dest').value = str;
             }
 
-
+            var marker,marker1;
 
             function initialize() {
                 var latLng = new google.maps.LatLng(-6.872034,107.574794);
-                var marker = objMapP.addMarker({
+                 marker = objMapP.addMarker({
                                 lat: latLng.lat(),
                                 lng: latLng.lng(),
                                 title : 'event location',
@@ -1728,7 +1741,7 @@ $(document).ready( function()  // Ketika web udah siap
                             
                             m1pos = {lat: latLng.lat(), lng: latLng.lng()};
 
-                var marker1 = objMapP.addMarker({
+                 marker1 = objMapP.addMarker({
                                 lat: latLng.lat(),
                                 lng: latLng.lng(),
                                 title : 'previous location',
@@ -1822,8 +1835,8 @@ $(document).ready( function()  // Ketika web udah siap
                 objMapP.setZoom(17);  // Why 17? Because it looks good.
                 }
                 marker1.setPosition(place.geometry.location);
-                updateMarkerPosition(marker1.getPosition());
-                geocodePosition(marker.getPosition());
+                updateMarkerPosition1(marker1.getPosition());
+                geocodePosition1(marker1.getPosition());
 
         });
             }
