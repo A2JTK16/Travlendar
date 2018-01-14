@@ -1623,6 +1623,9 @@ $(document).ready( function()  // Ketika web udah siap
     
     // PANGGIL
     initializeAutocomplete();
+    
+    $('.downloadPdf').html('<a href="index?action=downloadPdf">Download Plan</a>');
+    
 }); // tutup JQuery    
 
 /*                        			

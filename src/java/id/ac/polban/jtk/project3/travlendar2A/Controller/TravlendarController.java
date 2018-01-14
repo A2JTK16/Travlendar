@@ -7,9 +7,16 @@ package id.ac.polban.jtk.project3.travlendar2A.Controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.pdf.PdfWriter;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.GenericDao;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.IDao;
+import id.ac.polban.jtk.project3.travlendar2A.Helpers.DateTHelper;
 import id.ac.polban.jtk.project3.travlendar2A.Helpers.HashSHA1;
+import id.ac.polban.jtk.project3.travlendar2A.Helpers.PdfHelper;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import id.ac.polban.jtk.project3.travlendar2A.Models.EventDesc;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
@@ -139,7 +146,65 @@ public class TravlendarController extends HttpServlet
 
                 break;
                 
-
+            case "downloadPdf":
+                /**
+                 * Mendapatkan list event
+                 */
+                username = this.getUsername(request);
+                list = this.vEventDao.getList("traveller_username", username);
+                /**
+                 * Mendapatkan data traveller
+                 */
+                Traveller traveller = this.travellerDao.getObj("traveller_username", username);
+                /**
+                 * Menulis Pdf
+                 */
+                Document doc = new Document();
+        
+                try 
+                {
+                    response.setHeader("Content-Disposition", "attachment; filename=" + username + "_travelplan.pdf");
+                    response.setContentType("application/pdf");
+                    // tulis lggs ke response client
+                    PdfWriter writer = PdfWriter.getInstance(doc, response.getOutputStream());
+                    
+                    PdfHelper pdf = new PdfHelper(writer, doc, traveller.getTraveller_fullname(), "http://localhost:8080/Travlendar2A/images/logo2a.png");
+                    /**
+                     * buka doc untuk write content
+                     */ 
+                    doc.open();
+                    
+                    pdf.addHeader();
+                    
+                    String[] theader = new String[]{"No", "Event Name", "Date & Time", "Use", "At", "Location", "Note"};
+                    int[] relativeLength = new int[]{1, 4, 4, 2, 4, 8, 4};
+                    pdf.generatedTable(theader, relativeLength);
+                    
+                    Font font = pdf.getNormalFont();
+                    BaseColor color = pdf.getLightBasePdfColor();
+                    
+                    int i = 0;
+                    for(ViewEvent ve : list)
+                    {
+                        i++;
+                        String date = DateTHelper.changeDateStrFormat(ve.getStart_event());
+                        String depature = DateTHelper.changeDateStrFormat(ve.getDepature_time());
+                        pdf.addRow(font, color, String.valueOf(i), ve.getEvent_name(), date, ve.getTransportation_mode(), depature, ve.getStart_location_name(), ve.getNote());
+                    }
+                    
+                    pdf.addFooter();
+                    
+                    /**
+                     * Tutup doc
+                     */
+                    doc.close();
+                } 
+                catch (IOException | DocumentException ex) 
+                {
+                    Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        
+                break;
 
         } //end switch
     }
@@ -190,10 +255,10 @@ public class TravlendarController extends HttpServlet
                     
                     // masukkin travel
                     Travel travelEvent = eventdesc.getTravel();
+                    travelEvent.setEvent_id(new Float(idPK));
                     travelEvent.setTraveller_username(this.getUsername(request));
                     travelEvent.setStart_location_id(idLoc);
                     travelEvent.setEnd_location_id(affectedRow);
-                    travelEvent.setTraveller_username(this.getUsername(request));
                     
                     this.travelDao.create(travelEvent);
                     //idPK = 1;

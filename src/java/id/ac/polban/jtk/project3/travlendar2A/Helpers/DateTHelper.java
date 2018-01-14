@@ -106,4 +106,22 @@ public class DateTHelper
         return dateStr;
     }
     
+    /**
+     *	Parsing Date Format
+     *	Sesuai Format database engine mysql
+     * @param date
+     * @return
+     */
+    public static String changeDateStrFormat(String date)
+    {
+        String dateStr;
+        SimpleDateFormat datetimeformatter;
+
+        datetimeformatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        
+        dateStr = datetimeformatter.format(parseDateM(date));
+        
+        return dateStr;
+    }
+    
 }

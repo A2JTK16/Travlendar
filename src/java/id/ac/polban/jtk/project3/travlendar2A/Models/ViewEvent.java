@@ -6,7 +6,6 @@
 package id.ac.polban.jtk.project3.travlendar2A.Models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.sql.Timestamp;
 
 /**
  *
@@ -30,7 +29,7 @@ public class ViewEvent
     private String transportation_mode;
     
     @JsonProperty(value = "depature_time")
-    private Timestamp depature_time;
+    private String depature_time;
     
     @JsonProperty(value = "latitude")
     private Float end_loc_lat;
@@ -77,7 +76,33 @@ public class ViewEvent
         this.event_name = event_name;
     }
 
-  
+    /**
+     * @return the start_event
+     */
+    public String getStart_event() {
+        return start_event;
+    }
+
+    /**
+     * @param start_event the start_event to set
+     */
+    public void setStart_event(String start_event) {
+        this.start_event = start_event;
+    }
+
+    /**
+     * @return the end_event
+     */
+    public String getEnd_event() {
+        return end_event;
+    }
+
+    /**
+     * @param end_event the end_event to set
+     */
+    public void setEnd_event(String end_event) {
+        this.end_event = end_event;
+    }
 
     /**
      * @return the transportation_mode
@@ -96,15 +121,57 @@ public class ViewEvent
     /**
      * @return the depature_time
      */
-    public Timestamp getDepature_time() {
+    public String getDepature_time() {
         return depature_time;
     }
 
     /**
      * @param depature_time the depature_time to set
      */
-    public void setDepature_time(Timestamp depature_time) {
+    public void setDepature_time(String depature_time) {
         this.depature_time = depature_time;
+    }
+
+    /**
+     * @return the end_loc_lat
+     */
+    public Float getEnd_loc_lat() {
+        return end_loc_lat;
+    }
+
+    /**
+     * @param end_loc_lat the end_loc_lat to set
+     */
+    public void setEnd_loc_lat(Float end_loc_lat) {
+        this.end_loc_lat = end_loc_lat;
+    }
+
+    /**
+     * @return the end_loc_long
+     */
+    public Float getEnd_loc_long() {
+        return end_loc_long;
+    }
+
+    /**
+     * @param end_loc_long the end_loc_long to set
+     */
+    public void setEnd_loc_long(Float end_loc_long) {
+        this.end_loc_long = end_loc_long;
+    }
+
+    /**
+     * @return the start_location_name
+     */
+    public String getStart_location_name() {
+        return start_location_name;
+    }
+
+    /**
+     * @param start_location_name the start_location_name to set
+     */
+    public void setStart_location_name(String start_location_name) {
+        this.start_location_name = start_location_name;
     }
 
     /**
@@ -136,20 +203,6 @@ public class ViewEvent
     }
 
     /**
-     * @return the start_location_name
-     */
-    public String getStart_location_name() {
-        return start_location_name;
-    }
-
-    /**
-     * @param start_location_name the start_location_name to set
-     */
-    public void setStart_location_name(String start_location_name) {
-        this.start_location_name = start_location_name;
-    }
-
-    /**
      * @return the note
      */
     public String getNote() {
@@ -163,46 +216,5 @@ public class ViewEvent
         this.note = note;
     }
 
-    /**
-     * @return the start_event
-     */
-    public String getStart_event() {
-        return start_event;
-    }
-
-    /**
-     * @param start_event the start_event to set
-     */
-    public void setStart_event(String start_event) {
-        this.start_event = start_event;
-    }
-
-    /**
-     * @return the end_event
-     */
-    public String getEnd_event() {
-        return end_event;
-    }
-
-    /**
-     * @param end_event the end_event to set
-     */
-    public void setEnd_event(String end_event) {
-        this.end_event = end_event;
-    }
-
-    /**
-     * @return the end_loc_lat
-     */
-    public Float getEnd_loc_lat() {
-        return end_loc_lat;
-    }
-
-    /**
-     * @param end_loc_lat the end_loc_lat to set
-     */
-    public void setEnd_loc_lat(Float end_loc_lat) {
-        this.end_loc_lat = end_loc_lat;
-    }
-   
+ 
 }

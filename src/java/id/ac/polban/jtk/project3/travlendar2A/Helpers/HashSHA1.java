@@ -94,12 +94,12 @@ public class HashSHA1
     /*
      * Contoh Penggunaan
      * @param args
-     */
+     *
     public static void main(String[] args)
     {
-        /**
+        **
          * Dapatkan Instans
-         */
+         *
         HashSHA1 objHash = HashSHA1.getInstance();
         
         String password = "123";
@@ -112,5 +112,5 @@ public class HashSHA1
         
         System.out.println("Cek Panjang Hash (40 bukan) : " + hashpwd.length());
     }
-    
+    **/
 }
