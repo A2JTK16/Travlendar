@@ -16,7 +16,9 @@ import id.ac.polban.jtk.project3.travlendar2A.Dao.GenericDao;
 import id.ac.polban.jtk.project3.travlendar2A.Dao.IDao;
 import id.ac.polban.jtk.project3.travlendar2A.Helpers.DateTHelper;
 import id.ac.polban.jtk.project3.travlendar2A.Helpers.HashSHA1;
+import id.ac.polban.jtk.project3.travlendar2A.Helpers.HtmlHelper;
 import id.ac.polban.jtk.project3.travlendar2A.Helpers.PdfHelper;
+import id.ac.polban.jtk.project3.travlendar2A.Models.Content;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Event;
 import id.ac.polban.jtk.project3.travlendar2A.Models.EventDesc;
 import id.ac.polban.jtk.project3.travlendar2A.Models.Traveller;
@@ -53,6 +55,16 @@ public class TravlendarController extends HttpServlet
      */
     ObjectMapper jsonMapper;
     /**
+     * Hash 
+     */
+    HashSHA1 hashpw;
+    /**
+     * Helper
+     */
+    DateTHelper dateTHelper;
+    HtmlHelper htmlHelper;
+    
+    /**
      * Method yang akan dipanggil ketika servlet dihidupkan
      */
     @Override
@@ -79,6 +91,9 @@ public class TravlendarController extends HttpServlet
         this.locationDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, Location.class);
         this.vEventDao = new GenericDao<>(jdbcURL, jdbcUsername, jdbcPassword, ViewEvent.class);
         this.jsonMapper = new ObjectMapper();
+        this.dateTHelper = new DateTHelper();
+        this.hashpw = new HashSHA1();
+        this.htmlHelper = new HtmlHelper(dateTHelper);
     }
     
     /**
@@ -130,13 +145,20 @@ public class TravlendarController extends HttpServlet
                  */
                 String username = this.getUsername(request);
                 List<ViewEvent> list = this.vEventDao.getList("traveller_username", username);
-        
+                
+                Content content = new Content();
+                // masukkan list
+                content.setListEvent(list);
+                // masukkan html table
+                String html = this.htmlHelper.listToHtmlBodyTable(list);
+                content.setHtmlTable(html);
+                
                 try 
                 {
                     /**
                      * Mengubah ke bentuk json dan mengirimkan resonse json ke client
                      */
-                    jsonString = this.jsonMapper.writeValueAsString(list);
+                    jsonString = this.jsonMapper.writeValueAsString(content);
                     this.responseJson(response, jsonString);
                 } 
                 catch (JsonProcessingException ex) 
@@ -187,9 +209,9 @@ public class TravlendarController extends HttpServlet
                     for(ViewEvent ve : list)
                     {
                         i++;
-                        String date = DateTHelper.changeDateStrFormat(ve.getStart_event());
-                        String depature = DateTHelper.changeDateStrFormat(ve.getDepature_time());
-                        pdf.addRow(font, color, String.valueOf(i), ve.getEvent_name(), date, ve.getTransportation_mode(), depature, ve.getStart_location_name(), ve.getNote());
+                        String date = this.dateTHelper.changeDateStrFormat(ve.getStart_event());
+                        String depature = this.dateTHelper.changeDateStrFormat(ve.getDepature_time());
+                        pdf.addRow(font, color, String.valueOf(i), ve.getEvent_name(), date, ve.getTransportation_mode(), depature, ve.getEnd_location_name(), ve.getNote());
                     }
                     
                     pdf.addFooter();
@@ -271,13 +293,15 @@ public class TravlendarController extends HttpServlet
                 if(idPK > 0)
                 {
                     message.setStatus("OK");
-                    message.setTitle("Success Add Event");
+                    message.setTitle("Success");
+                    message.setMessage("Success add message!");
                     message.setGeneratedKey(idPK);
                 }
                 else
                 {
                     message.setStatus("ERROR");
-                    message.setTitle("Failed Add Event");
+                    message.setTitle("Failed");
+                    message.setMessage("Failed Add Event");
                 }
                 
                 try 
@@ -329,18 +353,36 @@ public class TravlendarController extends HttpServlet
                 String username = this.getUsername(request);
                     
                 Event event = new Event();
-                event.setEvent_id(Long.parseLong(id));
+                event.setEvent_id(id);
                 event.setTraveller_username(username); 
                     
                 affectedRow = this.eventDao.delete(event);
                 
-                if(affectedRow > 0){
-                    this.responseStr(response, "Sukses Menghapus Event");
+                message = new Message();
+                
+                if(affectedRow > 0)
+                {
+                    message.setStatus("OK");
+                    message.setTitle("Success");
+                    message.setMessage("Delete Event Success!");  
                 }   
-                else{
-                    this.responseStr(response, "Gagal Menghapus Event");
+                else
+                {
+                    message.setStatus("Error");
+                    message.setTitle("Failed");
+                    message.setMessage("Delete Event Failed!");  
                 }
-
+                
+                try 
+                {
+                    json = jsonMapper.writeValueAsString(message);
+                    this.responseJson(response, json);
+                } 
+                catch (JsonProcessingException ex) 
+                {
+                    Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
                 break;
                 
             case "registerUser":
@@ -348,7 +390,7 @@ public class TravlendarController extends HttpServlet
                 {
                     Traveller traveller = jsonMapper.readValue(json, Traveller.class);
                     // hash password sebelum masukin ke database via dao
-                    String hashpwd = HashSHA1.getInstance().hash(traveller.getTraveller_password());
+                    String hashpwd = this.hashpw.hash(traveller.getTraveller_password());
                     traveller.setTraveller_password(hashpwd);
                     
                     affectedRow = this.travellerDao.create(traveller);
@@ -512,7 +554,7 @@ public class TravlendarController extends HttpServlet
     {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String hashpwd = HashSHA1.getInstance().hash(password);
+        String hashpwd = this.hashpw.hash(password);
         // cari dengam hash password
         Integer num = this.travellerDao.executeFunction("isThereUser", Integer.class, username, hashpwd);
         // jika di database belum di hash

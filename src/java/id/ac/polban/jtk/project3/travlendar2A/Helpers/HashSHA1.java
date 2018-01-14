@@ -20,21 +20,7 @@ import javax.xml.bind.DatatypeConverter;
  * @author mufidjamaluddin
  */
 public class HashSHA1 
-{
-    /**
-     * Instan dari class ini, Singleton
-     */
-    private static final HashSHA1 SHA1_INSTANCE = new HashSHA1();
-    
-    /**
-     * Mendapatkan Instan
-     * @return 
-     */
-    public static HashSHA1 getInstance()
-    {
-        return SHA1_INSTANCE;
-    }
-    
+{   
     /**
      * Object untuk hash
      */

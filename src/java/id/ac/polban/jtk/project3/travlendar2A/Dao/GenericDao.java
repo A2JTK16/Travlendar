@@ -449,8 +449,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
     /**
      * Menghapus data di database
      * 
-     * @param paramName
-     * @param paramValue
+     * @param object
      * @return 
      */
     @Override
@@ -471,23 +470,23 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
          * Mendapatkan Map Fields
          */
         Map<String, Object> fieldsMap = this.getFieldsMap(object);
-        Object[] params = fieldsMap.keySet().toArray();
+        Set<String> keySet = fieldsMap.keySet();
         /**
          * Membat SQL Sintaks
          */
         mtSql.append("DELETE FROM ");
         mtSql.append(this.classModel.getSimpleName().toLowerCase());
         mtSql.append("WHERE ");        
-        //mtSql.append(String.join(",", keySet));
+        mtSql.append(String.join(" AND ", keySet));
         
-        for(int i=0; i<fieldsMap.size(); i++)
+    /*    for(int i=0; i<fieldsMap.size(); i++)
         {
             mtSql.append(params[i]);
             mtSql.append(" = ? AND");
         }
                 
         mtSql.delete(mtSql.length()-3, mtSql.length()); // hapus AND
-        
+      */  
         int affectedRow = 0;
         /**
          * Buat Koneksi ke DBMS
@@ -505,7 +504,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
              * Mendapatkan attribut dari objek objModel
              */
             int count = 1;
-            for(Object attrName : params)
+            for(String attrName : keySet)
             {
                 stmt.setObject(count, fieldsMap.get(attrName));
                 count++;

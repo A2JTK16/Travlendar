@@ -38,7 +38,7 @@ public class ViewEvent
     private Float end_loc_long;
     
     @JsonProperty(value = "address")
-    private String start_location_name;
+    private String end_location_name;
     
     @JsonProperty(value = "start_latitude")
     private Float strt_loc_lat;
@@ -161,17 +161,17 @@ public class ViewEvent
     }
 
     /**
-     * @return the start_location_name
+     * @return the end_location_name
      */
-    public String getStart_location_name() {
-        return start_location_name;
+    public String getEnd_location_name() {
+        return end_location_name;
     }
 
     /**
-     * @param start_location_name the start_location_name to set
+     * @param end_location_name the end_location_name to set
      */
-    public void setStart_location_name(String start_location_name) {
-        this.start_location_name = start_location_name;
+    public void setEnd_location_name(String end_location_name) {
+        this.end_location_name = end_location_name;
     }
 
     /**
@@ -216,5 +216,4 @@ public class ViewEvent
         this.note = note;
     }
 
- 
 }

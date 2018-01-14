@@ -18,7 +18,7 @@ import java.sql.Timestamp;
 public class Event 
 {
     @JsonProperty(value = "id")
-    private Long event_id;
+    private String event_id;
         
     private Integer start_location_id;
     private Integer end_location_id;
@@ -30,24 +30,63 @@ public class Event
     private Timestamp start_event;
     @JsonProperty(value = "end")
     private Timestamp end_event;
-    //@JsonProperty(value = "transportation")
-    //private String transportation;
-//    @JsonProperty(value = "departure_time")
-  //  private Timestamp departure_time;
+    
     private String note;
 
     /**
      * @return the event_id
      */
-    public Long getEvent_id() {
+    public String getEvent_id() {
         return event_id;
     }
 
     /**
      * @param event_id the event_id to set
      */
-    public void setEvent_id(Long event_id) {
+    public void setEvent_id(String event_id) {
         this.event_id = event_id;
+    }
+
+    /**
+     * @return the start_location_id
+     */
+    public Integer getStart_location_id() {
+        return start_location_id;
+    }
+
+    /**
+     * @param start_location_id the start_location_id to set
+     */
+    public void setStart_location_id(Integer start_location_id) {
+        this.start_location_id = start_location_id;
+    }
+
+    /**
+     * @return the end_location_id
+     */
+    public Integer getEnd_location_id() {
+        return end_location_id;
+    }
+
+    /**
+     * @param end_location_id the end_location_id to set
+     */
+    public void setEnd_location_id(Integer end_location_id) {
+        this.end_location_id = end_location_id;
+    }
+
+    /**
+     * @return the traveller_username
+     */
+    public String getTraveller_username() {
+        return traveller_username;
+    }
+
+    /**
+     * @param traveller_username the traveller_username to set
+     */
+    public void setTraveller_username(String traveller_username) {
+        this.traveller_username = traveller_username;
     }
 
     /**
@@ -106,46 +145,5 @@ public class Event
         this.note = note;
     }
 
-    /**
-     * @return the traveller_username
-     */
-    public String getTraveller_username() {
-        return traveller_username;
-    }
-
-    /**
-     * @param traveller_username the traveller_username to set
-     */
-    public void setTraveller_username(String traveller_username) {
-        this.traveller_username = traveller_username;
-    }
-
-    /**
-     * @return the start_location_id
-     */
-    public Integer getStart_location_id() {
-        return start_location_id;
-    }
-
-    /**
-     * @param start_location_id the start_location_id to set
-     */
-    public void setStart_location_id(Integer start_location_id) {
-        this.start_location_id = start_location_id;
-    }
-
-    /**
-     * @return the end_location_id
-     */
-    public Integer getEnd_location_id() {
-        return end_location_id;
-    }
-
-    /**
-     * @param end_location_id the end_location_id to set
-     */
-    public void setEnd_location_id(Integer end_location_id) {
-        this.end_location_id = end_location_id;
-    }
 
 }

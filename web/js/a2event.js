@@ -167,23 +167,24 @@ $(document).ready( function()  // Ketika web udah siap
                 async: false, // dikirim ketika semua beres
                 success: function(msgStatus)
                 {
-                    var successMessage = msgStatus.responseText;
-                    var submsg = successMessage.substring(0, 6); 
                    
-                    if(submsg == "Sukses")
+                    if(msgStatus.status === "OK")
                     {
                         currentRow.remove();
-                        objCal.deleteEvent(idEvent);
+                       // objCal.deleteEvent(idEvent);
+                        $("#calendar").fullCalendar( 'removeEvents', [idEvent] );
                         delete pathi[rowIndex];
-                        confirm(successMessage);
                     }
+                    confirm(msgStatus.message);
+                   // alert(msgStatus);
+                   // alert(idEvent);
                 },
                 error: function(xmlhttprequest, textstatus, message)
                 {
                     confirm(textstatus + message);
                 }
             });
-        }
+        };
     };
     
     /**
@@ -195,7 +196,17 @@ $(document).ready( function()  // Ketika web udah siap
     {  
         /**
          * Method untuk menambahkan isi body tabel
-         * @param {type} item
+         * @param {type} row html
+         * @returns {undefined}
+         */
+        this.appendRow = function(row)
+        {
+            $( cssIdTable +' > tbody').append(row);
+        };
+        
+        /**
+         * Method untuk menambahkan isi body tabel
+         * @param {type} item objek json
          * @returns {undefined}
          */
         this.writeRow = function(item)
@@ -720,41 +731,43 @@ $(document).ready( function()  // Ketika web udah siap
                                 
                 domarker2 = !domarker2;
                 
-                var origin = new google.maps.LatLng(m1pos.lat, m1pos.lng),
-                destination = new google.maps.LatLng(m2pos.lat, m2pos.lng);
-                /* tidak jalan jika diawal draw polylines dg gmaps.js
-                service = new google.maps.DistanceMatrixService();    
-                    
-                service.getDistanceMatrix(
-                    {
-                        origins: [origin],
-                        destinations: [destination],
-                        travelMode: "DRIVING",
-                        avoidHighways: false,
-                        avoidTolls: false
-                    }, 
-                    callback
-                );
+                if(m1 !== null && m2 !== null)
+                {
+                    var origin = new google.maps.LatLng(m1pos.lat, m1pos.lng),
+                    destination = new google.maps.LatLng(m2pos.lat, m2pos.lng);
 
-                function callback(response, status) 
-                {    
-                    var dist = document.getElementById("dist"),
-                    transit = document.getElementById("transit");
+                    service = new google.maps.DistanceMatrixService();    
 
-                    if(status=="OK") 
-                    {
-                        var origins = response.originAddresses;
-                        var destinations = response.destinationAddresses;
-                        orig.value=origins;
-                        dest.value=destinations;       
-                    } 
-                    else 
-                    {
-                        alert("Error: " + status);
-                    }
-                } // end of callback
-                */
-               
+                    service.getDistanceMatrix(
+                        {
+                            origins: [origin],
+                            destinations: [destination],
+                            travelMode: "DRIVING",
+                            avoidHighways: false,
+                            avoidTolls: false
+                        }, 
+                        callback
+                    );
+
+                    function callback(response, status) 
+                    {    
+                        var dist = document.getElementById("dist"),
+                        transit = document.getElementById("transit");
+
+                        if(status=="OK") 
+                        {
+                            var origins = response.originAddresses;
+                            var destinations = response.destinationAddresses;
+                            orig.value=origins;
+                            dest.value=destinations;       
+                        } 
+                        else 
+                        {
+                            alert("Error: " + status);
+                        }
+                    } // end of callback
+                    /**/
+                }
             }//tutup isaddablemarker
         } // tutup e click
     }); // tutup instansiasi gmaps 
@@ -763,33 +776,29 @@ $(document).ready( function()  // Ketika web udah siap
     var isNotCal = true;
     
     // mendapatkan json dari controller
-    objAccess.getJson(function(data){
-        var lastEventObj = data[data.length - 1];
+    objAccess.getJson(function(content){
+        var lastEventObj = content.listEvent[content.listEvent.length - 1];
         
         mapObj.objMaps.setCenter(lastEventObj.latitude, lastEventObj.longitude);
         
         // memasukkan data kedalam kalendar
-        objCalendar.writeCal(data,function(calEvent, jsEvent, view){
+        objCalendar.writeCal(content.listEvent,function(calEvent, jsEvent, view){
             // ketika event kalender di klik buka tab view more
             tabView.viewMore(calEvent, mapObj);
         });
         isNotCal = false;
+        
+        // masukkan html ke table
+        objTableEvent.appendRow(content.htmlTable);
+        delete content.htmlTable;
+        
         // loop list
         var count = 0;
-        $.map(data, function(item,i)
+        $.map(content.listEvent, function(item,i)
         {
-            item.start = moment(item.start).format();
-            item.end = moment(item.end).format();
-            item.depature_time = moment(item.departure_time).format("ddd DD-MM-YYYY hh:mm a");
-            // memasukkan dan menampilkan dalam tabel
-            objTableEvent.writeRow(item);
             // array lat lng
             pathi.push([item.latitude, item.longitude]);
-            
-            /*mapObj.addMarker(item.latitude, item.longitude, item.title, item.start, function(){
-               confirm('Title :'+ item.title +'\nDepature Time : ' + item.departure_time + '\n Start Event : '+ item.start);
-            });
-            */
+
             count++;
             mapObj.objMaps.addMarker({
                 lat: item.latitude,
@@ -965,18 +974,20 @@ $(document).ready( function()  // Ketika web udah siap
         $('#mapInstruction').appendTo('#moreLeft');
     });
     */
-   
-    $(objTableEvent.getCssId()).on('click','.v-del', function(currentRow, rowIndex){
+    var idCEvent;
+    $(objTableEvent.getCssId()).on('click','.v-del', function(e){
         var currentRow = $(this).closest("tr");
+        var rowIndex = $(this).parent().index();
         var titleEvent = currentRow.find("td:eq(1)").html();  
         var isdelete = confirm('Delete '+ titleEvent +' ?');
         if(isdelete)
         {
             var idEvent = currentRow.find("td:eq(0)").html();
+            e.preventDefault();
             objAccess.deleteEvent(idEvent, currentRow, rowIndex, objCalendar);
             $('#map').appendTo('#moreLeft');
             $('#mapInstruction').appendTo('#moreLeft');
-            currentRow.remove();
+                    // currentRow.remove();
         }
     });
     var m1 = null, m2 = null;

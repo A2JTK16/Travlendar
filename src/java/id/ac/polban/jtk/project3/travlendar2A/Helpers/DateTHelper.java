@@ -23,7 +23,7 @@ public class DateTHelper
       * @param timeValStr
       * @return
       */
-    public static boolean isTimeFormat(String timeValStr) 
+    public boolean isTimeFormat(String timeValStr) 
     {
         Pattern timePattern; 
         timePattern = Pattern.compile("([01]?[0-9]|2[0-3]).[0-5][0-9]");
@@ -41,7 +41,7 @@ public class DateTHelper
      * @param dateValStr
      * @return
      */
-    public static Date parseDateM(String dateValStr)
+    public Date parseDateM(String dateValStr)
     {
 		// Jika String bernilai null, maka dikembalikan nilai null
         if(dateValStr == null)
@@ -70,7 +70,7 @@ public class DateTHelper
      * @param dateValStr
      * @return
      */
-    public static Date parseDate(String format, String dateValStr)
+    public Date parseDate(String format, String dateValStr)
     {
 		// Jika String bernilai null, maka dikembalikan nilai null
         if(dateValStr == null)
@@ -95,7 +95,7 @@ public class DateTHelper
      * @param date
      * @return
      */
-    public static String toStringM(Date date)
+    public String toStringM(Date date)
     {
         String dateStr;
         SimpleDateFormat datetimeformatter;
@@ -112,12 +112,12 @@ public class DateTHelper
      * @param date
      * @return
      */
-    public static String changeDateStrFormat(String date)
+    public String changeDateStrFormat(String date)
     {
         String dateStr;
         SimpleDateFormat datetimeformatter;
 
-        datetimeformatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        datetimeformatter = new SimpleDateFormat("EEEE dd-MM-yyyy HH:mm a");
         
         dateStr = datetimeformatter.format(parseDateM(date));
         
