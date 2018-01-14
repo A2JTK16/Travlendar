@@ -13,9 +13,13 @@ import java.util.List;
  */
 public class Content 
 {
+    /**
+     * Atribut
+     */
     private String htmlTable;
     private List<ViewEvent> listEvent;
-
+    private String notif;
+    
     /**
      * @return the htmlTable
      */
@@ -42,5 +46,19 @@ public class Content
      */
     public void setListEvent(List<ViewEvent> listEvent) {
         this.listEvent = listEvent;
+    }
+
+    /**
+     * @return the notif
+     */
+    public String getNotif() {
+        return notif;
+    }
+
+    /**
+     * @param notif the notif to set
+     */
+    public void setNotif(String notif) {
+        this.notif = notif;
     }
 }

@@ -15,7 +15,28 @@ import java.util.regex.Pattern;
 
 
 public class DateTHelper 
-{   
+{
+    /**
+     * Tanggal Sekarang
+     */
+    Date currentDate;
+    
+    /**
+     * Formatter
+     */
+    SimpleDateFormat datetimeformatter; // Sunday 10-10-2018 10:18 AM
+    SimpleDateFormat dateformatterSql; // 2018-10-10 09:00:00
+    
+    /**
+     * Konstruktor
+     */
+    public DateTHelper()
+    {
+        this.currentDate = new Date();
+        this.datetimeformatter = new SimpleDateFormat("EEEE dd-MM-yyyy HH:mm a");
+        this.dateformatterSql = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+    }
+    
     /**
       * Mengecek kebenaran format waktu 24 jam
       * skala jam dan menit
@@ -45,14 +66,11 @@ public class DateTHelper
     {
 		// Jika String bernilai null, maka dikembalikan nilai null
         if(dateValStr == null)
-            return null;
-        
-        SimpleDateFormat datetimeformatter;
-        datetimeformatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+            return null; 
         
         try 
         {  
-            return datetimeformatter.parse(dateValStr);
+            return this.dateformatterSql.parse(dateValStr);
         } 
         catch (ParseException e) 
         {
@@ -76,12 +94,12 @@ public class DateTHelper
         if(dateValStr == null)
             return null;
 		
-		SimpleDateFormat datetimeformatter;
-        datetimeformatter = new SimpleDateFormat(format); 
+	SimpleDateFormat formatter;
+        formatter = new SimpleDateFormat(format); 
         
         try 
         {  
-            return datetimeformatter.parse(dateValStr);
+            return formatter.parse(dateValStr);
         } 
         catch (ParseException e) 
         {
@@ -98,30 +116,66 @@ public class DateTHelper
     public String toStringM(Date date)
     {
         String dateStr;
-        SimpleDateFormat datetimeformatter;
-        datetimeformatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        this.dateformatterSql = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         
-        dateStr = datetimeformatter.format(date);
+        dateStr = this.dateformatterSql.format(date);
         
         return dateStr;
     }
     
     /**
      *	Parsing Date Format
-     *	Sesuai Format database engine mysql
-     * @param date
+     *	Sesuai Format :: Sunday 10-10-2018 10:18 AM
+     * @param date type String
      * @return
      */
     public String changeDateStrFormat(String date)
     {
         String dateStr;
-        SimpleDateFormat datetimeformatter;
-
-        datetimeformatter = new SimpleDateFormat("EEEE dd-MM-yyyy HH:mm a");
         
-        dateStr = datetimeformatter.format(parseDateM(date));
+        dateStr = this.datetimeformatter.format(parseDateM(date));
         
         return dateStr;
     }
     
+    /**
+     *	Parsing Date Format
+     *	Sesuai Format :: Sunday 10-10-2018 10:18 AM
+     * @param date tanggal type date
+     * @return
+     */
+    public String changeDateFormat(Date date)
+    {
+        String dateStr;
+        
+        dateStr = this.datetimeformatter.format(date);
+        
+        return dateStr;
+    }
+    
+    /**
+     * Selisih Waktu dalam Hari
+     * @param date tanggal yg akan dicari selisihnya dr sekarang
+     * @param title judul 
+     * @return 
+     */
+    public String getDiffFutureFromNow(Date date, String title)
+    {
+        long diff = date.getTime() - this.currentDate.getTime();
+        //float days = (diff / (1000*60*60*24));
+        float days = (diff / 86400000); // hasil 1000*60*60*24
+        String text;
+        if(days > 0)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.append(title);
+            sb.append(" : The Next ");
+            sb.append(String.format("%.0f", days));
+            sb.append(" Days");
+            text = sb.toString();
+        }
+        else
+            text = null;
+        return text;
+    }
 }

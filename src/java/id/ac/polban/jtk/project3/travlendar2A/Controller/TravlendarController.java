@@ -156,8 +156,11 @@ public class TravlendarController extends HttpServlet
                 // masukkan list
                 content.setListEvent(list);
                 // masukkan html table
-                String html = this.htmlHelper.listToHtmlBodyTable(list);
+                String html = this.htmlHelper.listToHtmlBodyTable(list); 
                 content.setHtmlTable(html);
+                // masukkan html notifikasi
+                html = this.htmlHelper.getHtmlNotif();
+                content.setNotif(html);
                 
                 try 
                 {
@@ -196,7 +199,7 @@ public class TravlendarController extends HttpServlet
                     // tulis lggs ke response client
                     PdfWriter writer = PdfWriter.getInstance(doc, response.getOutputStream());
                     
-                    PdfHelper pdf = new PdfHelper(writer, doc, traveller.getTraveller_fullname(), request.getContextPath() + "/images/logo2a.png");
+                    PdfHelper pdf = new PdfHelper(writer, doc, traveller.getTraveller_fullname(), request.getServletContext().getRealPath("/WEB-INF/logo/logo2a.png"));
                     /**
                      * buka doc untuk write content
                      */ 

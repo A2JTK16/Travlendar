@@ -6,6 +6,7 @@
 package id.ac.polban.jtk.project3.travlendar2A.Helpers;
 
 import id.ac.polban.jtk.project3.travlendar2A.Models.ViewEvent;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,12 +15,24 @@ import java.util.List;
  */
 public class HtmlHelper 
 {
+    /**
+     * Tanggal
+     */
     DateTHelper helper;
-    
+    /**
+     * Notifikasi Html
+     */
+    StringBuilder notifHtml;
+    /**
+     * Konstruktor
+     * @param helper 
+     */
     public HtmlHelper(DateTHelper helper)
     {
         this.helper = helper;
+        this.notifHtml = new StringBuilder();
     }
+    
     /**
      * Mengubah List menjadi String Html Body Table
      * @param list
@@ -29,14 +42,18 @@ public class HtmlHelper
     {
         StringBuilder html = new StringBuilder();
         String temp;
+        Date date;
         for(ViewEvent event : list)
         {
             html.append("<tr><td style=\"display:none\">");
             html.append(event.getEvent_id());
             html.append("</td><td>");
-            html.append(event.getEvent_name());
+            temp = event.getEvent_name();
+            html.append(temp);
             html.append("</td><td>");
-            temp = helper.changeDateStrFormat(event.getStart_event());
+            date = helper.parseDateM(event.getStart_event());
+            this.writeNotif(temp, date); // untuk notif
+            temp = helper.changeDateFormat(date);
             html.append(temp);
             html.append("</td><td>");
             html.append(event.getTransportation_mode());
@@ -51,4 +68,28 @@ public class HtmlHelper
         return html.toString();
     }
     
+    /**
+     * HTML Notif
+     * @param title
+     * @param date 
+     */
+    public void writeNotif(String title, Date date)
+    {
+        String text = this.helper.getDiffFutureFromNow(date, title);
+        if(text != null)
+        {
+            this.notifHtml.append("<a href=\"#\">");
+            this.notifHtml.append(text);
+            this.notifHtml.append("</a>");
+        }
+    }
+    
+    /**
+     * Notif
+     * @return 
+     */
+    public String getHtmlNotif()
+    {
+        return this.notifHtml.toString();
+    }
 }
