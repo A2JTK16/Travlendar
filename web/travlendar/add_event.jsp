@@ -140,7 +140,7 @@
                                                 <label for="fname">From</label>
                                               </div>
                                               <div class="col-75">
-                                                <input class="name" id="origDate" type="date" value="2017-11-28" style="width:150px">
+                                                <input class="name" id="origDate" type="date" value="2018-01-28" style="width:150px">
                                                 <input class="name" id="origTime" type="time" value="00:00" style="width:120px"/>
                                               </div>
                                                 
@@ -148,7 +148,7 @@
                                                 <label for="fname">Until</label>
                                               </div>
                                               <div class="col-75">
-                                                <input class="name" id="destDate" type="date" value="2017-11-28" style="width:150px">
+                                                <input class="name" id="destDate" type="date" value="2018-01-28" style="width:150px">
                                                 <input class="name" id="destTime" type="time" value="00:00" style="width:120px"/>
                                               </div>  
 
@@ -174,7 +174,7 @@
                                                 <label for="country">Departure Time</label>
                                               </div>
                                               <div class="col-75">
-                                                <input class="name" id="departureDate" type="date" value="2017-11-28" style="width:150px; float:left;">
+                                                <input class="name" id="departureDate" type="date" value="2018-01-28" style="width:150px; float:left;">
                                                 <input class="name" id="departureTime" type="time" value="00:00" style="width:120px"/>
                                               </div>
                                             </div>
