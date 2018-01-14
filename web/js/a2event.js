@@ -62,6 +62,8 @@ $(document).ready( function()  // Ketika web udah siap
            {
                // clean routes
                 mapEvent.cleanRoutes();
+                mapEvent.objMaps.setCenter(eventE.latitude, eventE.longitude);
+                
                 
                 mapEvent.objMaps.drawRoute({
                     origin: [eventE.start_latitude, eventE.start_longitude],
@@ -72,7 +74,7 @@ $(document).ready( function()  // Ketika web udah siap
                     trokeWeight: 6
                 });
                 
-                mapEvent.objMaps.setCenter(eventE.latitude, eventE.longitude);
+                
                 
                 // hilangkan marker
                 if( this.markerView1 !== 'undefined' )
@@ -925,12 +927,15 @@ $(document).ready( function()  // Ketika web udah siap
     $('#defaultOpenNew').click(function()
     {
         var currPos;
+        //mapObj.removeMarkers();
         // Bersihkan map dari rute
         mapObj.cleanRoutes();
+        
         // brsihkan listener
         //mapObj.clearListeners('click');
         // Geolokasi
-        mapObj.setGeolocate();
+        //mapObj.setGeolocate();
+        
         // tambahkan listener
         isAddableMarker = true;
         
@@ -1105,7 +1110,7 @@ $(document).ready( function()  // Ketika web udah siap
         chooseTransportAct(tmdifference, 'transit', '#radio', '#transit', false);
         chooseTransportAct(tmdifference, 'walking', '#radio1', '#walking', false);
         chooseTransportAct(tmdifference, 'driving', '#radio2', '#driving', false);
-        chooseTransportAct(tmdifference, 'driving', '#radio3', '#bicycling', true);
+        chooseTransportAct(tmdifference, 'bicycling', '#radio3', '#bicycling', true);
    
     });
        /*    // If two markers have been placed
@@ -1390,12 +1395,12 @@ $(document).ready( function()  // Ketika web udah siap
             eventTravel['departure_time']= new Date($('#departureDate').val() +" "+$('#departureTime').val());
             //eventTraveller['traveller_id'] = 1;
                         
-            eventLoc['latitude'] = m1.getPosition().lat();
-            eventLoc['longitude'] = m1.getPosition().lng();
+            eventLoc['latitude'] = m1pos.lat;
+            eventLoc['longitude'] = m1pos.lng;
             eventLoc['address'] = ($('#orig').val()).substring(0, 59);
                         
-            eventStartLoc['latitude'] = m2.getPosition().lat();
-            eventStartLoc['longitude'] = m2.getPosition().lng();
+            eventStartLoc['latitude'] = m2pos.lat;
+            eventStartLoc['longitude'] = m2pos.lng;
             eventStartLoc['address'] = ($('#dest').val()).substring(0, 59);
                         
             eventDesc.event = event;
@@ -1563,8 +1568,10 @@ $(document).ready( function()  // Ketika web udah siap
     
 }
     */
-    function initializeAutocomplete()
+    /*function initializeAutocomplete()
     {
+        
+        
         if(google !== 'undefined')
         {
             google.maps.event.addDomListener(window, 'load', function () 
@@ -1634,9 +1641,191 @@ $(document).ready( function()  // Ketika web udah siap
         };
     };
     
+    
+    
     // PANGGIL
     initializeAutocomplete();
-    
+    */
+   
+            var geocoder = new google.maps.Geocoder();       
+            var m1poslat=null,m1poslng=null,m2poslat=null,m2poslng=null;
+            function geocodePosition(pos) {
+                geocoder.geocode({
+                    latLng: pos
+                }, function(responses) {
+                    if (responses && responses.length > 0) {
+                        updateMarkerAddress(responses[0].formatted_address);
+                    } else {
+                        updateMarkerAddress('Keine Koordinaten gefunden!');
+                    }
+                });
+            }
+            
+
+
+            function updateMarkerPosition(latLng) {
+                
+                m1poslat = latLng.lat();
+                m1poslng = latLng.lng();
+                
+            }
+
+            
+
+            function updateMarkerAddress(str) {
+                document.getElementById('orig').value = str;
+            }
+
+
+
+            
+            function geocodePosition1(pos) {
+                geocoder.geocode({
+                    latLng: pos
+                }, function(responses) {
+                    if (responses && responses.length > 0) {
+                        updateMarkerAddress1(responses[0].formatted_address);
+                    } else {
+                        updateMarkerAddress1('Keine Koordinaten gefunden!');
+                    }
+                });
+            }
+
+            
+            
+
+
+
+            
+            function updateMarkerPosition1(latLng) {
+                
+                m2poslat = latLng.lat();
+                m2poslng =   latLng.lng();
+            }
+            
+            //document.getElementById('info').value=m1pos;
+
+            function updateMarkerAddress1(str) {
+                document.getElementById('dest').value = str;
+            }
+
+
+
+            function initialize() {
+                var latLng = new google.maps.LatLng(-6.872034,107.574794);
+                var marker = objMapP.addMarker({
+                                lat: latLng.lat(),
+                                lng: latLng.lng(),
+                                title : 'event location',
+                                draggable : true,
+                                icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                            });
+                            
+                            m1pos = {lat: latLng.lat(), lng: latLng.lng()};
+
+                var marker1 = objMapP.addMarker({
+                                lat: latLng.lat(),
+                                lng: latLng.lng(),
+                                title : 'previous location',
+                                draggable : true,
+                                icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+                            });
+                            m2pos = {lat: latLng.lat(), lng: latLng.lng()};
+
+
+                var input = document.getElementById('orig');
+                var autocomplete = new google.maps.places.Autocomplete(input);
+
+                var input1 = document.getElementById('dest');
+                var autocomplete1 = new google.maps.places.Autocomplete(input1);
+
+                autocomplete.bindTo('bounds', objMapP);
+                autocomplete1.bindTo('bounds', objMapP);
+
+                // Update current position info.
+                updateMarkerPosition(latLng);
+                updateMarkerPosition1(latLng);
+                //geocodePosition(latLng);
+
+                // Add dragging event listeners.
+                google.maps.event.addListener(marker, 'dragstart', function() {
+                    updateMarkerAddress('Dragging...');
+                });
+
+                google.maps.event.addListener(marker, 'drag', function() {
+                    updateMarkerPosition(marker.getPosition());
+                });
+                
+
+                google.maps.event.addListener(marker, 'dragend', function() {
+                    geocodePosition(marker.getPosition());
+                });
+
+
+                google.maps.event.addListener(marker1, 'dragstart', function() {
+                    updateMarkerAddress1('Dragging...');
+                });
+
+                
+                google.maps.event.addListener(marker1, 'drag', function() {
+                    updateMarkerPosition1(marker1.getPosition());
+                });
+                
+
+                google.maps.event.addListener(marker1, 'dragend', function() {
+                    geocodePosition1(marker1.getPosition());
+                });
+
+                google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                input.className = '';
+                var place = autocomplete.getPlace();
+                if (!place.geometry) {
+                // Inform the user that the place was not found and return.
+                input.className = 'notfound';
+                return;
+                }
+
+                // If the place has a geometry, then present it on a map.
+                if (place.geometry.viewport) {
+                objMapP.fitBounds(place.geometry.viewport);
+                } else {
+                objMapP.setCenter(place.geometry.location);
+                objMapP.setZoom(17);  // Why 17? Because it looks good.
+                }
+                marker.setPosition(place.geometry.location);
+                updateMarkerPosition(marker.getPosition());
+                geocodePosition(marker.getPosition());
+
+              });
+
+
+
+                google.maps.event.addListener(autocomplete1, 'place_changed', function() {
+                    input.className = '';
+                var place = autocomplete1.getPlace();
+                if (!place.geometry) {
+                // Inform the user that the place was not found and return.
+                input.className = 'notfound';
+                return;
+                }
+
+                // If the place has a geometry, then present it on a map.
+                if (place.geometry.viewport) {
+                objMapP.fitBounds(place.geometry.viewport);
+                } else {
+                objMapP.setCenter(place.geometry.location);
+                objMapP.setZoom(17);  // Why 17? Because it looks good.
+                }
+                marker1.setPosition(place.geometry.location);
+                updateMarkerPosition(marker1.getPosition());
+                geocodePosition(marker.getPosition());
+
+        });
+            }
+
+            // Onload handler to fire off the app.
+            google.maps.event.addDomListener(window, 'load', initialize);
+            
     $('.downloadPdf').html('<a href="index?action=downloadPdf">Download Plan</a>');
     
 }); // tutup JQuery    
