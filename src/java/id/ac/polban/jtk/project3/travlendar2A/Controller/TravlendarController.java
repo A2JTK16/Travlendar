@@ -76,6 +76,12 @@ public class TravlendarController extends HttpServlet
         String jdbcURL = getServletContext().getInitParameter("jdbcURL");
         String jdbcUsername = getServletContext().getInitParameter("jdbcUsername");
         String jdbcPassword = getServletContext().getInitParameter("jdbcPassword");       
+        *
+        * versi deployment
+        *
+        String jdbcURL = "jdbc:mysql://localhost:3306/a2db";
+        String jdbcUsername = "a2";
+        String jdbcPassword = "a2";
         */
         String jdbcURL = "jdbc:mysql://localhost:3306/travlendardb";
         String jdbcUsername = "root";
@@ -190,7 +196,7 @@ public class TravlendarController extends HttpServlet
                     // tulis lggs ke response client
                     PdfWriter writer = PdfWriter.getInstance(doc, response.getOutputStream());
                     
-                    PdfHelper pdf = new PdfHelper(writer, doc, traveller.getTraveller_fullname(), "http://localhost:8080/Travlendar2A/images/logo2a.png");
+                    PdfHelper pdf = new PdfHelper(writer, doc, traveller.getTraveller_fullname(), request.getContextPath() + "/images/logo2a.png");
                     /**
                      * buka doc untuk write content
                      */ 
@@ -330,10 +336,10 @@ public class TravlendarController extends HttpServlet
                     // masukin event
                     Event objEvent = eventdesc.getEvent();
                     objEvent.setTraveller_username(this.getUsername(request));
-                    this.eventDao.edit(objEvent, "event_id", objEvent.getEvent_id().toString());
+                    this.eventDao.edit(objEvent, "event_id", objEvent.getEvent_id());
    
                     Travel trvl = eventdesc.getTravel();
-                    this.travelDao.edit(objEvent, "event_id", objEvent.getEvent_id().toString());
+                    this.travelDao.edit(objEvent, "event_id", objEvent.getEvent_id());
                 } 
                 catch (IOException ex) 
                 {
@@ -558,8 +564,8 @@ public class TravlendarController extends HttpServlet
         // cari dengam hash password
         Integer num = this.travellerDao.executeFunction("isThereUser", Integer.class, username, hashpwd);
         // jika di database belum di hash
-        if(num < 1)
-            num = this.travellerDao.executeFunction("isThereUser", Integer.class, username, password);
+       /// if(num < 1)
+       ///     num = this.travellerDao.executeFunction("isThereUser", Integer.class, username, password);
             
         if(num > 0)
         {

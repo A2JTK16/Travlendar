@@ -127,7 +127,7 @@ INSERT INTO `travel` (`traveller_username`, `start_location_id`, `end_location_i
 CREATE TABLE `traveller` (
   `traveller_username` varchar(30) NOT NULL,
   `traveller_email` varchar(40) NOT NULL,
-  `traveller_password` varchar(25) NOT NULL,
+  `traveller_password` varchar(40) NOT NULL,
   `traveller_fullname` varchar(50) DEFAULT NULL,
   `traveller_address` varchar(60) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
