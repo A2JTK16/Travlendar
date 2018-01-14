@@ -212,7 +212,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         } 
         catch (SQLException | InstantiationException | IllegalAccessException | SecurityException | IllegalArgumentException ex) 
         {
-             ex.printStackTrace();
+             ///ex.printStackTrace();
         }
         
         super.disconnect();
@@ -405,11 +405,12 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
          */
         Map<String, Object> fieldsMap = this.getFieldsMap(object);
         
-        for(String attrName : fieldsMap.keySet())
-        {
+        fieldsMap.keySet().stream().map((attrName) -> {
             mtSql.append(attrName);
+            return attrName;
+        }).forEachOrdered((_item) -> {
             mtSql.append(" = ? ,");
-        }
+        });
         
         mtSql.delete(mtSql.length()-1, mtSql.length()); // hapus koma
         
@@ -476,17 +477,12 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
          */
         mtSql.append("DELETE FROM ");
         mtSql.append(this.classModel.getSimpleName().toLowerCase());
-        mtSql.append("WHERE ");        
-        mtSql.append(String.join(" AND ", keySet));
+        mtSql.append(" WHERE ");        
+        mtSql.append(String.join(" = ? AND ", keySet));
+        mtSql.append(" = ?");
         
-    /*    for(int i=0; i<fieldsMap.size(); i++)
-        {
-            mtSql.append(params[i]);
-            mtSql.append(" = ? AND");
-        }
-                
-        mtSql.delete(mtSql.length()-3, mtSql.length()); // hapus AND
-      */  
+        System.out.println(mtSql.toString());
+        
         int affectedRow = 0;
         /**
          * Buat Koneksi ke DBMS
@@ -554,17 +550,15 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         /**
          * Mendapatkan nama field dan isinya
          */
-        for(PropertyDescriptor property : this.propertyClass)
-        {
+        this.propertyClass.forEach((property) -> {
             Object fieldValue = this.invokeGetter(property, obj);
-            if(fieldValue != null)
-            {
+            if (fieldValue != null) {
                 /**
                  * Menambahkan key : Field Name dan Value = fieldValue
                  */
                 fields.put(property.getName(), fieldValue);
             }
-        }
+        });
         /**
          * Mengembalikan Object Map
          */
@@ -601,8 +595,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         mtSql.append(funcName);
         mtSql.append("( ");
         
-        for(int i=0; i<paramFunc.length; i++)
-        {
+        for (String paramFunc1 : paramFunc) {
             mtSql.append(" ? ,");
         }
         mtSql.delete(mtSql.length()-1, mtSql.length()); // hapus koma 

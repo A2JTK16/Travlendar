@@ -832,6 +832,8 @@ $(document).ready( function()  // Ketika web udah siap
         
     });
     
+  //  if(isNotCal)
+  //      confirm("Welcome to Travlendar2A!")
     
     mapObj.drawPolylines(pathi);
         
