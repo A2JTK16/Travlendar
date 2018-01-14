@@ -30,7 +30,7 @@ public class HtmlHelper
     public HtmlHelper(DateTHelper helper)
     {
         this.helper = helper;
-        this.notifHtml = new StringBuilder();
+        this.notifHtml = null;
     }
     
     /**
@@ -41,6 +41,7 @@ public class HtmlHelper
     public String listToHtmlBodyTable(List<ViewEvent> list)
     {
         StringBuilder html = new StringBuilder();
+        this.notifHtml = new StringBuilder();
         String temp;
         Date date;
         for(ViewEvent event : list)

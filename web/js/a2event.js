@@ -1363,7 +1363,7 @@ $(document).ready( function()  // Ketika web udah siap
     /**
      * Klik Tombol view more
      */
-           
+
     var eventDesc = {};
     /**
      * Klik tombol save
@@ -1430,11 +1430,14 @@ $(document).ready( function()  // Ketika web udah siap
                                 event.longitude = eventLoc.longitude;
                                 event.start_latitude = eventStartLoc.latitude;
                                 event.start_longitude = eventStartLoc.longitude;
+                                
+                                var timeDiff = Math.abs(new Date().getDay() - event.start.getDay());
+                                var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
                                 // tulis ke table
                                 objTableEvent.writeRow(event);
                                 // tambah event
                                 $('#calendar').fullCalendar( 'renderEvent', event);
-                                    
+                                $('#jv-notif').append(event.title + " : The Next " + diffDays + " Days");
                                 //location.reload();
                                 tabView.openTab('#Tasik','#defaultOpen');
                                 // draw polyline event baru
