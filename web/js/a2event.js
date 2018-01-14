@@ -62,6 +62,7 @@ $(document).ready( function()  // Ketika web udah siap
            {
                // clean routes
                 mapEvent.cleanRoutes();
+                mapEvent.objMaps.removeMarkers();
                 
                 mapEvent.objMaps.setCenter(eventE.latitude, eventE.longitude);
                 
@@ -641,7 +642,13 @@ $(document).ready( function()  // Ketika web udah siap
     };
     
    
-
+   var markersArray = [];
+   
+   function clearOverlays() {
+    for (var i = 0; i < markersArray.length; i++ ) {
+     markersArray[i].setMap(null);
+  }
+}
     
     // yg bertugas kurirnya controller
     var objAccess = new ControllerAccesser("index");
@@ -930,21 +937,22 @@ $(document).ready( function()  // Ketika web udah siap
      */
     $('#defaultOpenNew').click(function()
     {
+        
         var currPos;
         //mapObj.removeMarkers();
         // Bersihkan map dari rute
         mapObj.cleanRoutes();
-        
         // brsihkan listener
         //mapObj.clearListeners('click');
         // Geolokasi
-        //mapObj.setGeolocate();
-        
+        mapObj.setGeolocate();
         // tambahkan listener
         isAddableMarker = true;
         
         $('#map').appendTo('#mapNewEvent');
         $('#mapInstruction').appendTo('#mapNewEvent');
+        
+      
      
         //openCity(event, 'London');
         tabView.openTab('#London','#defaultOpenNew');
@@ -1097,7 +1105,7 @@ $(document).ready( function()  // Ketika web udah siap
                                         trokeWeight: 6
                                         });
                                         
-                                        mapObj.cleanRoutes();
+                           mapObj.cleanRoutes();
                         });
                         
                         $(cssIdMsg).val( secToHHMM(traveltime) );     
