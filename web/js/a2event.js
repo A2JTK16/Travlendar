@@ -1661,7 +1661,7 @@ $(document).ready( function()  // Ketika web udah siap
                     if (responses && responses.length > 0) {
                         updateMarkerAddress(responses[0].formatted_address);
                     } else {
-                        updateMarkerAddress('Keine Koordinaten gefunden!');
+                        updateMarkerAddress('Tidak ada koordinat yang ditemukan!');
                     }
                 });
             }
@@ -1691,7 +1691,7 @@ $(document).ready( function()  // Ketika web udah siap
                     if (responses && responses.length > 0) {
                         updateMarkerAddress1(responses[0].formatted_address);
                     } else {
-                        updateMarkerAddress1('Keine Koordinaten gefunden!');
+                        updateMarkerAddress1('Tidak ada koordinat yang ditemukan!');
                     }
                 });
             }
