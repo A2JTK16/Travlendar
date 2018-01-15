@@ -216,6 +216,14 @@ MEDIA QUERIES
             height: auto;
         }
        
+        h1{
+            font: 27px Arial;
+        }
+        
+        p{
+            font: 16px Arial;
+        }
+        
              
 }
 
