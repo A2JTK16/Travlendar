@@ -331,13 +331,13 @@
 
 	<div class="footer-bawah">
             <div class="footer">
-            <div class="container-t">    
-                <div class="copyright">
+            <div class="container-t" style="width:100%">    
+                <div class="copyright" style="width:70%">
                     <h4>Travelendar</h4>
                     <div class="cpy"> Copyright &copy; 2017 travlendar | Designed by A2 JTK Polban</div>
                 </div> <!--copyright-->
                 
-                <div class="share-sos">
+                <div class="share-sos" style="width:30%">
                     <div class="sos">
                         <a href="https://www.facebook.com/travlendar.proyek.1"><img src="icon/fb.png"></a>
                     </div>
