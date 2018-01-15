@@ -1,18 +1,7 @@
-/*
-To change this license header, choose License Headers in Project Properties.
+/*To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : Oct 30, 2017, 11:55:40 AM
-    Author     : Lenovo
-*/
+and open the template in the editor.*/
 
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
     Created on : Sep 21, 2017, 12:35:26 PM
     Author     : Diana&Fadhlan
@@ -26,10 +15,16 @@ and open the template in the editor.
 
 
 body{
-	background: #f4f4f4;
 	font-family: 'Helvetica', arial, sans-serif;
 	font-size: 15px;
         overflow:hidden; 
+            background: url("../images/body2.jpg");
+     width:100%;
+ //   height:500px;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+   // float:left;
 }
 
 .wadah{
@@ -42,32 +37,17 @@ body{
 
 
 .kotak-deskripsi{
-   width: 470px;
+ //  width: 821px;
+ width: 100%;
+ text-align: center;
    background: #1abc9c;
    opacity: 0.7;
    padding: 15px;
-   border-radius:50px;
-   margin-left:50px;
-   margin-top:110px;
-   -webkit-animation: fade-in-move-down 0.7s;
-   animation: fade-in-move-down 0.7s;
+   margin:0 auto;
+   margin-top: 10%;
+    -webkit-animation: fade-in-move-down 0.7s;
+  animation: fade-in-move-down 0.7s;
 }
-
-/* as seen on https://webkit.org/blog */
-@-webkit-keyframes fade-in-move-down {
-  100% {
-    opacity: 0;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(-3rem);
-    transform: translateY(-3rem);
-  }
-}
-
-
 
 .wadah3{
         width: 100%;
@@ -84,19 +64,11 @@ body{
         animation: fade-in-move-down 1s;*/
 }
 
-/* as seen on https://webkit.org/blog */
-@-webkit-keyframes fade-in-move-down {
-        0% {opacity: 0;}
-        100% {opacity: 0.7;}
-}
-
-
-
 .deskripsi{
     color: #f4f4f4;
     opacity: 0.9;
-    font-size: 50px;
-    font-family: 'Helvetica', arial, sans-serif;
+    font-size: 90px;
+    font-family: 'Roboto Slab', serif;
     position: relative;
     animation: fade-in-move-down 2s;
 }
@@ -109,7 +81,7 @@ body{
     transform: translateY(-3rem);
   }
   100% {
-    opacity: 0.9;
+    opacity: 0.7;
     -webkit-transform: translateY(0);
     transform: translateY(0);
   }
@@ -146,7 +118,8 @@ p{
 h1{
 	padding: 10px;
 	margin: 10px;
-	font: 20px Trebuchet MS;
+	font-size: 20px;
+        font-family: 'Roboto Slab', serif;
 	font-weight: bold;
         border-bottom: 3px solid #ff9900;
 	color: #00897b;
@@ -299,7 +272,7 @@ a:hover{
   float: left;
   width: 100%;
   height: 59px;
-  background:#00897b;
+  background:transparent;
   position: fixed;
   border-top: 3px solid #1976D2;
   top: 0;
@@ -311,17 +284,14 @@ a:hover{
 .logonya{
     float: left;
     padding: 2px;
-    margin: 2px;
-    margin-left: 50px;
+    margin: 21px;
     overflow: hidden;
     border: none;
-    border-radius: 100px;
 }
 
 .logonya img{
     float: left;
-    width: 29px;
-    height: 49px;
+    width: 230px;;
 }
 
 .logo{
@@ -359,30 +329,27 @@ a:hover{
     
 }
 
-.sign-up{
-    float:left;
-    padding: 19px;
-    margin: 0px;
+.signup{
+    float:right;
+    padding: 15px;
+    margin: 22px;
+    color:#f4f4f4;
+    font-size: 16px;
+    font-family: 'Roboto Slab', serif;
+    border-radius: 30px;
+    border: 2px solid #1abc9c;
+    background: transparent;
+}
+
+.signup:hover{
     background: #1abc9c;
-    color:#f4f4f4;
-    font: 16px Arial;
-    font-weight: bold; 
-}
-
-.sign-up a{
-    color:#f4f4f4;
-       
-}
-
-
-.sign-up a:hover{
-    color:#f4f4f4;    
+    color:#f4f4f4
 }
 
 .sign-in{
-    float:left;
+    float:right;
     padding: 18px;
-    margin: 2px;
+    margin: 21px;
     overflow: hidden;
 }
 
@@ -837,8 +804,8 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
 		float: right;
 		padding: 0px;
 		margin: 0px;
-		font: 16px Arial;
-		font-weight: bold;
+		font-size: 16px;
+                font-family: 'Roboto Slab', serif;
 		color: #ffffff;
 		border: none;
                 background:transparent;
@@ -867,25 +834,39 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
 
 /* Modal Content */
 .modal-content {
-	padding: 10px;
-	padding-top: 80px;
-   	margin: 10px auto;
+	padding: 3px;
+   	margin: 0 auto;
     bottom: 0;
     background-color: transparent;
     width: auto;
     -webkit-animation-name: slideIn;
     -webkit-animation-duration: 0.4s;
     animation-name: slideIn;
-    animation-duration: 0.4s
+    animation-duration: 0.4s;
+}
+
+.modal-content2 {
+	padding: 3px;
+   	margin: 0 auto;
+        padding-top: 5%;
+     // transform: translateY(0%);
+    bottom: 0;
+    background-color: transparent;
+    width: auto;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s;
 }
 
 /* The Close Button */
 .close {
     color: dimgray;
-    margin-bottom: 60px;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    margin-top: -8%;
+    margin-right: -11%;
 }
 
 .close:hover,
@@ -896,7 +877,7 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
 }
 
 .modal-header {
-    padding: 2px 16px;
+    padding: 0px 16px;
     background: transparent;
     color: white;
 }
@@ -929,16 +910,16 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
 .form {
   position: relative;
   z-index: 1;
+  padding-top: 80px;
   background: #ffffff;
   max-width: 360px;
-  margin: -15px auto 100px;
+  margin: 5% auto 100px;
   padding: 20px;
-  margin-top:70px;
   text-align: center;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
   overflow: hidden;
   animation: fade-in-move-up 1s;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 
 .form input {
@@ -964,8 +945,8 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
   z-index: 1;
   background: #ffffff;
   max-width: 360px;
-  margin: -15px auto 100px;
-  padding: 20px;
+  margin: -3% auto 100px;
+  padding: 25px;
   text-align: center;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
   overflow: hidden;
@@ -989,6 +970,7 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
 .form2 input:focus{
     border-color: #1abc9c;
     box-shadow: 0 0 8px 0 #00897b;
+    outline: none;
 }
 
 .create{
@@ -1049,7 +1031,8 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
 
 
 .plogo img{
-    width:75%;
+    width:84%;
+    margin-left:10%
 }
 
 .sulogo{
@@ -1062,7 +1045,13 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
     margin-bottom:20px;
 }
 
-.baloon{
+.logoup{
+    width:230px;
+    padding: 2px;
+    margin: 21px;
+    height: auto;
+}
+/*.baloon{
         position: relative;
 	width: 10%;
 	top: 350px;
@@ -1112,9 +1101,7 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
     position:absolute;
 }
 
-.mangkok{
-    width: 100%;
-}
+
 
 .cloud3{
     width: 150px;
@@ -1162,6 +1149,61 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
     position: absolute;
 }
 
+.cloud4{
+    width: 200px;
+    top:210px;
+    opacity: 0.4;
+    animation-name: wind5;
+    animation-duration: 160s;
+    animation-fill-mode: both;
+    animation-delay: 20s;
+    animation-iteration-count: infinite;
+    position: absolute;
+}
+
+.cloud5{
+    width: 350px;
+    top:50px;
+    opacity: 0.4;
+    animation-name: wind4;
+    animation-duration: 50s;
+    animation-fill-mode: both;
+    animation-delay: 0.5s;
+    position: absolute;
+}
+
+.cloud6{
+    width: 150px;
+    top:270px;
+    opacity: 0.4;
+    animation-name: wind3;
+    animation-duration: 70s;
+    animation-fill-mode: both;
+    animation-delay: 0.5s;
+    position: absolute;
+}
+
+.cloud7{
+    width: 250px;
+    top:50px;
+    opacity: 0.4;
+    animation-name: wind5;
+    animation-duration: 50s;
+    animation-fill-mode: both;
+    animation-delay: 0.5s;
+    position: absolute;
+}
+
+.cloud8{
+    width: 150px;
+    top:300px;
+    opacity: 0.4;
+    animation-name: wind5;
+    animation-duration: 70s;
+    animation-fill-mode: both;
+    animation-delay: 0.5s;
+    position: absolute;
+}
 @keyframes drive{
 	from{ transform: translateX(-150px)}
 	to{ transform: translateX(1400px)}
@@ -1189,4 +1231,6 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
 @keyframes wind5{
     	from{ transform: translateX(1450px)}
 	to{ transform: translateX(-450px)}
-}
+
+
+}*/

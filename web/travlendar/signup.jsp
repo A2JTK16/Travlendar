@@ -10,30 +10,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../css/home.css">
+        <link rel="stylesheet" type="text/css" href="../css/responsivehome.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
         <title>Create Your Account</title>
     </head>
     <body>
-        
-        <div class="menu-atas">
-            <div class="header">
-                <div class="logonya">
-                    <img src="../images/travelendar2.png">
-
-                </div>
-                <div class="logo">
-                    <img src="../images/logo.png">
-                </div> <!--logo-->
-
-
-                <div class="tombol" style="float:right;">
-                        <div class="sign-in">
-                            <a href="../">Sign In</a>
-                        </div>
-                </div>
-            </div>
-        </div> <!--menu-atas-->
-
-        
+        <div class="logoup">
+            <img src="../images/trav.svg">
+        </div><!--menu-atas-->
         <div class="wadah1">
         <!-- Modal content -->
             <div class="modal-content">			    	
@@ -57,7 +41,7 @@
 		</div>			
             </div> <!--modal content-->
         </div>           
-        <%@include file="footer.jsp" %>
+        <%--<%@include file="footer.jsp" %>--%>
         
         <script src="../js/jquery.min.js"></script>
         <script>
