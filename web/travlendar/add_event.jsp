@@ -337,22 +337,15 @@
                     <div class="cpy"> Copyright &copy; 2017 travlendar | Designed by A2 JTK Polban</div>
                 </div> <!--copyright-->
                 
-                <div class="share-sos" style="width:30%">
-                    <div class="sos">
-                        <a href="https://www.facebook.com/travlendar.proyek.1"><img src="icon/fb.png"></a>
-                    </div>
+                <div style="width:20%" class="share-sos" >
+                        <a href="https://www.facebook.com/travlendar.proyek.1"><img src="icon/fb.png" style="width:20%"></a>
+                
+                        <a href="https://twitter.com/Travlendar2a"><img src="icon/twt.png" style="width:20%"></a>
+                 
+                        <a href="https://www.instagram.com/travelendara2proyek3/"><img src="icon/inst.png" style="width:20%">
+                  
+                        <a href="https://www.youtube.com"><img src="icon/yt.png" style="width:20%"></a>
                     
-                    <div class="sos">
-                        <a href="https://twitter.com/Travlendar2a"><img src="icon/twt.png"></a>
-                    </div>
-                    
-                    <div class="sos">
-                        <a href="https://www.instagram.com/travelendara2proyek3/"><img src="icon/inst.png">
-                    </div>
-                    
-                    <div class="sos">
-                        <a href="https://www.youtube.com"><img src="icon/yt.png"></a>
-                    </div>
                 </div> <!--share-sos-->
             </div>    
             </div>
