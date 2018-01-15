@@ -72,6 +72,10 @@
                     $('#modalMessage').hide();
                 });
                 
+                $('#tblOk').click(function(){
+                    $('#modalMessage').hide();
+                });
+                
                 $('#tblHome').click(function(){
                     window.location = "../";
                 });
