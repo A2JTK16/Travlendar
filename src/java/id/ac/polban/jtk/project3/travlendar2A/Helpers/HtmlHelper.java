@@ -46,7 +46,7 @@ public class HtmlHelper
     {
         StringBuilder html = new StringBuilder();
         this.notifHtml = new StringBuilder();
-        this.notifCount = 0;
+        this.notifCount = 1; // mulai dari satu
         this.helper.setCurrentDate(new Date()); // set ke tgl terbaru
         String temp;
         Date date;

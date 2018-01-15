@@ -72,13 +72,11 @@
             <div class="dropdown" style="float:right;">
                 <button class="dropbtn">
                     <a class="icon-account">
-                            <img src="icon/notif2.png">
+                        <img src="icon/notif2.png"><a id="logoNotif" style="color:#E1E1E9"></a>
                     </a>
                 </button>
                 <div class="dropdown-content" id="jv-notif">
                   <a href="#">Welcome to Travelendar ! by A2 JTK</a>
-                  <a href="#">Don't Forget to Make a Better Plan ! by A2 JTK</a>
-                  <a href="#">Our Plan Will Get Big Things! by A2 JTK</a>
                 </div>
             </div>
                   

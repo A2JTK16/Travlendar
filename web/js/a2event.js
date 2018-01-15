@@ -802,6 +802,7 @@ $(document).ready( function()  // Ketika web udah siap
         });
         // masukkan notif ke html
         $('#jv-notif').append(content.notif);
+        $('#logoNotif').append(content.notifCount);
         $('#usernameContent').append(content.user);
         
         delete content.notif;

@@ -27,7 +27,7 @@
     <div class="menu-atas">
 	<div class="header">
              <div class="logonya">
-                <img src="../images/travelendar2.png">
+                <img src="../images/travelendar2.svg">
                 
             </div>
             <div class="logo">
@@ -78,7 +78,7 @@
 	<img src="../images/bg1.jpg" alt="">
         <div class="slogan">
             <div class="logoku">
-                <img src="../images/travelendar2.png">
+                <img src="../images/travelendar2.svg">
             </div>
             <h1 style="text-align:center">Welcome Travlendar</h1>
             <p style="text-align:center"> Make Your Plan Better ! </p>
