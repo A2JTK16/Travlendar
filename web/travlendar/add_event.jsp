@@ -191,7 +191,7 @@
                                 <input class="ev-name" id="noteDesc" type="text" placeholder="Note .. " style="height:75px;"/>
                             
                                 <div class="i-save" >
-                                    <button class="submit" id="myBtn">Choose Transportation Mode</button>
+                                    <button class="submit">Choose Transportation Mode</button>
 				<!-- The Modal -->
 				<div id="myModal" class="modal">
 
@@ -218,17 +218,17 @@
                                                <div class="k-transport">
                                                   <div class="trans"> <img src="icon/car.png"> </div>
                                                   <input type="radio" id="radio2" name="transportation" class="transportation" value="DRIVING" >
-                                                  <input id="driving" type="text">
+                                                  <input id="driving" type="text" disable>
                                               </div>
                                                <div class="k-transport">
                                                   <div class="trans"> <img src="icon/bcycle.png"> </div>
                                                   <input type="radio" id="radio3" name="transportation" class="transportation" value="BICYCLING" >
-                                                  <input id="bicycling" type="text">
+                                                  <input id="bicycling" type="text" disable>
                                               </div>
                                                <div class="k-transport">
                                                   <div class="trans"> <img src="icon/walk.png"> </div>
                                                   <input type="radio" id="radio1" name="transportation" class="transportation" value="WALKING" >
-                                                  <input id="walking" type="text">
+                                                  <input id="walking" type="text" disable>
                                               </div>
 
 

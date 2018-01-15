@@ -913,6 +913,9 @@ $(document).ready( function()  // Ketika web udah siap
         event = objCalendar.getEvent(event.id)[0];
         // tampilkan tab baru
         tabView.viewMore(event, mapObj);
+        // clear pencarian
+        $('#findResult').html('');
+        $('#findEvent').val('');
     }
     
     // search
@@ -1050,10 +1053,11 @@ $(document).ready( function()  // Ketika web udah siap
             return hours+' hours '+ minutes +' mins';
         else if(minutes !== "00") // jika pembulatan hasil bagi tidak samadengan 00
             return minutes +' mins';
-        else // pembulatan keatas
+        else if(sec_num > 30) // pembulatan keatas
             return " 1 mins";
     }
-
+    
+    var origNewE, destNewE, eventNameE;
     /**
      * untuk memilih transportation mode dari marker m1 dan m2
      * m1 dan m2 tidk boleh null
@@ -1067,74 +1071,75 @@ $(document).ready( function()  // Ketika web udah siap
     var chooseTransportAct = function(tmdifference, travelMode, cssIdRadio, cssIdMsg, avoidHT)
     {
         //if(m1 != null || m2 != null)
-        var origin = $('#orig').val().toString();
-        var dest = $('#dest').val().toString();
-        var eventName = $('#eventName').val().toString();
+       //var origin = $('#orig').val().toString();
+       // var dest = $('#dest').val().toString();
+        //var eventName = $('#eventName').val().toString();
         
         //alert(travelMode.toString().toUpperCase());
         
-        if(origin !== "" && dest !== "" && eventName !== "")
-        mapObj.distanceMatrix(
-            {
-                origins: [origin],
-                destinations: [dest],
-                travelMode: travelMode.toString().toUpperCase(),
-                avoidHighways: avoidHT,
-                avoidTolls: avoidHT
-            },
-            function(response,status)
-            {
-                if(status !== 'OK')
+       // if(origin !== "" && dest !== "" && eventName !== "")
+      //  {
+            mapObj.distanceMatrix(
                 {
-                    alert('Error Mendapatkan Data');
-                }
-                else
+                    origins: [origNewE],
+                    destinations: [destNewE],
+                    travelMode: travelMode.toString().toUpperCase(),
+                    avoidHighways: avoidHT,
+                    avoidTolls: avoidHT
+                },
+                function(response,status)
                 {
-                    origin = response.originAddresses[0];
-                    dest = response.destinationAddresses[0];
-                    
-                    var traveltime = 0;
-                    // alert(JSON.stringify(response));
-                    for (var i = 0; i < response.rows.length; i++) 
+                    if(status !== 'OK')
                     {
-                        var elementsArr = response.rows[i].elements;
-                        for (var j = 0; j < elementsArr.length; j++) 
+                        alert('Error Mendapatkan Data');
+                    }
+                    else
+                    {
+                      //  origin = response.originAddresses[0];
+                      //  dest = response.destinationAddresses[0];
+
+                        var traveltime = 0;
+                        // alert(JSON.stringify(response));
+                        for (var i = 0; i < response.rows.length; i++) 
                         {
-                            if(elementsArr[j].status === 'OK')
-                                traveltime += elementsArr[j].duration.value;
+                            var elementsArr = response.rows[i].elements;
+                            for (var j = 0; j < elementsArr.length; j++) 
+                            {
+                                if(elementsArr[j].status === 'OK')
+                                    traveltime += elementsArr[j].duration.value;
+                            }
+                        }
+                       // alert(tmdifference + ' | ' + traveltime);
+                        if(traveltime > tmdifference || traveltime === 0)
+                        {
+                            $(cssIdRadio).hide();
+                            $(cssIdMsg).val(travelMode + " can't be used");
+                        }
+                        else if(tmdifference !== 0)
+                        {
+                            $(cssIdRadio).show().click(function(){
+
+
+                                //objMapP.drawRoutesAnimated(travelMode, [m1pos.lat, m1pos.lng], [m2pos.lat, m2pos.lng]);
+                               objMapP.drawRoute({
+                                            origin: [m2poslat,m2poslng],
+                                            destination: [m1poslat,m1poslng],
+                                            travelMode: travelMode,
+                                            strokeColor: '#131540',
+                                            strokeOpacity: 0.7,
+                                            trokeWeight: 6
+                                            });
+
+                               mapObj.cleanRoutes();
+                            });
+
+                            $(cssIdMsg).val( secToHHMM(traveltime) );     
                         }
                     }
-                    //alert(tmdifference + ' | ' + traveltime);
-                    if(traveltime > tmdifference)
-                    {
-                        $(cssIdRadio).hide();
-                        $(cssIdMsg).val(travelMode + " can't be used");
-                    }
-                    else if(tmdifference !== 0)
-                    {
-                        $(cssIdRadio).show().click(function(){
-                          
-                            
-                            //objMapP.drawRoutesAnimated(travelMode, [m1pos.lat, m1pos.lng], [m2pos.lat, m2pos.lng]);
-                           objMapP.drawRoute({
-                                        origin: [m2poslat,m2poslng],
-                                        destination: [m1poslat,m1poslng],
-                                        travelMode: travelMode,
-                                        strokeColor: '#131540',
-                                        strokeOpacity: 0.7,
-                                        trokeWeight: 6
-                                        });
-                                        
-                           mapObj.cleanRoutes();
-                        });
-                        
-                        $(cssIdMsg).val( secToHHMM(traveltime) );     
-                    }
-                }
-        });
-        else
-           
-            confirm('Mohon isi lokasi dan Event Anda!...');
+            });
+      //  }
+     //   else
+    //        confirm('Please fill the address !');
     };
     
     /**
@@ -1149,12 +1154,27 @@ $(document).ready( function()  // Ketika web udah siap
         //alert(dateTimeDest.toString());
         // dateTimeOrigin dikurangi dateTimeDest bentuk second
         var tmdifference = timeDiff(dateTimeOrigin, dateTimeDepature);
-        //alert(tmdifference);
-        chooseTransportAct(tmdifference, 'transit', '#radio', '#transit', false);
-        chooseTransportAct(tmdifference, 'walking', '#radio1', '#walking', false);
-        chooseTransportAct(tmdifference, 'driving', '#radio2', '#driving', false);
-        chooseTransportAct(tmdifference, 'bicycling', '#radio3', '#bicycling', true);
-   
+        
+        origNewE = $('#orig').val().toString();
+        destNewE = $('#dest').val().toString();
+        eventNameE = $('#eventName').val().toString();
+
+        if(origNewE !== "" && destNewE !== "" && eventNameE !== "")
+        {
+            //alert(tmdifference);
+            chooseTransportAct(tmdifference, 'transit', '#radio', '#transit', false);
+            chooseTransportAct(tmdifference, 'walking', '#radio1', '#walking', false);
+            chooseTransportAct(tmdifference, 'driving', '#radio2', '#driving', false);
+            chooseTransportAct(tmdifference, 'bicycling', '#radio3', '#bicycling', true);
+            
+            $('#mapInstruction').appendTo('#mapPopup');
+            $('#map').appendTo('#mapPopup');
+            $('#myModal').show();
+        }
+        else
+        {
+            confirm("Please Fill The Form!");
+        }
     });
        /*    // If two markers have been placed
             var origtime = document.getElementById("origTime");
@@ -1427,8 +1447,6 @@ $(document).ready( function()  // Ketika web udah siap
             }
         }
                    
-        if(m1pos !== 'undefined' || m2pos !== 'undefined')
-        {
             event['title'] = $('#eventName').val();
             event['start'] = new Date($('#origDate').val() +" "+$('#origTime').val());
             event['end'] = new Date($('#destDate').val() +" "+$('#destTime').val());
@@ -1446,64 +1464,67 @@ $(document).ready( function()  // Ketika web udah siap
             eventStartLoc['longitude'] = m2poslng;
             eventStartLoc['address'] = ($('#dest').val()).substring(0, 59);
                         
-            eventDesc.event = event;
-            eventDesc.travel = eventTravel;
-            eventDesc.startLocation =  eventStartLoc;
-            eventDesc.endLocation = eventLoc;
-            
-            //eventDesc = jQuery.parseJSON(JSON.stringify(eventDesc));
-            //alert(JSON.stringify(eventDesc));
-            $.ajax({
-                type: 'POST', // method post
-                url: 'index',
-                data: {action: 'addEvent', json: JSON.stringify(eventDesc)},
-                async: false, // dikirim ketika semua beres
-                timeout: 6000,
-                success: function(msgStatus)
-                        {                   
-                            if(msgStatus.status == "OK")
+           // if(event.title !== "" && event.start !== "" && event.end !== "" && eventTravel !== "")   
+         //   {
+                        
+                eventDesc.event = event;
+                eventDesc.travel = eventTravel;
+                eventDesc.startLocation =  eventStartLoc;
+                eventDesc.endLocation = eventLoc;
+
+                //eventDesc = jQuery.parseJSON(JSON.stringify(eventDesc));
+                //alert(JSON.stringify(eventDesc));
+
+                $.ajax({
+                    type: 'POST', // method post
+                    url: 'index',
+                    data: {action: 'addEvent', json: JSON.stringify(eventDesc)},
+                    async: false, // dikirim ketika semua beres
+                    timeout: 6000,
+                    success: function(msgStatus)
+                            {                   
+                                if(msgStatus.status == "OK")
+                                {
+                                    event.id = msgStatus.generatedKey;
+                                    event.address = eventLoc.address;
+                                    event.depature_time = eventTravel.departure_time;
+                                    event.transportation = eventTravel.transportation;
+                                    event.latitude = eventLoc.latitude;
+                                    event.longitude = eventLoc.longitude;
+                                    event.start_latitude = eventStartLoc.latitude;
+                                    event.start_longitude = eventStartLoc.longitude;
+
+                                    var timeDiff = Math.abs(new Date().getDay() - event.start.getDay());
+                                    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                                    // tulis ke table
+                                    objTableEvent.writeRow(event);
+                                    // tambah event
+                                    $('#calendar').fullCalendar( 'renderEvent', event);
+                                    $('#jv-notif').append(event.title + " : The Next " + diffDays + " Days");
+                                    notifCount++;
+                                    $('#logoNotif').html(notifCount);
+                                    //location.reload();
+                                    tabView.openTab('#Tasik','#defaultOpen');
+                                    // draw polyline event baru
+                                    pathi.push([eventLoc.latitude, eventLoc.longitude]);
+                                    mapObj.drawPolylines(pathi);
+                                }
+                                else
+                                {
+                                    confirm(msgStatus.title + '\n' + msgStatus.message);
+                                }
+                            },
+                            error: function(xmlhttprequest, textstatus, message)
                             {
-                                event.id = msgStatus.generatedKey;
-                                event.address = eventLoc.address;
-                                event.depature_time = eventTravel.departure_time;
-                                event.transportation = eventTravel.transportation;
-                                event.latitude = eventLoc.latitude;
-                                event.longitude = eventLoc.longitude;
-                                event.start_latitude = eventStartLoc.latitude;
-                                event.start_longitude = eventStartLoc.longitude;
-                                
-                                var timeDiff = Math.abs(new Date().getDay() - event.start.getDay());
-                                var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-                                // tulis ke table
-                                objTableEvent.writeRow(event);
-                                // tambah event
-                                $('#calendar').fullCalendar( 'renderEvent', event);
-                                $('#jv-notif').append(event.title + " : The Next " + diffDays + " Days");
-                                notifCount++;
-                                $('#logoNotif').html(notifCount);
-                                //location.reload();
-                                tabView.openTab('#Tasik','#defaultOpen');
-                                // draw polyline event baru
-                                pathi.push([eventLoc.latitude, eventLoc.longitude]);
-                                mapObj.drawPolylines(pathi);
+                                confirm(textstatus + message);
                             }
-                            else
-                            {
-                                confirm(msgStatus.title + '\n' + msgStatus.message);
-                            }
-                        },
-                        error: function(xmlhttprequest, textstatus, message)
-                        {
-                            confirm(textstatus + message);
-                        }
-                    });
-                    
-            if(isNotCal)
-                location.reload(true);
-                               
-        }
-        else
-            confirm("Mohon klik tujuan anda!");
+                        });
+
+                if(isNotCal)
+                    location.reload(true);
+           // }
+           // else confirm("Please fill the form!");                         
+
     });
     
     $('#signout').click(function(){
@@ -1575,12 +1596,6 @@ $(document).ready( function()  // Ketika web udah siap
         }
         else
            confirm("Mohon klik tujuan anda!");
-    });
-                                
-    $('#myBtn').click(function(){
-        $('#mapInstruction').appendTo('#mapPopup');
-        $('#map').appendTo('#mapPopup');
-        $('#myModal').show();
     });
                                  
     $('.close').click(function(){
