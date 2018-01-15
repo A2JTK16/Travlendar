@@ -1026,6 +1026,11 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
 .form button:hover{color:#f4f4f4;}
 
 
+.plogo{
+    padding: 3px;
+    margin: 3px;
+}
+
 .plogo img{
     width:84%;
     margin-left:10%

@@ -29,7 +29,7 @@
 					<div class="form">
 							  	<div class="modal-header">
 							      <span class="close">&times;</span>
-                                                              <div class="plogo"><img src="images/fix.svg"></div>
+                                                              <div class="plogo"><img src="images/fix.png"></div>
 							    </div>
 					    <form class="register-form">
 					      <input type="text" id="username" placeholder="Username"/>
