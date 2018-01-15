@@ -43,10 +43,39 @@
         </div>           
         <%--<%@include file="footer.jsp" %>--%>
         
+        <div id="modalMessage" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content2">
+	  	
+                <div class="form">
+                    <div class="modal-header">
+                        <span class="close" id="modalClose">&times;</span>
+                        <h3 id="messageTitle"></h3>
+                    </div>
+                    <div>
+                        <a id="messagePoint"></a>
+                    </div>
+                    <button class="b-signup" id="tblHome">Go Home</button>
+                    <button class="b-signup" id="tblOk">Okay</button>
+                </div>
+            </div> <!--modal content-->
+        </div>
+        
         <script src="../js/jquery.min.js"></script>
         <script>
             $(document).ready( function()  // Ketika web udah siap
-            {   
+            {
+                $('#modalMessage').hide(); // default ga nampil
+                
+                $('#modalClose').click(function() // jika klik tombol close
+                {
+                    $('#modalMessage').hide();
+                });
+                
+                $('#tblHome').click(function(){
+                    window.location = "../";
+                });
+                
                 function getFormData($form)
                 {
                     var unindexedArray = $form.serializeArray();
@@ -77,7 +106,7 @@
                     $('.wajibdiisi').each(function()
                     {
                        var eldt = $(this);
-                       if(eldt.val() == "")
+                       if(eldt.val() === "")
                        {
                            isValid = false;
                        }                           
@@ -94,16 +123,24 @@
                             timeout: 5000,
                             success: function(msgStatus)
                             {
+                                $('#messageTitle').html(msgStatus.title);
+                                $('#messagePoint').html(msgStatus.message);
+                                $('#modalMessage').show();
+                                
                                 if(msgStatus.status === "OK")
                                 {
+                                    $('#tblHome').show();
+                                    $('#tblOk').hide();
                                     confirm(msgStatus.title + "\n" + msgStatus.message);
     //                                $('.modal-content').html('<a href="../"><button class="b-signin">' + msgStatus.message +' </button></a>');
-                                    window.location = "../";
+                                   // window.location = "../";
                                 }
                                 else 
-                                {                                   
+                                {
+                                    $('#tblHome').show();
+                                    $('#tblOk').hide();
                                     confirm(msgStatus.title + "\n" + msgStatus.message);
-                                }
+                                } 
                             },
                             failure: function(errMsg) {
                                 confirm(errMsg);

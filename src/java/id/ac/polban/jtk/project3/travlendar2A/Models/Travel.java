@@ -13,7 +13,7 @@ import java.sql.Timestamp;
  * @author Auliya Aqma Dinillah
  */
 public class Travel {
-    private Float event_id;
+    private String event_id;
     private Timestamp departure_time;
     @JsonProperty(value = "username")
     private String traveller_username;
@@ -25,14 +25,14 @@ public class Travel {
     /**
      * @return the event_id
      */
-    public Float getEvent_id() {
+    public String getEvent_id() {
         return event_id;
     }
 
     /**
      * @param event_id the event_id to set
      */
-    public void setEvent_id(Float event_id) {
+    public void setEvent_id(String event_id) {
         this.event_id = event_id;
     }
 

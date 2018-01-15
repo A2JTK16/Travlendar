@@ -19,7 +19,7 @@ public class DateTHelper
     /**
      * Tanggal Sekarang
      */
-    Date currentDate;
+    private Date currentDate;
     
     /**
      * Formatter
@@ -169,13 +169,19 @@ public class DateTHelper
         {
             StringBuilder sb = new StringBuilder();
             sb.append(title);
-            sb.append(" : The Next ");
+            sb.append(" : D - ");
             sb.append(String.format("%.0f", days));
-            sb.append(" Days");
             text = sb.toString();
         }
         else
             text = null;
         return text;
+    }
+
+    /**
+     * @param currentDate the currentDate to set
+     */
+    public void setCurrentDate(Date currentDate) {
+        this.currentDate = currentDate;
     }
 }

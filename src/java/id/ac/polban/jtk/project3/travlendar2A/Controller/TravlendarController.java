@@ -257,8 +257,8 @@ public class TravlendarController extends HttpServlet
         String json = request.getParameter("json");
         int idPK = 0;
         int affectedRow = 0;
-            Message message;
-                message = new Message();
+        Message message;
+        message = new Message();
                 
         //if(!this.isLogin(request))
         switch(param)
@@ -287,7 +287,7 @@ public class TravlendarController extends HttpServlet
                     
                     // masukkin travel
                     Travel travelEvent = eventdesc.getTravel();
-                    travelEvent.setEvent_id(new Float(idPK));
+                    travelEvent.setEvent_id(String.valueOf(idPK));
                     travelEvent.setTraveller_username(this.getUsername(request));
                     travelEvent.setStart_location_id(idLoc);
                     travelEvent.setEnd_location_id(affectedRow);
@@ -363,10 +363,16 @@ public class TravlendarController extends HttpServlet
                 String username = this.getUsername(request);
                     
                 Event event = new Event();
+                Travel travel = new Travel();
+                
                 event.setEvent_id(id);
                 event.setTraveller_username(username); 
-                    
+                
+                travel.setEvent_id(id);
+                travel.setTraveller_username(username);
+                
                 affectedRow = this.eventDao.delete(event);
+                affectedRow += this.travelDao.delete(event);
                 
                 message = new Message();
                 
