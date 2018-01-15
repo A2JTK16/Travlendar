@@ -87,7 +87,7 @@ public class TravlendarController extends HttpServlet
         String jdbcUsername = "root";
         String jdbcPassword = "";
         
-        /**
+       /**
          * Instansiasi
          */
         
@@ -121,14 +121,15 @@ public class TravlendarController extends HttpServlet
         
         switch(param)
         {
+            /*
             case "findEvent" :
                 // TULIS CODE DISINI !!!
                 String event_id = request.getParameter("event_id");
                 
                 Event event = this.eventDao.getObj("event_id", event_id);
-                /**
+                **
                  * Mengubah ke bentuk json dan mengirimkan resonse json ke client
-                 */
+                 *
                 try
                 {
                     jsonString = this.jsonMapper.writeValueAsString(event);            
@@ -139,17 +140,16 @@ public class TravlendarController extends HttpServlet
                     
                 }
                 break;
-                
+                */
             /**
              * cara akses json 
              * kunjungi http://localhost:8080/index?action=getlistEvent
              * dengan ajax
-             */
+             *
             case "getlistEvent" :
-                /**
+                **
                  * Mendapatkan list event
-                 */
-                String username = this.getUsername(request);
+                 *                String username = this.getUsername(request);
                 List<ViewEvent> list = this.vEventDao.getList("traveller_username", username);
                 
                 Content content = new Content();
@@ -167,9 +167,9 @@ public class TravlendarController extends HttpServlet
                 
                 try 
                 {
-                    /**
+                    **
                      * Mengubah ke bentuk json dan mengirimkan resonse json ke client
-                     */
+                     *
                     jsonString = this.jsonMapper.writeValueAsString(content);
                     this.responseJson(response, jsonString);
                 } 
@@ -179,13 +179,14 @@ public class TravlendarController extends HttpServlet
                 }
 
                 break;
+                */
                 
             case "downloadPdf":
                 /**
                  * Mendapatkan list event
                  */
-                username = this.getUsername(request);
-                list = this.vEventDao.getList("traveller_username", username);
+                String username = this.getUsername(request);
+                List<ViewEvent> list = this.vEventDao.getList("traveller_username", username);
                 /**
                  * Mendapatkan data traveller
                  */
@@ -535,14 +536,28 @@ public class TravlendarController extends HttpServlet
                 /**
                  * Mendapatkan list event
                  */
-                List<ViewEvent> list = this.vEventDao.getList("traveller_username", this.getUsername(request));
-        
+                username = this.getUsername(request);
+                List<ViewEvent> list = this.vEventDao.getList("traveller_username", username);
+                
+                Content content = new Content();
+                // masukkan list
+                content.setListEvent(list);
+                // masukkan html table
+                String html = this.htmlHelper.listToHtmlBodyTable(list); 
+                content.setHtmlTable(html);
+                // masukkan html notifikasi
+                html = this.htmlHelper.getHtmlNotif();
+                content.setNotif(html);
+                content.setNotifCount(this.htmlHelper.getNotifCount());
+                // masukkan username
+                content.setUser(username);
+                
                 try 
                 {
                     /**
                      * Mengubah ke bentuk json dan mengirimkan resonse json ke client
                      */
-                    json = this.jsonMapper.writeValueAsString(list);
+                    json = this.jsonMapper.writeValueAsString(content);
                     this.responseJson(response, json);
                 } 
                 catch (JsonProcessingException ex) 

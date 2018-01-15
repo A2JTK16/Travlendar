@@ -95,7 +95,7 @@
                     }
                     else
                     {
-                        $('#messageTitle').html("Wajib Diisi!");
+                        $('#messageTitle').html("Action Failed!");
                         $('#messagePoint').html("Please fill the field fullname, username, email, and password!");
                         $('#modalMessage').show(); // tampilkan modal
                         $('#tblHome').hide(); // kembali ke home

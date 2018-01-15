@@ -129,11 +129,12 @@ $(document).ready( function()  // Ketika web udah siap
         this.getJson = function(successFunc)
         {
             $.ajax({
-                type: 'GET',
-                dataType : 'JSON',
+                type: 'POST',
+               // dataType : 'JSON',
                 data: {action: 'getlistEvent'},
-                contentType : "application/json",
+             //   contentType : "application/json",
                 url: urlController,
+                async: false,
                 success: successFunc,
                 error: function(xmlhttprequest, textstatus, message)
                 {
@@ -1546,8 +1547,9 @@ $(document).ready( function()  // Ketika web udah siap
                    
             eventDesc.event = event;
             eventDesc.travel = eventTravel;
-            alert(JSON.stringify(eventDesc));
-            
+          //  alert(JSON.stringify(eventDesc));
+        if(event.title !== "" && event.start !== "" && event.end !== "" && eventTravel.departure_time !== "")
+        {
             $.ajax({
                 type: 'POST', // method post
                 url: 'index',
@@ -1570,9 +1572,9 @@ $(document).ready( function()  // Ketika web udah siap
                             confirm(textstatus + message);
                         }
                     });
-       // }
-      //  else
-       //     alert("Mohon klik tujuan anda!");
+        }
+        else
+           confirm("Mohon klik tujuan anda!");
     });
                                 
     $('#myBtn').click(function(){
