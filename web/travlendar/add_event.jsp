@@ -72,8 +72,11 @@
             <div class="dropdown" style="float:right;">
                 <button class="dropbtn">
                     <a class="icon-account">
-                        <img src="icon/notif2.png"><a id="logoNotif" style="color:#E1E1E9"></a>
+                        <img src="icon/notif2.png">
                     </a>
+                    <div class="not">
+                        <a id="logoNotif" style="color:#E1E1E9"></a>
+                    </div>
                 </button>
                 <div class="dropdown-content" id="jv-notif">
                   <a href="#">Welcome to Travelendar ! by A2 JTK</a>
@@ -98,7 +101,7 @@
             <div class="logoku">
                 <img src="images/travelendar2.svg">
             </div>
-            <h1 style="text-align:center">Welcome Travlendar</h1>
+            <h1 style="text-align:center">Welcome Travelendar</h1>
             <p style="text-align:center"> Make Your Plan Better ! </p>
         </div>
     </div> <!--wadah--atas-->
@@ -331,25 +334,33 @@
 
 	<div class="footer-bawah">
             <div class="footer">
-            <div class="container-t" style="width:100%">    
-                <div class="copyright" style="width:70%">
+            <div class="container-t">    
+                <div class="copyright">
                     <h4>Travelendar</h4>
                     <div class="cpy"> Copyright &copy; 2017 travlendar | Designed by A2 JTK Polban</div>
                 </div> <!--copyright-->
                 
-                <div style="width:20%" class="share-sos" >
-                        <a href="https://www.facebook.com/travlendar.proyek.1"><img src="icon/fb.png" style="width:20%"></a>
-                
-                        <a href="https://twitter.com/Travlendar2a"><img src="icon/twt.png" style="width:20%"></a>
-                 
-                        <a href="https://www.instagram.com/travelendara2proyek3/"><img src="icon/inst.png" style="width:20%">
-                  
-                        <a href="https://www.youtube.com"><img src="icon/yt.png" style="width:20%"></a>
+                <div class="share-sos">
+                    <div class="sos">
+                        <a href="https://www.facebook.com/travlendar.proyek.1"><img src="icon/fb.png"></a>
+                    </div>
                     
+                    <div class="sos">
+                        <a href="https://twitter.com/Travlendar2a"><img src="icon/twt.png"></a>
+                    </div>
+                    
+                    <div class="sos">
+                        <a href="https://www.instagram.com/travelendara2proyek3/"><img src="icon/inst.png">
+                    </div>
+                    
+                    <div class="sos">
+                        <a href="https://www.youtube.com/channel/UC4OTlsVRe7TTHzs8yc_eJkg"><img src="icon/yt.png"></a>
+                    </div>
                 </div> <!--share-sos-->
             </div>    
             </div>
         </div> <!--footer-bawah-->
+        
         
     </body>
 </html>

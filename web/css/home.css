@@ -1052,6 +1052,39 @@ nav[role="dropdown"] input[type=checkbox]:checked ~ #menu {display: block;}
     margin: 21px;
     height: auto;
 }
+
+#messagePoint{
+    padding: 2px;
+    margin: 2px;
+    font: 14px Arial;
+    color: #ff9900;
+}
+
+
+.logonya{
+    float: left;
+    padding: 2px;
+    margin: 2px;
+    margin-left: 50px;
+    overflow: hidden;
+    border: none;
+    border-radius: 100px;
+}
+
+.logonya img{
+    float: left;
+    width: 28px;
+    height: 49px;
+}
+
+.logo{
+    float: left;
+    padding: 2px;
+    margin: 2px;
+    overflow: hidden;
+}
+
+
 /*.baloon{
         position: relative;
 	width: 10%;

@@ -54,8 +54,8 @@
                         <span class="close" id="modalClose">&times;</span>
                         <h3 id="messageTitle"></h3>
                     </div>
-                    <div>
-                        <a id="messagePoint"></a>
+                    <div class="alert">
+                        <p id="messagePoint"></p>
                     </div>
                     <button class="b-signup" id="tblHome">Go Home</button>
                     <button class="b-signup" id="tblOk">Okay</button>
