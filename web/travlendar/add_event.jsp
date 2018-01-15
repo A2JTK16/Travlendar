@@ -223,7 +223,7 @@
                                                   <input id="driving" type="text">
                                               </div>
                                                <div class="k-transport">
-                                                  <div class="trans"> <img src="icon/speda4.png"> </div>
+                                                  <div class="trans"> <img src="icon/bcycle.png"> </div>
                                                   <input type="radio" id="radio3" name="transportation" class="transportation" value="BICYCLING" >
                                                   <input id="bicycling" type="text">
                                               </div>

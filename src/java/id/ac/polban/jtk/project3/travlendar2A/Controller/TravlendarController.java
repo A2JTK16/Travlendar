@@ -257,14 +257,15 @@ public class TravlendarController extends HttpServlet
         String json = request.getParameter("json");
         int idPK = 0;
         int affectedRow = 0;
-        
+            Message message;
+                message = new Message();
+                
         //if(!this.isLogin(request))
         switch(param)
         {
             case "addEvent":
                 // pesan
-                Message message;
-                message = new Message();
+            
                 int idLoc;
                         
                 try 
@@ -410,9 +411,27 @@ public class TravlendarController extends HttpServlet
                 }
                 
                 if(affectedRow > 0)
-                    this.responseStr(response, "Sukses Registrasi User");
+                {
+                    message.setMessage("Register Success, Login Now");
+                    message.setTitle("Success");
+                    message.setStatus("OK");
+                }
                 else
-                    this.responseStr(response, "Gagal Registrasi User!\nUsername atau Email Terdaftar!\nJika Anda telah memiliki akun, Mohon login!");
+                {
+                    message.setStatus("ERROR");
+                    message.setTitle("Failed");
+                    message.setMessage("Failed to register! If you have an account, please login !");
+                }
+                //    this.responseStr(response, "Gagal Registrasi User!\nUsername atau Email Terdaftar!\nJika Anda telah memiliki akun, Mohon login!");
+                try 
+                {
+                    json = jsonMapper.writeValueAsString(message);
+                    this.responseJson(response, json);
+                } 
+                catch (JsonProcessingException ex) 
+                {
+                    Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
                 break;
                 

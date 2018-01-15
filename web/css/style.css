@@ -491,7 +491,8 @@ a:hover{
     border: 1.5px solid #E1E1E9;
     border-radius: 0.2em;
     background: #FFF;
-    font: 14px Arial;
+    font: 16px Arial;
+    font-weight: bold;
     color: #757575;
 }
 
@@ -1073,14 +1074,15 @@ table {
 }
 
 .logoku{
+    padding: 10px;
     padding-top: 80px;
-    width: 85px;
+    width: 80px;
     margin: 0 auto;
 }
 
 .logoku img{
-    width: 80px;
-    height: 120px;
+    width: 76px;
+    height: 116px;
 }
 
 

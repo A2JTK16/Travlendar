@@ -110,17 +110,15 @@
                             timeout: 5000,
                             success: function(msgStatus)
                             {
-                               // var successMessage = msgStatus.responseText;
-                                var submsg = msgStatus.substring(0, 6); 
-
-                                if(submsg === "Sukses")
+                                if(msgStatus.status === "OK")
                                 {
-									confirm(msgStatus);
-                                    $('.modal-content').html('<a href="../"><button class="b-signin">Sukses Daftar, Silakan Masuk</button></a>');
+                                    confirm(msgStatus.title + "\n" + msgStatus.message);
+    //                                $('.modal-content').html('<a href="../"><button class="b-signin">' + msgStatus.message +' </button></a>');
+                                    window.location = "../";
                                 }
-                                else if(submsg === "Gagal ")
-                                {
-                                    confirm(msgStatus);
+                                else 
+                                {                                   
+                                    confirm(msgStatus.title + "\n" + msgStatus.message);
                                 }
                             },
                             failure: function(errMsg) {

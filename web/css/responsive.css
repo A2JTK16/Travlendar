@@ -217,11 +217,16 @@ MEDIA QUERIES
         }
        
         h1{
-            font: 27px Arial;
+            font: 20px Arial;
         }
         
         p{
-            font: 16px Arial;
+            font: 14px Arial;
+        }
+        
+        .logoku img{
+            width: 30px;
+            height: 50px;
         }
         
              
