@@ -52,12 +52,29 @@ MEDIA QUERIES
 		background: #eee;
 	}
         
+        .copyright {
+                clear: both;
+		padding: 2px;
+                margin: 2px;
+		width: auto;
+		float: none;
+		background: none;
+	}
+        
 	.middle {
 		width: 68%;
 		float: right;
 	}
 	
 	.right {
+		clear: both;
+		padding: 2px;
+                margin: 2px;
+		width: auto;
+		float: none;
+	}
+        
+           .share-sos {
 		clear: both;
 		padding: 2px;
                 margin: 2px;
@@ -83,6 +100,11 @@ MEDIA QUERIES
 		float: none;
 	}
 	
+        .copyright {
+		width: auto;
+		float: none;
+	}
+        
 	.middle {
 		width: auto;
 		float: none;
@@ -90,6 +112,12 @@ MEDIA QUERIES
 	
 	.right {
 		width: auto;
+		float: none;
+	}
+        
+       .share-sos {
+		width: 230px;
+                margin: 0 auto;
 		float: none;
 	}
         

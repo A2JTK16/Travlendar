@@ -322,6 +322,19 @@ a:hover{
 		margin: 10px;
 		float: left;
 	}
+        
+        .copyright{
+                float: left;
+		width: auto;
+                height: auto;
+		border: none;
+                border-bottom: 2px solid #939296;
+		background: none;
+                overflow: hidden;
+		padding: 10px;
+		margin: 10px;
+		float: left;
+	}
 
 	.middle{
 		width: 500px;
@@ -347,6 +360,17 @@ a:hover{
                 border-radius: 0.3em;
                 background: #FBFBFB;
                 box-shadow: 0 2px 2px #FCFCFC;
+		padding: 10px;
+		margin: 10px;
+		overflow: hidden;
+	}
+        
+           .share-sos{
+                float: right;
+                height: auto;
+		border: none;
+                border-bottom: 2px solid #939296;
+                background: none;
 		padding: 10px;
 		margin: 10px;
 		overflow: hidden;

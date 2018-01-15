@@ -98,9 +98,9 @@
 	<img src="images/bg1.jpg" alt="">
         <div class="slogan">
             <div class="logoku">
-                <img src="images/travelendar2.svg">
+                <img src="images/travelendar2.png">
             </div>
-            <h1 style="text-align:center">Welcome Travelendar</h1>
+            <h1 style="text-align:center">Welcome Travlendar</h1>
             <p style="text-align:center"> Make Your Plan Better ! </p>
         </div>
     </div> <!--wadah--atas-->
@@ -284,7 +284,9 @@
 				
 				
 				<div class="right">
-                                        <div class="text-ev"> Start </div>
+                                        <div class="text-ev"> Event Time</div>
+                                            <input class="ev" id="" type="text" placeholder="Ke ..."/>
+                                        <div class="text-ev"> Start Location</div>
                                             <input class="ev" id="moreStart" type="text" placeholder="Ke ..."/>
 					<div class="text-ev"> Event Locations </div>
                                             <input class="ev" id="moreAddress" type="text" placeholder="Ke ..."/>
@@ -323,13 +325,30 @@
 
 	<div class="footer-bawah">
             <div class="footer">
+            <div class="container-t">    
                 <div class="copyright">
-                    Travelendar
+                    <h4>Travelendar</h4>
+                    <div class="cpy"> Copyright &copy; 2017 travlendar | Designed by A2 JTK Polban</div>
                 </div> <!--copyright-->
-
-                <div class="copyright2">
-                    Copyright &copy; 2017 travlendar | Designed by A2 JTK Polban
-                </div>
+                
+                <div class="share-sos">
+                    <div class="sos">
+                        <a href="https://www.facebook.com/travlendar.proyek.1"><img src="icon/fb.png"></a>
+                    </div>
+                    
+                    <div class="sos">
+                        <a href="https://twitter.com/Travlendar2a"><img src="icon/twt.png"></a>
+                    </div>
+                    
+                    <div class="sos">
+                        <a href="https://www.instagram.com/travelendara2proyek3/"><img src="icon/inst.png">
+                    </div>
+                    
+                    <div class="sos">
+                        <a href="https://www.youtube.com"><img src="icon/yt.png"></a>
+                    </div>
+                </div> <!--share-sos-->
+            </div>    
             </div>
         </div> <!--footer-bawah-->
         
