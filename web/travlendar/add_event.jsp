@@ -308,7 +308,7 @@
 
                                 <div class="i-save2">
                                     <button class="save-ev2" id="moreBack"> Back </button>
-                                    <button class="save-ev" id="moreEdit"> Edit </button> 
+                                    <button class="save-ev" id="MoreEdit"> Edit </button> 
                                 </div> <!--i-save-->
                             </form>
 				

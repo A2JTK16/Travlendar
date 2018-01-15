@@ -6,7 +6,6 @@
 package id.ac.polban.jtk.project3.travlendar2A.Models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.sql.Time;
 import java.sql.Timestamp;
 
 /**

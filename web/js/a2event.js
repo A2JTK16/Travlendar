@@ -11,6 +11,7 @@
 // JQuery
 $(document).ready( function()  // Ketika web udah siap
 {
+    var idMoreEvent = 0;
     /**
      * Objek untuk Tab baru
      * @param {type} objMap
@@ -59,6 +60,8 @@ $(document).ready( function()  // Ketika web udah siap
            $('#moreDepatureTime').val(temp.toString().substring(11,16));
            $('#moreAddress').val(eventE.address);
            $('#moreNote').val(eventE.note);
+           // set ID
+           idMoreEvent = eventE.id;
            // buka tab
            this.openTab('#MoreEvent','#MoreEvent');
            // pindahkan peta
@@ -792,6 +795,7 @@ $(document).ready( function()  // Ketika web udah siap
     
     mapObj = new A2Gmaps(objMapP);
     var isNotCal = true;
+    var notifCount;
     
     // mendapatkan json dari controller
     objAccess.getJson(function(content){        
@@ -803,6 +807,7 @@ $(document).ready( function()  // Ketika web udah siap
         // masukkan notif ke html
         $('#jv-notif').append(content.notif);
         $('#logoNotif').append(content.notifCount);
+        notifCount = content.notifCount;
         $('#usernameContent').append(content.user);
         
         delete content.notif;
@@ -1473,6 +1478,8 @@ $(document).ready( function()  // Ketika web udah siap
                                 // tambah event
                                 $('#calendar').fullCalendar( 'renderEvent', event);
                                 $('#jv-notif').append(event.title + " : The Next " + diffDays + " Days");
+                                notifCount++;
+                                $('#logoNotif').html(notifCount);
                                 //location.reload();
                                 tabView.openTab('#Tasik','#defaultOpen');
                                 // draw polyline event baru
@@ -1525,18 +1532,21 @@ $(document).ready( function()  // Ketika web udah siap
                     
         var eventStartLoc = {};
        
-        if(m2 !== null)
-        {
+        //if(m2 !== null)
+        //{
+            event['id'] = idMoreEvent;
             event['title'] = $('#moreTitle').val();
             event['start'] = new Date($('#moreStartDate').val() +" "+$('#moreStartTime').val());
             event['note'] = $('#noteDesc').val();
                        
+            eventTravel['event_id'] = idMoreEvent;
             eventTravel['transportation']= $('#moreMode').val();
             eventTravel['departure_time']= new Date($('#moreDepatureDate').val() +" "+$('#moreDepatureTime').val());
             //eventTraveller['traveller_id'] = 1;
                    
             eventDesc.event = event;
             eventDesc.travel = eventTravel;
+            alert(JSON.stringify(eventDesc));
             
             $.ajax({
                 type: 'POST', // method post
@@ -1544,17 +1554,25 @@ $(document).ready( function()  // Ketika web udah siap
                 data: {action: 'editEvent', json: JSON.stringify(eventDesc)},
                 async: false, // dikirim ketika semua beres
                 success: function(msgStatus)
-                    {
-                            alert(msgStatus);
+                        {                   
+                           // if(msgStatus.status == "OK")
+                           // {
+                                
+                          //  }
+                           // else
+                          //  {
+                           //     confirm(msgStatus.title + '\n' + msgStatus.message);
+                          //  }
+                            confirm(msgStatus.title + '\n' + msgStatus.message);
                         },
                         error: function(xmlhttprequest, textstatus, message)
                         {
-                            alert(textstatus + message);
+                            confirm(textstatus + message);
                         }
                     });
-        }
-        else
-            alert("Mohon klik tujuan anda!");
+       // }
+      //  else
+       //     alert("Mohon klik tujuan anda!");
     });
                                 
     $('#myBtn').click(function(){

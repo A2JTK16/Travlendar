@@ -279,7 +279,7 @@ public class PdfHelper
                 text.setPaddingLeft(10);
                 text.setBorder(Rectangle.BOTTOM);
                 text.setBorderColor(BaseColor.LIGHT_GRAY);
-                text.addElement(new Phrase(String.join("", " The ", fullname, "'s Travel Plan"), new Font(Font.FontFamily.HELVETICA, 12)));
+                text.addElement(new Phrase(String.join("", "The ", fullname, "'s Travel Plan"), new Font(Font.FontFamily.HELVETICA, 12)));
                 text.addElement(new Phrase("http://a2.proyek3.jtk.polban.ac.id/", new Font(Font.FontFamily.HELVETICA, 8)));
                 this.header.addCell(text);
             } 

@@ -5,15 +5,22 @@
  */
 package id.ac.polban.jtk.project3.travlendar2A.Models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  *
  * @author Auliya Aqma Dinillah
  */
 public class Traveller {
+    @JsonProperty(value = "user")
     private String traveller_username;
+    @JsonProperty(value = "email")
     private String traveller_email;
+    @JsonProperty(value = "pass")
     private String traveller_password;
+    @JsonProperty(value = "fullname")
     private String traveller_fullname;
+    @JsonProperty(value = "address")
     private String traveller_address;
 
     /**

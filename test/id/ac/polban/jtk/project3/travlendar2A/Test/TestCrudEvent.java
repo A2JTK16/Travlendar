@@ -129,18 +129,18 @@ public class TestCrudEvent
         /**
          * TEST EDIT EVENT 
          */
-        System.out.println("Test Edit Event");
-        objEvent.setEvent_name("Kerja Kelompok Bareng");
-        objEvent.setNote("APPPPPPPPPPPPPPPPPPP");
+   //     System.out.println("Test Edit Event");
+   //     objEvent.setEvent_name("Kerja Kelompok Bareng");
+     //   objEvent.setNote("APPPPPPPPPPPPPPPPPPP");
         
-        int affectedRow = dao.edit(objEvent, "event_id", String.format("%s",idPK));
-        System.out.println("Update " + idPK + " dan affectedRow : " + affectedRow);
+   //    int affectedRow = dao.edit(objEvent, "event_id", String.format("%s",idPK));
+  //      System.out.println("Update " + idPK + " dan affectedRow : " + affectedRow);
         
-        list = dao.getList("username", "maryam");
+  //      list = dao.getList("username", "maryam");
         
-        list.forEach((event) -> {
-            System.out.println(event.getEvent_id() + " | "+ event.getEvent_name() + " | " + event.getStart_event() + " | " + event.getEnd_event() + " | " + event.getNote());
-        });
+    //    list.forEach((event) -> {
+    //        System.out.println(event.getEvent_id() + " | "+ event.getEvent_name() + " | " + event.getStart_event() + " | " + event.getEnd_event() + " | " + event.getNote());
+    //    });
         
         //--------------------------------------------------------------------------------------//
         /**
@@ -148,7 +148,7 @@ public class TestCrudEvent
          */
         System.out.println("Test Menghapus Event yang event_id=5");
   //      affectedRow = dao.delete("event_id", String.format("%s",idPK));
-        System.out.println("Delete " + idPK + " dan affectedRow : " + affectedRow);
+   //     System.out.println("Delete " + idPK + " dan affectedRow : " + affectedRow);
         list = dao.getList("username", "maryam");
         
         list.forEach((event) -> {

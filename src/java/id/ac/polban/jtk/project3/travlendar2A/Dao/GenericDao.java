@@ -374,49 +374,53 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
      * Menyunting data yang ada dalam database
      * 
      * @param object
-     * @param paramName
-     * @param paramValue
      * @return 
      */
     @Override
-    public int edit(Object object, String paramName, String paramValue) 
+    public int edit(Object object, Object whereObj) 
     {
         /**
          * Jika tidak diset
          */
         if(this.propertyClass.isEmpty())
             return 0;
-        /**
-         * Jika parameter nya null
-         */
+        if(this.propertyClass.isEmpty())
+            return 0;
+        /*
         if(paramName == null || paramValue == null)
             return 0;
+        */
         /**
-         * SQL Sintaks
-         */        
+         * Berapa table terdampak
+         */
+       int affectedRow = 0;
+        /**
+         * Untuk membuat string sql
+         */
         StringBuilder mtSql = new StringBuilder();
-        int affectedRow = 0;
-        
-        mtSql.append("UPDATE ");
-        mtSql.append(this.classModel.getSimpleName().toLowerCase());
-        mtSql.append(" SET ");
         /**
-         * Mendapatkan field yang tidak Null
+         * Mendapatkan Map Fields
          */
         Map<String, Object> fieldsMap = this.getFieldsMap(object);
+        Set<String> keySet = fieldsMap.keySet();
+        /**
+         * Mendapatkan Map Fields Where
+         */
+        Map<String, Object> fieldsMapWhere = this.getFieldsMap(whereObj);
+        Set<String> keySetWhere = fieldsMapWhere.keySet();
+        /**
+         * Membat SQL Sintaks
+         */
+        mtSql.append("UPDATE ");
+        mtSql.append(this.classModel.getSimpleName().toLowerCase());
         
-        fieldsMap.keySet().stream().map((attrName) -> {
-            mtSql.append(attrName);
-            return attrName;
-        }).forEachOrdered((_item) -> {
-            mtSql.append(" = ? ,");
-        });
+        mtSql.append(" SET ");        
+        mtSql.append(String.join(" = ?, ", keySet));
+        mtSql.append(" = ?");
         
-        mtSql.delete(mtSql.length()-1, mtSql.length()); // hapus koma
-        
-        mtSql.append(" WHERE ");
-        mtSql.append(paramName);
-        mtSql.append(" = ? ");
+        mtSql.append(" WHERE ");        
+        mtSql.append(String.join(" = ? AND ", keySetWhere));
+        mtSql.append(" = ?");
         
         super.connect();
         
@@ -432,7 +436,11 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
                stmt.setObject(count, valOb);
                count++;
             }
-            stmt.setString(count, paramValue);
+            for(Object valOb : fieldsMapWhere.values())
+            {
+               stmt.setObject(count, valOb);
+               count++;
+            }
             
             affectedRow = stmt.executeUpdate();
             
@@ -481,7 +489,7 @@ public class GenericDao<T> extends DaoManager implements IDao<T>
         mtSql.append(String.join(" = ? AND ", keySet));
         mtSql.append(" = ?");
         
-        System.out.println(mtSql.toString());
+        //System.out.println(mtSql.toString());
         
         int affectedRow = 0;
         /**

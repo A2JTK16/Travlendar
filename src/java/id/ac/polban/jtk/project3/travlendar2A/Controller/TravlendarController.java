@@ -342,23 +342,46 @@ public class TravlendarController extends HttpServlet
                    
                     // masukin event
                     Event objEvent = eventdesc.getEvent();
-                    String username = this.getUsername(request);
-                    objEvent.setTraveller_username(username);
-                    this.eventDao.edit(objEvent, "event_id", objEvent.getEvent_id());
-   
                     Travel trvl = eventdesc.getTravel();
+                    
+                    String username = this.getUsername(request);
+                    
+                    Event objWhereEvent = new Event();
+                    Travel objWhereTravel = new Travel();
+                    
+                    objWhereEvent.setTraveller_username(username);
+                    objWhereEvent.setEvent_id(objEvent.getEvent_id());
+                    
+                    objWhereTravel.setTraveller_username(username);
+                    objWhereTravel.setEvent_id(trvl.getEvent_id());
+                    
+                    this.eventDao.edit(objEvent, objWhereEvent);
+   
+                    
                     trvl.setTraveller_username(username);
-                    this.travelDao.edit(objEvent, "event_id", objEvent.getEvent_id());
+                    this.travelDao.edit(trvl, objWhereTravel);
+                    
+                    message.setStatus("OK");
+                    message.setTitle("Success");
+                    message.setMessage("Success edit event!");
                 } 
                 catch (IOException ex) 
                 {
                     Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
+                    message.setStatus("ERROR");
+                    message.setTitle("Failed");
+                    message.setMessage("Failed edit event");
                 }
                 
-                if(affectedRow > 0)
-                    this.responseStr(response, "Sukses Mengedit Event");
-                else
-                    this.responseStr(response, "Gagal Mengedit Event");  
+                try 
+                {
+                    json = jsonMapper.writeValueAsString(message);
+                    this.responseJson(response, json);
+                } 
+                catch (JsonProcessingException ex) 
+                {
+                    Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
+                }
         
                 break;
                     
@@ -469,19 +492,43 @@ public class TravlendarController extends HttpServlet
                 try 
                 {
                     Traveller traveller = jsonMapper.readValue(json, Traveller.class);
-                    
-                    idPK = this.travellerDao.edit(traveller, "traveller_username", this.getUsername(request));
+                    traveller.setTraveller_username(this.getUsername(request));
+                    if(traveller.getTraveller_password() != null)
+                    {
+                        String securePass = this.hashpw.hash(traveller.getTraveller_password());
+                        traveller.setTraveller_password(securePass);
+                        Traveller travellerWhere = new Traveller();
+                        travellerWhere.setTraveller_username(this.getUsername(request));
+
+                        affectedRow = this.travellerDao.edit(traveller, travellerWhere);
+                    }
                 } 
                 catch (IOException ex) 
                 {
                     Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
-                if(idPK > 0)
-                    this.responseStr(response, "Sukses Edit Data");
+                if(affectedRow > 0)
+                {
+                    message.setMessage("Edit User Success");
+                    message.setTitle("Success");
+                    message.setStatus("OK");
+                }
                 else
-                    this.responseStr(response, "Gagal Edit Data");
-                
+                {
+                    message.setMessage("Edit User Failed");
+                    message.setTitle("Failed");
+                    message.setStatus("ERROR");
+                }
+                try 
+                {
+                    json = jsonMapper.writeValueAsString(message);
+                    this.responseJson(response, json);
+                } 
+                catch (JsonProcessingException ex) 
+                {
+                    Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 break;
                 
             case "getlistEvent" :
@@ -510,6 +557,7 @@ public class TravlendarController extends HttpServlet
                 //String username = request.getParameter("username");
                 username = this.getUsername(request);
                 Traveller traveller = this.travellerDao.getObj("traveller_username", username);
+                traveller.setTraveller_password("");
                 
                 /**
                  * Mengubah ke bentuk json dan mengirimkan resonse json ke client

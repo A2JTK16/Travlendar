@@ -50,20 +50,18 @@ public interface IDao<T>
      *   SQL : UPDATE class-name SET ( attribute-name = attribute-value-from-object )
      * 
      * @param object
-     * @param paramName
-     * @param paramValue
+     * @param whereObj
      * @return  
      */
-    public int edit(Object object, String paramName, String paramValue);
+    public int edit(Object object, Object whereObj);
     
     /**
      *  Menghapus data database berdasarkan paramName
      *  Mengembalikan jumlah rows yang terhapus
      *  Mengembalikan nol jika gagal update atau parameter null
      *  SQL : DELETE FROM class-name WHERE ( paramName = paramValue )
-     * 
-     * @param paramName
-     * @param paramValue
+     *
+     * @param object
      * @return  
      */
     public int delete(Object object);

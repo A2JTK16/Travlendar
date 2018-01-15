@@ -12,7 +12,7 @@
         <title>My Profile</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/responsive.css">
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s&libraries=places"></script>
+        <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s&libraries=places"></script>-->
         <!-- JQuery Library -->
         <!--<script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
         <script src="../js/jquery.min.js"></script>
@@ -102,15 +102,20 @@
      
              <div id="London" class="tabcontent">
                 <div class="main">
-                    <input class="ev" type="hidden" id="input0" name="traveller_id">
+                    <div class="text-ev"> Username </div>
+                    <input class="ev" type="text" id="input0" disabled>
                     <div class="text-ev"> Fullname </div>
-                     <input class="ev" type="text" id="input1" name="traveller_fullname">
+                     <input class="ev" type="text" id="input1">
                      <div class="text-ev"> E-mail </div>
-                     <input class="ev" type="text" id="input2" name="traveller_email">
-                     <div class="text-ev"> Username </div>
-                     <input class="ev" type="text" id="input3" name="traveller_username">
+                     <input class="ev" type="text" id="input2">
                      <div class="text-ev"> Password </div>
-                     <input class="ev" type="password" id="input4" name="traveller_password">
+                     <input class="ev" type="password" id="input3">
+                     <div class="text-ev"> Confirm Password </div>
+                     <input class="ev" type="password" id="input4">
+                     <div class="text-ev"> Address </div>
+                     <input class="ev" type="text" id="input5">
+                     <br/>
+                     <button class="save-ev" id="tblEdit">Edit Profile</button>
                  </div>
              </div>
  
@@ -149,143 +154,6 @@
         <%@include file="../travlendar/footer.jsp" %>
         
         <script src="../js/jquery.min.js"></script>
-        <script>
-            $(document).ready( function()  // Ketika web udah siap
-            {   
-                $.post("../index?action=findUser", function(responseJson) 
-                    {          // Eksekusi URL Controller
-                        //alert(responseJson.traveller_fullname);
-                        $('#input0').val(responseJson.traveller_id);
-                        $('#input1').val(responseJson.traveller_fullname);
-                        $('#input2').val(responseJson.traveller_email);
-                        $('#input3').val(responseJson.traveller_username);
-                        $('#input4').val(responseJson.traveller_password);
-                    });       
-                
-                
-                function getFormData($form)
-                {
-                    var unindexedArray = $form.serializeArray();
-                    var indexedArray = {};
-                    $.map(unindexedArray, function(n,i)
-                    {
-                        indexedArray[n['name']] = n['value'];
-                    });
-                    return indexedArray;
-                }
-                //ubah jsonarray form hasil serialize jadi json obj
-                
-                $('#tblSignup').click(function(){
-                    // Serialize form to JSON Array
-                    var formData = getFormData($('#regForm'));
-                    var isValid = true; //diisi enggaknya
-  
-                    // cek kosong enggaknya
-                    $('.wajibdiisi').each(function()
-                    {
-                       var eldt = $(this);
-                       if(eldt.val() == "")
-                       {
-                           isValid = false;
-                       }                           
-                    });
-                    
-                    // jika diisi maka
-                    if(isValid)
-                    {
-                        $.ajax({
-                            type: "POST", // method post
-                            url: "../index",
-                            dataType:'JSON',
-                            data: {action: 'editUser', json: JSON.stringify(formData) },
-                            async: false, // dikirim ketika semua beres
-                            complete: function(msgStatus)
-                            {
-                                var successMessage = JSON.stringify(msgStatus.responseText);
-                                if(successMessage)
-                                {
-                                    alert(successMessage);
-                                }
-                            },
-                            failure: function(errMsg) {
-                                alert(errMsg);
-                            }
-                        });
-                    }
-                    else
-                        alert("Mohon fullname, username, email, password Wajib Diisi!");
-                });
-            
-                $('#deleteAkun').click(function(){
-                    
-                    var isValid = false; 
-  
-                    // cek kosong enggaknya
-                    if($('#input0').val() != "")
-                        isValid = true;
-                    alert('Anda Yakin Menghapus Akun? \n Semua Data Event Anda Akan Terhapus\nTidak Dapat Kembali')
-                    // jika diisi maka
-                    if(isValid)
-                    {
-                        $.ajax({
-                            type: "POST", // method post
-                            url: "../index",
-                            dataType:'JSON',
-                            data: {action: 'deleteUser', traveller_id: $('#input0').val() },
-                            async: false, // dikirim ketika semua beres
-                            complete: function(msgStatus)
-                            {
-                                var successMessage = JSON.stringify(msgStatus.responseText);
-                                if(successMessage)
-                                {
-                                    alert(successMessage);
-                                }
-                            },
-                            failure: function(errMsg) {
-                                alert(errMsg);
-                            }
-                        });
-                    }
-                    else
-                        alert("Gagal Delete Akun!!");
-                });
-                
-                function openTab(cssIdTabContent, cssIdTab)
-                {
-                    $('.tabcontent').hide();
-                    $('.tablinks').removeClass('.active');
-                    $(cssIdTabContent).show();
-                    $(cssIdTab).addClass('.active');
-                }
-                
-                openTab('#London', '#London');
-                
-                $('#Account').click(function(){
-                    openTab('#London', '#London');
-                });
-                
-                $('#General').click(function(){
-                    openTab('#Paris', '#Paris');
-                });
-                
-                $('#signout').click(function(){
-                       $.ajax({
-                            type: 'GET', // method post
-                            url: '../index',
-                            data: {action: 'logout'},
-                            async: false, // dikirim ketika semua beres
-                            success: function(msgStatus)
-                            {
-                                location.reload(true)
-                            },
-                            error: function(xmlhttprequest, textstatus, message)
-                            {
-                                alert(textstatus + message);
-                            }
-                        });  
-                   });
-                   
-            });
-        </script>
+        <script src="../js/setting.js"></script>
     </body>
 </html>
