@@ -23,6 +23,9 @@ public class HtmlHelper
      * Notifikasi Html
      */
     StringBuilder notifHtml;
+    
+    private int notifCount;
+    
     /**
      * Konstruktor
      * @param helper 
@@ -31,6 +34,7 @@ public class HtmlHelper
     {
         this.helper = helper;
         this.notifHtml = null;
+        this.notifCount = 0;
     }
     
     /**
@@ -42,6 +46,7 @@ public class HtmlHelper
     {
         StringBuilder html = new StringBuilder();
         this.notifHtml = new StringBuilder();
+        this.notifCount = 0;
         String temp;
         Date date;
         for(ViewEvent event : list)
@@ -82,6 +87,7 @@ public class HtmlHelper
             this.notifHtml.append("<a href=\"#\">");
             this.notifHtml.append(text);
             this.notifHtml.append("</a>");
+            this.notifCount++;
         }
     }
     
@@ -92,5 +98,12 @@ public class HtmlHelper
     public String getHtmlNotif()
     {
         return this.notifHtml.toString();
+    }
+
+    /**
+     * @return the notifCount
+     */
+    public int getNotifCount() {
+        return notifCount;
     }
 }

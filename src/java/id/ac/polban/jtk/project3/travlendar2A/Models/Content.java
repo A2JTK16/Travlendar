@@ -19,6 +19,7 @@ public class Content
     private String htmlTable;
     private List<ViewEvent> listEvent;
     private String notif;
+    private int notifCount;
     
     /**
      * @return the htmlTable
@@ -60,5 +61,19 @@ public class Content
      */
     public void setNotif(String notif) {
         this.notif = notif;
+    }
+
+    /**
+     * @return the notifCount
+     */
+    public int getNotifCount() {
+        return notifCount;
+    }
+
+    /**
+     * @param notifCount the notifCount to set
+     */
+    public void setNotifCount(int notifCount) {
+        this.notifCount = notifCount;
     }
 }

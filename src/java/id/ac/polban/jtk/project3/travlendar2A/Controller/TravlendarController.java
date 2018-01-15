@@ -161,7 +161,7 @@ public class TravlendarController extends HttpServlet
                 // masukkan html notifikasi
                 html = this.htmlHelper.getHtmlNotif();
                 content.setNotif(html);
-                
+                content.setNotifCount(this.htmlHelper.getNotifCount());
                 try 
                 {
                     /**
