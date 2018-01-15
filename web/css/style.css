@@ -313,8 +313,10 @@ a:hover{
                 float: left;
 		width: 510px;
                 height: auto;
-		border: 1px solid #dedede;
-		background: #f4f4f4;
+		border: none;
+                border-radius: 0.3em;
+		background: #FBFBFB;
+                box-shadow: 0 2px 2px #FCFCFC;
                 overflow: hidden;
 		padding: 10px;
 		margin: 10px;
@@ -341,8 +343,10 @@ a:hover{
                 float: left;
 		width: 510px;
                 height: auto;
-		border: 1px solid #dedede;
-                background: #f4f4f4;
+		border: none;
+                border-radius: 0.3em;
+                background: #FBFBFB;
+                box-shadow: 0 2px 2px #FCFCFC;
 		padding: 10px;
 		margin: 10px;
 		overflow: hidden;
@@ -458,7 +462,7 @@ a:hover{
 .induk2{
 	width: auto;
 	height: auto;
-	background: #ededed;
+	background: #F3F3F3;
 	overflow: hidden;
 }
 
@@ -473,7 +477,8 @@ a:hover{
 	width: 1040px;
 	padding: 10px;
 	margin: 10px;
-	border: 1px solid #b4b4b4;
+	border: 1.5px solid #E1E1E9;
+        border-radius: 0.2em;
 	font: 16px Arial;
 	font-weight: bold;
 	color: #1A237E;
@@ -483,13 +488,33 @@ a:hover{
 .name-ev{
     width: 100%;
     padding: 10px 20px;
+    border: 1.5px solid #E1E1E9;
+    border-radius: 0.2em;
+    background: #FFF;
+    font: 14px Arial;
+    color: #757575;
 }
 
 .ev{
 	width: 100%;
 	padding: 12px 10px;
-	border: 1px solid #b4b4b4;
 	font: 14px Arial;
+        color: #757575;
+        border: 1.5px solid #E1E1E9;
+        border-radius: 0.2em;
+        background: #FFF;
+}
+
+.ev-name:focus{
+    outline: none;
+    border-color: #1abc9c;
+    opacity: 0.9em;
+}
+
+.ev:focus{
+    outline: none;
+    border-color: #1abc9c;
+    opacity: 0.9em;
 }
 
 .tgl-ev{
@@ -522,6 +547,7 @@ a:hover{
 .text-ev{
 	padding: 4px;
         margin: 4px;
+        margin-top: 12px;
 	font: 14px Arial;
 	font-weight: bold;
 	color: #757575;
@@ -550,6 +576,13 @@ a:hover{
 	border-radius: 0.3em;
 }
 
+.save-ev:hover{
+    background: #FFBE00;
+    transition: 0.3em;
+    outline: none;
+}
+
+
 .save-ev2{
 	width: 170px;
 	padding: 10px;
@@ -560,6 +593,12 @@ a:hover{
 	background: #1abc9c;
 	border: none;
 	border-radius: 0.3em;
+}
+
+.save-ev2:hover{
+    background: #45BF55;
+    transition: 0.3em;
+    outline: none;
 }
 
 .search-ev{
@@ -880,13 +919,28 @@ div.tab button:hover {
     width: 100%;
     padding: 10px;
     margin: 10px;
-    border: 1px solid #b4b4b4;
+    border: 1.5px solid #E1E1E9;
+    border-radius: 0.2em;
+    background: #FFF;
     box-sizing: border-box;
     resize: vertical;
+    font: 14px Arial;
+    color: #757575;
+}
+
+input:focus{
+    outline: none;
+    border-color: #1abc9c;
+}
+
+#orig:focus{
+    outline: none;
+    border-color: #1abc9c;
+    opacity: 0.9em;
 }
 
 label {
-    margin-top: 16px;
+    margin-top: 21px;
     display: inline-block;
     font: 14px Arial;
     font-weight: bold;
@@ -904,6 +958,12 @@ label {
     border-radius: 4px;
     cursor: pointer;
     float: right;
+}
+
+.submit:hover{
+    background: #FFBE00;
+    transition: 0.3em;
+    outline: none;
 }
 
 .submitnya:hover {
@@ -930,7 +990,8 @@ label {
     padding: 12px 10px;
     font: 14px Arial;
     color: #757575;
-    border: 1px solid #b4b4b4;
+    border: 1.5px solid #E1E1E9;
+    border-radius: 0.2em;
 }
 
 /* Clear floats after the columns */
