@@ -815,7 +815,20 @@ $(document).ready( function()  // Ketika web udah siap
         
         // masukkan html ke table
         objTableEvent.appendRow(content.htmlTable);
-
+        
+                // set aksi view more
+        $("#tableEvent").on('click', '.v-more', function()
+        {
+            var currentRow = $(this).closest("tr");
+            // mendapatkan data2 
+            var event = {};
+            event.id = currentRow.find("td:eq(0)").html();
+            
+            event = objCalendar.getEvent(event.id)[0];
+            // tampilkan tab baru
+            tabView.viewMore(event, mapObj);
+        });
+        
         delete content.htmlTable;
         
         // loop list
@@ -842,19 +855,6 @@ $(document).ready( function()  // Ketika web udah siap
         
         // zoom
         mapObj.objMaps.zoomIn(4);
-        
-        // set aksi view more
-        $("#tableEvent").on('click', '.v-more', function()
-        {
-            var currentRow = $(this).closest("tr");
-            // mendapatkan data2 
-            var event = {};
-            event.id = currentRow.find("td:eq(0)").html();
-            
-            event = objCalendar.getEvent(event.id)[0];
-            // tampilkan tab baru
-            tabView.viewMore(event, mapObj);
-        });
         
     });
     

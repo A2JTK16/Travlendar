@@ -284,7 +284,7 @@
 				
 				
 				<div class="right">
-                                        <div class="text-ev"> Start </div>
+                                        <div class="text-ev"> Event Time </div>
                                         <!--    <input class="ev" id="moreStart" type="text" placeholder="Ke ..."/> -->
                                             <input class="name" id="moreStartDate" type="date" style="width:150px">
                                             <input class="name" id="moreStartTime" type="time" style="width:120px"/>
