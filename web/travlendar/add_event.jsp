@@ -61,7 +61,7 @@
                     </a>
                 </button>
                 <div class="dropdown-content">
-                  <a>Hi, <%= session.getAttribute("username") %> </a>
+                  <a id="usernameContent">Hi, </a>
                   <a href="https://goo.gl/forms/pfpqxLwGItxB30eX2"> Feedback </a>
                   <a href="setting">Setting Account</a>
                   <a href="index?action=downloadPdf">Download Plan</a>
@@ -284,18 +284,26 @@
 				
 				
 				<div class="right">
-                                        <div class="text-ev"> Event Time</div>
-                                            <input class="ev" id="" type="text" placeholder="Ke ..."/>
-                                        <div class="text-ev"> Start Location</div>
-                                            <input class="ev" id="moreStart" type="text" placeholder="Ke ..."/>
+                                        <div class="text-ev"> Start </div>
+                                        <!--    <input class="ev" id="moreStart" type="text" placeholder="Ke ..."/> -->
+                                            <input class="name" id="moreStartDate" type="date" style="width:150px">
+                                            <input class="name" id="moreStartTime" type="time" style="width:120px"/>
 					<div class="text-ev"> Event Locations </div>
                                             <input class="ev" id="moreAddress" type="text" placeholder="Ke ..."/>
                                         <div class="text-ev"> Use </div>
                                         
-                                            <input class="ev" id="moreMode" type="text" placeholder="Ke ..."/>
+                                         <!--   <input class="ev" id="moreMode" type="text" placeholder="Ke ..."/> -->
+                                            <select id="moreMode">
+                                                <option value="driving">driving</option>
+                                                <option value="walking">walking</option>
+                                                <option value="bicycling">bicycling</option>
+                                                <option value="transit">transit</option>
+                                            </select>
                                         
                                         <div class="text-ev"> At </div>
-                                            <input class="ev" id="moreDepature" />
+                                            <!-- <input class="ev" id="moreDepature" /> -->
+                                            <input class="name" id="moreDepatureDate" type="date" style="width:150px">
+                                            <input class="name" id="moreDepatureTime" type="time" style="width:120px"/>
 				</div>
                                  
                                 <input class="ev-name" id="moreNote" type="text" style="height:75px;"/>

@@ -19,6 +19,7 @@ public class Content
     private String htmlTable;
     private List<ViewEvent> listEvent;
     private String notif;
+    private String user;
     private int notifCount;
     
     /**
@@ -75,5 +76,19 @@ public class Content
      */
     public void setNotifCount(int notifCount) {
         this.notifCount = notifCount;
+    }
+
+    /**
+     * @return the user
+     */
+    public String getUser() {
+        return user;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setUser(String user) {
+        this.user = user;
     }
 }

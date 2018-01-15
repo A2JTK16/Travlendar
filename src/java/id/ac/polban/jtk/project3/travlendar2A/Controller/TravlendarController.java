@@ -162,6 +162,9 @@ public class TravlendarController extends HttpServlet
                 html = this.htmlHelper.getHtmlNotif();
                 content.setNotif(html);
                 content.setNotifCount(this.htmlHelper.getNotifCount());
+                // masukkan username
+                content.setUser(username);
+                
                 try 
                 {
                     /**
@@ -339,10 +342,12 @@ public class TravlendarController extends HttpServlet
                    
                     // masukin event
                     Event objEvent = eventdesc.getEvent();
-                    objEvent.setTraveller_username(this.getUsername(request));
+                    String username = this.getUsername(request);
+                    objEvent.setTraveller_username(username);
                     this.eventDao.edit(objEvent, "event_id", objEvent.getEvent_id());
    
                     Travel trvl = eventdesc.getTravel();
+                    trvl.setTraveller_username(username);
                     this.travelDao.edit(objEvent, "event_id", objEvent.getEvent_id());
                 } 
                 catch (IOException ex) 

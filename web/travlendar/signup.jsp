@@ -131,15 +131,15 @@
                                 {
                                     $('#tblHome').show();
                                     $('#tblOk').hide();
-                                    confirm(msgStatus.title + "\n" + msgStatus.message);
+                                   // confirm(msgStatus.title + "\n" + msgStatus.message);
     //                                $('.modal-content').html('<a href="../"><button class="b-signin">' + msgStatus.message +' </button></a>');
                                    // window.location = "../";
                                 }
                                 else 
                                 {
-                                    $('#tblHome').show();
-                                    $('#tblOk').hide();
-                                    confirm(msgStatus.title + "\n" + msgStatus.message);
+                                    $('#tblHome').hide();
+                                    $('#tblOk').show();
+                                   // confirm(msgStatus.title + "\n" + msgStatus.message);
                                 } 
                             },
                             failure: function(errMsg) {
@@ -148,7 +148,14 @@
                         });
                     }
                     else
-                        confirm("Mohon fullname, username, email, password Wajib Diisi!");
+                    {
+                        $('#messageTitle').html("Wajib Diisi!");
+                        $('#messagePoint').html("Please fill the field fullname, username, email, and password!");
+                        $('#modalMessage').show(); // tampilkan modal
+                        $('#tblHome').hide(); // kembali ke home
+                        $('#tblOk').show(); // klik ok
+                        //confirm("Mohon fullname, username, email, password Wajib Diisi!");
+                    }
                 });
             });
             

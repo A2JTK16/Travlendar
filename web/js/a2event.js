@@ -46,10 +46,17 @@ $(document).ready( function()  // Ketika web udah siap
         */
         this.viewMore = function(eventE, mapEvent){
            // set ke tampilan baru
+           var temp;
+           temp = moment(eventE.start, 'YYYY-MM-DD hh:mm').format();
+           
            $('#moreTitle').val(eventE.title.toString());
-           $('#moreStart').val(eventE.start); 
+           $('#moreStartDate').val(temp.toString().substring(0,10)); 
+           $('#moreStartTime').val(temp.toString().substring(11,16)); 
            $('#moreMode').val(eventE.transportation);
-           $('#moreDepature').val(moment(eventE.depature_time).format());
+           delete temp;
+           temp = moment(eventE.depature_time, 'YYYY-MM-DD hh:mm').format();
+           $('#moreDepatureDate').val(temp.toString().substring(0,10));
+           $('#moreDepatureTime').val(temp.toString().substring(11,16));
            $('#moreAddress').val(eventE.address);
            $('#moreNote').val(eventE.note);
            // buka tab
@@ -793,6 +800,13 @@ $(document).ready( function()  // Ketika web udah siap
             // ketika event kalender di klik buka tab view more
             tabView.viewMore(calEvent, mapObj);
         });
+        // masukkan notif ke html
+        $('#jv-notif').append(content.notif);
+        $('#usernameContent').append(content.user);
+        
+        delete content.notif;
+        delete content.user;
+        
         // Set Center ke akhir
         var lastEventObj = content.listEvent[content.listEvent.length - 1];
         mapObj.objMaps.setCenter(lastEventObj.latitude, lastEventObj.longitude);
@@ -801,9 +815,8 @@ $(document).ready( function()  // Ketika web udah siap
         
         // masukkan html ke table
         objTableEvent.appendRow(content.htmlTable);
-        $('#jv-notif').append(content.notif);
+
         delete content.htmlTable;
-        delete content.notif;
         
         // loop list
         var count = 0;
@@ -1511,14 +1524,14 @@ $(document).ready( function()  // Ketika web udah siap
                     
         var eventStartLoc = {};
        
-        //if(m2 !== null)
-        //{
+        if(m2 !== null)
+        {
             event['title'] = $('#moreTitle').val();
-            event['start'] = new Date($('#moreStart').val());
+            event['start'] = new Date($('#moreStartDate').val() +" "+$('#moreStartTime').val());
             event['note'] = $('#noteDesc').val();
                        
             eventTravel['transportation']= $('#moreMode').val();
-            eventTravel['departure_time']= new Date($('moreDepature').val());
+            eventTravel['departure_time']= new Date($('#moreDepatureDate').val() +" "+$('#moreDepatureTime').val());
             //eventTraveller['traveller_id'] = 1;
                    
             eventDesc.event = event;
@@ -1538,9 +1551,9 @@ $(document).ready( function()  // Ketika web udah siap
                             alert(textstatus + message);
                         }
                     });
-                   // }
-                   //else
-                      //  alert("Mohon klik tujuan anda!");
+        }
+        else
+            alert("Mohon klik tujuan anda!");
     });
                                 
     $('#myBtn').click(function(){
