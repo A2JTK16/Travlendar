@@ -1453,7 +1453,7 @@ $(document).ready( function()  // Ketika web udah siap
             event['note'] = $('#noteDesc').val();
                        
             eventTravel['transportation']= value;
-            eventTravel['departure_time']= new Date($('#departureDate').val() +" "+$('#departureTime').val());
+            eventTravel['depature_time']= new Date($('#departureDate').val() +" "+$('#departureTime').val());
             //eventTraveller['traveller_id'] = 1;
                         
             eventLoc['latitude'] = m1poslat;
@@ -1480,7 +1480,7 @@ $(document).ready( function()  // Ketika web udah siap
                     url: 'index',
                     data: {action: 'addEvent', json: JSON.stringify(eventDesc)},
                     async: false, // dikirim ketika semua beres
-                    timeout: 6000,
+                    timeout: 16000,
                     success: function(msgStatus)
                             {                   
                                 if(msgStatus.status == "OK")

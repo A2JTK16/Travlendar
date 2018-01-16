@@ -284,17 +284,19 @@ public class TravlendarController extends HttpServlet
                     
                     // masukin event
                     Event objEvent = eventdesc.getEvent();
+                    String username = this.getUsername(request).toLowerCase();
                     objEvent.setStart_location_id(idLoc);
                     objEvent.setEnd_location_id(affectedRow);
-                    objEvent.setTraveller_username(this.getUsername(request));
+                    objEvent.setTraveller_username(username);
                     idPK = this.eventDao.create(objEvent);
                     
                     // masukkin travel
                     Travel travelEvent = eventdesc.getTravel();
                     travelEvent.setEvent_id(String.valueOf(idPK));
-                    travelEvent.setTraveller_username(this.getUsername(request));
+                    travelEvent.setTraveller_username(username);
                     travelEvent.setStart_location_id(idLoc);
                     travelEvent.setEnd_location_id(affectedRow);
+                    
                     
                     this.travelDao.create(travelEvent);
                     //idPK = 1;
@@ -345,7 +347,7 @@ public class TravlendarController extends HttpServlet
                     Event objEvent = eventdesc.getEvent();
                     Travel trvl = eventdesc.getTravel();
                     
-                    String username = this.getUsername(request);
+                    String username = this.getUsername(request).toLowerCase();
                     
                     Event objWhereEvent = new Event();
                     Travel objWhereTravel = new Travel();
@@ -389,7 +391,7 @@ public class TravlendarController extends HttpServlet
             case "deleteEvent":
                                
                 String id = request.getParameter("event_id");
-                String username = this.getUsername(request);
+                String username = this.getUsername(request).toLowerCase();
                     
                 Event event = new Event();
                 Travel travel = new Travel();

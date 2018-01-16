@@ -14,7 +14,7 @@ import java.sql.Timestamp;
  */
 public class Travel {
     private String event_id;
-    private Timestamp departure_time;
+    private Timestamp depature_time;
     @JsonProperty(value = "username")
     private String traveller_username;
     private Integer start_location_id;
@@ -37,17 +37,17 @@ public class Travel {
     }
 
     /**
-     * @return the departure_time
+     * @return the depature_time
      */
-    public Timestamp getDeparture_time() {
-        return departure_time;
+    public Timestamp getDepature_time() {
+        return depature_time;
     }
 
     /**
-     * @param departure_time the departure_time to set
+     * @param depature_time the depature_time to set
      */
-    public void setDeparture_time(Timestamp departure_time) {
-        this.departure_time = departure_time;
+    public void setDepature_time(Timestamp depature_time) {
+        this.depature_time = depature_time;
     }
 
     /**
@@ -81,7 +81,7 @@ public class Travel {
     /**
      * @return the end_location_id
      */
-    public int getEnd_location_id() {
+    public Integer getEnd_location_id() {
         return end_location_id;
     }
 
@@ -105,4 +105,6 @@ public class Travel {
     public void setTransportation_mode(String transportation_mode) {
         this.transportation_mode = transportation_mode;
     }
+
+  
 }
