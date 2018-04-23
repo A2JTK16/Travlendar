@@ -82,7 +82,7 @@ public class TravlendarController extends HttpServlet
         String jdbcURL = "jdbc:mysql://localhost:3306/a2db";
         String jdbcUsername = "a2";
         String jdbcPassword = "a2";
-        */
+        /*/
         String jdbcURL = "jdbc:mysql://localhost:3306/travlendardb";
         String jdbcUsername = "root";
         String jdbcPassword = "";
@@ -145,11 +145,11 @@ public class TravlendarController extends HttpServlet
              * cara akses json 
              * kunjungi http://localhost:8080/index?action=getlistEvent
              * dengan ajax
-             *
+             */
             case "getlistEvent" :
-                **
+                /**
                  * Mendapatkan list event
-                 *                String username = this.getUsername(request);
+                 */                String username = this.getUsername(request);
                 List<ViewEvent> list = this.vEventDao.getList("traveller_username", username);
                 
                 Content content = new Content();
@@ -167,9 +167,9 @@ public class TravlendarController extends HttpServlet
                 
                 try 
                 {
-                    **
+                    /**
                      * Mengubah ke bentuk json dan mengirimkan resonse json ke client
-                     *
+                     */
                     jsonString = this.jsonMapper.writeValueAsString(content);
                     this.responseJson(response, jsonString);
                 } 
@@ -179,14 +179,14 @@ public class TravlendarController extends HttpServlet
                 }
 
                 break;
-                */
+                
                 
             case "downloadPdf":
                 /**
                  * Mendapatkan list event
                  */
-                String username = this.getUsername(request);
-                List<ViewEvent> list = this.vEventDao.getList("traveller_username", username);
+                username = this.getUsername(request);
+                list = this.vEventDao.getList("traveller_username", username);
                 /**
                  * Mendapatkan data traveller
                  */
@@ -358,22 +358,29 @@ public class TravlendarController extends HttpServlet
                     objWhereTravel.setTraveller_username(username);
                     objWhereTravel.setEvent_id(trvl.getEvent_id());
                     
-                    this.eventDao.edit(objEvent, objWhereEvent);
-   
-                    
+                    affectedRow = this.eventDao.edit(objEvent, objWhereEvent);
+                      
                     trvl.setTraveller_username(username);
-                    this.travelDao.edit(trvl, objWhereTravel);
-                    
-                    message.setStatus("OK");
-                    message.setTitle("Success");
-                    message.setMessage("Success edit event!");
+                    affectedRow += this.travelDao.edit(trvl, objWhereTravel);
+
                 } 
                 catch (IOException ex) 
                 {
                     Logger.getLogger(TravlendarController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                if(affectedRow > 0)
+                {
+                    message.setStatus("OK");
+                    message.setTitle("Success");
+                    message.setMessage("Success add message!");
+                    message.setGeneratedKey(idPK);
+                }
+                else
+                {
                     message.setStatus("ERROR");
                     message.setTitle("Failed");
-                    message.setMessage("Failed edit event");
+                    message.setMessage("Failed Add Event");
                 }
                 
                 try 

@@ -10,8 +10,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>My Profile</title>
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/responsive.css">
+        <link rel="stylesheet" href="../css/style.min.css">
+        <link rel="stylesheet" href="../css/responsive.min.css">
         <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkmRXiWxa2lmWdsxjcqahurk8g_rtHM1s&libraries=places"></script>-->
         <!-- JQuery Library -->
         <!--<script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
@@ -19,7 +19,8 @@
         <!-- untuk parse tanggal -->
         <script src="../js/moment.min.js"></script>
         <!-- GMaps Library -->
-        <script src="../js/gmaps.js"></script>
+        <!--<script src="../js/gmaps.js"></script>-->
+        <script src="../js/setting.min.js"></script>
         
     </head>
     <body>
@@ -148,12 +149,38 @@
           </div>
           
      </div>
-    
-    
+        <div class="footer-atas">
+	
+        </div> <!--footer-atas-->
+
+	<div class="footer-bawah">
+            <div class="footer">
+            <div class="container-t">    
+                <div class="copyright">
+                    <h4>Travelendar</h4>
+                    <div class="cpy"> Copyright &copy; 2017 travlendar | Designed by A2 JTK Polban</div>
+                </div> <!--copyright-->
+                
+                <div class="share-sos">
+                    <div class="sos">
+                        <a href="https://www.facebook.com/travlendar.proyek.1"><img src="../icon/fb.png"></a>
+                    </div>
+                    
+                    <div class="sos">
+                        <a href="https://twitter.com/Travlendar2a"><img src="../icon/twt.png"></a>
+                    </div>
+                    
+                    <div class="sos">
+                        <a href="https://www.instagram.com/travelendara2proyek3/"><img src="../icon/inst.png">
+                    </div>
+                    
+                    <div class="sos">
+                        <a href="https://www.youtube.com/channel/UC4OTlsVRe7TTHzs8yc_eJkg"><img src="../icon/yt.png"></a>
+                    </div>
+                </div> <!--share-sos-->
+            </div>    
+            </div>
+        </div> <!--footer-bawah-->
         
-        <%@include file="../travlendar/footer.jsp" %>
-        
-        <script src="../js/jquery.min.js"></script>
-        <script src="../js/setting.js"></script>
     </body>
 </html>

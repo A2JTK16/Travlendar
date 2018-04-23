@@ -9,11 +9,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../css/home.css">
-        <link rel="stylesheet" type="text/css" href="../css/responsivehome.css">
+        <link rel="stylesheet" type="text/css" href="../css/home.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/responsivehome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
         <script src="../js/jquery.min.js"></script>
-        <script src="../js/signup.js"></script>
+        <script src="../js/signup.min.js"></script>
         <title>Create Your Account</title>
     </head>
     <body>
@@ -62,7 +62,7 @@
                 </div>
             </div> <!--modal content-->
         </div>
-        
+ 
 
         
     </body>

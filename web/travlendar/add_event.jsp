@@ -11,9 +11,9 @@
 	<meta charset="UTF-8">
 	<title>Travelendar</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/responsive.css">
-        <link rel="stylesheet" href="css/responsivetable.css">
+	<link rel="stylesheet" href="css/style.min.css">
+        <link rel="stylesheet" href="css/responsive.min.css">
+        <link rel="stylesheet" href="css/responsivetable.min.css">
         <!-- Google Maps JS API // cukup satu --> 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDynezur_K0C2eJAoEoK49roKDb2RQfLFg&libraries=places"></script>
         <!-- JQuery Library -->
@@ -31,7 +31,7 @@
         <script src='calendar-event/fullcalendar.min.js'></script>
         
         <!-- GMaps and Javascript Custom Setting for This Page -->
-        <script src="js/a2event.js"></script>
+        <script src="js/a2event.min.js"></script>
         <style>
 
                 #calendar {

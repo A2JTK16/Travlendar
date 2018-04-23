@@ -54,7 +54,7 @@ $(document).ready( function()  // Ketika web udah siap
            $('#moreStartDate').val(temp.toString().substring(0,10)); 
            $('#moreStartTime').val(temp.toString().substring(11,16)); 
            $('#moreMode').val(eventE.transportation);
-           delete temp;
+          // delete temp;
            temp = moment(eventE.depature_time, 'YYYY-MM-DD hh:mm').format();
            $('#moreDepatureDate').val(temp.toString().substring(0,10));
            $('#moreDepatureTime').val(temp.toString().substring(11,16));
@@ -130,9 +130,7 @@ $(document).ready( function()  // Ketika web udah siap
         {
             $.ajax({
                 type: 'POST',
-               // dataType : 'JSON',
                 data: {action: 'getlistEvent'},
-             //   contentType : "application/json",
                 url: urlController,
                 async: false,
                 success: successFunc,
@@ -226,14 +224,13 @@ $(document).ready( function()  // Ketika web udah siap
          */
         this.writeRow = function(item)
         {
-            var row =  '<tr><td style="display:none">'+ item.id +'</td>\n\
-                            <td>'+ item.title + '</td>\n\
-                            <td>'+ moment(item.start).format("ddd DD-MM-YYYY hh:mm a") + '</td>\n\
-                            <td>'+ item.transportation + '</td>\n\
-                            <td>'+ moment(item.departure_time).format("ddd DD-MM-YYYY hh:mm a") + '</td>\n\
-                            <td>'+ item.address +'</td>\n\
-                            <td><button class="v-more"> View More </button> <button class="v-del"> Delete </button></td>\n\
-                        </tr>';
+            var row = "";
+            row.concat('<tr><td style="display:none">', item.id, 
+                        '</td><td>', item.title ,
+                        '</td><td>', moment(item.start).format("ddd DD-MM-YYYY hh:mm a"),
+                        '</td><td>', item.transportation, '</td><td>'+ moment(item.departure_time).format("ddd DD-MM-YYYY hh:mm a"), 
+                        '</td><td>', item.address, 
+                        '</td><td><button class="v-more"> View More </button> <button class="v-del"> Delete </button></td></tr>');
             $( cssIdTable +' > tbody').append(row);
         };
         
@@ -905,7 +902,7 @@ $(document).ready( function()  // Ketika web udah siap
      * Menampilkan View More
      * @param {type} event
      * @returns {undefined}
-     */
+     */ 
     function viewMoreFind(event)
     {
         //$('#findEvent').val('');
@@ -927,7 +924,7 @@ $(document).ready( function()  // Ketika web udah siap
         if(value.length > 2)
         {
             $('#findResult').html('<ul>'); // tambahkan tabel
-            $("#tableEvent tr").each(function(index) 
+            $("#tableEvent > tbody > tr").each(function(index) 
             {
                 if (index >= 0) 
                 {
@@ -935,7 +932,7 @@ $(document).ready( function()  // Ketika web udah siap
                     $row = $(this);
 
                     var titleEvent = $row.find("td:eq(1)").text().toLowerCase();
-                    var idEvent = parseInt($row.find("td:eq(0)").text());
+                    var idEvent = parseInt($row.find("td:eq(0)").html());
                     var indexStr = titleEvent.indexOf(value.toString().toLowerCase());
                     if (indexStr !== 0 && indexStr < 0){                     
                     }
@@ -1563,7 +1560,7 @@ $(document).ready( function()  // Ketika web udah siap
                        
             eventTravel['event_id'] = idMoreEvent;
             eventTravel['transportation']= $('#moreMode').val();
-            eventTravel['departure_time']= new Date($('#moreDepatureDate').val() +" "+$('#moreDepatureTime').val());
+            eventTravel['depature_time']= new Date($('#moreDepatureDate').val() +" "+$('#moreDepatureTime').val());
             //eventTraveller['traveller_id'] = 1;
                    
             eventDesc.event = event;
@@ -1901,7 +1898,6 @@ $(document).ready( function()  // Ketika web udah siap
             // Onload handler to fire off the app.
             google.maps.event.addDomListener(window, 'load', initialize);
             
-    $('.downloadPdf').html('<a href="index?action=downloadPdf">Download Plan</a>');
     
 }); // tutup JQuery    
 
@@ -1921,3 +1917,4 @@ function konfirmasi()
     else return false;
 }
 */                                              
+

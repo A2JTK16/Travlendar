@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ViewEvent 
 {
     @JsonProperty(value = "id")
-    private Long event_id;
+    private String event_id;
     
     @JsonProperty(value = "title")
     private String event_name;
@@ -51,14 +51,14 @@ public class ViewEvent
     /**
      * @return the event_id
      */
-    public Long getEvent_id() {
+    public String getEvent_id() {
         return event_id;
     }
 
     /**
      * @param event_id the event_id to set
      */
-    public void setEvent_id(Long event_id) {
+    public void setEvent_id(String event_id) {
         this.event_id = event_id;
     }
 

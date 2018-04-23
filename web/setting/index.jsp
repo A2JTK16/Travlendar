@@ -6,8 +6,12 @@
 
 
 <% 
-    if(session.getAttribute("username") != null) 
-        request.getRequestDispatcher("../travlendar/setting.jsp").forward(request, response);
+    if(session.getAttribute("username") != null)
+    {
+%>
+        <%@include file="../WEB-INF/page/setting.html" %>
+<%
+    }
     else
         response.sendRedirect("../");
 %>

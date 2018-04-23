@@ -7,7 +7,11 @@
 
 <% 
     if(session.getAttribute("username") == null) 
-        request.getRequestDispatcher("../travlendar/signup.jsp").forward(request, response);
+    {
+        %>
+        <%@include file="../WEB-INF/page/signup.html" %>
+        <%
+    }
     else
         response.sendRedirect("../");
 %>

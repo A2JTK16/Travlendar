@@ -6,8 +6,16 @@
 
 
 <% 
-    if(session.getAttribute("username") != null) 
-        request.getRequestDispatcher("travlendar/add_event.jsp").forward(request, response);
+    if(session.getAttribute("username") != null)
+    {
+%>
+        <%@include file="../WEB-INF/page/event.html" %>
+<%
+    }
     else
-        request.getRequestDispatcher("travlendar/index.jsp").forward(request, response);
+    {
+%>
+        <%@include file="../WEB-INF/page/home.html" %>
+<%
+    }
 %>
