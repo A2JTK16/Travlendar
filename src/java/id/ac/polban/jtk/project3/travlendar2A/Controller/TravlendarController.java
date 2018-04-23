@@ -156,10 +156,10 @@ public class TravlendarController extends HttpServlet
                 // masukkan list
                 content.setListEvent(list);
                 // masukkan html table
-                String html = this.htmlHelper.listToHtmlBodyTable(list); 
-                content.setHtmlTable(html);
+                this.htmlHelper.initUserNotif(list); 
+                content.setListEvent(list);
                 // masukkan html notifikasi
-                html = this.htmlHelper.getHtmlNotif();
+                String html = this.htmlHelper.getHtmlNotif();
                 content.setNotif(html);
                 content.setNotifCount(this.htmlHelper.getNotifCount());
                 // masukkan username
@@ -552,10 +552,10 @@ public class TravlendarController extends HttpServlet
                 // masukkan list
                 content.setListEvent(list);
                 // masukkan html table
-                String html = this.htmlHelper.listToHtmlBodyTable(list); 
-                content.setHtmlTable(html);
+                this.htmlHelper.initUserNotif(list); 
+                content.setListEvent(list);
                 // masukkan html notifikasi
-                html = this.htmlHelper.getHtmlNotif();
+                String html = this.htmlHelper.getHtmlNotif();
                 content.setNotif(html);
                 content.setNotifCount(this.htmlHelper.getNotifCount());
                 // masukkan username

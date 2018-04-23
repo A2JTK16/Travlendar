@@ -15,14 +15,14 @@
         <link rel="stylesheet" href="css/responsive.min.css">
         <link rel="stylesheet" href="css/responsivetable.min.css">
         <!-- Google Maps JS API // cukup satu --> 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDynezur_K0C2eJAoEoK49roKDb2RQfLFg&libraries=places"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEYS&libraries=places"></script>
         <!-- JQuery Library -->
         <!--<script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
         <script src="js/jquery.min.js"></script>
         <!-- untuk parse tanggal -->
         <script src="js/moment.min.js"></script>
         <!-- GMaps Library -->
-        <script src="js/gmaps.js"></script>
+        <script src="js/gmaps.min.js"></script>
         
         <link href='calendar-event/fullcalendar.min.css' rel='stylesheet' />
         <link href='calendar-event/fullcalendar.print.min.css' rel='stylesheet' media='print' />
@@ -31,7 +31,7 @@
         <script src='calendar-event/fullcalendar.min.js'></script>
         
         <!-- GMaps and Javascript Custom Setting for This Page -->
-        <script src="js/a2event.min.js"></script>
+        <script src="js/a2event.js"></script>
         <style>
 
                 #calendar {

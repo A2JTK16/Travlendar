@@ -224,13 +224,14 @@ $(document).ready( function()  // Ketika web udah siap
          */
         this.writeRow = function(item)
         {
-            var row = "";
-            row.concat('<tr><td style="display:none">', item.id, 
-                        '</td><td>', item.title ,
-                        '</td><td>', moment(item.start).format("ddd DD-MM-YYYY hh:mm a"),
-                        '</td><td>', item.transportation, '</td><td>'+ moment(item.departure_time).format("ddd DD-MM-YYYY hh:mm a"), 
-                        '</td><td>', item.address, 
-                        '</td><td><button class="v-more"> View More </button> <button class="v-del"> Delete </button></td></tr>');
+            var row;
+            row = '<tr><td style="display:none">' + item.id +
+                  '</td><td>' + item.title +
+                  '</td><td>' + moment(item.start).format("ddd DD-MM-YYYY hh:mm a") +
+                  '</td><td>' + item.transportation + 
+                  '</td><td>' + moment(item.departure_time).format("ddd DD-MM-YYYY hh:mm a") + 
+                  '</td><td>' + item.address +
+                  '</td><td><button class="v-more"> View More </button> <button class="v-del"> Delete </button></td></tr>';
             $( cssIdTable +' > tbody').append(row);
         };
         
@@ -701,7 +702,7 @@ $(document).ready( function()  // Ketika web udah siap
         el: '#map',
         lat: -6.872034,
         lng: 107.574794,
-        zoom: 14,
+        zoom: 14
                
         /*click: function(e) 
         {
@@ -818,7 +819,12 @@ $(document).ready( function()  // Ketika web udah siap
         isNotCal = false;
         
         // masukkan html ke table
-        objTableEvent.appendRow(content.htmlTable);
+        var iEvent;
+        var totListEvent = content.listEvent.length;
+        for(iEvent = 0; iEvent < totListEvent; iEvent++)
+        {
+            objTableEvent.writeRow(content.listEvent[iEvent]);
+        }
         
                 // set aksi view more
         $("#tableEvent").on('click', '.v-more', function()
@@ -900,21 +906,22 @@ $(document).ready( function()  // Ketika web udah siap
     
     /**
      * Menampilkan View More
-     * @param {type} event
+     * @param {type} id
      * @returns {undefined}
      */ 
-    function viewMoreFind(event)
+    function viewMoreFind(idEv)
     {
         //$('#findEvent').val('');
+        //alert(id);
         // mendapatkan data2 
-        event = objCalendar.getEvent(event.id)[0];
+        var event = objCalendar.getEvent(idEv)[0];
         // tampilkan tab baru
         tabView.viewMore(event, mapObj);
         // clear pencarian
         $('#findResult').html('');
         $('#findEvent').val('');
     }
-    
+        
     // search
     $('#findEvent').on("keyup", function() 
     {
@@ -932,15 +939,19 @@ $(document).ready( function()  // Ketika web udah siap
                     $row = $(this);
 
                     var titleEvent = $row.find("td:eq(1)").text().toLowerCase();
-                    var idEvent = parseInt($row.find("td:eq(0)").html());
+                    var idEve = $row.find("td:eq(0)").text();
                     var indexStr = titleEvent.indexOf(value.toString().toLowerCase());
                     if (indexStr !== 0 && indexStr < 0){                     
                     }
                     else
                     {
-                        $('#findResult').append('<li class="findResultMore"><button style="padding: 6px 37px; border: none;background:none;font: 14px Arial;font-weight:bold;color:#757575;">'+ titleEvent +'</button></li>');
+                        $('#findResult').append('<li id="findResultMore'+idEve+'"><button style="padding: 6px 37px; border: none;background:none;font: 14px Arial;font-weight:bold;color:#757575;">'+ titleEvent +'</button></li>');
                        // $('#moreTitle').val(titleEvent);
-                        $('.findResultMore').click({id: idEvent}, viewMoreFind);
+                        $('#findResultMore'+idEve).click(function(){
+                           // var ids = $(this).find("IdResult").val();
+                           // alert(idEve);
+                            viewMoreFind(idEve);
+                        });
                     }  
                 }
             });
@@ -1480,7 +1491,7 @@ $(document).ready( function()  // Ketika web udah siap
                     timeout: 16000,
                     success: function(msgStatus)
                             {                   
-                                if(msgStatus.status == "OK")
+                                if(msgStatus.status === "OK")
                                 {
                                     event.id = msgStatus.generatedKey;
                                     event.address = eventLoc.address;
@@ -1718,7 +1729,7 @@ $(document).ready( function()  // Ketika web udah siap
     // PANGGIL
     initializeAutocomplete();
     */
-   
+
             var geocoder = new google.maps.Geocoder();       
             var m1poslat=null,m1poslng=null,m2poslat=null,m2poslng=null;
             function geocodePosition(pos) {

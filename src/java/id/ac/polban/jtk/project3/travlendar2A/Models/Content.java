@@ -16,7 +16,7 @@ public class Content
     /**
      * Atribut
      */
-    private String htmlTable;
+    //private String htmlTable;
     private List<ViewEvent> listEvent;
     private String notif;
     private String user;
@@ -25,17 +25,17 @@ public class Content
     /**
      * @return the htmlTable
      */
-    public String getHtmlTable() {
+  /*  public String getHtmlTable() {
         return htmlTable;
     }
-
+*/
     /**
      * @param htmlTable the htmlTable to set
      */
-    public void setHtmlTable(String htmlTable) {
+  /*  public void setHtmlTable(String htmlTable) {
         this.htmlTable = htmlTable;
     }
-
+*/
     /**
      * @return the listEvent
      */
