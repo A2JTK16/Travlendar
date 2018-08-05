@@ -13,4 +13,4 @@ Dengan menggunakan aplikasi Travlendar2A, Ibu Maryam hanya mengisi setiap acara,
 
 ## Cara Penggunaan 
 
-[linkname](https://www.youtube.com/watch?v=RD6gCCIYTvo)
+[YouTube](https://www.youtube.com/watch?v=RD6gCCIYTvo)
